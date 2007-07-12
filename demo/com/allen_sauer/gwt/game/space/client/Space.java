@@ -1,6 +1,5 @@
 package com.allen_sauer.gwt.game.space.client;
 
-
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
@@ -27,6 +26,7 @@ public class Space extends Game {
   private Sprite[] sprites;
   private int[] spriteX;
   private Timer timer;
+  private Sprite robot;
 
   public Space() {
     backgroundImage = new Image("images/nebula_13-fudged.jpg");
@@ -36,8 +36,7 @@ public class Space extends Game {
     sprites = new Sprite[SPRITE_COUNT];
     spriteX = new int[SPRITE_COUNT];
     for (int i = 0; i < sprites.length; i++) {
-      sprites[i] = new Sprite("images/robots-03-map-tr.gif", SPRITE_FRAME_WIDTH * FRAMES, SPRITE_FRAME_HEIGHT, 0, 0,
-          SPRITE_FRAME_WIDTH, SPRITE_FRAME_HEIGHT);
+      sprites[i] = newSprite();
     }
 
     sine = new int[SUBDIVISIONS];
@@ -97,6 +96,12 @@ public class Space extends Game {
         stopStart();
       }
     });
+    robot = newSprite();
+    RootPanel.get().add(robot);
+  }
+
+  private Sprite newSprite() {
+    return new Sprite(this, "images/robots-03-map-tr.gif", FRAMES, SPRITE_FRAME_WIDTH, SPRITE_FRAME_HEIGHT);
   }
 
   public void stopStart() {
@@ -108,8 +113,12 @@ public class Space extends Game {
     running = !running;
   }
 
+  
+  protected void doFrame() {
+    robot.doMove();
+  }
+
   protected void handleClientResized(int clientWidth, int clientHeight) {
-    super.handleClientResized(clientWidth, clientHeight);
     backgroundImage.setPixelSize(clientWidth, clientHeight);
 
     for (int i = 0; i < sprites.length; i++) {

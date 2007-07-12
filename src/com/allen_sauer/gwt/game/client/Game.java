@@ -13,20 +13,43 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public abstract class Game implements EntryPoint {
+  private int clientWidth;
+  private int clientHeight;
+
   public void onModuleLoad() {
     Window.addWindowResizeListener(new WindowResizeListener() {
       public void onWindowResized(int width, int height) {
-        //Log.debug("resize event");
-        handleClientResized(width, height);
+        clientResized(width, height);
       }
     });
 
-    handleClientResized(Window.getClientWidth(), Window.getClientHeight());
+    clientResized(Window.getClientWidth(), Window.getClientHeight());
+
+    Timer timer = new Timer() {
+      public void run() {
+        doFrame();
+      }
+    };
+    timer.scheduleRepeating(1);
+  }
+
+  private void clientResized(int clientWidth, int clientHeight) {
+    this.clientWidth = clientWidth;
+    this.clientHeight = clientHeight;
+    handleClientResized(clientWidth, clientHeight);
     assert Window.getClientWidth() != 0;
     assert Window.getClientHeight() != 0;
   }
 
-  protected void handleClientResized(int clientWidth, int clientHeight) {
-    //    Log.debug("handleClientResized(" + clientWidth + ", " + clientHeight + ")");
+  protected abstract void doFrame();
+  
+  protected abstract void handleClientResized(int clientWidth, int clientHeight);
+
+  public int getClientWidth() {
+    return clientWidth;
+  }
+
+  public int getClientHeight() {
+    return clientHeight;
   }
 }
