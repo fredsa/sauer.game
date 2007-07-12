@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+HTML,BODY {
+  Xbackground-color: #ABCDEF;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+}
+
+.transparent50 {
+  filter: alpha(opacity =   50);
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+}
+
+* {
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  xborder: 1px solid black;
+}

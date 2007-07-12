@@ -1,0 +1,15 @@
+<module>
+
+	<!-- Inherit the core Web Toolkit stuff.                  -->
+	<inherits name='com.google.gwt.user.User'/>
+
+  <!-- Inherit logging stuff.                               -->
+  <inherits name='com.allen_sauer.gwt.log.Log'/>
+
+	<!-- Specify the app entry point class.                   -->
+	<entry-point class='com.allen_sauer.gwt.game.client.Game'/>
+
+  <!-- Include style sheet                                  -->
+  <stylesheet src='Game.css'/>
+  
+</module>
