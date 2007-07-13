@@ -26,7 +26,7 @@ public class Space extends Game {
   private Sprite[] sprites;
   private int[] spriteX;
   private Timer timer;
-  private Sprite robot;
+  private Sprite robot[] = new Sprite[20];
 
   public Space() {
     backgroundImage = new Image("images/nebula_13-fudged.jpg");
@@ -87,17 +87,23 @@ public class Space extends Game {
       }
     };
 
-    final Button button = new Button("start/stop");
-    button.setWidth("5em");
-    RootPanel.get().add(button, 10, 10);
-
-    button.addClickListener(new ClickListener() {
-      public void onClick(Widget sender) {
-        stopStart();
+    for (int i = 0; i < robot.length; i++) {
+      robot[i] = newSprite();
+      RootPanel.get().add(robot[i]);
+      for (int j = 0; j < i; j++) {
+        robot[i].doMove();
       }
-    });
-    robot = newSprite();
-    RootPanel.get().add(robot);
+
+      final Button button = new Button("start/stop");
+      button.setWidth("5em");
+      RootPanel.get().add(button, 10, 10);
+      
+      button.addClickListener(new ClickListener() {
+        public void onClick(Widget sender) {
+          stopStart();
+        }
+      });
+    }
   }
 
   private Sprite newSprite() {
@@ -115,7 +121,9 @@ public class Space extends Game {
 
   
   protected void doFrame() {
-    robot.doMove();
+    for (int i = 0; i < robot.length; i++) {
+      robot[i].doMove();
+    }
   }
 
   protected void handleClientResized(int clientWidth, int clientHeight) {
