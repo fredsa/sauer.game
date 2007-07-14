@@ -1,3 +1,6 @@
+/*
+ * Copyright 2007 Fred Sauer
+ */
 package com.allen_sauer.gwt.game.client;
 
 import com.google.gwt.user.client.DOM;
@@ -7,7 +10,9 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 
 public class Sprite extends Composite {
+  private int frame;
   private int frameHeight;
+  private int frames;
   private int frameWidth;
   private Game game;
   private Image image;
@@ -16,8 +21,6 @@ public class Sprite extends Composite {
   private int xSpeed = 4;
   private int y;
   private int ySpeed = 2;
-  private int frame;
-  private int frames;
 
   public Sprite(Game game, String url, int frames, int frameWidth, int frameHeight) {
     this.game = game;
@@ -42,7 +45,7 @@ public class Sprite extends Composite {
     setFrame(frame / 5);
 
     x += xSpeed;
-    int xMax = game.getClientWidth() - frameWidth;
+    int xMax = game.getPlayfieldWidth() - frameWidth;
     if (x < 0) {
       x = 0;
       xSpeed = Random.nextInt(5) + 4;
@@ -52,7 +55,7 @@ public class Sprite extends Composite {
     }
 
     y += ySpeed;
-    int yMax = game.getClientHeight() - frameHeight;
+    int yMax = game.getPlayfieldHeight() - frameHeight;
     if (y < 0) {
       y = 0;
       ySpeed = Random.nextInt(5) + 4;
