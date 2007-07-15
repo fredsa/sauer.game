@@ -24,9 +24,6 @@ public class SpaceGame implements Game {
   }
 
   public void doFrame() {
-    for (int i = 0; i < robot.length; i++) {
-      robot[i].doMove();
-    }
   }
 
   public int getPlayfieldHeight() {
@@ -48,9 +45,10 @@ public class SpaceGame implements Game {
 
     for (int i = 0; i < robot.length; i++) {
       robot[i] = new RobotSprite(this);
+      engine.registerSprite(robot[i]);
       RootPanel.get().add(robot[i]);
       for (int j = 0; j < i; j++) {
-        robot[i].doMove();
+        robot[i].doFrame();
       }
     }
   }

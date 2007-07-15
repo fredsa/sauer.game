@@ -7,16 +7,16 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 
-final class GameTimer extends Timer {
+final class EngineTimer extends Timer {
   private static final int FRAMES_TO_AVERAGE = 10;
   private int count = 0;
-  private final Game game;
+  private final Engine engine;
   private long lastTimestamp;
   private boolean paused = true;
   private HTML timerText = new HTML();
 
-  GameTimer(Game game) {
-    this.game = game;
+  EngineTimer(Engine engine) {
+    this.engine = engine;
   }
 
   public boolean isPaused() {
@@ -38,7 +38,7 @@ final class GameTimer extends Timer {
 
   public void run() {
     measure();
-    game.doFrame();
+    engine.doFrame();
   }
 
   public void schedule(int delayMillis) {

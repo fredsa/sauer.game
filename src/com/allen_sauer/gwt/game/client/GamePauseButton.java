@@ -16,9 +16,9 @@ public class GamePauseButton extends Button {
   }
 
   private ClickListener gamePauseClickListener = new GamePauseClickListener();
-  private final GameTimer gameTimer;
+  private final EngineTimer gameTimer;
 
-  public GamePauseButton(GameTimer gameTimer) {
+  public GamePauseButton(EngineTimer gameTimer) {
     super("Pause");
     this.gameTimer = gameTimer;
     DOM.setStyleAttribute(getElement(), "width", "5em");

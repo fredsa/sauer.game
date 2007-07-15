@@ -6,15 +6,26 @@ package com.allen_sauer.gwt.game.client;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowResizeListener;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.impl.FocusImpl;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Engine {
   private int clientHeight;
   private int clientWidth;
+  private EngineTimer engineTimer;
   private Game game;
-  private GameTimer gameTimer;
+  private ArrayList sprites = new ArrayList();
 
   public Engine() {
+  }
+
+  public void doFrame() {
+    game.doFrame();
+    for (Iterator iterator = sprites.iterator(); iterator.hasNext();) {
+      Sprite sprite = (Sprite) iterator.next();
+      sprite.doFrame();
+    }
   }
 
   public int getClientHeight() {
@@ -37,12 +48,16 @@ public class Engine {
 
     clientResized(Window.getClientWidth(), Window.getClientHeight());
 
-    gameTimer = new GameTimer(game);
-    gameTimer.setPaused(false);
-    GamePauseButton gamePauseButton = new GamePauseButton(gameTimer);
+    engineTimer = new EngineTimer(this);
+    engineTimer.setPaused(false);
+    GamePauseButton gamePauseButton = new GamePauseButton(engineTimer);
     RootPanel.get().add(gamePauseButton, 10, 40);
-//    FocusImpl.getFocusImplForPanel().focus(RootPanel.getBodyElement());
+    //    FocusImpl.getFocusImplForPanel().focus(RootPanel.getBodyElement());
     gamePauseButton.setFocus(true);
+  }
+
+  public void registerSprite(Sprite sprite) {
+    sprites.add(sprite);
   }
 
   private void clientResized(int clientWidth, int clientHeight) {

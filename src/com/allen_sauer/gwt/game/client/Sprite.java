@@ -38,7 +38,7 @@ public class Sprite extends Composite {
     setPosition();
   }
 
-  public void doMove() {
+  public void doFrame() {
     if (++frame >= frames * 5) {
       frame = 0;
     }
@@ -74,5 +74,37 @@ public class Sprite extends Composite {
   private void setPosition() {
     DOM.setStyleAttribute(getElement(), "left", x + "px");
     DOM.setStyleAttribute(getElement(), "top", y + "px");
+  }
+
+  public int getX() {
+    return x;
+  }
+
+  public void setX(int x) {
+    this.x = x;
+  }
+
+  public int getXSpeed() {
+    return xSpeed;
+  }
+
+  public void setXSpeed(int speed) {
+    xSpeed = speed;
+  }
+
+  public int getY() {
+    return y;
+  }
+
+  public void setY(int y) {
+    this.y = y;
+  }
+
+  public int getYSpeed() {
+    return ySpeed;
+  }
+
+  public void setYSpeed(int speed) {
+    ySpeed = speed;
   }
 }
