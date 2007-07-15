@@ -4,5 +4,8 @@
     <fileset name="all" enabled="true" check-config-name="Game Checkstyle" local="true">
         <file-match-pattern match-pattern="." include-pattern="true"/>
     </fileset>
+    <filter name="FilesFromPackage" enabled="true">
+        <filter-data value="src/examples"/>
+    </filter>
     <filter name="FilesInSync2" enabled="true"/>
 </fileset-config>
