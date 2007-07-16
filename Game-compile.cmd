@@ -1,1 +1,1 @@
-@java -cp "%~dp0\src;%~dp0\demo;%~dp0\bin;C:/fred/java/lib/gwt-log.jar;C:/fred/gwt/trunk/user/src;C:/fred/gwt/trunk/user/super;C:/fred/gwt/trunk/build/staging/gwt-windows-0.0.0/gwt-dev-windows.jar" com.google.gwt.dev.GWTCompiler -out "%~dp0\www" %* com.allen_sauer.gwt.game.Game
+@java -cp "%~dp0\src;%~dp0\demo;%~dp0\bin;%GWT_LIBS%/gwt-log.jar;%GWT_TRUNK%/user/src;%GWT_WINDOWS%/gwt-user.jar;%GWT_WINDOWS%/gwt-dev-windows.jar" com.google.gwt.dev.GWTCompiler -out "%~dp0\www" %* com.allen_sauer.gwt.game.space.Space
