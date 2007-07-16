@@ -4,6 +4,7 @@
 package com.allen_sauer.gwt.game.space.client;
 
 import com.allen_sauer.gwt.game.client.Game;
+import com.allen_sauer.gwt.game.client.ParatrooperBehavior;
 import com.allen_sauer.gwt.game.client.Sprite;
 
 public class RobotSprite extends Sprite {
@@ -14,5 +15,6 @@ public class RobotSprite extends Sprite {
 
   public RobotSprite(Game game) {
     super(game, SPRITE_URL, FRAMES, FRAME_WIDTH, FRAME_HEIGHT);
+    setBehavior(new ParatrooperBehavior(this));
   }
 }

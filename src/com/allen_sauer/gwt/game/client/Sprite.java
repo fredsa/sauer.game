@@ -4,12 +4,12 @@
 package com.allen_sauer.gwt.game.client;
 
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 
 public class Sprite extends Composite {
+  private Behavior behavior;
   private int frame;
   private int frameHeight;
   private int frames;
@@ -35,7 +35,7 @@ public class Sprite extends Composite {
     panel.setPixelSize(frameWidth, frameHeight);
 
     DOM.setStyleAttribute(getElement(), "position", "absolute");
-    setPosition();
+    setDomPosition();
   }
 
   public void doFrame() {
@@ -44,67 +44,64 @@ public class Sprite extends Composite {
     }
     setFrame(frame / 5);
 
-    x += xSpeed;
-    int xMax = game.getPlayfieldWidth() - frameWidth;
-    if (x < 0) {
-      x = 0;
-      xSpeed = Random.nextInt(5) + 4;
-    } else if (x > xMax) {
-      x = xMax;
-      xSpeed = -Random.nextInt(5) - 4;
-    }
-
-    y += ySpeed;
-    int yMax = game.getPlayfieldHeight() - frameHeight;
-    if (y < 0) {
-      y = 0;
-      ySpeed = Random.nextInt(5) + 4;
-    } else if (y > yMax) {
-      y = yMax;
-      ySpeed = -Random.nextInt(5) - 4;
-    }
-
-    setPosition();
+    behavior.doFrame();
+    setDomPosition();
   }
 
-  public void setFrame(int frame) {
-    DOM.setStyleAttribute(image.getElement(), "left", -frame * frameWidth + "px");
+  public int getFrameHeight() {
+    return frameHeight;
   }
 
-  private void setPosition() {
-    DOM.setStyleAttribute(getElement(), "left", x + "px");
-    DOM.setStyleAttribute(getElement(), "top", y + "px");
+  public int getFrameWidth() {
+    return frameWidth;
+  }
+
+  public Game getGame() {
+    return game;
   }
 
   public int getX() {
     return x;
   }
 
-  public void setX(int x) {
-    this.x = x;
-  }
-
   public int getXSpeed() {
     return xSpeed;
-  }
-
-  public void setXSpeed(int speed) {
-    xSpeed = speed;
   }
 
   public int getY() {
     return y;
   }
 
-  public void setY(int y) {
-    this.y = y;
-  }
-
   public int getYSpeed() {
     return ySpeed;
   }
 
+  public void setBehavior(Behavior behavior) {
+    this.behavior = behavior;
+  }
+
+  public void setFrame(int frame) {
+    DOM.setStyleAttribute(image.getElement(), "left", -frame * frameWidth + "px");
+  }
+
+  public final void setX(int x) {
+    this.x = x;
+  }
+
+  public void setXSpeed(int speed) {
+    xSpeed = speed;
+  }
+
+  public void setY(int y) {
+    this.y = y;
+  }
+
   public void setYSpeed(int speed) {
     ySpeed = speed;
+  }
+
+  private void setDomPosition() {
+    DOM.setStyleAttribute(getElement(), "left", x + "px");
+    DOM.setStyleAttribute(getElement(), "top", y + "px");
   }
 }
