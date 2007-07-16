@@ -1,6 +1,3 @@
-/*
- * Copyright 2007 Fred Sauer
- */
 package com.allen_sauer.gwt.game.client;
 
 import com.google.gwt.user.client.Timer;
@@ -10,13 +7,11 @@ import com.google.gwt.user.client.ui.RootPanel;
 final class EngineTimer extends Timer {
   private static final int FRAMES_TO_AVERAGE = 10;
   private int count = 0;
-  private final Engine engine;
   private long lastTimestamp;
   private boolean paused = true;
   private HTML timerText = new HTML();
 
-  EngineTimer(Engine engine) {
-    this.engine = engine;
+  EngineTimer() {
   }
 
   public boolean isPaused() {
@@ -38,7 +33,7 @@ final class EngineTimer extends Timer {
 
   public void run() {
     measure();
-    engine.doFrame();
+    Engine.doFrame();
   }
 
   public void schedule(int delayMillis) {

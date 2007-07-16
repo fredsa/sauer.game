@@ -1,12 +1,10 @@
-/*
- * Copyright 2007 Fred Sauer
- */
 package com.allen_sauer.gwt.game.client;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.RootPanel;
 
 public class Sprite extends Composite {
   private Behavior behavior;
@@ -17,10 +15,9 @@ public class Sprite extends Composite {
   private Game game;
   private Image image;
   private AbsolutePanel panel = new AbsolutePanel();
+  private SpritePool spritePool;
   private int x;
-  private int xSpeed = 4;
   private int y;
-  private int ySpeed = 2;
 
   public Sprite(Game game, String url, int frames, int frameWidth, int frameHeight) {
     this.game = game;
@@ -35,7 +32,10 @@ public class Sprite extends Composite {
     panel.setPixelSize(frameWidth, frameHeight);
 
     DOM.setStyleAttribute(getElement(), "position", "absolute");
-    setDomPosition();
+  }
+
+  public void deinit() {
+    RootPanel.get().remove(this);
   }
 
   public void doFrame() {
@@ -45,7 +45,6 @@ public class Sprite extends Composite {
     setFrame(frame / 5);
 
     behavior.doFrame();
-    setDomPosition();
   }
 
   public int getFrameHeight() {
@@ -64,16 +63,17 @@ public class Sprite extends Composite {
     return x;
   }
 
-  public int getXSpeed() {
-    return xSpeed;
-  }
-
   public int getY() {
     return y;
   }
 
-  public int getYSpeed() {
-    return ySpeed;
+  public void init() {
+    RootPanel.get().add(this);
+    behavior.init();
+  }
+
+  public void removeSelf() {
+    spritePool.destroy(this);
   }
 
   public void setBehavior(Behavior behavior) {
@@ -84,24 +84,17 @@ public class Sprite extends Composite {
     DOM.setStyleAttribute(image.getElement(), "left", -frame * frameWidth + "px");
   }
 
-  public final void setX(int x) {
-    this.x = x;
+  public void setSpritePool(SpritePool spritePool) {
+    this.spritePool = spritePool;
   }
 
-  public void setXSpeed(int speed) {
-    xSpeed = speed;
+  public final void setX(int x) {
+    this.x = x;
+    DOM.setStyleAttribute(getElement(), "left", x + "px");
   }
 
   public void setY(int y) {
-    this.y = y;
-  }
-
-  public void setYSpeed(int speed) {
-    ySpeed = speed;
-  }
-
-  private void setDomPosition() {
-    DOM.setStyleAttribute(getElement(), "left", x + "px");
     DOM.setStyleAttribute(getElement(), "top", y + "px");
+    this.y = y;
   }
 }

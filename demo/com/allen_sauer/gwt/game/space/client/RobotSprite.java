@@ -1,6 +1,3 @@
-/*
- * Copyright 2007 Fred Sauer
- */
 package com.allen_sauer.gwt.game.space.client;
 
 import com.allen_sauer.gwt.game.client.Game;

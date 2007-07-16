@@ -1,6 +1,3 @@
-/*
- * Copyright 2007 Fred Sauer
- */
 package com.allen_sauer.gwt.game.client;
 
 import com.google.gwt.user.client.Window;
@@ -11,34 +8,35 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Engine {
-  private int clientHeight;
-  private int clientWidth;
-  private EngineTimer engineTimer;
-  private Game game;
-  private ArrayList sprites = new ArrayList();
+  private static int clientHeight;
+  private static int clientWidth;
+  private static EngineTimer engineTimer;
+  private static Game game;
+  private static ArrayList spritePools = new ArrayList();
 
-  public Engine() {
+  public static void addSpritePool(SpritePool pool) {
+    spritePools.add(pool);
   }
 
-  public void doFrame() {
+  public static void doFrame() {
     game.doFrame();
-    for (Iterator iterator = sprites.iterator(); iterator.hasNext();) {
-      Sprite sprite = (Sprite) iterator.next();
-      sprite.doFrame();
+    for (Iterator iterator = spritePools.iterator(); iterator.hasNext();) {
+      SpritePool pool = (SpritePool) iterator.next();
+      pool.doFrame();
     }
   }
 
-  public int getClientHeight() {
+  public static int getClientHeight() {
     return clientHeight;
   }
 
-  public int getClientWidth() {
+  public static int getClientWidth() {
     return clientWidth;
   }
 
-  public void init(Game game) {
-    this.game = game;
-    game.init(this);
+  public static void init(Game game) {
+    Engine.game = game;
+    game.init();
 
     Window.addWindowResizeListener(new WindowResizeListener() {
       public void onWindowResized(int width, int height) {
@@ -48,7 +46,7 @@ public class Engine {
 
     clientResized(Window.getClientWidth(), Window.getClientHeight());
 
-    engineTimer = new EngineTimer(this);
+    engineTimer = new EngineTimer();
     engineTimer.setPaused(false);
     GamePauseButton gamePauseButton = new GamePauseButton(engineTimer);
     RootPanel.get().add(gamePauseButton, 10, 40);
@@ -56,15 +54,14 @@ public class Engine {
     gamePauseButton.setFocus(true);
   }
 
-  public void registerSprite(Sprite sprite) {
-    sprites.add(sprite);
-  }
-
-  private void clientResized(int clientWidth, int clientHeight) {
-    this.clientWidth = clientWidth;
-    this.clientHeight = clientHeight;
+  private static void clientResized(int clientWidth, int clientHeight) {
+    Engine.clientWidth = clientWidth;
+    Engine.clientHeight = clientHeight;
     game.clientResized(clientWidth, clientHeight);
     assert Window.getClientWidth() != 0;
     assert Window.getClientHeight() != 0;
+  }
+
+  private Engine() {
   }
 }

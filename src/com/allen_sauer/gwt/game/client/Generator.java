@@ -1,7 +1,5 @@
 package com.allen_sauer.gwt.game.client;
 
-public interface Behavior {
+public interface Generator {
   void doFrame();
-
-  void init();
 }

@@ -1,6 +1,3 @@
-/*
- * Copyright 2007 Fred Sauer
- */
 package com.allen_sauer.gwt.game.space.client;
 
 import com.google.gwt.user.client.ui.HTML;
@@ -9,32 +6,26 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Engine;
 import com.allen_sauer.gwt.game.client.Game;
+import com.allen_sauer.gwt.game.client.IntervalGenerator;
 import com.allen_sauer.gwt.game.client.Sprite;
+import com.allen_sauer.gwt.game.client.SpriteFactory;
+import com.allen_sauer.gwt.game.client.SpritePool;
 
 public class SpaceGame implements Game {
+  private static final int MAX_ROBOTS = 10;
+  private static final double ROBOT_APPEARANCE_PROBABILITY = .1;
   private Image backgroundImage;
-  private int playfieldHeight;
-  private int playfieldWidth;
-  private Sprite robot[] = new Sprite[20];
+  private IntervalGenerator intervalGenerator;
 
   public void clientResized(int clientWidth, int clientHeight) {
-    playfieldWidth = clientWidth;
-    playfieldHeight = clientHeight;
     backgroundImage.setPixelSize(clientWidth, clientHeight);
   }
 
   public void doFrame() {
+    intervalGenerator.doFrame();
   }
 
-  public int getPlayfieldHeight() {
-    return playfieldHeight;
-  }
-
-  public int getPlayfieldWidth() {
-    return playfieldWidth;
-  }
-
-  public void init(Engine engine) {
+  public void init() {
     backgroundImage = new Image("images/nebula_13-fudged.jpg");
     backgroundImage.addStyleName("backgroundImage");
     RootPanel.get().add(backgroundImage);
@@ -43,13 +34,13 @@ public class SpaceGame implements Game {
     timerText.addStyleName("timerText");
     RootPanel.get().add(timerText, 200, 0);
 
-    for (int i = 0; i < robot.length; i++) {
-      robot[i] = new RobotSprite(this);
-      engine.registerSprite(robot[i]);
-      RootPanel.get().add(robot[i]);
-      for (int j = 0; j < i; j++) {
-        robot[i].doFrame();
+    SpriteFactory spriteFactory = new SpriteFactory() {
+      public Sprite create() {
+        return new RobotSprite(SpaceGame.this);
       }
-    }
+    };
+    SpritePool spritePool = new SpritePool(spriteFactory, MAX_ROBOTS);
+    Engine.addSpritePool(spritePool);
+    intervalGenerator = new IntervalGenerator(spritePool, ROBOT_APPEARANCE_PROBABILITY);
   }
 }
