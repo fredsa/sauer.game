@@ -1,8 +1,11 @@
-package com.allen_sauer.gwt.game.client;
+package com.allen_sauer.gwt.game.client.engine;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowResizeListener;
 import com.google.gwt.user.client.ui.RootPanel;
+
+import com.allen_sauer.gwt.game.client.Game;
+import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -48,10 +51,10 @@ public class Engine {
 
     engineTimer = new EngineTimer();
     engineTimer.setPaused(false);
-    GamePauseButton gamePauseButton = new GamePauseButton(engineTimer);
-    RootPanel.get().add(gamePauseButton, 10, 40);
+    EnginePauseButton enginePauseButton = new EnginePauseButton(engineTimer);
+    RootPanel.get().add(enginePauseButton, 10, 40);
     //    FocusImpl.getFocusImplForPanel().focus(RootPanel.getBodyElement());
-    gamePauseButton.setFocus(true);
+    enginePauseButton.setFocus(true);
   }
 
   private static void clientResized(int clientWidth, int clientHeight) {

@@ -1,10 +1,13 @@
-package com.allen_sauer.gwt.game.client;
+package com.allen_sauer.gwt.game.client.sprite;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
+
+import com.allen_sauer.gwt.game.client.Game;
+import com.allen_sauer.gwt.game.client.behavior.Behavior;
 
 public class Sprite extends Composite {
   private Behavior behavior;

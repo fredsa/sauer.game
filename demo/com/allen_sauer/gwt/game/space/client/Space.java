@@ -2,7 +2,7 @@ package com.allen_sauer.gwt.game.space.client;
 
 import com.google.gwt.core.client.EntryPoint;
 
-import com.allen_sauer.gwt.game.client.Engine;
+import com.allen_sauer.gwt.game.client.engine.Engine;
 
 public class Space implements EntryPoint {
 

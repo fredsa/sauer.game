@@ -1,6 +1,9 @@
-package com.allen_sauer.gwt.game.client;
+package com.allen_sauer.gwt.game.client.behavior;
 
 import com.google.gwt.user.client.Random;
+
+import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
 public class ParatrooperBehavior implements Behavior {
   private static final int MAX_WALK_FRAMES = 30;

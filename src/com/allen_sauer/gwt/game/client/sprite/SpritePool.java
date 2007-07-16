@@ -1,4 +1,4 @@
-package com.allen_sauer.gwt.game.client;
+package com.allen_sauer.gwt.game.client.sprite;
 
 import java.util.ArrayList;
 import java.util.Iterator;

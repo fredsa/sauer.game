@@ -1,8 +1,8 @@
 package com.allen_sauer.gwt.game.space.client;
 
 import com.allen_sauer.gwt.game.client.Game;
-import com.allen_sauer.gwt.game.client.ParatrooperBehavior;
-import com.allen_sauer.gwt.game.client.Sprite;
+import com.allen_sauer.gwt.game.client.behavior.ParatrooperBehavior;
+import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
 public class RobotSprite extends Sprite {
   private static final int FRAME_HEIGHT = 90;

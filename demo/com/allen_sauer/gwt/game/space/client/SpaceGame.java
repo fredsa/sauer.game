@@ -4,12 +4,12 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 
-import com.allen_sauer.gwt.game.client.Engine;
 import com.allen_sauer.gwt.game.client.Game;
-import com.allen_sauer.gwt.game.client.IntervalGenerator;
-import com.allen_sauer.gwt.game.client.Sprite;
-import com.allen_sauer.gwt.game.client.SpriteFactory;
-import com.allen_sauer.gwt.game.client.SpritePool;
+import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.game.client.generator.IntervalGenerator;
+import com.allen_sauer.gwt.game.client.sprite.Sprite;
+import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
+import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 
 public class SpaceGame implements Game {
   private static final int MAX_ROBOTS = 10;
