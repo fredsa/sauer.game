@@ -2,6 +2,7 @@ package com.allen_sauer.gwt.game.client.generator;
 
 import com.google.gwt.user.client.Random;
 
+import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 
 public class IntervalGenerator implements Generator {
@@ -11,6 +12,7 @@ public class IntervalGenerator implements Generator {
   public IntervalGenerator(SpritePool spritePool, double probability) {
     this.spritePool = spritePool;
     this.probability = probability;
+    Engine.addFrameListener(this);
   }
 
   public void doFrame() {

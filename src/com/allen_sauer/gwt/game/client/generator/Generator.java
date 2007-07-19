@@ -1,5 +1,7 @@
 package com.allen_sauer.gwt.game.client.generator;
 
-public interface Generator {
+import com.allen_sauer.gwt.game.client.engine.FrameListener;
+
+public interface Generator extends FrameListener {
   void doFrame();
 }

@@ -8,8 +8,10 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.Behavior;
+import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.game.client.engine.FrameListener;
 
-public class Sprite extends Composite {
+public class Sprite extends Composite implements FrameListener {
   private Behavior behavior;
   private int frame;
   private int frameHeight;
@@ -46,8 +48,6 @@ public class Sprite extends Composite {
       frame = 0;
     }
     setFrame(frame / 5);
-
-    behavior.doFrame();
   }
 
   public int getFrameHeight() {
@@ -71,6 +71,7 @@ public class Sprite extends Composite {
   }
 
   public void init() {
+    Engine.addFrameListener(this);
     RootPanel.get().add(this);
     behavior.init();
   }

@@ -55,5 +55,7 @@ public class ParatrooperBehavior implements Behavior {
     sprite.setY(-sprite.getFrameHeight());
     xSpeed = Random.nextInt(5) + 3;
     ySpeed = Random.nextInt(5) + 3;
+
+    Engine.addFrameListener(this);
   }
 }

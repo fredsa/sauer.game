@@ -7,14 +7,6 @@
   Xborder: 1px solid black;
 }
 
-HTML,BODY { /* TODO remove after GWT issue 1357 is fixed */
-  height: 100%;
-}
-
-HTML,BODY { /* TODO remove after GWT issue 1390 is fixed */
-  overflow: hidden;
-}
-
 HTML,BODY {
   Xbackground-color: #ABCDEF;
   margin: 0px;
@@ -22,9 +14,10 @@ HTML,BODY {
   Xoverflow: hidden;
 }
 
-IFRAME { /* TODO remove after GWT issue 1359 is fixed */
-  display: none;
+IFRAME {
+  display: none; /* TODO remove after GWT issue 1359 is fixed */
 }
+
 /*
 .transparent50 {
   filter: alpha(opacity = 50);

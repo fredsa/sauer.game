@@ -1,7 +1,6 @@
 package com.allen_sauer.gwt.game.client.sprite;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class SpritePool {
   private static ArrayList sprites = new ArrayList();
@@ -26,13 +25,6 @@ public class SpritePool {
       throw new IllegalStateException("sprite not in pool");
     }
     sprite.deinit();
-  }
-
-  public void doFrame() {
-    for (Iterator iterator = sprites.iterator(); iterator.hasNext();) {
-      Sprite sprite = (Sprite) iterator.next();
-      sprite.doFrame();
-    }
   }
 
   public int getMaxSize() {
