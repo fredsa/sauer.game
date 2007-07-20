@@ -2,9 +2,9 @@ package com.allen_sauer.gwt.game.client.behavior;
 
 import com.google.gwt.user.client.ui.KeyboardListener;
 
+import com.allen_sauer.gwt.game.client.Keyboard;
 import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
-import com.allen_sauer.gwt.game.client.ui.util.Keyboard;
 
 public class CursorKeyBehavior implements Behavior {
 

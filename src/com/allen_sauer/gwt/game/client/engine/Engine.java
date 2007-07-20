@@ -35,6 +35,8 @@ public class Engine {
       newFrameListeners = new ArrayList();
     }
 
+    DoubleBuffer.swap();
+
     game.doFrame();
     for (Iterator iterator = frameListeners.iterator(); iterator.hasNext();) {
       FrameListener listener = (FrameListener) iterator.next();

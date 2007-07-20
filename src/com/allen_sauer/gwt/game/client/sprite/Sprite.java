@@ -2,24 +2,23 @@ package com.allen_sauer.gwt.game.client.sprite;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.Behavior;
+import com.allen_sauer.gwt.game.client.engine.DoubleBuffer;
 import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.engine.FrameListener;
 
-public class Sprite extends Composite implements FrameListener {
+public class Sprite implements FrameListener {
   private Behavior behavior;
   private int frame;
   private int frameHeight;
   private int frames;
   private int frameWidth;
   private Game game;
-  private Image image;
-  private AbsolutePanel panel = new AbsolutePanel();
+  private Image[] image = new Image[2];
+  private AbsolutePanel[] panel = {new AbsolutePanel(), new AbsolutePanel(),};
   private SpritePool spritePool;
   private int x;
   private int y;
@@ -29,18 +28,27 @@ public class Sprite extends Composite implements FrameListener {
     this.frames = frames;
     this.frameWidth = frameWidth;
     this.frameHeight = frameHeight;
-    initWidget(panel);
-    image = new Image(url);
-    panel.add(image, 0, 0);
+    image[0] = new Image(url);
+    image[1] = new Image(url);
+    panel[0].add(image[0], 0, 0);
+    panel[1].add(image[1], 0, 0);
 
-    image.setPixelSize(frameWidth * frames, frameHeight);
-    panel.setPixelSize(frameWidth, frameHeight);
+    image[0].setPixelSize(frameWidth * frames, frameHeight);
+    image[1].setPixelSize(frameWidth * frames, frameHeight);
 
-    DOM.setStyleAttribute(getElement(), "position", "absolute");
+    panel[0].setPixelSize(frameWidth, frameHeight);
+    panel[1].setPixelSize(frameWidth, frameHeight);
+
+    panel[0].setPixelSize(frameWidth, frameHeight);
+    panel[1].setPixelSize(frameWidth, frameHeight);
+
+    //    DOM.setStyleAttribute(panel[0].getElement(), "position", "absolute");
+    //    DOM.setStyleAttribute(panel[1].getElement(), "position", "absolute");
   }
 
   public void deinit() {
-    RootPanel.get().remove(this);
+    DoubleBuffer.buffer[0].remove(panel[0]);
+    DoubleBuffer.buffer[1].remove(panel[1]);
   }
 
   public void doFrame() {
@@ -72,7 +80,8 @@ public class Sprite extends Composite implements FrameListener {
 
   public void init() {
     Engine.addFrameListener(this);
-    RootPanel.get().add(this);
+    DoubleBuffer.buffer[0].add(panel[0], -500, -500);
+    DoubleBuffer.buffer[1].add(panel[1], -500, -500);
     behavior.init();
   }
 
@@ -85,7 +94,7 @@ public class Sprite extends Composite implements FrameListener {
   }
 
   public void setFrame(int frame) {
-    DOM.setStyleAttribute(image.getElement(), "left", -frame * frameWidth + "px");
+    DOM.setStyleAttribute(image[DoubleBuffer.getBackBufferIndex()].getElement(), "left", -frame * frameWidth + "px");
   }
 
   public void setSpritePool(SpritePool spritePool) {
@@ -94,11 +103,13 @@ public class Sprite extends Composite implements FrameListener {
 
   public final void setX(int x) {
     this.x = x;
-    DOM.setStyleAttribute(getElement(), "left", x + "px");
+    //    Log.debug("DoubleBuffer.getBackBufferIndex()=" + DoubleBuffer.getBackBufferIndex() + " : " + x + "," +y);
+    //    Log.debug(panel[DoubleBuffer.getBackBufferIndex()].toString());
+    DOM.setStyleAttribute(panel[DoubleBuffer.getBackBufferIndex()].getElement(), "left", x + "px");
   }
 
   public void setY(int y) {
-    DOM.setStyleAttribute(getElement(), "top", y + "px");
+    DOM.setStyleAttribute(panel[DoubleBuffer.getBackBufferIndex()].getElement(), "top", y + "px");
     this.y = y;
   }
 }
