@@ -9,7 +9,13 @@ import com.google.gwt.user.client.ui.Widget;
 public class DoubleBufferPanel extends Composite {
   private static final native void setBuffer(Element elem, boolean show)
   /*-{
-    elem.style.visibility = show ? "" : "hidden";
+    // elem.style.visibility = show ? "" : "hidden";
+    // elem.style.display = show ? "" : "none";
+    // elem.style.left = show ? "0px" : "-10000px";
+
+    // elem.style.filter = show ? "" : "alpha(opacity = 0)";
+    // elem.style.filter = opacity ? "" : "0";
+    // -moz-opacity: 0.3;
   }-*/;
 
   private AbsolutePanel container = new AbsolutePanel();
