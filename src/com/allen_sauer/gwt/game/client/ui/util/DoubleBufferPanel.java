@@ -7,8 +7,14 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DoubleBufferPanel extends Composite {
+  private static final native void setBuffer(Element elem, boolean show)
+  /*-{
+    elem.style.visibility = show ? "" : "hidden";
+  }-*/;
+
   private AbsolutePanel container = new AbsolutePanel();
   private int currentIndex;
+
   private Element element[] = new Element[2];
 
   public DoubleBufferPanel(Widget panel0, Widget panel1) {
@@ -30,10 +36,5 @@ public class DoubleBufferPanel extends Composite {
     container.add(panel, 0, 0);
     DOM.setStyleAttribute(panel.getElement(), "width", "100%");
     DOM.setStyleAttribute(panel.getElement(), "height", "100%");
-  }
-
-  private void setBuffer(Element element, boolean show) {
-    DOM.setStyleAttribute(element, "visibility", show ? "" : "hidden");
-    //    DOM.setStyleAttribute(element, "display", show ? "" : "none");
   }
 }
