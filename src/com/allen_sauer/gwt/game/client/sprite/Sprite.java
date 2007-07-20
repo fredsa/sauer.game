@@ -1,6 +1,5 @@
 package com.allen_sauer.gwt.game.client.sprite;
 
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Image;
 
@@ -9,6 +8,7 @@ import com.allen_sauer.gwt.game.client.behavior.Behavior;
 import com.allen_sauer.gwt.game.client.engine.DoubleBuffer;
 import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.engine.FrameListener;
+import com.allen_sauer.gwt.game.client.ui.util.FastDOM;
 
 public class Sprite implements FrameListener {
   private Behavior behavior;
@@ -56,6 +56,7 @@ public class Sprite implements FrameListener {
       frame = 0;
     }
     setFrame(frame / 5);
+    FastDOM.setElementPosition(panel[DoubleBuffer.getBackBufferIndex()].getElement(), x, y);
   }
 
   public int getFrameHeight() {
@@ -94,22 +95,15 @@ public class Sprite implements FrameListener {
   }
 
   public void setFrame(int frame) {
-    DOM.setStyleAttribute(image[DoubleBuffer.getBackBufferIndex()].getElement(), "left", -frame * frameWidth + "px");
+    FastDOM.setElementX(image[DoubleBuffer.getBackBufferIndex()].getElement(), -frame * frameWidth);
+  }
+
+  public final void setPosition(int x, int y) {
+    this.x = x;
+    this.y = y;
   }
 
   public void setSpritePool(SpritePool spritePool) {
     this.spritePool = spritePool;
-  }
-
-  public final void setX(int x) {
-    this.x = x;
-    //    Log.debug("DoubleBuffer.getBackBufferIndex()=" + DoubleBuffer.getBackBufferIndex() + " : " + x + "," +y);
-    //    Log.debug(panel[DoubleBuffer.getBackBufferIndex()].toString());
-    DOM.setStyleAttribute(panel[DoubleBuffer.getBackBufferIndex()].getElement(), "left", x + "px");
-  }
-
-  public void setY(int y) {
-    DOM.setStyleAttribute(panel[DoubleBuffer.getBackBufferIndex()].getElement(), "top", y + "px");
-    this.y = y;
   }
 }

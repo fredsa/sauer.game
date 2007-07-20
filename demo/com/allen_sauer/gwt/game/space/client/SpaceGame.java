@@ -13,7 +13,7 @@ import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 
 public class SpaceGame implements Game {
   private static final int MAX_ROBOTS = 10;
-  private static final double ROBOT_APPEARANCE_PROBABILITY = .05;
+  private static final double ROBOT_APPEARANCE_PROBABILITY = 5;
   private Image backgroundImage;
 
   public void clientResized(int clientWidth, int clientHeight) {

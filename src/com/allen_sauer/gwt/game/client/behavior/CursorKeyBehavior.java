@@ -48,16 +48,13 @@ public class CursorKeyBehavior implements Behavior {
       }
     }
 
-    sprite.setX(x);
-    sprite.setY(y);
+    sprite.setPosition(x, y);
   }
 
   public void init() {
     xMax = Engine.getClientWidth() - sprite.getFrameWidth();
     yMax = Engine.getClientHeight() - sprite.getFrameHeight();
-
-    sprite.setX(xMax / 2);
-    sprite.setY(yMax / 2);
+    sprite.setPosition(xMax / 2, yMax / 2);
 
     Engine.addFrameListener(this);
   }

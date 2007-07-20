@@ -1,0 +1,39 @@
+package com.allen_sauer.gwt.game.client.ui.util;
+
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
+
+public class DoubleBufferPanel extends Composite {
+  private AbsolutePanel container = new AbsolutePanel();
+  private int currentIndex;
+  private Element element[] = new Element[2];
+
+  public DoubleBufferPanel(Widget panel0, Widget panel1) {
+    initWidget(container);
+    initBufferPanel(panel0);
+    initBufferPanel(panel1);
+    element[0] = panel0.getElement();
+    element[1] = panel1.getElement();
+    show(element[currentIndex ^ 0x01], false);
+  }
+
+  public void showWidget(int index) {
+    show(element[currentIndex], false);
+    currentIndex = index;
+    show(element[currentIndex], true);
+  }
+
+  private void initBufferPanel(Widget panel) {
+    container.add(panel, 0, 0);
+    DOM.setStyleAttribute(panel.getElement(), "width", "100%");
+    DOM.setStyleAttribute(panel.getElement(), "height", "100%");
+  }
+
+  private void show(Element element, boolean show) {
+    DOM.setStyleAttribute(element, "visibility", show ? "" : "hidden");
+    //    DOM.setStyleAttribute(element, "display", show ? "" : "none");
+  }
+}
