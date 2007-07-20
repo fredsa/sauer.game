@@ -17,13 +17,13 @@ public class DoubleBufferPanel extends Composite {
     initBufferPanel(panel1);
     element[0] = panel0.getElement();
     element[1] = panel1.getElement();
-    show(element[currentIndex ^ 0x01], false);
+    setBuffer(element[currentIndex ^ 0x01], false);
   }
 
-  public void showWidget(int index) {
-    show(element[currentIndex], false);
+  public void showBuffer(int index) {
+    setBuffer(element[currentIndex], false);
     currentIndex = index;
-    show(element[currentIndex], true);
+    setBuffer(element[currentIndex], true);
   }
 
   private void initBufferPanel(Widget panel) {
@@ -32,7 +32,7 @@ public class DoubleBufferPanel extends Composite {
     DOM.setStyleAttribute(panel.getElement(), "height", "100%");
   }
 
-  private void show(Element element, boolean show) {
+  private void setBuffer(Element element, boolean show) {
     DOM.setStyleAttribute(element, "visibility", show ? "" : "hidden");
     //    DOM.setStyleAttribute(element, "display", show ? "" : "none");
   }

@@ -22,7 +22,7 @@ public class DoubleBuffer {
     RootPanel.get().add(container, 0, 0);
     DOM.setStyleAttribute(container.getElement(), "width", "100%");
     DOM.setStyleAttribute(container.getElement(), "height", "100%");
-    container.showWidget(USE_DOUBLE_BUFFERING ? currentBufferIndex : backBufferIndex);
+    container.showBuffer(USE_DOUBLE_BUFFERING ? currentBufferIndex : backBufferIndex);
   }
 
   public static AbsolutePanel getBackBuffer() {
@@ -36,7 +36,7 @@ public class DoubleBuffer {
   public static void swap() {
     if (USE_DOUBLE_BUFFERING) {
       backBuffer = buffer[backBufferIndex = currentBufferIndex];
-      container.showWidget(currentBufferIndex ^= 0x01);
+      container.showBuffer(currentBufferIndex ^= 0x01);
     }
   }
 }
