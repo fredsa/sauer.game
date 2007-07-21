@@ -20,6 +20,7 @@ public class Engine {
   private static final ArrayList frameListeners = new ArrayList();
   private static Game game;
   private static ArrayList newFrameListeners = new ArrayList();
+  private static ArrayList removeFrameListeners = new ArrayList();
   private static ArrayList spritePools = new ArrayList();
 
   static {
@@ -28,6 +29,7 @@ public class Engine {
 
   public static void addFrameListener(FrameListener listener) {
     newFrameListeners.add(listener);
+    listener.initialize();
   }
 
   public static void addSpritePool(SpritePool pool) {
@@ -36,9 +38,11 @@ public class Engine {
 
   public static void doFrame() {
     // Avoid ConcurrentModificationException
-    if (!newFrameListeners.isEmpty()) {
-      frameListeners.addAll(newFrameListeners);
-      newFrameListeners = new ArrayList();
+    if (frameListeners.removeAll(removeFrameListeners)) {
+      removeFrameListeners.clear();
+    }
+    if (frameListeners.addAll(newFrameListeners)) {
+      newFrameListeners.clear();
     }
 
     game.doFrame();
@@ -56,6 +60,10 @@ public class Engine {
     return clientWidth;
   }
 
+  public static String info() {
+    return "frameListeners=" + frameListeners.size() + ", spritePools=" + spritePools.size();
+  }
+
   public static void init(Game game) {
     Engine.game = game;
     setClientSize(Window.getClientWidth(), Window.getClientHeight());
@@ -67,15 +75,19 @@ public class Engine {
       }
     });
 
+    RootPanel.get().add(playfield, 0, 0);
+
     engineTimer = new EngineTimer();
     engineTimer.setPaused(false);
     EnginePauseButton enginePauseButton = new EnginePauseButton(engineTimer);
     RootPanel.get().add(enginePauseButton, 10, 40);
 
-    RootPanel.get().add(playfield, 0, 0);
-
-    //    FocusImpl.getFocusImplForPanel().focus(RootPanel.getBodyElement());
     enginePauseButton.setFocus(true);
+  }
+
+  public static void removeFrameListener(FrameListener listener) {
+    removeFrameListeners.add(listener);
+    listener.deinitialize();
   }
 
   private static void clientResized(int clientWidth, int clientHeight) {

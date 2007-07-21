@@ -1,45 +1,54 @@
 package com.allen_sauer.gwt.game.client.sprite;
 
-import java.util.ArrayList;
+import com.allen_sauer.gwt.game.client.engine.Engine;
 
 public class SpritePool {
-  private static ArrayList sprites = new ArrayList();
-  private int maxSize;
-  private final SpriteFactory spriteFactory;
+  private static Sprite[] sprites;
+  private int maxSprites;
+  private int visibleSprites = 0;
 
-  public SpritePool(SpriteFactory spriteFactory, int maxSize) {
-    this.spriteFactory = spriteFactory;
-    this.maxSize = maxSize;
+  public SpritePool(SpriteFactory spriteFactory, int maxSprites) {
+    this.maxSprites = maxSprites;
+    sprites = new Sprite[maxSprites];
+    for (int i = 0; i < sprites.length; i++) {
+      Sprite sprite = spriteFactory.create();
+      sprite.setSpritePool(this);
+      sprite.setPoolIndex(i);
+      sprites[i] = sprite;
+    }
   }
 
   public Sprite create() {
-    Sprite sprite = spriteFactory.create();
-    sprite.setSpritePool(this);
-    sprite.init();
-    sprites.add(sprite);
+    assert visibleSprites < maxSprites;
+    Sprite sprite = sprites[visibleSprites++];
+    Engine.addFrameListener(sprite);
     return sprite;
   }
 
   public void destroy(Sprite sprite) {
-    if (!sprites.remove(sprite)) {
-      throw new IllegalStateException("sprite not in pool");
+    assert sprite.getPoolIndex() < visibleSprites;
+    assert sprite.getSpritePool() == this;
+    if (sprite.getPoolIndex() < visibleSprites - 1) {
+      swap(sprite.getPoolIndex(), visibleSprites - 1);
     }
-    sprite.deinit();
+    visibleSprites--;
+    Engine.removeFrameListener(sprite);
   }
 
-  public int getMaxSize() {
-    return maxSize;
-  }
-
-  public void setMaxSize(int maxSize) {
-    this.maxSize = maxSize;
-  }
-
-  public int size() {
-    return sprites.size();
+  public boolean exhausted() {
+    return visibleSprites == maxSprites;
   }
 
   public String toString() {
-    return "SpritePool(" + size() + " of " + getMaxSize() + ")";
+    return "SpritePool(" + visibleSprites + " of " + maxSprites + ")";
+  }
+
+  private void swap(int i, int j) {
+    assert i != j;
+    Sprite temp = sprites[i];
+    sprites[i] = sprites[j];
+    sprites[j] = temp;
+    sprites[i].setPoolIndex(i);
+    sprites[j].setPoolIndex(j);
   }
 }

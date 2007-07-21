@@ -10,14 +10,16 @@ import com.allen_sauer.gwt.game.client.engine.FrameListener;
 import com.allen_sauer.gwt.game.client.ui.util.FastDOM;
 
 public class Sprite implements FrameListener {
+  private static final int HIDDEN_FRAME = -1;
   private Behavior behavior;
-  private int frame;
+  private int frame = HIDDEN_FRAME;
   private int frameHeight;
   private int frames;
   private int frameWidth;
   private Game game;
   private Image image;
   private AbsolutePanel panel = new AbsolutePanel();
+  private int poolIndex;
   private SpritePool spritePool;
   private int x;
   private int y;
@@ -33,18 +35,20 @@ public class Sprite implements FrameListener {
     image.setPixelSize(frameWidth * frames, frameHeight);
     panel.setPixelSize(frameWidth, frameHeight);
     panel.setPixelSize(frameWidth, frameHeight);
+    Engine.playfield.add(panel, x, y);
   }
 
-  public void deinit() {
-    Engine.playfield.remove(panel);
+  public void deinitialize() {
+    setFrame(HIDDEN_FRAME);
+    Engine.removeFrameListener(behavior);
   }
 
   public void doFrame() {
+    FastDOM.setElementPosition(panel.getElement(), x, y);
     if (++frame >= frames * 5) {
       frame = 0;
     }
     setFrame(frame / 5);
-    FastDOM.setElementPosition(panel.getElement(), x, y);
   }
 
   public int getFrameHeight() {
@@ -59,6 +63,14 @@ public class Sprite implements FrameListener {
     return game;
   }
 
+  public int getPoolIndex() {
+    return poolIndex;
+  }
+
+  public SpritePool getSpritePool() {
+    return spritePool;
+  }
+
   public int getX() {
     return x;
   }
@@ -67,10 +79,8 @@ public class Sprite implements FrameListener {
     return y;
   }
 
-  public void init() {
-    Engine.addFrameListener(this);
-    Engine.playfield.add(panel, -500, -500);
-    behavior.init();
+  public void initialize() {
+    Engine.addFrameListener(behavior);
   }
 
   public void removeSelf() {
@@ -83,6 +93,10 @@ public class Sprite implements FrameListener {
 
   public void setFrame(int frame) {
     FastDOM.setElementX(image.getElement(), -frame * frameWidth);
+  }
+
+  public void setPoolIndex(int poolIndex) {
+    this.poolIndex = poolIndex;
   }
 
   public final void setPosition(int x, int y) {

@@ -22,4 +22,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.google.gwt.dev.GWTShell"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-out www com.allen_sauer.gwt.game.space.Space/Space.html -style PRETTY"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Game"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-enableassertions"/>
 </launchConfiguration>

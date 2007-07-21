@@ -15,9 +15,15 @@ public class IntervalGenerator implements Generator {
     Engine.addFrameListener(this);
   }
 
+  public void deinitialize() {
+  }
+
   public void doFrame() {
-    if (spritePool.size() < spritePool.getMaxSize() && Random.nextDouble() < probability) {
+    if (!spritePool.exhausted() && Random.nextDouble() < probability) {
       spritePool.create();
     }
+  }
+
+  public void initialize() {
   }
 }

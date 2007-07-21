@@ -1,5 +1,6 @@
 package com.allen_sauer.gwt.game.client.engine;
 
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -12,6 +13,7 @@ final class EngineTimer extends Timer {
   private HTML timerText = new HTML();
 
   EngineTimer() {
+    DOM.setStyleAttribute(timerText.getElement(), "color", "#ABCDEF");
   }
 
   public boolean isPaused() {
@@ -25,7 +27,7 @@ final class EngineTimer extends Timer {
       if (lastTimestamp != 0) {
         long frameToFrame = (timestamp - lastTimestamp) / FRAMES_TO_AVERAGE;
         long frameRate = Math.round(1000D / frameToFrame);
-        timerText.setHTML(FRAMES_TO_AVERAGE + " buffer avg = " + frameToFrame + "ms (" + frameRate + "fps)");
+        timerText.setHTML(FRAMES_TO_AVERAGE + " buffer avg = " + frameToFrame + "ms (" + frameRate + "fps), " + Engine.info());
       }
       lastTimestamp = timestamp;
     }

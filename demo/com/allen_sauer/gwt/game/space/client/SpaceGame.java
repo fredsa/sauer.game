@@ -20,6 +20,10 @@ public class SpaceGame implements Game {
     backgroundImage.setPixelSize(clientWidth, clientHeight);
   }
 
+  public void deinitialize() {
+    // TODO Auto-generated method stub
+  }
+
   public void doFrame() {
   }
 
@@ -35,6 +39,10 @@ public class SpaceGame implements Game {
 
     initPlayerFactory();
     initRobotFactory();
+  }
+
+  public void initialize() {
+    // TODO Auto-generated method stub
   }
 
   private void initPlayerFactory() {

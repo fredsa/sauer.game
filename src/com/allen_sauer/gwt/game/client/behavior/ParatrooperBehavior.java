@@ -18,9 +18,13 @@ public class ParatrooperBehavior implements Behavior {
     this.sprite = sprite;
   }
 
+  public void deinitialize() {
+  }
+
   public void doFrame() {
-    int x = sprite.getX();
-    x += xSpeed;
+    int x = sprite.getX() + xSpeed;
+    int y = sprite.getY() + ySpeed;
+
     if (x < 0) {
       x = 0;
       xSpeed = Random.nextInt(5) + 4;
@@ -29,32 +33,28 @@ public class ParatrooperBehavior implements Behavior {
       xSpeed = -Random.nextInt(5) - 4;
     }
 
-    int y = sprite.getY();
-    y += ySpeed;
     if (y < 0) {
-      //      y = 0;
-      ySpeed = Random.nextInt(3) + 2;
+      // y = 0;
+      // ySpeed = Random.nextInt(3) + 2;
     } else if (y > yMax) {
       y = yMax;
       ySpeed = 0;
     } else if (y == yMax) {
       if (++walkFrames == MAX_WALK_FRAMES) {
-        //        sprite.removeSelf();
+        sprite.removeSelf();
       }
     }
+
     sprite.setPosition(x, y);
   }
 
-  public void init() {
+  public void initialize() {
     xMax = Engine.getClientWidth() - sprite.getFrameWidth();
     yMax = Engine.getClientHeight() - sprite.getFrameHeight();
     walkFrames = 0;
-    //    sprite.setPosition(Random.nextInt(xMax), -sprite.getFrameHeight());
-    sprite.setPosition(Random.nextInt(xMax), yMax);
+    sprite.setPosition(Random.nextInt(xMax), -sprite.getFrameHeight());
 
-    xSpeed = Random.nextInt(5) + 3;
+    xSpeed = Random.nextInt(6) - 3;
     ySpeed = Random.nextInt(5) + 3;
-
-    Engine.addFrameListener(this);
   }
 }
