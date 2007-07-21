@@ -5,7 +5,6 @@ import com.google.gwt.user.client.ui.Image;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.Behavior;
-import com.allen_sauer.gwt.game.client.engine.DoubleBuffer;
 import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.engine.FrameListener;
 import com.allen_sauer.gwt.game.client.ui.util.FastDOM;
@@ -17,8 +16,8 @@ public class Sprite implements FrameListener {
   private int frames;
   private int frameWidth;
   private Game game;
-  private Image[] image = new Image[2];
-  private AbsolutePanel[] panel = {new AbsolutePanel(), new AbsolutePanel(),};
+  private Image image;
+  private AbsolutePanel panel = new AbsolutePanel();
   private SpritePool spritePool;
   private int x;
   private int y;
@@ -28,27 +27,16 @@ public class Sprite implements FrameListener {
     this.frames = frames;
     this.frameWidth = frameWidth;
     this.frameHeight = frameHeight;
-    image[0] = new Image(url);
-    image[1] = new Image(url);
-    panel[0].add(image[0], 0, 0);
-    panel[1].add(image[1], 0, 0);
+    image = new Image(url);
+    panel.add(image, 0, 0);
 
-    image[0].setPixelSize(frameWidth * frames, frameHeight);
-    image[1].setPixelSize(frameWidth * frames, frameHeight);
-
-    panel[0].setPixelSize(frameWidth, frameHeight);
-    panel[1].setPixelSize(frameWidth, frameHeight);
-
-    panel[0].setPixelSize(frameWidth, frameHeight);
-    panel[1].setPixelSize(frameWidth, frameHeight);
-
-    //    DOM.setStyleAttribute(panel[0].getElement(), "position", "absolute");
-    //    DOM.setStyleAttribute(panel[1].getElement(), "position", "absolute");
+    image.setPixelSize(frameWidth * frames, frameHeight);
+    panel.setPixelSize(frameWidth, frameHeight);
+    panel.setPixelSize(frameWidth, frameHeight);
   }
 
   public void deinit() {
-    DoubleBuffer.buffer[0].remove(panel[0]);
-    DoubleBuffer.buffer[1].remove(panel[1]);
+    Engine.playfield.remove(panel);
   }
 
   public void doFrame() {
@@ -56,7 +44,7 @@ public class Sprite implements FrameListener {
       frame = 0;
     }
     setFrame(frame / 5);
-    FastDOM.setElementPosition(panel[DoubleBuffer.getBackBufferIndex()].getElement(), x, y);
+    FastDOM.setElementPosition(panel.getElement(), x, y);
   }
 
   public int getFrameHeight() {
@@ -81,8 +69,7 @@ public class Sprite implements FrameListener {
 
   public void init() {
     Engine.addFrameListener(this);
-    DoubleBuffer.buffer[0].add(panel[0], -500, -500);
-    DoubleBuffer.buffer[1].add(panel[1], -500, -500);
+    Engine.playfield.add(panel, -500, -500);
     behavior.init();
   }
 
@@ -95,7 +82,7 @@ public class Sprite implements FrameListener {
   }
 
   public void setFrame(int frame) {
-    FastDOM.setElementX(image[DoubleBuffer.getBackBufferIndex()].getElement(), -frame * frameWidth);
+    FastDOM.setElementX(image.getElement(), -frame * frameWidth);
   }
 
   public final void setPosition(int x, int y) {

@@ -2,8 +2,8 @@ package com.allen_sauer.gwt.game.client.engine;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowResizeListener;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.impl.FocusImpl;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Engine {
+  public static final AbsolutePanel playfield = new AbsolutePanel();
+
   private static int clientHeight;
   private static int clientWidth;
   private static EngineTimer engineTimer;
@@ -19,6 +21,10 @@ public class Engine {
   private static Game game;
   private static ArrayList newFrameListeners = new ArrayList();
   private static ArrayList spritePools = new ArrayList();
+
+  static {
+    playfield.setSize("100%", "100%");
+  }
 
   public static void addFrameListener(FrameListener listener) {
     newFrameListeners.add(listener);
@@ -34,8 +40,6 @@ public class Engine {
       frameListeners.addAll(newFrameListeners);
       newFrameListeners = new ArrayList();
     }
-
-    DoubleBuffer.swap();
 
     game.doFrame();
     for (Iterator iterator = frameListeners.iterator(); iterator.hasNext();) {
@@ -68,7 +72,9 @@ public class Engine {
     EnginePauseButton enginePauseButton = new EnginePauseButton(engineTimer);
     RootPanel.get().add(enginePauseButton, 10, 40);
 
-    FocusImpl.getFocusImplForPanel().focus(RootPanel.getBodyElement());
+    RootPanel.get().add(playfield, 0, 0);
+
+    //    FocusImpl.getFocusImplForPanel().focus(RootPanel.getBodyElement());
     enginePauseButton.setFocus(true);
   }
 
