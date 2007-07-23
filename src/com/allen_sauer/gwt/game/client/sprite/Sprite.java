@@ -35,7 +35,7 @@ public class Sprite implements FrameListener {
     image.setPixelSize(frameWidth * frames, frameHeight);
     panel.setPixelSize(frameWidth, frameHeight);
     panel.setPixelSize(frameWidth, frameHeight);
-    Engine.playfield.add(panel, x, y);
+    Engine.playfield.add(panel, -500, -500);
   }
 
   public void deinitialize() {

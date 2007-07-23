@@ -79,15 +79,19 @@ public class Engine {
 
     engineTimer = new EngineTimer();
     engineTimer.setPaused(false);
-    EnginePauseButton enginePauseButton = new EnginePauseButton(engineTimer);
-    RootPanel.get().add(enginePauseButton, 10, 40);
+  }
 
-    enginePauseButton.setFocus(true);
+  public static boolean isPaused() {
+    return engineTimer.isPaused();
   }
 
   public static void removeFrameListener(FrameListener listener) {
     removeFrameListeners.add(listener);
     listener.deinitialize();
+  }
+
+  public static void setPaused(boolean paused) {
+    engineTimer.setPaused(paused);
   }
 
   private static void clientResized(int clientWidth, int clientHeight) {

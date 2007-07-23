@@ -4,6 +4,9 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.impl.FocusImpl;
+
+import com.allen_sauer.gwt.game.client.engine.Engine;
 
 public final class Keyboard {
   private static class BodyWidget extends Widget {
@@ -11,6 +14,7 @@ public final class Keyboard {
       setElement(RootPanel.getBodyElement());
       onAttach();
       sinkEvents(Event.ONKEYDOWN | Event.ONKEYUP);
+      FocusImpl.getFocusImplForPanel().focus(getElement());
     }
 
     public void onBrowserEvent(Event event) {
@@ -19,17 +23,20 @@ public final class Keyboard {
       switch (DOM.eventGetType(event)) {
 
         case Event.ONKEYDOWN:
-          keyDown[keyCode & 0xff] = true;
           //          Log.debug(keyCode + " down");
+          keyDown[keyCode & 0xff] = true;
+          if (keyCode == 'P') {
+            Engine.setPaused(!Engine.isPaused());
+          }
           break;
 
         case Event.ONKEYUP:
-          keyDown[keyCode & 0xff] = false;
           //        Log.debug(keyCode + " up");
+          keyDown[keyCode & 0xff] = false;
           break;
 
         case Event.ONKEYPRESS:
-          //      Log.debug(keyCode + " press");
+          //          Log.debug(keyCode + " press");
           break;
       }
     }
@@ -39,6 +46,10 @@ public final class Keyboard {
 
   static {
     new BodyWidget();
+  }
+
+  public static void clearKeyDown(int keyCode) {
+    keyDown[keyCode & 0xff] = false;
   }
 
   public static boolean isKeyDown(int keyCode) {
