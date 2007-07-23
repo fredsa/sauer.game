@@ -3,8 +3,8 @@ package com.allen_sauer.gwt.game.client.sprite;
 import com.allen_sauer.gwt.game.client.engine.Engine;
 
 public class SpritePool {
-  private static Sprite[] sprites;
   private int maxSprites;
+  private Sprite[] sprites;
   private int visibleSprites = 0;
 
   public SpritePool(SpriteFactory spriteFactory, int maxSprites) {
