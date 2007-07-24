@@ -45,14 +45,14 @@ public class ParatrooperBehavior implements Behavior {
       }
     }
 
-    sprite.setPosition(x, y);
+    sprite.setXY(x, y);
   }
 
   public void initialize() {
     xMax = Engine.getClientWidth() - sprite.getFrameWidth();
     yMax = Engine.getClientHeight() - sprite.getFrameHeight();
     walkFrames = 0;
-    sprite.setPosition(Random.nextInt(xMax), -sprite.getFrameHeight());
+    sprite.setXY(Random.nextInt(xMax), -sprite.getFrameHeight());
 
     xSpeed = Random.nextInt(6) - 3;
     ySpeed = Random.nextInt(5) + 3;

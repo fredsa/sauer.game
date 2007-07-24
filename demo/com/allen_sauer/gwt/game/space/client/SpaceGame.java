@@ -7,11 +7,13 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.generator.IntervalGenerator;
+import com.allen_sauer.gwt.game.client.generator.KeyboardBulletGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 
 public class SpaceGame implements Game {
+  private static final int MAX_BULLETS = 5;
   private static final int MAX_ROBOTS = 10;
   private static final double ROBOT_APPEARANCE_PROBABILITY = .05;
   private Image backgroundImage;
@@ -30,14 +32,15 @@ public class SpaceGame implements Game {
   public void init() {
     backgroundImage = new Image("images/nebula_13-fudged.jpg");
     backgroundImage.addStyleName("backgroundImage");
-    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
-    RootPanel.get().add(backgroundImage);
+//    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
+    RootPanel.get().add(backgroundImage, 0, 0);
 
     final HTML timerText = new HTML("");
     timerText.addStyleName("timerText");
     RootPanel.get().add(timerText, 200, 0);
 
-    initPlayerFactory();
+    Sprite playerSprite = initPlayerFactory().create();
+    initBulletFactory(playerSprite);
     initRobotFactory();
   }
 
@@ -45,7 +48,19 @@ public class SpaceGame implements Game {
     // TODO Auto-generated method stub
   }
 
-  private void initPlayerFactory() {
+  private void initBulletFactory(final Sprite playerSprite) {
+    SpriteFactory factory = new SpriteFactory() {
+      public Sprite create() {
+        return new BulletSprite(SpaceGame.this, playerSprite);
+      }
+    };
+
+    SpritePool pool = new SpritePool(factory, MAX_BULLETS);
+    Engine.addSpritePool(pool);
+    new KeyboardBulletGenerator(pool);
+  }
+
+  private SpritePool initPlayerFactory() {
     SpriteFactory factory = new SpriteFactory() {
       public Sprite create() {
         return new SpaceShuttleSprite(SpaceGame.this);
@@ -55,6 +70,7 @@ public class SpaceGame implements Game {
     SpritePool pool = new SpritePool(factory, 1);
     Engine.addSpritePool(pool);
     new IntervalGenerator(pool, 1);
+    return pool;
   }
 
   private void initRobotFactory() {

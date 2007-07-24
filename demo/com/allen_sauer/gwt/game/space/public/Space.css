@@ -1,10 +1,14 @@
 @CHARSET "UTF-8";
 
+* { /* DEBUGGING */
+  Xborder: 1px solid green;
+  Xbackground-color: #ABCDEF;
+}
+
 * {
   border: none;
   margin: 0px;
   padding: 0px;
-  Xborder: 1px solid black;
   font-size: bold;
 }
 
@@ -12,7 +16,6 @@
   background-color: #ABCDEF;
 }
 
-.backgroundImage {
-  Xwidth: 100%;
-  Xheight: 100%;
+.player {
+  z-index: 2;
 }

@@ -10,10 +10,16 @@ import com.allen_sauer.gwt.game.client.engine.FrameListener;
 import com.allen_sauer.gwt.game.client.ui.util.FastDOM;
 
 public class Sprite implements FrameListener {
-  private static final int HIDDEN_FRAME = -1;
+  public static final int ANIMATE_SEQUENCE_BOUNCE = 2;
+  public static final int ANIMATE_SEQUENCE_SEQUENTIAL = 1;
+  private static final int HIDDEN_FRAME = 0;
+  private final int animateFrameSequence;
   private Behavior behavior;
-  private int frame = HIDDEN_FRAME;
+  private int currentFrame = HIDDEN_FRAME;
+  private final int frameAnimateInterval;
+  private int frameCounter;
   private int frameHeight;
+  private int[] frameOffset;
   private int frames;
   private int frameWidth;
   private Game game;
@@ -24,18 +30,34 @@ public class Sprite implements FrameListener {
   private int x;
   private int y;
 
-  public Sprite(Game game, String url, int frames, int frameWidth, int frameHeight) {
+  public Sprite(Game game, String spriteUrl, int frames, int frameWidth, int frameHeight) {
+    this(game, spriteUrl, frames, frameWidth, frameHeight, 1, ANIMATE_SEQUENCE_SEQUENTIAL);
+  }
+
+  public Sprite(Game game, String spriteUrl, int frames, int frameWidth, int frameHeight, int frameAnimateInterval,
+      int animateFrameSequence) {
+    assert frames >= 1;
+    assert frameWidth >= 1;
+    assert frameHeight >= 1;
+    assert frameAnimateInterval >= 1;
     this.game = game;
     this.frames = frames;
     this.frameWidth = frameWidth;
     this.frameHeight = frameHeight;
-    image = new Image(url);
+    this.frameAnimateInterval = frameAnimateInterval;
+    this.animateFrameSequence = animateFrameSequence;
+    image = new Image(spriteUrl);
     panel.add(image, 0, 0);
 
     image.setPixelSize(frameWidth * frames, frameHeight);
     panel.setPixelSize(frameWidth, frameHeight);
     panel.setPixelSize(frameWidth, frameHeight);
     Engine.playfield.add(panel, -500, -500);
+    initFrameData();
+  }
+
+  public void addStyleName(String style) {
+    panel.addStyleName(style);
   }
 
   public void deinitialize() {
@@ -45,10 +67,10 @@ public class Sprite implements FrameListener {
 
   public void doFrame() {
     FastDOM.setElementPosition(panel.getElement(), x, y);
-    if (++frame >= frames * 5) {
-      frame = 0;
+    if (frameAnimateInterval > 0 && ++frameCounter == frameAnimateInterval) {
+      frameCounter = 0;
+      setFrame(currentFrame == frameOffset.length - 1 ? 1 : currentFrame + 1);
     }
-    setFrame(frame / 5);
   }
 
   public int getFrameHeight() {
@@ -80,6 +102,7 @@ public class Sprite implements FrameListener {
   }
 
   public void initialize() {
+    setFrame(1);
     Engine.addFrameListener(behavior);
   }
 
@@ -92,19 +115,41 @@ public class Sprite implements FrameListener {
   }
 
   public void setFrame(int frame) {
-    FastDOM.setElementX(image.getElement(), -frame * frameWidth);
+    FastDOM.setElementX(image.getElement(), frameOffset[frame]);
+    currentFrame = frame;
   }
 
   public void setPoolIndex(int poolIndex) {
     this.poolIndex = poolIndex;
   }
 
-  public final void setPosition(int x, int y) {
+  public void setSpritePool(SpritePool spritePool) {
+    this.spritePool = spritePool;
+  }
+
+  public void setX(int x) {
+    this.x = x;
+  }
+
+  public final void setXY(int x, int y) {
     this.x = x;
     this.y = y;
   }
 
-  public void setSpritePool(SpritePool spritePool) {
-    this.spritePool = spritePool;
+  public void setY(int y) {
+    this.y = y;
+  }
+
+  private void initFrameData() {
+    frameOffset = new int[animateFrameSequence == ANIMATE_SEQUENCE_BOUNCE ? frames * 2 - 1 : frames + 1];
+    frameOffset[HIDDEN_FRAME] = frameWidth;
+    for (int i = 0; i < frames; i++) {
+      frameOffset[i + 1] = -i * frameWidth;
+    }
+    if (animateFrameSequence == ANIMATE_SEQUENCE_BOUNCE) {
+      for (int i = 2; i < frames; i++) {
+        frameOffset[frameOffset.length - i + 1] = frameOffset[i];
+      }
+    }
   }
 }

@@ -24,7 +24,7 @@ public class Engine {
   private static ArrayList spritePools = new ArrayList();
 
   static {
-    playfield.setSize("100%", "100%");
+    playfield.addStyleName("playfield");
   }
 
   public static void addFrameListener(FrameListener listener) {

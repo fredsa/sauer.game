@@ -4,7 +4,6 @@
   border: none;
   margin: 0px;
   padding: 0px;
-  Xborder: 1px solid black;
 }
 
 HTML,BODY { /* TODO remove after GWT issue 1357 is fixed */
@@ -16,14 +15,17 @@ HTML,BODY { /* TODO remove after GWT issue 1390 is fixed */
 }
 
 HTML,BODY {
-  Xbackground-color: #ABCDEF;
   margin: 0px;
   padding: 0px;
-  Xoverflow: hidden;
 }
 
 IFRAME { /* TODO remove after GWT issue 1359 is fixed */
   display: none;
+}
+
+.playfield,.backgroundImage {
+  width: 100%;
+  height: 100%;
 }
 /*
 .transparent50 {
