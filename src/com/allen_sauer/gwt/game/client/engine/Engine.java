@@ -7,6 +7,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
+import com.allen_sauer.gwt.game.client.ui.util.WindowFocusListener;
+import com.allen_sauer.gwt.game.client.ui.util.WindowFocusWrapper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,6 +22,7 @@ public class Engine {
   private static final ArrayList frameListeners = new ArrayList();
   private static Game game;
   private static ArrayList newFrameListeners = new ArrayList();
+  private static boolean paused = true;
   private static ArrayList removeFrameListeners = new ArrayList();
   private static ArrayList spritePools = new ArrayList();
 
@@ -65,6 +68,7 @@ public class Engine {
   }
 
   public static void init(Game game) {
+    new WindowFocusWrapper();
     Engine.game = game;
     setClientSize(Window.getClientWidth(), Window.getClientHeight());
     game.init();
@@ -78,11 +82,22 @@ public class Engine {
     RootPanel.get().add(playfield, 0, 0);
 
     engineTimer = new EngineTimer();
-    engineTimer.setPaused(false);
+
+    WindowFocusWrapper.addWindowFocusListener(new WindowFocusListener() {
+      public void onFocus() {
+        setPaused(false);
+      }
+
+      public void onLostFocus() {
+        setPaused(true);
+      }
+    });
+
+    setPaused(false);
   }
 
   public static boolean isPaused() {
-    return engineTimer.isPaused();
+    return paused;
   }
 
   public static void removeFrameListener(FrameListener listener) {
@@ -91,7 +106,10 @@ public class Engine {
   }
 
   public static void setPaused(boolean paused) {
-    engineTimer.setPaused(paused);
+    if (Engine.paused != paused) {
+      Engine.paused = paused;
+      engineTimer.setPaused(paused);
+    }
   }
 
   private static void clientResized(int clientWidth, int clientHeight) {

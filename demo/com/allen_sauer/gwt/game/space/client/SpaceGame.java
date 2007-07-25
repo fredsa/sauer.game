@@ -19,7 +19,7 @@ public class SpaceGame implements Game {
   private Image backgroundImage;
 
   public void clientResized(int clientWidth, int clientHeight) {
-    backgroundImage.setPixelSize(clientWidth, clientHeight);
+    //    backgroundImage.setPixelSize(clientWidth, clientHeight);
   }
 
   public void deinitialize() {
@@ -32,7 +32,7 @@ public class SpaceGame implements Game {
   public void init() {
     backgroundImage = new Image("images/nebula_13-fudged.jpg");
     backgroundImage.addStyleName("backgroundImage");
-//    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
+    //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
     RootPanel.get().add(backgroundImage, 0, 0);
 
     final HTML timerText = new HTML("");

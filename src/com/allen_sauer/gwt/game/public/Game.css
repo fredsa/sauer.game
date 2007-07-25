@@ -24,8 +24,13 @@ IFRAME { /* TODO remove after GWT issue 1359 is fixed */
 }
 
 .playfield,.backgroundImage {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
+}
+
+.playfield { /* DEBUGGING */
+  border: 3px dashed red;
+  height: 98%;
 }
 /*
 .transparent50 {

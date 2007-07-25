@@ -3,56 +3,33 @@ package com.allen_sauer.gwt.game.client;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.KeyboardListener;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.user.client.ui.impl.FocusImpl;
 
 import com.allen_sauer.gwt.game.client.engine.Engine;
-import com.allen_sauer.gwt.log.client.Log;
 
 public final class Keyboard {
   public static interface CODES extends KeyboardListener {
   }
-  private static class BodyWidget extends Widget {
-    private static native void focus(Element elem)
+  private static class DocumentWrapperWidget extends Widget {
+    private static native Element getDocumentElement()
     /*-{
-      elem.tabIndex = 0;
-      elem.focus();
+      return $doc;
     }-*/;
 
-    public BodyWidget() {
-      Element bodyElement = RootPanel.getBodyElement();
-      setElement(bodyElement);
+    public DocumentWrapperWidget() {
+      setElement(getDocumentElement());
       onAttach();
-      sinkEvents(Event.ONKEYDOWN | Event.ONKEYUP | Event.ONCLICK);// | Event.ONBLUR | Event.ONFOCUS);
-
-      FocusImpl focusImpl = FocusImpl.getFocusImplForPanel();
-
-      // TODO Replace with focusImpl.focus(getElement()) after both parts of GWT issue 1425 have been fixed
-      focus(getElement());
+      sinkEvents(Event.ONKEYDOWN | Event.ONKEYUP);
     }
 
     public void onBrowserEvent(Event event) {
+      // Log.debug("  onBrowserEvent(" + DOM.eventGetTypeString(event) + ")");
       char keyCode;
       // int modifiers = KeyboardListenerCollection.getKeyboardModifiers(event);
-      switch (DOM.eventGetType(event)) {
-//
-//        case Event.ONFOCUS:
-//          Log.debug("focus");
-//          Engine.setPaused(true);
-//          break;
-//
-//        case Event.ONBLUR:
-//          Log.debug("blur");
-//          Engine.setPaused(false);
-//          break;
-
-        case Event.ONCLICK:
-          //          Log.debug("click");
-          focus(getElement());
-          break;
+      int eventType = DOM.eventGetType(event);
+      // Log.debug("eventType=" + eventType);
+      switch (eventType) {
 
         case Event.ONKEYDOWN:
           keyCode = (char) DOM.eventGetKeyCode(event);
@@ -80,7 +57,7 @@ public final class Keyboard {
   private static boolean[] keyDown = new boolean[0xff];
 
   static {
-    new BodyWidget();
+    new DocumentWrapperWidget();
   }
 
   public static void clearKeyDown(int keyCode) {
