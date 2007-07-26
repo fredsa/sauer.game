@@ -5,7 +5,6 @@ import com.allen_sauer.gwt.game.client.behavior.CursorKeyBehavior;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
 public class SpaceShuttleSprite extends Sprite {
-  private static final int FRAME_ANIMATE_INTERVAL = 1;
   private static final int FRAME_HEIGHT = 113;
   private static final int FRAME_WIDTH = 51;
   private static final int FRAMES = 1;
