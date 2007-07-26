@@ -52,7 +52,7 @@ final class EngineTimer extends Timer {
     if (paused) {
       cancel();
     } else if (this.paused) {
-      scheduleRepeating(100);
+      scheduleRepeating(1);
     }
     this.paused = paused;
   }

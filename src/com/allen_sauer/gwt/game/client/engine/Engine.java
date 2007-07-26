@@ -7,8 +7,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
-import com.allen_sauer.gwt.game.client.ui.util.WindowFocusListener;
-import com.allen_sauer.gwt.game.client.ui.util.WindowFocusWrapper;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -68,7 +66,8 @@ public class Engine {
   }
 
   public static void init(Game game) {
-    new WindowFocusWrapper();
+    //    new WindowFocusWrapper();
+    //  new WindowFocusWidget();
     Engine.game = game;
     setClientSize(Window.getClientWidth(), Window.getClientHeight());
     game.init();
@@ -83,15 +82,15 @@ public class Engine {
 
     engineTimer = new EngineTimer();
 
-    WindowFocusWrapper.addWindowFocusListener(new WindowFocusListener() {
-      public void onFocus() {
-        setPaused(false);
-      }
-
-      public void onLostFocus() {
-        setPaused(true);
-      }
-    });
+    //    WindowFocusWrapper.addWindowFocusListener(new WindowFocusListener() {
+    //      public void onFocus() {
+    //        setPaused(false);
+    //      }
+    //
+    //      public void onLostFocus() {
+    //        setPaused(true);
+    //      }
+    //    });
 
     setPaused(false);
   }

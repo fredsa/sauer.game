@@ -9,6 +9,9 @@ import com.allen_sauer.gwt.log.client.LogUncaughtExceptionHandler;
 public class Space implements EntryPoint {
   public void onModuleLoad() {
     GWT.setUncaughtExceptionHandler(new LogUncaughtExceptionHandler());
+
+    //    Log.moveTo(0, 110);
+    //    Log.setPixelSize(800, 300);
     SpaceGame game = new SpaceGame();
     Engine.init(game);
   }

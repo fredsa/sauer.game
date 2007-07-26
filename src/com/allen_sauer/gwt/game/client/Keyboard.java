@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.KeyboardListener;
 import com.google.gwt.user.client.ui.Widget;
 
 import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.log.client.Log;
 
 public final class Keyboard {
   public static interface CODES extends KeyboardListener {
@@ -17,14 +18,14 @@ public final class Keyboard {
       return $doc;
     }-*/;
 
-    public DocumentWrapperWidget() {
+    private DocumentWrapperWidget() {
       setElement(getDocumentElement());
       onAttach();
       sinkEvents(Event.ONKEYDOWN | Event.ONKEYUP);
     }
 
     public void onBrowserEvent(Event event) {
-      // Log.debug("  onBrowserEvent(" + DOM.eventGetTypeString(event) + ")");
+      Log.debug("  onBrowserEvent(" + DOM.eventGetTypeString(event) + ")");
       char keyCode;
       // int modifiers = KeyboardListenerCollection.getKeyboardModifiers(event);
       int eventType = DOM.eventGetType(event);
@@ -57,7 +58,9 @@ public final class Keyboard {
   private static boolean[] keyDown = new boolean[0xff];
 
   static {
+    Log.debug("BEFORE:" + debug());
     new DocumentWrapperWidget();
+    Log.debug("AFTER:" + debug());
   }
 
   public static void clearKeyDown(int keyCode) {
@@ -66,5 +69,13 @@ public final class Keyboard {
 
   public static boolean isKeyDown(int keyCode) {
     return keyDown[keyCode & 0xff];
-  };
+  }
+
+  private static native String debug()
+  /*-{
+    return ""
+      + "\n$wnd.onfocus=" + $wnd.onfocus
+      + "\n$doc.onfocus=" + $doc.onfocus
+      ;
+  }-*/;;
 }
