@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
+import com.allen_sauer.gwt.game.client.ui.util.Page;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -82,17 +83,8 @@ public class Engine {
 
     engineTimer = new EngineTimer();
 
-    //    WindowFocusWrapper.addWindowFocusListener(new WindowFocusListener() {
-    //      public void onFocus() {
-    //        setPaused(false);
-    //      }
-    //
-    //      public void onLostFocus() {
-    //        setPaused(true);
-    //      }
-    //    });
-
-    setPaused(false);
+    // add hooks, force page focus and trigger game start
+    Page.forceInit();
   }
 
   public static boolean isPaused() {

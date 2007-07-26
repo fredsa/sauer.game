@@ -51,13 +51,14 @@ public final class Page {
   }
 
   private static boolean hasFocus = false;
-
   private static boolean[] keyDown = new boolean[0xff];
+
   static {
     PageHooks pageHooks = new PageHooks();
     Window.addWindowCloseListener(pageHooks);
     pageHooks.init();
   }
+
   static {
     surpressCompilerWarningHack();
   }
@@ -66,9 +67,15 @@ public final class Page {
     keyDown[keyCode & 0xff] = false;
   }
 
+  /**
+   * Used by Engine to force static initialization of this class.
+   */
+  public static void forceInit() {
+  };
+
   public static boolean isKeyDown(int keyCode) {
     return keyDown[keyCode & 0xff];
-  };
+  }
 
   private static void onKeyDown(Event event) {
     char keyCode = (char) DOM.eventGetKeyCode(event);
