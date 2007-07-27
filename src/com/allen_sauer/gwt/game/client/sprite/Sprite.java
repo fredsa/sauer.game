@@ -13,10 +13,9 @@ import com.allen_sauer.gwt.game.client.ui.util.FastDOM;
 public class Sprite extends Composite implements FrameListener {
   public static final int ANIMATE_SEQUENCE_BOUNCE = 2;
   public static final int ANIMATE_SEQUENCE_SEQUENTIAL = 1;
-  private static final int HIDDEN_FRAME = 0;
   private final int animateFrameSequence;
   private Behavior behavior;
-  private int currentFrame = HIDDEN_FRAME;
+  private int currentFrame;
   private final int frameAnimateInterval;
   private int frameCounter;
   private int frameHeight;
@@ -49,19 +48,19 @@ public class Sprite extends Composite implements FrameListener {
     this.frameAnimateInterval = frameAnimateInterval;
     this.animateFrameSequence = animateFrameSequence;
 
+    initFrameData();
+
     initWidget(panel);
     image = new Image(spriteUrl);
-    panel.add(image, 0, 0);
+    panel.add(image, frameOffset[currentFrame], 0);
 
     image.setPixelSize(frameWidth * frames, frameHeight);
     setPixelSize(frameWidth, frameHeight);
     setPixelSize(frameWidth, frameHeight);
     Engine.playfield.add(this, -500, -500);
-    initFrameData();
   }
 
   public void doFirstFrame() {
-    setFrame(1);
     Engine.addFrameListener(behavior);
   }
 
@@ -69,12 +68,12 @@ public class Sprite extends Composite implements FrameListener {
     FastDOM.setElementPosition(getElement(), x, y);
     if (frameAnimateInterval > 0 && ++frameCounter == frameAnimateInterval) {
       frameCounter = 0;
-      setFrame(currentFrame == frameOffset.length - 1 ? 1 : currentFrame + 1);
+      setFrame((currentFrame + 1) % frameOffset.length);
     }
   }
 
   public void doLastFrame() {
-    setFrame(HIDDEN_FRAME);
+    FastDOM.setElementPosition(getElement(), -500, -500);
     Engine.removeFrameListener(behavior);
   }
 
@@ -149,14 +148,13 @@ public class Sprite extends Composite implements FrameListener {
   }
 
   private void initFrameData() {
-    frameOffset = new int[animateFrameSequence == ANIMATE_SEQUENCE_BOUNCE ? frames * 2 - 1 : frames + 1];
-    frameOffset[HIDDEN_FRAME] = frameWidth;
+    frameOffset = new int[animateFrameSequence == ANIMATE_SEQUENCE_BOUNCE ? frames * 2 - 2 : frames];
     for (int i = 0; i < frames; i++) {
-      frameOffset[i + 1] = -i * frameWidth;
+      frameOffset[i] = -i * frameWidth;
     }
     if (animateFrameSequence == ANIMATE_SEQUENCE_BOUNCE) {
-      for (int i = 2; i < frames; i++) {
-        frameOffset[frameOffset.length - i + 1] = frameOffset[i];
+      for (int i = 1; i < frames - 1; i++) {
+        frameOffset[frameOffset.length - i] = frameOffset[i];
       }
     }
   }

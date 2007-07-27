@@ -6,7 +6,7 @@ import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
 public class ParatrooperBehavior implements Behavior {
-  private static final int MAX_WALK_FRAMES = 30;
+  private static final int MAX_WALK_FRAMES = 50;
   private final Sprite sprite;
   private int walkFrames;
   private int xMax;

@@ -6,8 +6,8 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 
 final class EngineTimer extends Timer {
-  private static final int TIMER_INTERVAL_MILLIS = 10;
   private static final int FRAMES_TO_AVERAGE = 10;
+  private static final int TIMER_INTERVAL_MILLIS = 10;
   private int count = 0;
   private long lastTimestamp;
   private boolean paused = true;

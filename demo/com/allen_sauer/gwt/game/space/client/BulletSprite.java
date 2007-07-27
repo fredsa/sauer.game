@@ -15,8 +15,4 @@ public class BulletSprite extends Sprite {
     super(game, SPRITE_URL, FRAMES, FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL, ANIMATE_SEQUENCE_BOUNCE);
     setBehavior(new VerticalBulletBehavior(this, playerSprite));
   }
-
-  public void setFrame(int frame) {
-    super.setFrame(frame);
-  }
 }
