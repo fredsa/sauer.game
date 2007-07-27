@@ -17,16 +17,23 @@ public class SpaceGame implements Game {
   private static final int MAX_ROBOTS = 10;
   private static final double ROBOT_APPEARANCE_PROBABILITY = .05;
   private Image backgroundImage;
+  private SpritePool bulletSpritePool;
+  private SpritePool playerSpritePool;
+  private SpritePool robotSpritePool;
 
   public void clientResized(int clientWidth, int clientHeight) {
     //    backgroundImage.setPixelSize(clientWidth, clientHeight);
   }
 
-  public void deinitialize() {
+  public void doFirstFrame() {
     // TODO Auto-generated method stub
   }
 
   public void doFrame() {
+  }
+
+  public void doLastFrame() {
+    // TODO Auto-generated method stub
   }
 
   public void init() {
@@ -39,49 +46,48 @@ public class SpaceGame implements Game {
     timerText.addStyleName("timerText");
     RootPanel.get().add(timerText, 200, 0);
 
-    Sprite playerSprite = initPlayerFactory().create();
-    initBulletFactory(playerSprite);
-    initRobotFactory();
+    initPlayerFactoryAndPool();
+    Sprite playerSprite = playerSpritePool.create();
+    initBulletFactoryAndPool(playerSprite);
+    initRobotFactoryAndPool();
+
+    new CollisionDetector(bulletSpritePool, robotSpritePool);
+    Engine.addFrameListener(this);
   }
 
-  public void initialize() {
-    // TODO Auto-generated method stub
-  }
-
-  private void initBulletFactory(final Sprite playerSprite) {
+  private void initBulletFactoryAndPool(final Sprite playerSprite) {
     SpriteFactory factory = new SpriteFactory() {
       public Sprite create() {
         return new BulletSprite(SpaceGame.this, playerSprite);
       }
     };
 
-    SpritePool pool = new SpritePool(factory, MAX_BULLETS);
-    Engine.addSpritePool(pool);
-    new KeyboardBulletGenerator(pool);
+    bulletSpritePool = new SpritePool(factory, MAX_BULLETS);
+    Engine.addSpritePool(bulletSpritePool);
+    new KeyboardBulletGenerator(bulletSpritePool);
   }
 
-  private SpritePool initPlayerFactory() {
+  private void initPlayerFactoryAndPool() {
     SpriteFactory factory = new SpriteFactory() {
       public Sprite create() {
         return new SpaceShuttleSprite(SpaceGame.this);
       }
     };
 
-    SpritePool pool = new SpritePool(factory, 1);
-    Engine.addSpritePool(pool);
-    new IntervalGenerator(pool, 1);
-    return pool;
+    playerSpritePool = new SpritePool(factory, 1);
+    Engine.addSpritePool(playerSpritePool);
+    new IntervalGenerator(playerSpritePool, 1);
   }
 
-  private void initRobotFactory() {
+  private void initRobotFactoryAndPool() {
     SpriteFactory factory = new SpriteFactory() {
       public Sprite create() {
         return new RobotSprite(SpaceGame.this);
       }
     };
 
-    SpritePool pool = new SpritePool(factory, MAX_ROBOTS);
-    Engine.addSpritePool(pool);
-    new IntervalGenerator(pool, ROBOT_APPEARANCE_PROBABILITY);
+    robotSpritePool = new SpritePool(factory, MAX_ROBOTS);
+    Engine.addSpritePool(robotSpritePool);
+    new IntervalGenerator(robotSpritePool, ROBOT_APPEARANCE_PROBABILITY);
   }
 }

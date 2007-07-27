@@ -16,7 +16,10 @@ public class CursorKeyBehavior implements Behavior {
     this.sprite = sprite;
   }
 
-  public void deinitialize() {
+  public void doFirstFrame() {
+    xMax = Engine.getClientWidth() - sprite.getFrameWidth();
+    yMax = Engine.getClientHeight() - sprite.getFrameHeight();
+    sprite.setXY(xMax / 2, yMax / 2);
   }
 
   public void doFrame() {
@@ -52,9 +55,6 @@ public class CursorKeyBehavior implements Behavior {
     sprite.setXY(x, y);
   }
 
-  public void initialize() {
-    xMax = Engine.getClientWidth() - sprite.getFrameWidth();
-    yMax = Engine.getClientHeight() - sprite.getFrameHeight();
-    sprite.setXY(xMax / 2, yMax / 2);
+  public void doLastFrame() {
   }
 }

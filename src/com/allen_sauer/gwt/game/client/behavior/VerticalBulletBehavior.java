@@ -14,7 +14,12 @@ public class VerticalBulletBehavior implements Behavior {
     this.playerSprite = playerSprite;
   }
 
-  public void deinitialize() {
+  public void doFirstFrame() {
+    yMin = -sprite.getFrameHeight();
+    //    yMax = Engine.getClientHeight() - sprite.getFrameHeight();
+    sprite.setXY(playerSprite.getX(), playerSprite.getY());
+
+    ySpeed = -10;
   }
 
   public void doFrame() {
@@ -27,11 +32,6 @@ public class VerticalBulletBehavior implements Behavior {
     sprite.setY(y);
   }
 
-  public void initialize() {
-    yMin = -sprite.getFrameHeight();
-    //    yMax = Engine.getClientHeight() - sprite.getFrameHeight();
-    sprite.setXY(playerSprite.getX(), playerSprite.getY());
-
-    ySpeed = -10;
+  public void doLastFrame() {
   }
 }

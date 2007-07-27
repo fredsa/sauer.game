@@ -2,25 +2,28 @@ package com.allen_sauer.gwt.game.client.sprite;
 
 import com.allen_sauer.gwt.game.client.engine.Engine;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class SpritePool {
   private int maxSprites;
-  private Sprite[] sprites;
+  private ArrayList sprites;
   private int visibleSprites = 0;
 
   public SpritePool(SpriteFactory spriteFactory, int maxSprites) {
     this.maxSprites = maxSprites;
-    sprites = new Sprite[maxSprites];
-    for (int i = 0; i < sprites.length; i++) {
+    sprites = new ArrayList(maxSprites);
+    for (int i = 0; i < maxSprites; i++) {
       Sprite sprite = spriteFactory.create();
       sprite.setSpritePool(this);
       sprite.setPoolIndex(i);
-      sprites[i] = sprite;
+      sprites.add(sprite);
     }
   }
 
   public Sprite create() {
     assert visibleSprites < maxSprites;
-    Sprite sprite = sprites[visibleSprites++];
+    Sprite sprite = (Sprite) sprites.get(visibleSprites++);
     Engine.addFrameListener(sprite);
     return sprite;
   }
@@ -39,16 +42,35 @@ public class SpritePool {
     return visibleSprites == maxSprites;
   }
 
+  public Iterator iterator() {
+    return new Iterator() {
+      private int i = 0;
+
+      public boolean hasNext() {
+        return i < visibleSprites;
+      }
+
+      public Object next() {
+        return sprites.get(i++);
+      }
+
+      public void remove() {
+        throw new UnsupportedOperationException();
+      }
+    };
+  }
+
   public String toString() {
     return "SpritePool(" + visibleSprites + " of " + maxSprites + ")";
   }
 
   private void swap(int i, int j) {
     assert i != j;
-    Sprite temp = sprites[i];
-    sprites[i] = sprites[j];
-    sprites[j] = temp;
-    sprites[i].setPoolIndex(i);
-    sprites[j].setPoolIndex(j);
+    Sprite spriteI = (Sprite) sprites.get(i);
+    Sprite spriteJ = (Sprite) sprites.get(j);
+    sprites.set(i, spriteJ);
+    sprites.set(j, spriteI);
+    spriteI.setPoolIndex(j);
+    spriteJ.setPoolIndex(i);
   }
 }

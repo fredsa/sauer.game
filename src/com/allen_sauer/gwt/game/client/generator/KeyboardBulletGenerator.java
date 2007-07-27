@@ -14,7 +14,8 @@ public class KeyboardBulletGenerator implements Generator {
     Engine.addFrameListener(this);
   }
 
-  public void deinitialize() {
+  public void doFirstFrame() {
+    frameCounter = 0;
   }
 
   public void doFrame() {
@@ -24,7 +25,6 @@ public class KeyboardBulletGenerator implements Generator {
     }
   }
 
-  public void initialize() {
-    frameCounter = 0;
+  public void doLastFrame() {
   }
 }

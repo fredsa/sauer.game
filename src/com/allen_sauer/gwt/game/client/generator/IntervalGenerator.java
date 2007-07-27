@@ -15,7 +15,7 @@ public class IntervalGenerator implements Generator {
     Engine.addFrameListener(this);
   }
 
-  public void deinitialize() {
+  public void doFirstFrame() {
   }
 
   public void doFrame() {
@@ -24,6 +24,6 @@ public class IntervalGenerator implements Generator {
     }
   }
 
-  public void initialize() {
+  public void doLastFrame() {
   }
 }

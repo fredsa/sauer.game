@@ -109,7 +109,8 @@ public final class Page {
   }
 
   /**
-   * This code will get optimized out at compile time
+   * This code will get optimized out at compile time until
+   * we can use @SuppressWarnings("unused").
    */
   private static void surpressCompilerWarningHack() {
     if (GWT.isScript()) {

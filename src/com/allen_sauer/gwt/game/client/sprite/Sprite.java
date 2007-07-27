@@ -1,6 +1,7 @@
 package com.allen_sauer.gwt.game.client.sprite;
 
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 
 import com.allen_sauer.gwt.game.client.Game;
@@ -9,7 +10,7 @@ import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.engine.FrameListener;
 import com.allen_sauer.gwt.game.client.ui.util.FastDOM;
 
-public class Sprite implements FrameListener {
+public class Sprite extends Composite implements FrameListener {
   public static final int ANIMATE_SEQUENCE_BOUNCE = 2;
   public static final int ANIMATE_SEQUENCE_SEQUENTIAL = 1;
   private static final int HIDDEN_FRAME = 0;
@@ -40,37 +41,45 @@ public class Sprite implements FrameListener {
     assert frameWidth >= 1;
     assert frameHeight >= 1;
     assert frameAnimateInterval >= 1;
+
     this.game = game;
     this.frames = frames;
     this.frameWidth = frameWidth;
     this.frameHeight = frameHeight;
     this.frameAnimateInterval = frameAnimateInterval;
     this.animateFrameSequence = animateFrameSequence;
+
+    initWidget(panel);
     image = new Image(spriteUrl);
     panel.add(image, 0, 0);
 
     image.setPixelSize(frameWidth * frames, frameHeight);
-    panel.setPixelSize(frameWidth, frameHeight);
-    panel.setPixelSize(frameWidth, frameHeight);
-    Engine.playfield.add(panel, -500, -500);
+    setPixelSize(frameWidth, frameHeight);
+    setPixelSize(frameWidth, frameHeight);
+    Engine.playfield.add(this, -500, -500);
     initFrameData();
   }
 
-  public void addStyleName(String style) {
-    panel.addStyleName(style);
-  }
-
-  public void deinitialize() {
-    setFrame(HIDDEN_FRAME);
-    Engine.removeFrameListener(behavior);
+  public void doFirstFrame() {
+    setFrame(1);
+    Engine.addFrameListener(behavior);
   }
 
   public void doFrame() {
-    FastDOM.setElementPosition(panel.getElement(), x, y);
+    FastDOM.setElementPosition(getElement(), x, y);
     if (frameAnimateInterval > 0 && ++frameCounter == frameAnimateInterval) {
       frameCounter = 0;
       setFrame(currentFrame == frameOffset.length - 1 ? 1 : currentFrame + 1);
     }
+  }
+
+  public void doLastFrame() {
+    setFrame(HIDDEN_FRAME);
+    Engine.removeFrameListener(behavior);
+  }
+
+  public int getBottom() {
+    return y + frameHeight;
   }
 
   public int getFrameHeight() {
@@ -89,6 +98,10 @@ public class Sprite implements FrameListener {
     return poolIndex;
   }
 
+  public int getRight() {
+    return x + frameWidth;
+  }
+
   public SpritePool getSpritePool() {
     return spritePool;
   }
@@ -99,11 +112,6 @@ public class Sprite implements FrameListener {
 
   public int getY() {
     return y;
-  }
-
-  public void initialize() {
-    setFrame(1);
-    Engine.addFrameListener(behavior);
   }
 
   public void removeSelf() {

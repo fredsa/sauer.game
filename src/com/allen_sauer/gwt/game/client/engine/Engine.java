@@ -12,7 +12,7 @@ import com.allen_sauer.gwt.game.client.ui.util.Page;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Engine {
+public final class Engine {
   public static final AbsolutePanel playfield = new AbsolutePanel();
 
   private static int clientHeight;
@@ -31,27 +31,19 @@ public class Engine {
 
   public static void addFrameListener(FrameListener listener) {
     newFrameListeners.add(listener);
-    listener.initialize();
+    listener.doFirstFrame();
   }
 
   public static void addSpritePool(SpritePool pool) {
     spritePools.add(pool);
   }
 
+  /**
+   * Main loop executed via callback by {@link EngineTimer}.
+   */
   public static void doFrame() {
-    // Avoid ConcurrentModificationException
-    if (frameListeners.removeAll(removeFrameListeners)) {
-      removeFrameListeners.clear();
-    }
-    if (frameListeners.addAll(newFrameListeners)) {
-      newFrameListeners.clear();
-    }
-
-    game.doFrame();
-    for (Iterator iterator = frameListeners.iterator(); iterator.hasNext();) {
-      FrameListener listener = (FrameListener) iterator.next();
-      listener.doFrame();
-    }
+    updateFrameListenerCollections();
+    doFrameListenerFrames();
   }
 
   public static int getClientHeight() {
@@ -67,8 +59,6 @@ public class Engine {
   }
 
   public static void init(Game game) {
-    //    new WindowFocusWrapper();
-    //  new WindowFocusWidget();
     Engine.game = game;
     setClientSize(Window.getClientWidth(), Window.getClientHeight());
     game.init();
@@ -93,7 +83,7 @@ public class Engine {
 
   public static void removeFrameListener(FrameListener listener) {
     removeFrameListeners.add(listener);
-    listener.deinitialize();
+    listener.doLastFrame();
   }
 
   public static void setPaused(boolean paused) {
@@ -108,11 +98,30 @@ public class Engine {
     game.clientResized(clientWidth, clientHeight);
   }
 
+  private static void doFrameListenerFrames() {
+    for (Iterator iterator = frameListeners.iterator(); iterator.hasNext();) {
+      FrameListener listener = (FrameListener) iterator.next();
+      listener.doFrame();
+    }
+  }
+
   private static void setClientSize(int clientWidth, int clientHeight) {
     Engine.clientWidth = clientWidth;
     Engine.clientHeight = clientHeight;
     assert Window.getClientWidth() != 0;
     assert Window.getClientHeight() != 0;
+  }
+
+  /**
+   * Use multiple collections to avoid ConcurrentModificationException
+   */
+  private static void updateFrameListenerCollections() {
+    if (frameListeners.removeAll(removeFrameListeners)) {
+      removeFrameListeners.clear();
+    }
+    if (frameListeners.addAll(newFrameListeners)) {
+      newFrameListeners.clear();
+    }
   }
 
   private Engine() {
