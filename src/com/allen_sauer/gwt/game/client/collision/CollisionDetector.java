@@ -1,4 +1,4 @@
-package com.allen_sauer.gwt.game.space.client;
+package com.allen_sauer.gwt.game.client.collision;
 
 import com.google.gwt.user.client.DOM;
 
@@ -9,7 +9,7 @@ import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 
 import java.util.Iterator;
 
-public class CollisionDetector implements FrameListener {
+public abstract class CollisionDetector implements FrameListener {
   private final SpritePool poolA;
   private final SpritePool poolB;
 
@@ -39,6 +39,7 @@ public class CollisionDetector implements FrameListener {
         if (intersect(spriteA, spriteB)) {
           DOM.setStyleAttribute(spriteA.getElement(), "backgroundColor", "green");
           DOM.setStyleAttribute(spriteB.getElement(), "backgroundColor", "green");
+          handleCollision(spriteA, spriteB);
         }
       }
     }
@@ -47,6 +48,8 @@ public class CollisionDetector implements FrameListener {
   public void doLastFrame() {
     // TODO Replace auto-generated method stub
   }
+
+  protected abstract void handleCollision(Sprite spriteA, Sprite spriteB);
 
   private boolean intersect(Sprite spriteA, Sprite spriteB) {
     if (spriteA.getRight() < spriteB.getX() || spriteA.getX() > spriteB.getRight() || spriteA.getBottom() < spriteB.getY()

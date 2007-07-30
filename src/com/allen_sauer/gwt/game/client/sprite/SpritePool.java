@@ -6,22 +6,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SpritePool {
+  private boolean initialized = false;
   private int maxSprites;
   private ArrayList sprites;
   private int visibleSprites = 0;
 
-  public SpritePool(SpriteFactory spriteFactory, int maxSprites) {
-    this.maxSprites = maxSprites;
-    sprites = new ArrayList(maxSprites);
-    for (int i = 0; i < maxSprites; i++) {
-      Sprite sprite = spriteFactory.create();
-      sprite.setSpritePool(this);
-      sprite.setPoolIndex(i);
-      sprites.add(sprite);
-    }
+  public SpritePool() {
   }
 
   public Sprite create() {
+    assert initialized;
     assert visibleSprites < maxSprites;
     Sprite sprite = (Sprite) sprites.get(visibleSprites++);
     Engine.addFrameListener(sprite);
@@ -29,6 +23,7 @@ public class SpritePool {
   }
 
   public void destroy(Sprite sprite) {
+    assert initialized;
     assert sprite.getPoolIndex() < visibleSprites;
     assert sprite.getSpritePool() == this;
     if (sprite.getPoolIndex() < visibleSprites - 1) {
@@ -39,10 +34,12 @@ public class SpritePool {
   }
 
   public boolean exhausted() {
+    assert initialized;
     return visibleSprites == maxSprites;
   }
 
   public Iterator iterator() {
+    assert initialized;
     return new Iterator() {
       private int i = 0;
 
@@ -61,7 +58,20 @@ public class SpritePool {
   }
 
   public String toString() {
+    assert initialized;
     return "SpritePool(" + visibleSprites + " of " + maxSprites + ")";
+  }
+
+  protected void init(SpriteFactory spriteFactory, int maxSprites) {
+    this.maxSprites = maxSprites;
+    sprites = new ArrayList(maxSprites);
+    for (int i = 0; i < maxSprites; i++) {
+      Sprite sprite = spriteFactory.create();
+      sprite.setSpritePool(this);
+      sprite.setPoolIndex(i);
+      sprites.add(sprite);
+    }
+    initialized = true;
   }
 
   private void swap(int i, int j) {

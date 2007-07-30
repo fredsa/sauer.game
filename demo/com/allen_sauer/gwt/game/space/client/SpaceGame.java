@@ -6,20 +6,17 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.Engine;
-import com.allen_sauer.gwt.game.client.generator.IntervalGenerator;
-import com.allen_sauer.gwt.game.client.generator.KeyboardBulletGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
-import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
-import com.allen_sauer.gwt.game.client.sprite.SpritePool;
+import com.allen_sauer.gwt.game.space.client.collision.RobotCollisionDetector;
+import com.allen_sauer.gwt.game.space.client.sprite.BulletSpritePool;
+import com.allen_sauer.gwt.game.space.client.sprite.PlayerSpritePool;
+import com.allen_sauer.gwt.game.space.client.sprite.RobotSpritePool;
 
 public class SpaceGame implements Game {
-  private static final int MAX_BULLETS = 5;
-  private static final int MAX_ROBOTS = 10;
-  private static final double ROBOT_APPEARANCE_PROBABILITY = .05;
   private Image backgroundImage;
-  private SpritePool bulletSpritePool;
-  private SpritePool playerSpritePool;
-  private SpritePool robotSpritePool;
+  private BulletSpritePool bulletSpritePool;
+  private PlayerSpritePool playerSpritePool;
+  private RobotSpritePool robotSpritePool;
 
   public void clientResized(int clientWidth, int clientHeight) {
     //    backgroundImage.setPixelSize(clientWidth, clientHeight);
@@ -46,48 +43,14 @@ public class SpaceGame implements Game {
     timerText.addStyleName("timerText");
     RootPanel.get().add(timerText, 200, 0);
 
-    initPlayerFactoryAndPool();
+    playerSpritePool = new PlayerSpritePool(this);
+
     Sprite playerSprite = playerSpritePool.create();
-    initBulletFactoryAndPool(playerSprite);
-    initRobotFactoryAndPool();
+    bulletSpritePool = new BulletSpritePool(this, playerSprite);
 
-    new CollisionDetector(bulletSpritePool, robotSpritePool);
+    robotSpritePool = new RobotSpritePool(this);
+
+    new RobotCollisionDetector(robotSpritePool, bulletSpritePool);
     Engine.addFrameListener(this);
-  }
-
-  private void initBulletFactoryAndPool(final Sprite playerSprite) {
-    SpriteFactory factory = new SpriteFactory() {
-      public Sprite create() {
-        return new BulletSprite(SpaceGame.this, playerSprite);
-      }
-    };
-
-    bulletSpritePool = new SpritePool(factory, MAX_BULLETS);
-    Engine.addSpritePool(bulletSpritePool);
-    new KeyboardBulletGenerator(bulletSpritePool);
-  }
-
-  private void initPlayerFactoryAndPool() {
-    SpriteFactory factory = new SpriteFactory() {
-      public Sprite create() {
-        return new SpaceShuttleSprite(SpaceGame.this);
-      }
-    };
-
-    playerSpritePool = new SpritePool(factory, 1);
-    Engine.addSpritePool(playerSpritePool);
-    new IntervalGenerator(playerSpritePool, 1);
-  }
-
-  private void initRobotFactoryAndPool() {
-    SpriteFactory factory = new SpriteFactory() {
-      public Sprite create() {
-        return new RobotSprite(SpaceGame.this);
-      }
-    };
-
-    robotSpritePool = new SpritePool(factory, MAX_ROBOTS);
-    Engine.addSpritePool(robotSpritePool);
-    new IntervalGenerator(robotSpritePool, ROBOT_APPEARANCE_PROBABILITY);
   }
 }

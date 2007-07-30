@@ -1,4 +1,4 @@
-package com.allen_sauer.gwt.game.space.client;
+package com.allen_sauer.gwt.game.space.client.sprite;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.CursorKeyBehavior;
