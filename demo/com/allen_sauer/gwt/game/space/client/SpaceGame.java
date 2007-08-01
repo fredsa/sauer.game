@@ -6,6 +6,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
+import com.allen_sauer.gwt.game.space.client.collision.PlayerCollisionDetector;
 import com.allen_sauer.gwt.game.space.client.collision.RobotCollisionDetector;
 import com.allen_sauer.gwt.game.space.client.sprite.bullet.BulletSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
@@ -48,5 +49,8 @@ public class SpaceGame implements Game {
 
     // robot/bullet collisions
     new RobotCollisionDetector(robotSpritePool, bulletSpritePool, explosionSpritePool);
+
+    // player/robot collisions
+    new PlayerCollisionDetector(playerSpritePool, robotSpritePool, explosionSpritePool);
   }
 }
