@@ -74,7 +74,7 @@ public final class Engine {
     engineTimer = new EngineTimer();
 
     // add hooks, force page focus and trigger game start
-    Page.forceInit();
+    Page.forceStaticInit();
   }
 
   public static boolean isPaused() {

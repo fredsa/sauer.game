@@ -22,6 +22,16 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>dev-windows-src</name>
+			<type>2</type>
+			<locationURI>GWT_ROOT/dev/windows/src</locationURI>
+		</link>
+		<link>
+			<name>dev-core-src</name>
+			<type>2</type>
+			<locationURI>GWT_ROOT/dev/core/src</locationURI>
+		</link>
+		<link>
 			<name>user-src</name>
 			<type>2</type>
 			<locationURI>GWT_ROOT/user/src</locationURI>

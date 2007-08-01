@@ -70,7 +70,7 @@ public final class Page {
   /**
    * Used by Engine to force static initialization of this class.
    */
-  public static void forceInit() {
+  public static void forceStaticInit() {
   };
 
   public static boolean isKeyDown(int keyCode) {
@@ -123,6 +123,9 @@ public final class Page {
     }
   }
 
+  /**
+   * Prevent instantiation.
+   */
   private Page() {
   }
 }
