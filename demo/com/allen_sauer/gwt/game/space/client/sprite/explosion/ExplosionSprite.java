@@ -1,7 +1,7 @@
 package com.allen_sauer.gwt.game.space.client.sprite.explosion;
 
 import com.allen_sauer.gwt.game.client.Game;
-import com.allen_sauer.gwt.game.client.behavior.ParatrooperBehavior;
+import com.allen_sauer.gwt.game.client.behavior.ExplosionBehavior;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
 public class ExplosionSprite extends Sprite {
@@ -15,6 +15,6 @@ public class ExplosionSprite extends Sprite {
   public ExplosionSprite(Game game) {
     super(game, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL,
         ANIMATE_SEQUENCE_SEQUENTIAL);
-    setBehavior(new ParatrooperBehavior(this));
+    setBehavior(new ExplosionBehavior(this));
   }
 }

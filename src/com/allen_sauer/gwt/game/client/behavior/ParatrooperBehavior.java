@@ -28,7 +28,7 @@ public class ParatrooperBehavior implements Behavior {
     ySpeed = Random.nextInt(5) + 3;
   }
 
-  public void doFrame() {
+  public FrameListenerRetention doFrame() {
     int x = sprite.getX() + xSpeed;
     int y = sprite.getY() + ySpeed;
 
@@ -46,13 +46,13 @@ public class ParatrooperBehavior implements Behavior {
     } else if (y > yMax) {
       y = yMax;
       ySpeed = 0;
-    } else if (y == yMax) {
-      if (++walkFrames == MAX_WALK_FRAMES) {
-        sprite.removeSelf();
-      }
     }
-
     sprite.setXY(x, y);
+
+    if (y == yMax && ++walkFrames == MAX_WALK_FRAMES) {
+      return LISTENER_REMOVE;
+    }
+    return LISTENER_CONTINUE;
   }
 
   public void doLastFrame() {

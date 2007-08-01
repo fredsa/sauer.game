@@ -22,7 +22,7 @@ public class CursorKeyBehavior implements Behavior {
     sprite.setXY(xMax / 2, yMax / 2);
   }
 
-  public void doFrame() {
+  public FrameListenerRetention doFrame() {
     int x = sprite.getX();
     int y = sprite.getY();
 
@@ -53,6 +53,7 @@ public class CursorKeyBehavior implements Behavior {
     }
 
     sprite.setXY(x, y);
+    return LISTENER_CONTINUE;
   }
 
   public void doLastFrame() {

@@ -36,7 +36,7 @@ final class EngineTimer extends Timer {
 
   public void run() {
     measure();
-    Engine.doFrame();
+    Engine.frameListenerCollection.doFrame();
   }
 
   public void schedule(int delayMillis) {

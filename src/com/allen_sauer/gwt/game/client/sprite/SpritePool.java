@@ -1,24 +1,28 @@
 package com.allen_sauer.gwt.game.client.sprite;
 
 import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.game.client.engine.FrameListenerCollection;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SpritePool {
+  private FrameListenerCollection frameListenerCollection = new FrameListenerCollection();
   private boolean initialized = false;
   private int maxSprites;
   private ArrayList sprites;
   private int visibleSprites = 0;
 
   public SpritePool() {
+    Engine.addSpriteFrameListener(frameListenerCollection);
   }
 
   public Sprite create() {
     assert initialized;
     assert visibleSprites < maxSprites;
+
     Sprite sprite = (Sprite) sprites.get(visibleSprites++);
-    Engine.addFrameListener(sprite);
+    frameListenerCollection.addFrameListener(sprite);
     return sprite;
   }
 
@@ -26,16 +30,21 @@ public class SpritePool {
     assert initialized;
     assert sprite.getPoolIndex() < visibleSprites;
     assert sprite.getSpritePool() == this;
+
     if (sprite.getPoolIndex() < visibleSprites - 1) {
       swap(sprite.getPoolIndex(), visibleSprites - 1);
     }
     visibleSprites--;
-    Engine.removeFrameListener(sprite);
+    //    frameListenerCollection.removeFrameListener(sprite);
   }
 
   public boolean exhausted() {
     assert initialized;
     return visibleSprites == maxSprites;
+  }
+
+  public FrameListenerCollection getFrameListenerCollection() {
+    return frameListenerCollection;
   }
 
   public Iterator iterator() {

@@ -25,6 +25,7 @@ public class Sprite extends Composite implements FrameListener {
   private Game game;
   private int horizontalFrames;
   private Image image;
+  private boolean markedForRemoval = false;
   private AbsolutePanel panel = new AbsolutePanel();
   private int poolIndex;
   private SpritePool spritePool;
@@ -69,20 +70,26 @@ public class Sprite extends Composite implements FrameListener {
   }
 
   public void doFirstFrame() {
-    Engine.addFrameListener(behavior);
+    behavior.doFirstFrame();
   }
 
-  public void doFrame() {
+  public FrameListenerRetention doFrame() {
+    if (markedForRemoval) {
+      markedForRemoval = false;
+      return LISTENER_REMOVE;
+    }
     FastDOM.setElementPosition(getElement(), x, y);
     if (frameAnimateInterval > 0 && ++frameCounter == frameAnimateInterval) {
       frameCounter = 0;
       setFrame((currentFrame + 1) % virtualFrameCount);
     }
+    return behavior.doFrame();
   }
 
   public void doLastFrame() {
     FastDOM.setElementPosition(getElement(), -500, -500);
-    Engine.removeFrameListener(behavior);
+    spritePool.destroy(this);
+    behavior.doLastFrame();
   }
 
   public int getBottom() {
@@ -113,6 +120,10 @@ public class Sprite extends Composite implements FrameListener {
     return spritePool;
   }
 
+  public int getVirtualFrameCount() {
+    return virtualFrameCount;
+  }
+
   public int getX() {
     return x;
   }
@@ -121,8 +132,8 @@ public class Sprite extends Composite implements FrameListener {
     return y;
   }
 
-  public void removeSelf() {
-    spritePool.destroy(this);
+  public void markForRemoval() {
+    markedForRemoval = true;
   }
 
   public void setBehavior(Behavior behavior) {

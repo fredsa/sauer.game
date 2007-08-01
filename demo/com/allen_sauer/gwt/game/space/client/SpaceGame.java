@@ -5,7 +5,6 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
-import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.space.client.collision.RobotCollisionDetector;
 import com.allen_sauer.gwt.game.space.client.sprite.bullet.BulletSpritePool;
@@ -22,17 +21,6 @@ public class SpaceGame implements Game {
 
   public void clientResized(int clientWidth, int clientHeight) {
     //    backgroundImage.setPixelSize(clientWidth, clientHeight);
-  }
-
-  public void doFirstFrame() {
-    // TODO Auto-generated method stub
-  }
-
-  public void doFrame() {
-  }
-
-  public void doLastFrame() {
-    // TODO Auto-generated method stub
   }
 
   public void init() {
@@ -59,7 +47,6 @@ public class SpaceGame implements Game {
     explosionSpritePool = new ExplosionSpritePool(this);
 
     // robot/bullet collisions
-    new RobotCollisionDetector(robotSpritePool, bulletSpritePool);
-    Engine.addFrameListener(this);
+    new RobotCollisionDetector(robotSpritePool, bulletSpritePool, explosionSpritePool);
   }
 }

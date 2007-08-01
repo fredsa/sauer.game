@@ -22,14 +22,14 @@ public class VerticalBulletBehavior implements Behavior {
     ySpeed = -10;
   }
 
-  public void doFrame() {
+  public FrameListenerRetention doFrame() {
     int y = sprite.getY() + ySpeed;
+    sprite.setY(y);
 
     if (y < yMin) {
-      sprite.removeSelf();
+      return LISTENER_REMOVE;
     }
-
-    sprite.setY(y);
+    return LISTENER_CONTINUE;
   }
 
   public void doLastFrame() {

@@ -1,7 +1,6 @@
 package com.allen_sauer.gwt.game.space.client.sprite.explosion;
 
 import com.allen_sauer.gwt.game.client.engine.Engine;
-import com.allen_sauer.gwt.game.client.generator.IntervalGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
@@ -18,6 +17,6 @@ public class ExplosionSpritePool extends SpritePool {
     };
     init(spriteFactory, MAX_EXPLOSIONS);
     Engine.addSpritePool(this);
-    new IntervalGenerator(this);
+    //    new IntervalGenerator(this);
   }
 }
