@@ -9,6 +9,10 @@ public class IntervalGenerator implements Generator {
   private double probability;
   private final SpritePool spritePool;
 
+  public IntervalGenerator(SpritePool spritePool) {
+    this(spritePool, 1);
+  }
+
   public IntervalGenerator(SpritePool spritePool, double probability) {
     this.spritePool = spritePool;
     this.probability = probability;

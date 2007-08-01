@@ -19,30 +19,38 @@ public class Sprite extends Composite implements FrameListener {
   private final int frameAnimateInterval;
   private int frameCounter;
   private int frameHeight;
-  private int[] frameOffset;
-  private int frames;
   private int frameWidth;
+  private int[] frameXOffset;
+  private int[] frameYOffset;
   private Game game;
+  private int horizontalFrames;
   private Image image;
   private AbsolutePanel panel = new AbsolutePanel();
   private int poolIndex;
   private SpritePool spritePool;
+  private int totalFrameCount;
+  private final int verticalFrames;
+  private int virtualFrameCount;
   private int x;
   private int y;
 
-  public Sprite(Game game, String spriteUrl, int frames, int frameWidth, int frameHeight) {
-    this(game, spriteUrl, frames, frameWidth, frameHeight, 1, ANIMATE_SEQUENCE_SEQUENTIAL);
+  public Sprite(Game game, String spriteUrl, int horizontalFrames, int verticalFrames, int frameWidth, int frameHeight) {
+    this(game, spriteUrl, horizontalFrames, verticalFrames, frameWidth, frameHeight, 1, ANIMATE_SEQUENCE_SEQUENTIAL);
   }
 
-  public Sprite(Game game, String spriteUrl, int frames, int frameWidth, int frameHeight, int frameAnimateInterval,
-      int animateFrameSequence) {
-    assert frames >= 1;
+  public Sprite(Game game, String spriteUrl, int horizontalFrames, int verticalFrames, int frameWidth, int frameHeight,
+      int frameAnimateInterval, int animateFrameSequence) {
+    assert horizontalFrames >= 0;
+    assert verticalFrames >= 0;
+    assert horizontalFrames + verticalFrames >= 1;
     assert frameWidth >= 1;
     assert frameHeight >= 1;
     assert frameAnimateInterval >= 1;
 
     this.game = game;
-    this.frames = frames;
+    this.horizontalFrames = horizontalFrames;
+    this.verticalFrames = verticalFrames;
+    totalFrameCount = horizontalFrames * verticalFrames;
     this.frameWidth = frameWidth;
     this.frameHeight = frameHeight;
     this.frameAnimateInterval = frameAnimateInterval;
@@ -52,9 +60,9 @@ public class Sprite extends Composite implements FrameListener {
 
     initWidget(panel);
     image = new Image(spriteUrl);
-    panel.add(image, frameOffset[currentFrame], 0);
+    panel.add(image, frameXOffset[currentFrame], frameYOffset[currentFrame]);
 
-    image.setPixelSize(frameWidth * frames, frameHeight);
+    image.setPixelSize(frameWidth * horizontalFrames, frameHeight * verticalFrames);
     setPixelSize(frameWidth, frameHeight);
     setPixelSize(frameWidth, frameHeight);
     Engine.playfield.add(this, -500, -500);
@@ -68,7 +76,7 @@ public class Sprite extends Composite implements FrameListener {
     FastDOM.setElementPosition(getElement(), x, y);
     if (frameAnimateInterval > 0 && ++frameCounter == frameAnimateInterval) {
       frameCounter = 0;
-      setFrame((currentFrame + 1) % frameOffset.length);
+      setFrame((currentFrame + 1) % virtualFrameCount);
     }
   }
 
@@ -122,7 +130,7 @@ public class Sprite extends Composite implements FrameListener {
   }
 
   public void setFrame(int frame) {
-    FastDOM.setElementX(image.getElement(), frameOffset[frame]);
+    FastDOM.setElementPosition(image.getElement(), frameXOffset[frame], frameYOffset[frame]);
     currentFrame = frame;
   }
 
@@ -148,13 +156,21 @@ public class Sprite extends Composite implements FrameListener {
   }
 
   private void initFrameData() {
-    frameOffset = new int[animateFrameSequence == ANIMATE_SEQUENCE_BOUNCE ? frames * 2 - 2 : frames];
-    for (int i = 0; i < frames; i++) {
-      frameOffset[i] = -i * frameWidth;
+    virtualFrameCount = animateFrameSequence == ANIMATE_SEQUENCE_BOUNCE ? totalFrameCount * 2 - 2 : totalFrameCount;
+    frameXOffset = new int[virtualFrameCount];
+    frameYOffset = new int[virtualFrameCount];
+    for (int j = 0; j < verticalFrames; j++) {
+      for (int i = 0; i < horizontalFrames; i++) {
+        int virtualFrame = j * horizontalFrames + i;
+        frameXOffset[virtualFrame] = -i * frameWidth;
+        frameYOffset[virtualFrame] = -j * frameHeight;
+      }
     }
     if (animateFrameSequence == ANIMATE_SEQUENCE_BOUNCE) {
-      for (int i = 1; i < frames - 1; i++) {
-        frameOffset[frameOffset.length - i] = frameOffset[i];
+      for (int virtualFrame = 1; virtualFrame < totalFrameCount - 1; virtualFrame++) {
+        int frame = virtualFrameCount - virtualFrame;
+        frameXOffset[frame] = frameXOffset[virtualFrame];
+        frameYOffset[frame] = frameYOffset[virtualFrame];
       }
     }
   }

@@ -1,4 +1,4 @@
-package com.allen_sauer.gwt.game.space.client.sprite;
+package com.allen_sauer.gwt.game.space.client.sprite.bullet;
 
 import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.generator.KeyboardBulletGenerator;
