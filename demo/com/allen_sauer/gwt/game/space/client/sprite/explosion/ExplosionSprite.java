@@ -20,7 +20,7 @@ public class ExplosionSprite extends Sprite {
   static {
     FRAME_INFO = new FrameInfo(SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_HEIGHT,
         FRAME_WIDTH, FRAME_ANIMATE_INTERVAL, ANIMATION_STYLE);
-    BOUNDING_BOX_INFO = new BoundingBoxInfo(5, 5, FRAME_WIDTH - 10, FRAME_HEIGHT - 10);
+    BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
   }
 
   public ExplosionSprite(Game game) {

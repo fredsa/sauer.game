@@ -23,9 +23,20 @@ public class PlayerSprite extends Sprite {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(5, 15, 41, 97);
   }
 
+  private Player player;
+
   public PlayerSprite(Game game) {
     super(game, FRAME_INFO, BOUNDING_BOX_INFO);
+
     setBehavior(new CursorKeyBehavior(this));
     addStyleName("player");
+  }
+
+  public Player getPlayer() {
+    return player;
+  }
+
+  public void setPlayer(Player player) {
+    this.player = player;
   }
 }

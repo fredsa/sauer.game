@@ -1,6 +1,5 @@
 package com.allen_sauer.gwt.game.client.engine;
 
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -14,7 +13,7 @@ final class EngineTimer extends Timer {
   private HTML timerText = new HTML();
 
   EngineTimer() {
-    DOM.setStyleAttribute(timerText.getElement(), "color", "#ABCDEF");
+    timerText.addStyleName("timerText");
   }
 
   public boolean isPaused() {
@@ -61,7 +60,7 @@ final class EngineTimer extends Timer {
 
   private void initMeasurements() {
     timerText.setHTML("");
-    RootPanel.get().add(timerText, 100, 10);
+    RootPanel.get().add(timerText);
     lastTimestamp = 0;
   }
 }

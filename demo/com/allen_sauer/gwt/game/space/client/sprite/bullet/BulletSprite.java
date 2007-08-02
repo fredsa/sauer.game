@@ -12,7 +12,7 @@ public class BulletSprite extends Sprite {
   private static final int FRAME_ANIMATE_INTERVAL = 5;
   private static final int FRAME_HEIGHT = 85;
   private static final FrameInfo FRAME_INFO;
-  private static final int FRAME_WIDTH = 60 - 9;
+  private static final int FRAME_WIDTH = 60;
   private static final int FRAMES_HORIZONTAL = 3;
   private static final int FRAMES_VERTICAL = 1;
   private static final String SPRITE_URL = "images/burstbullet-tr.gif";
