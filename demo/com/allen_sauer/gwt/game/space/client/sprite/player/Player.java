@@ -33,14 +33,14 @@ public class Player {
   }
 
   public void die() {
+    Sprite explosionSprite = game.getExplosionSpritePool().create();
+    if (explosionSprite != null) {
+      explosionSprite.setXY(playerSprite.getX(), playerSprite.getY());
+    }
     if (--lives == 0) {
       playerSprite.markForRemoval();
     } else {
       playerSprite.doFirstFrame();
-    }
-    Sprite explosionSprite = game.getExplosionSpritePool().create();
-    if (explosionSprite != null) {
-      explosionSprite.setXY(playerSprite.getX(), playerSprite.getY());
     }
 
     game.playerDied(this);
