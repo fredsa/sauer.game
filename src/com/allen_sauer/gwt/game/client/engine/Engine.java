@@ -62,6 +62,7 @@ public final class Engine {
     frameListenerCollection.addFrameListener(collisionFrameListeners);
 
     setClientSize(Window.getClientWidth(), Window.getClientHeight());
+    RootPanel.get().add(playfield, 0, 0);
     game.init();
 
     Window.addWindowResizeListener(new WindowResizeListener() {
@@ -70,7 +71,6 @@ public final class Engine {
       }
     });
 
-    RootPanel.get().add(playfield, 0, 0);
 
     engineTimer = new EngineTimer();
 

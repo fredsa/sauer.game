@@ -21,7 +21,3 @@ XX * { /* DEBUGGING */
   left: 100px;
   top: 50px;
 }
-
-.player {
-  z-index: 2;
-}

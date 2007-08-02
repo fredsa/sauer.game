@@ -23,6 +23,18 @@ IFRAME { /* TODO remove after GWT issue 1359 is fixed */
   display: none;
 }
 
+.backgroundImage {
+  z-index: 1;
+}
+
+.playfield {
+  z-index: 2;
+}
+
+.player {
+  z-index: 3;
+}
+
 .playfield,.backgroundImage {
   width: 100%;
   height: 100%;
@@ -43,4 +55,8 @@ XX .playfield { /* DEBUGGING */
 .bounding-box {
   border: 1px solid green;
   z-index: 42;
+}
+
+.playerText {
+  color: red;
 }

@@ -53,27 +53,39 @@ public class SpaceGame implements Game {
     playerSpritePool = new PlayerSpritePool(this, MAX_PLAYERS);
 
     player = new Player[MAX_PLAYERS];
-    playerText = new Label[MAX_LIVES];
     for (int i = 0; i < MAX_PLAYERS; i++) {
       int playerNumber = i + 1;
       player[i] = new Player(this, playerNumber, (PlayerSprite) playerSpritePool.create(),
           MAX_LIVES);
-      playerText[i] = new Label();
-      Engine.playfield.add(playerText[i], Engine.getClientWidth() * i / MAX_PLAYERS, 10);
     }
     playerCollisionDetector = new PlayerCollisionDetector(playerSpritePool, robotSpritePool,
         explosionSpritePool);
 
-    updatePlayerText();
+    initPlayerText();
   }
 
   public void playerDied(Player player) {
     updatePlayerText();
   }
 
+  private void initPlayerText() {
+    playerText = new Label[MAX_LIVES];
+    for (int i = 0; i < MAX_PLAYERS; i++) {
+      playerText[i] = new Label();
+      playerText[i].addStyleName("playerText");
+      Engine.playfield.add(playerText[i], -500, -500);
+    }
+    updatePlayerText();
+  }
+
   private void updatePlayerText() {
+    int spacing = Engine.getClientWidth() / (MAX_PLAYERS - 1);
+    int middle = Engine.getClientWidth() / 2;
     for (int i = 0; i < MAX_PLAYERS; i++) {
       playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());
+      int targetX = i * spacing;
+      int x = targetX < middle ? targetX : (targetX - playerText[i].getOffsetWidth());
+      Engine.playfield.setWidgetPosition(playerText[i], x, 10);
     }
   }
 }
