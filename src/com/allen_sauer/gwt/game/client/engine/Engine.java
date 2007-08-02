@@ -12,7 +12,7 @@ import com.allen_sauer.gwt.game.client.ui.util.Page;
 import java.util.ArrayList;
 
 public final class Engine {
-  public static final boolean DEBUG = false;
+  public static final boolean DEBUG = true;
   public static final AbsolutePanel playfield = new AbsolutePanel();
 
   static FrameListenerCollection frameListenerCollection = new FrameListenerCollection();
@@ -51,7 +51,8 @@ public final class Engine {
   }
 
   public static String info() {
-    return "frameListenerCollections=" + frameListenerCollection.size() + ", spritePools=" + spritePools.size();
+    return "frameListenerCollections=" + frameListenerCollection.size() + ", spritePools="
+        + spritePools.size();
   }
 
   public static void init(Game game) {

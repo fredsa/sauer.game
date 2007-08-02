@@ -16,7 +16,7 @@ public class ExplosionBehavior implements Behavior {
   }
 
   public FrameListenerRetention doFrame() {
-    if (++frameCount == sprite.getVirtualFrameCount()) {
+    if (++frameCount == sprite.frameMetaData.virtualFrameCount) {
       return LISTENER_REMOVE;
     }
     return LISTENER_CONTINUE;

@@ -1,5 +1,7 @@
 package com.allen_sauer.gwt.game.client.behavior;
 
+import com.google.gwt.user.client.Random;
+
 import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.ui.util.Page;
@@ -17,9 +19,10 @@ public class CursorKeyBehavior implements Behavior {
   }
 
   public void doFirstFrame() {
-    xMax = Engine.getClientWidth() - sprite.getFrameWidth();
-    yMax = Engine.getClientHeight() - sprite.getFrameHeight();
-    sprite.setXY(xMax / 2, yMax / 2);
+    xMax = Engine.getClientWidth() - sprite.frameMetaData.frameWidth;
+    yMax = Engine.getClientHeight() - sprite.frameMetaData.frameHeight;
+    //    sprite.setXY(xMax / 2, yMax / 2);
+    sprite.setXY(Random.nextInt(xMax), Random.nextInt(yMax));
   }
 
   public FrameListenerRetention doFrame() {

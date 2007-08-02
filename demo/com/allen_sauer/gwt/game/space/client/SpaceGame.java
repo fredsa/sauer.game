@@ -5,23 +5,33 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
-import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.space.client.collision.PlayerCollisionDetector;
-import com.allen_sauer.gwt.game.space.client.collision.RobotCollisionDetector;
-import com.allen_sauer.gwt.game.space.client.sprite.bullet.BulletSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
+import com.allen_sauer.gwt.game.space.client.sprite.player.Player;
+import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 
 public class SpaceGame implements Game {
+  private static final int MAX_LIVES = 3;
+  private static final int MAX_PLAYERS = 3;
   private Image backgroundImage;
-  private BulletSpritePool bulletSpritePool;
   private ExplosionSpritePool explosionSpritePool;
+  private PlayerCollisionDetector playerCollisionDetector;
+  private Player[] players;
   private PlayerSpritePool playerSpritePool;
   private RobotSpritePool robotSpritePool;
 
   public void clientResized(int clientWidth, int clientHeight) {
     //    backgroundImage.setPixelSize(clientWidth, clientHeight);
+  }
+
+  public ExplosionSpritePool getExplosionSpritePool() {
+    return explosionSpritePool;
+  }
+
+  public RobotSpritePool getRobotSpritePool() {
+    return robotSpritePool;
   }
 
   public void init() {
@@ -34,23 +44,16 @@ public class SpaceGame implements Game {
     timerText.addStyleName("timerText");
     RootPanel.get().add(timerText, 200, 0);
 
-    // players
-    playerSpritePool = new PlayerSpritePool(this);
-    Sprite playerSprite = playerSpritePool.create();
-
-    // bullets
-    bulletSpritePool = new BulletSpritePool(this, playerSprite);
-
-    // robots
     robotSpritePool = new RobotSpritePool(this);
-
-    // explosions
     explosionSpritePool = new ExplosionSpritePool(this);
 
-    // robot/bullet collisions
-    new RobotCollisionDetector(robotSpritePool, bulletSpritePool, explosionSpritePool);
+    playerSpritePool = new PlayerSpritePool(this, MAX_PLAYERS);
+    playerCollisionDetector = new PlayerCollisionDetector(playerSpritePool, robotSpritePool,
+        explosionSpritePool);
 
-    // player/robot collisions
-    new PlayerCollisionDetector(playerSpritePool, robotSpritePool, explosionSpritePool);
+    players = new Player[MAX_PLAYERS];
+    for (int i = 0; i < MAX_PLAYERS; i++) {
+      players[i] = new Player(this, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
+    }
   }
 }

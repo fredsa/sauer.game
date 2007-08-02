@@ -1,16 +1,13 @@
 package com.allen_sauer.gwt.game.client.generator;
 
-import com.google.gwt.user.client.Random;
-
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 
-public class IntervalGenerator implements Generator {
-  private double probability;
+// TODO drop class
+public class PlayerGenerator implements Generator {
   private final SpritePool spritePool;
 
-  public IntervalGenerator(SpritePool spritePool, double probability) {
+  public PlayerGenerator(SpritePool spritePool) {
     this.spritePool = spritePool;
-    this.probability = probability;
     spritePool.getFrameListenerCollection().addFrameListener(this);
   }
 
@@ -18,7 +15,7 @@ public class IntervalGenerator implements Generator {
   }
 
   public FrameListenerRetention doFrame() {
-    if (!spritePool.exhausted() && Random.nextDouble() < probability) {
+    if (!spritePool.exhausted()) {
       spritePool.create();
     }
     return LISTENER_CONTINUE;

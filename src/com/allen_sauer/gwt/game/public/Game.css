@@ -32,6 +32,7 @@ XX .playfield { /* DEBUGGING */
   border: 3px dashed red;
   margin: -6px;
 }
+
 /*
 .transparent50 {
   filter: alpha(opacity = 50);
@@ -39,3 +40,7 @@ XX .playfield { /* DEBUGGING */
   -moz-opacity: 0.5;
 }
 */
+.bounding-box {
+  border: 1px solid green;
+  z-index: 42;
+}
