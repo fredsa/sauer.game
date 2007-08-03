@@ -84,7 +84,7 @@ public class SpaceGame implements Game {
     for (int i = 0; i < MAX_PLAYERS; i++) {
       playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());
       int targetX = i * spacing;
-      int x = targetX < middle ? targetX : (targetX - playerText[i].getOffsetWidth());
+      int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
       Engine.playfield.setWidgetPosition(playerText[i], x, 10);
     }
   }

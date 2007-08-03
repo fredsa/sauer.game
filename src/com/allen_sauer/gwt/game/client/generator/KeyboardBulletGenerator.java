@@ -6,6 +6,7 @@ import com.allen_sauer.gwt.game.client.ui.util.Page;
 public class KeyboardBulletGenerator implements Generator {
   private static final int FRAMES_BETWEEN_BULLETS = 7;
   private int frameCounter;
+  private boolean markedForRemoval = false;
   private final SpritePool spritePool;
 
   public KeyboardBulletGenerator(SpritePool spritePool) {
@@ -22,9 +23,17 @@ public class KeyboardBulletGenerator implements Generator {
       spritePool.create();
       frameCounter = 0;
     }
+    if (markedForRemoval) {
+      markedForRemoval = false;
+      return LISTENER_REMOVE;
+    }
     return LISTENER_CONTINUE;
   }
 
   public void doLastFrame() {
+  }
+
+  public void markForRemoval() {
+    markedForRemoval = true;
   }
 }

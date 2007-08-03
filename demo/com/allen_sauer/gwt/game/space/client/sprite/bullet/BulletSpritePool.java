@@ -1,7 +1,6 @@
 package com.allen_sauer.gwt.game.space.client.sprite.bullet;
 
 import com.allen_sauer.gwt.game.client.engine.Engine;
-import com.allen_sauer.gwt.game.client.generator.KeyboardBulletGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
@@ -18,6 +17,5 @@ public class BulletSpritePool extends SpritePool {
     };
     init(spriteFactory, MAX_BULLETS);
     Engine.addSpritePool(this);
-    new KeyboardBulletGenerator(this);
   }
 }

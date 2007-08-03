@@ -1,5 +1,6 @@
 package com.allen_sauer.gwt.game.space.client.sprite.player;
 
+import com.allen_sauer.gwt.game.client.generator.KeyboardBulletGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.space.client.SpaceGame;
 import com.allen_sauer.gwt.game.space.client.collision.RobotBulletCollisionDetector;
@@ -9,6 +10,7 @@ public class Player {
   private BulletSpritePool bulletSpritePool;
   private final SpaceGame game;
   private final int initialLives;
+  private KeyboardBulletGenerator keyboardBulletGenerator;
   private int lives;
   private final int playerNumber;
   private final PlayerSprite playerSprite;
@@ -28,6 +30,7 @@ public class Player {
     playerSprite.setPlayer(this);
     lives = initialLives;
     bulletSpritePool = new BulletSpritePool(game, playerSprite);
+    keyboardBulletGenerator = new KeyboardBulletGenerator(bulletSpritePool);
     robotCollisionDetector = new RobotBulletCollisionDetector(game.getRobotSpritePool(),
         bulletSpritePool, game.getExplosionSpritePool());
   }
@@ -39,6 +42,7 @@ public class Player {
     }
     if (--lives == 0) {
       playerSprite.markForRemoval();
+      keyboardBulletGenerator.markForRemoval();
     } else {
       playerSprite.doFirstFrame();
     }
