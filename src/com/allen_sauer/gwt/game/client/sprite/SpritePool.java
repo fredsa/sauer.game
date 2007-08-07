@@ -19,7 +19,7 @@ public class SpritePool {
 
   public Sprite create() {
     assert initialized;
-    assert visibleSprites < maxSprites;
+    assert visibleSprites < maxSprites : visibleSprites + " < " + maxSprites;
 
     Sprite sprite = (Sprite) sprites.get(visibleSprites++);
     frameListenerCollection.addFrameListener(sprite);

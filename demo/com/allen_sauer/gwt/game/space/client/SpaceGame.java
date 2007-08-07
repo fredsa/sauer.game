@@ -7,7 +7,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.Engine;
-import com.allen_sauer.gwt.game.space.client.collision.PlayerCollisionDetector;
+import com.allen_sauer.gwt.game.space.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSprite;
@@ -20,7 +20,7 @@ public class SpaceGame implements Game {
   private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
   private Player[] player;
-  private PlayerCollisionDetector playerCollisionDetector;
+  private PlayerRobotCollisionDetector playerRobotCollisionDetector;
   private PlayerSpritePool playerSpritePool;
   private Label[] playerText;
   private RobotSpritePool robotSpritePool;
@@ -58,8 +58,8 @@ public class SpaceGame implements Game {
       player[i] = new Player(this, playerNumber, (PlayerSprite) playerSpritePool.create(),
           MAX_LIVES);
     }
-    playerCollisionDetector = new PlayerCollisionDetector(playerSpritePool, robotSpritePool,
-        explosionSpritePool);
+    playerRobotCollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool,
+        robotSpritePool, explosionSpritePool);
 
     initPlayerText();
   }

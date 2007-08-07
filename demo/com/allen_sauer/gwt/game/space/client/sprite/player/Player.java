@@ -36,9 +36,9 @@ public class Player {
   }
 
   public void die() {
-    Sprite explosionSprite = game.getExplosionSpritePool().create();
-    if (explosionSprite != null) {
-      explosionSprite.setXY(playerSprite.getX(), playerSprite.getY());
+    if (!game.getExplosionSpritePool().exhausted()) {
+      Sprite explosionSprite = game.getExplosionSpritePool().create();
+      explosionSprite.setPosition(playerSprite.getX(), playerSprite.getY());
     }
     if (--lives == 0) {
       playerSprite.markForRemoval();

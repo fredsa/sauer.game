@@ -5,54 +5,41 @@ import com.google.gwt.user.client.Random;
 import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
-public class ParatrooperBehavior implements Behavior {
+public class ParatrooperBehavior extends Behavior {
   private static final int MAX_WALK_FRAMES = 50;
-  private final Sprite sprite;
   private int walkFrames;
-  private int xMax;
-  private int xSpeed;
-  private int yMax;
-  private int ySpeed;
 
   public ParatrooperBehavior(Sprite sprite) {
-    this.sprite = sprite;
+    super(sprite);
   }
 
   public void doFirstFrame() {
-    xMax = Engine.getClientWidth() - sprite.frameMetaData.frameWidth;
-    yMax = Engine.getClientHeight() - sprite.frameMetaData.frameHeight;
+    setXMax(Engine.getClientWidth() - getSprite().getFrameInfo().frameWidth);
+    setYMax(Engine.getClientHeight() - getSprite().getFrameInfo().frameHeight);
     walkFrames = 0;
-    sprite.setXY(Random.nextInt(xMax), -sprite.frameMetaData.frameHeight);
+    setX(Random.nextInt(getXMax()));
+    setY(-getSprite().getFrameInfo().frameHeight);
 
-    xSpeed = Random.nextInt(6) - 3;
-    ySpeed = Random.nextInt(5) + 3;
+    setSpeed(Random.nextInt(6) - 3, Random.nextInt(5) + 3);
   }
 
-  public FrameListenerRetention doFrame() {
-    int x = sprite.getX() + xSpeed;
-    int y = sprite.getY() + ySpeed;
+  public boolean doFrame() {
+    boolean again = true;
 
-    if (x < 0) {
-      x = 0;
-      xSpeed = Random.nextInt(5) + 4;
-    } else if (x > xMax) {
-      x = xMax;
-      xSpeed = -Random.nextInt(5) - 4;
+    if (getX() == getXMin()) {
+      setXSpeed(Random.nextInt(5) + 4);
+    } else if (getX() == getXMax()) {
+      setXSpeed(-Random.nextInt(5) - 4);
     }
 
-    if (y < 0) {
-      // y = 0;
-      // ySpeed = Random.nextInt(3) + 2;
-    } else if (y > yMax) {
-      y = yMax;
-      ySpeed = 0;
+    if (getY() == getYMax()) {
+      //      setYSpeed(0);
+      if (++walkFrames == MAX_WALK_FRAMES) {
+        again = false;
+      }
     }
-    sprite.setXY(x, y);
 
-    if (y == yMax && ++walkFrames == MAX_WALK_FRAMES) {
-      return LISTENER_REMOVE;
-    }
-    return LISTENER_CONTINUE;
+    return again && super.doFrame();
   }
 
   public void doLastFrame() {

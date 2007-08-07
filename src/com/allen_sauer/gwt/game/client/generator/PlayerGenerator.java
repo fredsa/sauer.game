@@ -14,11 +14,11 @@ public class PlayerGenerator implements Generator {
   public void doFirstFrame() {
   }
 
-  public FrameListenerRetention doFrame() {
+  public boolean doFrame() {
     if (!spritePool.exhausted()) {
       spritePool.create();
     }
-    return LISTENER_CONTINUE;
+    return true;
   }
 
   public void doLastFrame() {

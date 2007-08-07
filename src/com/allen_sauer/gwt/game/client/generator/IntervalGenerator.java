@@ -17,11 +17,11 @@ public class IntervalGenerator implements Generator {
   public void doFirstFrame() {
   }
 
-  public FrameListenerRetention doFrame() {
+  public boolean doFrame() {
     if (!spritePool.exhausted() && Random.nextDouble() < probability) {
       spritePool.create();
     }
-    return LISTENER_CONTINUE;
+    return true;
   }
 
   public void doLastFrame() {

@@ -16,9 +16,9 @@ public class RobotBulletCollisionDetector extends CollisionDetector {
   }
 
   protected void handleCollision(Sprite robotSprite, Sprite bulletSprite) {
-    Sprite explosionSprite = explosionSpritePool.create();
-    if (explosionSprite != null) {
-      explosionSprite.setXY(robotSprite.getX(), robotSprite.getY());
+    if (!explosionSpritePool.exhausted()) {
+      Sprite explosionSprite = explosionSpritePool.create();
+      explosionSprite.setPosition(robotSprite.getX(), robotSprite.getY());
     }
     robotSprite.markForRemoval();
     bulletSprite.markForRemoval();

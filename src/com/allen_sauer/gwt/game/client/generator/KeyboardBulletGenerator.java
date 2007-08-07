@@ -18,16 +18,16 @@ public class KeyboardBulletGenerator implements Generator {
     frameCounter = 0;
   }
 
-  public FrameListenerRetention doFrame() {
+  public boolean doFrame() {
     if (++frameCounter > FRAMES_BETWEEN_BULLETS && !spritePool.exhausted() && Page.isKeyDown(' ')) {
       spritePool.create();
       frameCounter = 0;
     }
     if (markedForRemoval) {
       markedForRemoval = false;
-      return LISTENER_REMOVE;
+      return false;
     }
-    return LISTENER_CONTINUE;
+    return true;
   }
 
   public void doLastFrame() {

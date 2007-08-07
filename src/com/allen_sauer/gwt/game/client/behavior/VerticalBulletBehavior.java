@@ -2,34 +2,29 @@ package com.allen_sauer.gwt.game.client.behavior;
 
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
-public class VerticalBulletBehavior implements Behavior {
+public class VerticalBulletBehavior extends Behavior {
   private final Sprite playerSprite;
-  private final Sprite sprite;
-  //  private int yMax;
-  private int yMin;
-  private int ySpeed;
 
   public VerticalBulletBehavior(Sprite sprite, Sprite playerSprite) {
-    this.sprite = sprite;
+    super(sprite);
     this.playerSprite = playerSprite;
   }
 
   public void doFirstFrame() {
-    yMin = -sprite.frameMetaData.frameHeight;
+    setYMin(-getSprite().getFrameInfo().frameHeight);
     //    yMax = Engine.getClientHeight() - sprite.getFrameHeight();
-    sprite.setXY(playerSprite.getX(), playerSprite.getY());
+    setX(playerSprite.getX());
+    setY(playerSprite.getY());
 
-    ySpeed = -10;
+    setYSpeed(-10);
   }
 
-  public FrameListenerRetention doFrame() {
-    int y = sprite.getY() + ySpeed;
-    sprite.setY(y);
-
-    if (y < yMin) {
-      return LISTENER_REMOVE;
+  public boolean doFrame() {
+    boolean again = true;
+    if (getY() == getYMin()) {
+      again = false;
     }
-    return LISTENER_CONTINUE;
+    return again && super.doFrame();
   }
 
   public void doLastFrame() {

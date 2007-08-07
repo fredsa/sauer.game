@@ -23,7 +23,7 @@ public abstract class CollisionDetector implements FrameListener {
     // TODO Replace auto-generated method stub
   }
 
-  public FrameListenerRetention doFrame() {
+  public boolean doFrame() {
     for (Iterator iteratorA = poolA.iterator(); iteratorA.hasNext();) {
       Sprite spriteA = (Sprite) iteratorA.next();
       if (Engine.DEBUG) {
@@ -51,7 +51,7 @@ public abstract class CollisionDetector implements FrameListener {
         }
       }
     }
-    return LISTENER_CONTINUE;
+    return true;
   }
 
   public void doLastFrame() {

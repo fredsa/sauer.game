@@ -21,10 +21,10 @@ public class FrameListenerCollection implements FrameListener {
     }
   }
 
-  public FrameListenerRetention doFrame() {
+  public boolean doFrame() {
     updateFrameListenerCollections();
     doFrameListenerFrames();
-    return LISTENER_CONTINUE;
+    return true;
   }
 
   public void doLastFrame() {
@@ -41,7 +41,8 @@ public class FrameListenerCollection implements FrameListener {
   private void doFrameListenerFrames() {
     for (Iterator iterator = frameListeners.iterator(); iterator.hasNext();) {
       FrameListener listener = (FrameListener) iterator.next();
-      if (!listener.doFrame().retention) {
+      boolean again = listener.doFrame();
+      if (!again) {
         listener.doLastFrame();
         iterator.remove();
       }
