@@ -21,6 +21,7 @@ public class ParatrooperBehavior extends Behavior {
     setY(-getSprite().getFrameInfo().frameHeight);
 
     setSpeed(Random.nextInt(6) - 3, Random.nextInt(5) + 3);
+    super.doFirstFrame();
   }
 
   public boolean doFrame() {
@@ -40,8 +41,5 @@ public class ParatrooperBehavior extends Behavior {
     }
 
     return again && super.doFrame();
-  }
-
-  public void doLastFrame() {
   }
 }

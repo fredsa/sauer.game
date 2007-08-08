@@ -20,6 +20,7 @@ public class CursorKeyBehavior extends Behavior {
     //    sprite.setXY(xMax / 2, yMax / 2);
     setX(Random.nextInt(getXMax()));
     setY(Random.nextInt(getYMax()));
+    super.doFirstFrame();
   }
 
   public boolean doFrame() {
@@ -40,8 +41,5 @@ public class CursorKeyBehavior extends Behavior {
     }
 
     return super.doFrame();
-  }
-
-  public void doLastFrame() {
   }
 }

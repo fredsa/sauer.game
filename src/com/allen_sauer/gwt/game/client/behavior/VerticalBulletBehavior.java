@@ -17,6 +17,7 @@ public class VerticalBulletBehavior extends Behavior {
     setY(playerSprite.getY());
 
     setYSpeed(-10);
+    super.doFirstFrame();
   }
 
   public boolean doFrame() {
@@ -25,8 +26,5 @@ public class VerticalBulletBehavior extends Behavior {
       again = false;
     }
     return again && super.doFrame();
-  }
-
-  public void doLastFrame() {
   }
 }

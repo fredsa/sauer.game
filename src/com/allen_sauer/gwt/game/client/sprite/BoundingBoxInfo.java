@@ -14,4 +14,9 @@ public class BoundingBoxInfo {
     this.width = width;
     this.height = height;
   }
+
+  public String toString() {
+    return "[ (" + offsetLeft + ", " + offsetTop + ") - (" + (offsetLeft + width) + ", "
+        + (offsetTop + height) + ") ]";
+  }
 }

@@ -15,8 +15,13 @@ import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 
 public class SpaceGame implements Game {
+  public static final int MAX_BULLETS = 3;
+  public static final int MAX_ROBOTS = 10;
+  public static final double ROBOT_APPEARANCE_PROBABILITY = .05;
+
   private static final int MAX_LIVES = 3;
-  private static final int MAX_PLAYERS = 3;
+  private static final int MAX_PLAYERS = 2;
+
   private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
   private Player[] player;
@@ -79,7 +84,7 @@ public class SpaceGame implements Game {
   }
 
   private void updatePlayerText() {
-    int spacing = Engine.getClientWidth() / (MAX_PLAYERS - 1);
+    int spacing = MAX_PLAYERS != 1 ? Engine.getClientWidth() / (MAX_PLAYERS - 1) : 0;
     int middle = Engine.getClientWidth() / 2;
     for (int i = 0; i < MAX_PLAYERS; i++) {
       playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());

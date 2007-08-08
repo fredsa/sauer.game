@@ -23,6 +23,8 @@ public abstract class Behavior implements FrameListener {
   }
 
   public void doFirstFrame() {
+    sprite.setPosition(x, y);
+    updateDirection();
   }
 
   public boolean doFrame() {

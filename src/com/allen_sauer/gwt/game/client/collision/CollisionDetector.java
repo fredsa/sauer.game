@@ -61,10 +61,17 @@ public abstract class CollisionDetector implements FrameListener {
   protected abstract void handleCollision(Sprite spriteA, Sprite spriteB);
 
   private boolean intersect(Sprite spriteA, Sprite spriteB) {
-    if (spriteA.getX() + spriteA.boundingBoxInfo.width < spriteB.getX()
-        || spriteA.getX() > spriteB.getX() + spriteB.boundingBoxInfo.width
-        || spriteA.getY() + spriteA.boundingBoxInfo.height < spriteB.getY()
-        || spriteA.getY() > spriteB.getY() + spriteB.boundingBoxInfo.height) {
+    int aLeft = spriteA.getX() + spriteA.boundingBoxInfo.offsetLeft;
+    int bLeft = spriteB.getX() + spriteB.boundingBoxInfo.offsetLeft;
+    int aRight = aLeft + spriteA.boundingBoxInfo.width;
+    int bRight = bLeft + spriteB.boundingBoxInfo.width;
+
+    int aTop = spriteA.getY() + spriteA.boundingBoxInfo.offsetTop;
+    int bTop = spriteB.getY() + spriteB.boundingBoxInfo.offsetTop;
+    int aBottom = aTop + spriteA.boundingBoxInfo.height;
+    int bBottom = bTop + spriteB.boundingBoxInfo.height;
+
+    if (aRight < bLeft || aLeft > bRight || aBottom < bTop || aTop > bBottom) {
       return false;
     }
     return true;
