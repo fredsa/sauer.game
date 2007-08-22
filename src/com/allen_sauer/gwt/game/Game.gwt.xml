@@ -6,4 +6,7 @@
   <!-- Include style sheet                                  -->
   <stylesheet src='Game.css'/>
   
+  <!-- Include soundmanager2 code                           -->
+  <script src="soundmanager/soundmanager2.js"/>
+  
 </module>

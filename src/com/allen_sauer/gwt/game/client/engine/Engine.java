@@ -13,7 +13,8 @@ import java.util.ArrayList;
 
 public final class Engine {
   public static final boolean DEBUG = true;
-  public static final AbsolutePanel playfield = new AbsolutePanel();
+  public static final GameLayer playfield = new GameLayer();
+  public static final GameLayer background = new GameLayer();
 
   static FrameListenerCollection frameListenerCollection = new FrameListenerCollection();
 
@@ -27,7 +28,8 @@ public final class Engine {
   private static ArrayList spritePools = new ArrayList();
 
   static {
-    playfield.addStyleName("playfield");
+    playfield.addStyleDependentName("playfield");
+    background.addStyleDependentName("background");
   }
 
   public static void addCollisionFrameListener(FrameListener frameListener) {
@@ -62,6 +64,7 @@ public final class Engine {
     frameListenerCollection.addFrameListener(collisionFrameListeners);
 
     setClientSize(Window.getClientWidth(), Window.getClientHeight());
+    RootPanel.get().add(background, 0, 0);
     RootPanel.get().add(playfield, 0, 0);
     game.init();
 

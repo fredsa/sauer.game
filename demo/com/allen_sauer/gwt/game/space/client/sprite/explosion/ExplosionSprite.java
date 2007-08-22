@@ -2,6 +2,7 @@ package com.allen_sauer.gwt.game.space.client.sprite.explosion;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.NullBehavior;
+import com.allen_sauer.gwt.game.client.soundmanager.Sound;
 import com.allen_sauer.gwt.game.client.sprite.BoundingBoxInfo;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.frame.OneTimeFrameInfo;
@@ -19,10 +20,18 @@ public class ExplosionSprite extends Sprite {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
   }
 
+  private Sound sound;
+
   public ExplosionSprite(Game game) {
     super(game, BOUNDING_BOX_INFO);
     setFrameInfo(new OneTimeFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL,
         FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL));
     setBehavior(new NullBehavior(this));
+    sound = new Sound("sounds/misc186-cannonshot.mp3");
+  }
+
+  public void doFirstFrame() {
+    super.doFirstFrame();
+    sound.play();
   }
 }

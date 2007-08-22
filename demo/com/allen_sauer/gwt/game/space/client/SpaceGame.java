@@ -1,12 +1,11 @@
 package com.allen_sauer.gwt.game.space.client;
 
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.game.client.soundmanager.Sound;
 import com.allen_sauer.gwt.game.space.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.player.Player;
@@ -19,8 +18,8 @@ public class SpaceGame implements Game {
   public static final int MAX_ROBOTS = 10;
   public static final double ROBOT_APPEARANCE_PROBABILITY = .05;
 
-  private static final int MAX_LIVES = 3;
-  private static final int MAX_PLAYERS = 2;
+  private static final int MAX_LIVES = 5;
+  private static final int MAX_PLAYERS = 1;
 
   private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
@@ -46,11 +45,7 @@ public class SpaceGame implements Game {
     backgroundImage = new Image("images/nebula_13-fudged.jpg");
     backgroundImage.addStyleName("backgroundImage");
     //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
-    RootPanel.get().add(backgroundImage, 0, 0);
-
-    final HTML timerText = new HTML("");
-    timerText.addStyleName("timerText");
-    RootPanel.get().add(timerText, 200, 0);
+    Engine.background.add(backgroundImage, 0, 0);
 
     robotSpritePool = new RobotSpritePool(this);
     explosionSpritePool = new ExplosionSpritePool(this);
