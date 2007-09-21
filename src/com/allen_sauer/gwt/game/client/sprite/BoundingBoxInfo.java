@@ -16,7 +16,7 @@ public class BoundingBoxInfo {
   }
 
   public String toString() {
-    return "[ (" + offsetLeft + ", " + offsetTop + ") - (" + (offsetLeft + width) + ", "
-        + (offsetTop + height) + ") ]";
+    return "[ (" + offsetLeft + ", " + offsetTop + ") - ("
+        + (offsetLeft + width) + ", " + (offsetTop + height) + ") ]";
   }
 }

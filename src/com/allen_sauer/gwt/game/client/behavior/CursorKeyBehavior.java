@@ -17,7 +17,7 @@ public class CursorKeyBehavior extends Behavior {
   public void doFirstFrame() {
     setXMax(Engine.getClientWidth() - getSprite().getFrameInfo().frameWidth);
     setYMax(Engine.getClientHeight() - getSprite().getFrameInfo().frameHeight);
-    //    sprite.setXY(xMax / 2, yMax / 2);
+    // sprite.setXY(xMax / 2, yMax / 2);
     setX(Random.nextInt(getXMax()));
     setY(Random.nextInt(getYMax()));
     super.doFirstFrame();

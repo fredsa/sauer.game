@@ -2,7 +2,6 @@ package com.allen_sauer.gwt.game.client.engine;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowResizeListener;
-import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
@@ -12,9 +11,9 @@ import com.allen_sauer.gwt.game.client.ui.util.Page;
 import java.util.ArrayList;
 
 public final class Engine {
+  public static final GameLayer background = new GameLayer();
   public static final boolean DEBUG = true;
   public static final GameLayer playfield = new GameLayer();
-  public static final GameLayer background = new GameLayer();
 
   static FrameListenerCollection frameListenerCollection = new FrameListenerCollection();
 
@@ -36,7 +35,8 @@ public final class Engine {
     collisionFrameListeners.addFrameListener(frameListener);
   }
 
-  public static void addSpriteFrameListener(FrameListenerCollection frameListener) {
+  public static void addSpriteFrameListener(
+      FrameListenerCollection frameListener) {
     spriteFrameListeners.addFrameListener(frameListener);
   }
 
@@ -53,8 +53,8 @@ public final class Engine {
   }
 
   public static String info() {
-    return "frameListenerCollections=" + frameListenerCollection.size() + ", spritePools="
-        + spritePools.size();
+    return "frameListenerCollections=" + frameListenerCollection.size()
+        + ", spritePools=" + spritePools.size();
   }
 
   public static void init(Game game) {

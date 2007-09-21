@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.Label;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.Engine;
-import com.allen_sauer.gwt.game.client.soundmanager.Sound;
+import com.allen_sauer.gwt.game.client.sound.GameSound;
 import com.allen_sauer.gwt.game.space.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.player.Player;
@@ -47,6 +47,8 @@ public class SpaceGame implements Game {
     //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
     Engine.background.add(backgroundImage, 0, 0);
 
+    GameSound.setGameVolume(10);
+    
     robotSpritePool = new RobotSpritePool(this);
     explosionSpritePool = new ExplosionSpritePool(this);
 

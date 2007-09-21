@@ -3,10 +3,10 @@
 	<!-- Inherit the core Web Toolkit stuff.                  -->
 	<inherits name='com.google.gwt.user.User'/>
 
+  <!-- Inherit sound stuff.                                 -->
+  <inherits name='com.allen_sauer.gwt.voices.Voices'/>
+
   <!-- Include style sheet                                  -->
   <stylesheet src='Game.css'/>
-  
-  <!-- Include soundmanager2 code                           -->
-  <script src="soundmanager/soundmanager2.js"/>
   
 </module>

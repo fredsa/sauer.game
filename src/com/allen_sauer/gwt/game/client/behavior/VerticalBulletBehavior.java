@@ -12,7 +12,7 @@ public class VerticalBulletBehavior extends Behavior {
 
   public void doFirstFrame() {
     setYMin(-getSprite().getFrameInfo().frameHeight);
-    //    yMax = Engine.getClientHeight() - sprite.getFrameHeight();
+    // yMax = Engine.getClientHeight() - sprite.getFrameHeight();
     setX(playerSprite.getX());
     setY(playerSprite.getY());
 

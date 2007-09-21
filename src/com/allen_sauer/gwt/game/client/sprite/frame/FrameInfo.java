@@ -17,8 +17,8 @@ public class FrameInfo implements FrameListener {
   private int[] frameSequence;
   private final Sprite sprite;
 
-  public FrameInfo(Sprite sprite, String spriteUrl, int horizontalFrames, int verticalFrames,
-      int frameWidth, int frameHeight, int animationInterval) {
+  public FrameInfo(Sprite sprite, String spriteUrl, int horizontalFrames,
+      int verticalFrames, int frameWidth, int frameHeight, int animationInterval) {
     this.sprite = sprite;
     this.spriteUrl = spriteUrl;
     this.horizontalFrames = horizontalFrames;

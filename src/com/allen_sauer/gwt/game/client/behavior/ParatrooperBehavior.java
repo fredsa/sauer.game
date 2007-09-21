@@ -34,7 +34,7 @@ public class ParatrooperBehavior extends Behavior {
     }
 
     if (getY() == getYMax()) {
-      //      setYSpeed(0);
+      // setYSpeed(0);
       if (++walkFrames == MAX_WALK_FRAMES) {
         again = false;
       }

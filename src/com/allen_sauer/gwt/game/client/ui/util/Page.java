@@ -79,7 +79,7 @@ public final class Page {
 
   private static void onKeyDown(Event event) {
     char keyCode = (char) DOM.eventGetKeyCode(event);
-    //    Log.debug(keyCode + " down");
+    // Log.debug(keyCode + " down");
     keyDown[keyCode & 0xff] = true;
     if (keyCode == 'P') {
       Engine.setPaused(!Engine.isPaused());
@@ -88,14 +88,14 @@ public final class Page {
 
   private static void onKeyUp(Event event) {
     char keyCode = (char) DOM.eventGetKeyCode(event);
-    //    Log.debug(keyCode + " up");
+    // Log.debug(keyCode + " up");
     keyDown[keyCode & 0xff] = false;
   }
 
   private static void onWindowFocus() {
     if (!hasFocus) {
       hasFocus = true;
-      //      Log.debug("onWindowFocus()");
+      // Log.debug("onWindowFocus()");
       Engine.setPaused(false);
     }
   }
@@ -103,14 +103,15 @@ public final class Page {
   private static void onWindowLostFocus() {
     if (hasFocus) {
       hasFocus = false;
-      //      Log.debug("onWindowLostFocus()");
+      // Log.debug("onWindowLostFocus()");
       Engine.setPaused(true);
     }
   }
 
   /**
-   * This code will get optimized out at compile time until
-   * we can use @SuppressWarnings("unused").
+   * This code will get optimized out at compile time until we can use
+   * 
+   * @SuppressWarnings("unused").
    */
   private static void surpressCompilerWarningHack() {
     if (GWT.isScript()) {

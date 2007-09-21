@@ -35,7 +35,7 @@ public class SpritePool {
       swap(sprite.getPoolIndex(), visibleSprites - 1);
     }
     visibleSprites--;
-    //    frameListenerCollection.removeFrameListener(sprite);
+    // frameListenerCollection.removeFrameListener(sprite);
   }
 
   public boolean exhausted() {

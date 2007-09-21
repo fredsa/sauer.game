@@ -2,7 +2,7 @@ package com.allen_sauer.gwt.game.space.client.sprite.bullet;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.VerticalBulletBehavior;
-import com.allen_sauer.gwt.game.client.soundmanager.Sound;
+import com.allen_sauer.gwt.game.client.sound.GameSound;
 import com.allen_sauer.gwt.game.client.sprite.BoundingBoxInfo;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.frame.BounceFrameInfo;
@@ -19,14 +19,14 @@ public class BulletSprite extends Sprite {
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(8, 32, 48, 48);
   }
-  private Sound sound;
+  private GameSound sound;
 
   public BulletSprite(Game game, Sprite playerSprite) {
     super(game, BOUNDING_BOX_INFO);
     setFrameInfo(new BounceFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL,
         FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL));
     setBehavior(new VerticalBulletBehavior(this, playerSprite));
-    sound = new Sound("sounds/misc322-photonshot.mp3");
+    sound = new GameSound("sounds/misc322-photonshot.mp3");
   }
 
   public void doFirstFrame() {

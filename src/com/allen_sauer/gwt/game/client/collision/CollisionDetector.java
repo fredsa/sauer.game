@@ -42,10 +42,12 @@ public abstract class CollisionDetector implements FrameListener {
         Sprite spriteB = (Sprite) iteratorB.next();
         if (intersect(spriteA, spriteB)) {
           if (Engine.DEBUG) {
-            DOM.setStyleAttribute(spriteA.getElement(), "backgroundColor", "green");
+            DOM.setStyleAttribute(spriteA.getElement(), "backgroundColor",
+                "green");
           }
           if (Engine.DEBUG) {
-            DOM.setStyleAttribute(spriteB.getElement(), "backgroundColor", "green");
+            DOM.setStyleAttribute(spriteB.getElement(), "backgroundColor",
+                "green");
           }
           handleCollision(spriteA, spriteB);
         }
