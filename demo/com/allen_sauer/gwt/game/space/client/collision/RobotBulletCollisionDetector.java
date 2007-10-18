@@ -9,8 +9,8 @@ import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 public class RobotBulletCollisionDetector extends CollisionDetector {
   private final ExplosionSpritePool explosionSpritePool;
 
-  public RobotBulletCollisionDetector(RobotSpritePool robotSpritePool,
-      BulletSpritePool bulletSpritePool, ExplosionSpritePool explosionSpritePool) {
+  public RobotBulletCollisionDetector(RobotSpritePool robotSpritePool, BulletSpritePool bulletSpritePool,
+      ExplosionSpritePool explosionSpritePool) {
     super(robotSpritePool, bulletSpritePool);
     this.explosionSpritePool = explosionSpritePool;
   }

@@ -19,8 +19,7 @@ public class KeyboardBulletGenerator implements Generator {
   }
 
   public boolean doFrame() {
-    if (++frameCounter > FRAMES_BETWEEN_BULLETS && !spritePool.exhausted()
-        && Page.isKeyDown(' ')) {
+    if (++frameCounter > FRAMES_BETWEEN_BULLETS && !spritePool.exhausted() && Page.isKeyDown(' ')) {
       spritePool.create();
       frameCounter = 0;
     }

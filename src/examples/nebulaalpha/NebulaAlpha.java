@@ -74,6 +74,8 @@ public class NebulaAlpha extends JGEngine {
     }
   }
 
+  private static final long serialVersionUID = 1L;
+
   public static void main(String[] args) {
     new NebulaAlpha(0, 0);
   }

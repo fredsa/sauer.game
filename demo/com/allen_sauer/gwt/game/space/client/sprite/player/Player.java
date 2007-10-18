@@ -31,8 +31,8 @@ public class Player {
     lives = initialLives;
     bulletSpritePool = new BulletSpritePool(game, playerSprite);
     keyboardBulletGenerator = new KeyboardBulletGenerator(bulletSpritePool);
-    robotCollisionDetector = new RobotBulletCollisionDetector(game.getRobotSpritePool(),
-        bulletSpritePool, game.getExplosionSpritePool());
+    robotCollisionDetector = new RobotBulletCollisionDetector(game.getRobotSpritePool(), bulletSpritePool,
+        game.getExplosionSpritePool());
   }
 
   public void die() {

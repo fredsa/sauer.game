@@ -27,8 +27,7 @@ final class EngineTimer extends Timer {
       if (lastTimestamp != 0) {
         long frameToFrame = (timestamp - lastTimestamp) / FRAMES_TO_AVERAGE;
         long frameRate = Math.round(1000D / frameToFrame);
-        timerText.setHTML(FRAMES_TO_AVERAGE + " buffer avg = " + frameToFrame
-            + "ms (" + frameRate + "fps), " + Engine.info());
+        timerText.setHTML(FRAMES_TO_AVERAGE + " buffer avg = " + frameToFrame + "ms (" + frameRate + "fps), " + Engine.info());
       }
       lastTimestamp = timestamp;
     }

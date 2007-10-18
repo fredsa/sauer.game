@@ -34,10 +34,8 @@ public class Sprite extends Composite implements FrameListener {
     if (Engine.DEBUG) {
       SimplePanel boundingBoxPanel = new SimplePanel();
       boundingBoxPanel.addStyleName("bounding-box");
-      boundingBoxPanel.setPixelSize(boundingBoxInfo.width - 2,
-          boundingBoxInfo.height - 2);
-      panel.add(boundingBoxPanel, boundingBoxInfo.offsetLeft,
-          boundingBoxInfo.offsetTop);
+      boundingBoxPanel.setPixelSize(boundingBoxInfo.width - 2, boundingBoxInfo.height - 2);
+      panel.add(boundingBoxPanel, boundingBoxInfo.offsetLeft, boundingBoxInfo.offsetTop);
     }
 
     panel.addStyleName("sprite");
@@ -107,8 +105,7 @@ public class Sprite extends Composite implements FrameListener {
     image = new Image(frameInfo.spriteUrl);
     panel.add(image, -500, -500);
 
-    image.setPixelSize(frameInfo.frameWidth * frameInfo.horizontalFrames,
-        frameInfo.frameHeight * frameInfo.verticalFrames);
+    image.setPixelSize(frameInfo.frameWidth * frameInfo.horizontalFrames, frameInfo.frameHeight * frameInfo.verticalFrames);
     setPixelSize(frameInfo.frameWidth, frameInfo.frameHeight);
     setPixelSize(frameInfo.frameWidth, frameInfo.frameHeight);
   }

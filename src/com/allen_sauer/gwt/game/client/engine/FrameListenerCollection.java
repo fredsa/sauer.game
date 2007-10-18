@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class FrameListenerCollection implements FrameListener {
-  private final ArrayList frameListeners = new ArrayList();
-  private final ArrayList newFrameListeners = new ArrayList();
+  private final ArrayList<FrameListener> frameListeners = new ArrayList<FrameListener>();
+  private final ArrayList<FrameListener> newFrameListeners = new ArrayList<FrameListener>();
 
   public void addFrameListener(FrameListener listener) {
     newFrameListeners.add(listener);
@@ -14,8 +14,8 @@ public class FrameListenerCollection implements FrameListener {
   }
 
   public void doFirstFrame() {
-    for (Iterator iterator = frameListeners.iterator(); iterator.hasNext();) {
-      FrameListener listener = (FrameListener) iterator.next();
+    for (FrameListener frameListener : frameListeners) {
+      FrameListener listener = frameListener;
       // TODO verify this is not called twice
       listener.doFirstFrame();
     }
@@ -28,8 +28,8 @@ public class FrameListenerCollection implements FrameListener {
   }
 
   public void doLastFrame() {
-    for (Iterator iterator = frameListeners.iterator(); iterator.hasNext();) {
-      FrameListener listener = (FrameListener) iterator.next();
+    for (FrameListener frameListener : frameListeners) {
+      FrameListener listener = frameListener;
       listener.doLastFrame();
     }
   }
@@ -39,8 +39,8 @@ public class FrameListenerCollection implements FrameListener {
   }
 
   private void doFrameListenerFrames() {
-    for (Iterator iterator = frameListeners.iterator(); iterator.hasNext();) {
-      FrameListener listener = (FrameListener) iterator.next();
+    for (Iterator<FrameListener> iterator = frameListeners.iterator(); iterator.hasNext();) {
+      FrameListener listener = iterator.next();
       boolean again = listener.doFrame();
       if (!again) {
         listener.doLastFrame();

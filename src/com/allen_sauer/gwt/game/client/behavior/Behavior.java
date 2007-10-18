@@ -116,8 +116,7 @@ public abstract class Behavior implements FrameListener {
   }
 
   private void updateDirection() {
-    int newDirection = (MathUtil.sign(xSpeed) == -1 ? Direction.WEST
-        : Direction.EAST)
+    int newDirection = (MathUtil.sign(xSpeed) == -1 ? Direction.WEST : Direction.EAST)
         | (MathUtil.sign(ySpeed) == -1 ? Direction.NORTH : Direction.SOUTH);
     if (newDirection != direction) {
       direction = newDirection;

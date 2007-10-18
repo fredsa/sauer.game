@@ -5,13 +5,13 @@ import com.google.gwt.user.client.ui.Label;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.Engine;
-import com.allen_sauer.gwt.game.client.sound.GameSound;
 import com.allen_sauer.gwt.game.space.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
+import com.allen_sauer.gwt.voices.client.SoundController;
 
 public class SpaceGame implements Game {
   public static final int MAX_BULLETS = 3;
@@ -28,6 +28,7 @@ public class SpaceGame implements Game {
   private PlayerSpritePool playerSpritePool;
   private Label[] playerText;
   private RobotSpritePool robotSpritePool;
+  private SoundController soundController;
 
   public void clientResized(int clientWidth, int clientHeight) {
     //    backgroundImage.setPixelSize(clientWidth, clientHeight);
@@ -41,14 +42,19 @@ public class SpaceGame implements Game {
     return robotSpritePool;
   }
 
+  public SoundController getSoundController() {
+    return soundController;
+  }
+
   public void init() {
+    soundController = new SoundController();
+    soundController.setDefaultVolume(10);
+
     backgroundImage = new Image("images/nebula_13-fudged.jpg");
     backgroundImage.addStyleName("backgroundImage");
     //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
     Engine.background.add(backgroundImage, 0, 0);
 
-    GameSound.setGameVolume(10);
-    
     robotSpritePool = new RobotSpritePool(this);
     explosionSpritePool = new ExplosionSpritePool(this);
 
@@ -57,11 +63,9 @@ public class SpaceGame implements Game {
     player = new Player[MAX_PLAYERS];
     for (int i = 0; i < MAX_PLAYERS; i++) {
       int playerNumber = i + 1;
-      player[i] = new Player(this, playerNumber, (PlayerSprite) playerSpritePool.create(),
-          MAX_LIVES);
+      player[i] = new Player(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
     }
-    playerRobotCollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool,
-        robotSpritePool, explosionSpritePool);
+    playerRobotCollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool, robotSpritePool, explosionSpritePool);
 
     initPlayerText();
   }

@@ -24,30 +24,28 @@ public abstract class CollisionDetector implements FrameListener {
   }
 
   public boolean doFrame() {
-    for (Iterator iteratorA = poolA.iterator(); iteratorA.hasNext();) {
-      Sprite spriteA = (Sprite) iteratorA.next();
+    for (Iterator<Sprite> iteratorA = poolA.iterator(); iteratorA.hasNext();) {
+      Sprite spriteA = iteratorA.next();
       if (Engine.DEBUG) {
         DOM.setStyleAttribute(spriteA.getElement(), "backgroundColor", "");
       }
     }
-    for (Iterator iteratorB = poolB.iterator(); iteratorB.hasNext();) {
+    for (Iterator<Sprite> iteratorB = poolB.iterator(); iteratorB.hasNext();) {
       Sprite spriteB = (Sprite) iteratorB.next();
       if (Engine.DEBUG) {
         DOM.setStyleAttribute(spriteB.getElement(), "backgroundColor", "");
       }
     }
-    for (Iterator iteratorA = poolA.iterator(); iteratorA.hasNext();) {
+    for (Iterator<Sprite> iteratorA = poolA.iterator(); iteratorA.hasNext();) {
       Sprite spriteA = (Sprite) iteratorA.next();
-      for (Iterator iteratorB = poolB.iterator(); iteratorB.hasNext();) {
+      for (Iterator<Sprite> iteratorB = poolB.iterator(); iteratorB.hasNext();) {
         Sprite spriteB = (Sprite) iteratorB.next();
         if (intersect(spriteA, spriteB)) {
           if (Engine.DEBUG) {
-            DOM.setStyleAttribute(spriteA.getElement(), "backgroundColor",
-                "green");
+            DOM.setStyleAttribute(spriteA.getElement(), "backgroundColor", "green");
           }
           if (Engine.DEBUG) {
-            DOM.setStyleAttribute(spriteB.getElement(), "backgroundColor",
-                "green");
+            DOM.setStyleAttribute(spriteB.getElement(), "backgroundColor", "green");
           }
           handleCollision(spriteA, spriteB);
         }

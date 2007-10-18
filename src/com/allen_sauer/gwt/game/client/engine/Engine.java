@@ -24,7 +24,7 @@ public final class Engine {
   private static Game game;
   private static boolean paused = true;
   private static FrameListenerCollection spriteFrameListeners = new FrameListenerCollection();
-  private static ArrayList spritePools = new ArrayList();
+  private static ArrayList<SpritePool> spritePools = new ArrayList<SpritePool>();
 
   static {
     playfield.addStyleDependentName("playfield");
@@ -35,8 +35,7 @@ public final class Engine {
     collisionFrameListeners.addFrameListener(frameListener);
   }
 
-  public static void addSpriteFrameListener(
-      FrameListenerCollection frameListener) {
+  public static void addSpriteFrameListener(FrameListenerCollection frameListener) {
     spriteFrameListeners.addFrameListener(frameListener);
   }
 
@@ -53,8 +52,7 @@ public final class Engine {
   }
 
   public static String info() {
-    return "frameListenerCollections=" + frameListenerCollection.size()
-        + ", spritePools=" + spritePools.size();
+    return "frameListenerCollections=" + frameListenerCollection.size() + ", spritePools=" + spritePools.size();
   }
 
   public static void init(Game game) {

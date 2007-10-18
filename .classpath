@@ -3,10 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="demo"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/_Google Web Toolkit"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/_JGame"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/_Log"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/_Voices"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/_Google Web Toolkit 1.5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

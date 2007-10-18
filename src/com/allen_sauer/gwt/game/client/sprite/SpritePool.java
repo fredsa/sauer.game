@@ -10,7 +10,7 @@ public class SpritePool {
   private FrameListenerCollection frameListenerCollection = new FrameListenerCollection();
   private boolean initialized = false;
   private int maxSprites;
-  private ArrayList sprites;
+  private ArrayList<Sprite> sprites;
   private int visibleSprites = 0;
 
   public SpritePool() {
@@ -21,7 +21,7 @@ public class SpritePool {
     assert initialized;
     assert visibleSprites < maxSprites : visibleSprites + " < " + maxSprites;
 
-    Sprite sprite = (Sprite) sprites.get(visibleSprites++);
+    Sprite sprite = sprites.get(visibleSprites++);
     frameListenerCollection.addFrameListener(sprite);
     return sprite;
   }
@@ -47,16 +47,16 @@ public class SpritePool {
     return frameListenerCollection;
   }
 
-  public Iterator iterator() {
+  public Iterator<Sprite> iterator() {
     assert initialized;
-    return new Iterator() {
+    return new Iterator<Sprite>() {
       private int i = 0;
 
       public boolean hasNext() {
         return i < visibleSprites;
       }
 
-      public Object next() {
+      public Sprite next() {
         return sprites.get(i++);
       }
 
@@ -73,7 +73,7 @@ public class SpritePool {
 
   protected void init(SpriteFactory spriteFactory, int maxSprites) {
     this.maxSprites = maxSprites;
-    sprites = new ArrayList(maxSprites);
+    sprites = new ArrayList<Sprite>(maxSprites);
     for (int i = 0; i < maxSprites; i++) {
       Sprite sprite = spriteFactory.create();
       sprite.setSpritePool(this);
@@ -85,8 +85,8 @@ public class SpritePool {
 
   private void swap(int i, int j) {
     assert i != j;
-    Sprite spriteI = (Sprite) sprites.get(i);
-    Sprite spriteJ = (Sprite) sprites.get(j);
+    Sprite spriteI = sprites.get(i);
+    Sprite spriteJ = sprites.get(j);
     sprites.set(i, spriteJ);
     sprites.set(j, spriteI);
     spriteI.setPoolIndex(j);
