@@ -22,7 +22,7 @@ import com.allen_sauer.gwt.voices.client.SoundController;
 
 public class HornetsGame implements Game {
   public static final int MAX_BULLETS = 5;
-  public static final int MAX_ROBOTS = 4;
+  public static final int MAX_ROBOTS = 2;
   public static final double ROBOT_APPEARANCE_PROBABILITY = .03;
 
   private static final int MAX_LIVES = 5;
@@ -76,7 +76,7 @@ public class HornetsGame implements Game {
     soundController.setDefaultVolume(60);
 
     DOM.setInnerHTML(RootPanel.get("game-loading").getElement(), "");
-    
+
     //    backgroundImage = new Image("images/hubble-deep-field-northern-detail-rw.jpg");
     //    backgroundImage.addStyleName("backgroundImage");
     //    //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
@@ -117,11 +117,13 @@ public class HornetsGame implements Game {
     updatePlayerText();
   }
 
-  private void updatePlayerText() {
+  public void updatePlayerText() {
     int spacing = MAX_PLAYERS != 1 ? Engine.getClientWidth() / (MAX_PLAYERS - 1) : 0;
     int middle = Engine.getClientWidth() / 2;
     for (int i = 0; i < MAX_PLAYERS; i++) {
-      playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());
+      int lives = player[i].getLives();
+      playerText[i].setText(player[i].getPlayerNumber() + "UP: " + lives + " " +(lives == 1 ? "Life" : "Lives") + " / "
+          + player[i].getScore() + " points");
       int targetX = i * spacing;
       int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
       Engine.playfield.setWidgetPosition(playerText[i], x, 10);

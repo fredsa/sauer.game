@@ -4,6 +4,8 @@ import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.voices.client.SoundController;
 
 public interface Game {
+  public void updatePlayerText();
+
   void clientResized(int clientWidth, int clientHeight);
 
   SoundController getSoundController();

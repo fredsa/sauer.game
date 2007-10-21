@@ -85,7 +85,7 @@ public class SpaceGame implements Game {
     updatePlayerText();
   }
 
-  private void updatePlayerText() {
+  public void updatePlayerText() {
     int spacing = MAX_PLAYERS != 1 ? Engine.getClientWidth() / (MAX_PLAYERS - 1) : 0;
     int middle = Engine.getClientWidth() / 2;
     for (int i = 0; i < MAX_PLAYERS; i++) {

@@ -18,6 +18,7 @@ public class SpacePlayer extends Player {
   private RobotBulletCollisionDetector robotCollisionDetector;
 
   public SpacePlayer(SpaceGame game, int playerNumber, PlayerSprite playerSprite, int initialLives) {
+    super(game);
     this.game = game;
     this.playerNumber = playerNumber;
     this.playerSprite = playerSprite;
