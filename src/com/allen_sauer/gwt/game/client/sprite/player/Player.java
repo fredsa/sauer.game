@@ -1,5 +1,5 @@
 package com.allen_sauer.gwt.game.client.sprite.player;
 
-public class Player {
-
+public abstract class Player {
+  public abstract void die();
 }

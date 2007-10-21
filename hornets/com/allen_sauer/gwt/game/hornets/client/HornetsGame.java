@@ -11,12 +11,13 @@ import com.allen_sauer.gwt.game.hornets.client.sprite.explosion.ExplosionSpriteP
 import com.allen_sauer.gwt.game.hornets.client.sprite.player.HornetsPlayer;
 import com.allen_sauer.gwt.game.hornets.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.hornets.client.sprite.player.PlayerSpritePool;
-import com.allen_sauer.gwt.game.hornets.client.sprite.robot.RobotSpritePool;
+import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot1SpritePool;
+import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot2SpritePool;
 import com.allen_sauer.gwt.voices.client.SoundController;
 
 public class HornetsGame implements Game {
   public static final int MAX_BULLETS = 3;
-  public static final int MAX_ROBOTS = 10;
+  public static final int MAX_ROBOTS = 3;
   public static final double ROBOT_APPEARANCE_PROBABILITY = .05;
 
   private static final int MAX_LIVES = 5;
@@ -25,10 +26,12 @@ public class HornetsGame implements Game {
   private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
   private HornetsPlayer[] player;
-  private PlayerRobotCollisionDetector playerRobotCollisionDetector;
+  private PlayerRobotCollisionDetector playerRobot1CollisionDetector;
+  private PlayerRobotCollisionDetector playerRobot2CollisionDetector;
   private PlayerSpritePool playerSpritePool;
   private Label[] playerText;
-  private RobotSpritePool robotSpritePool;
+  private Robot1SpritePool robot1SpritePool;
+  private Robot2SpritePool robot2SpritePool;
   private SoundController soundController;
 
   public void clientResized(int clientWidth, int clientHeight) {
@@ -39,8 +42,12 @@ public class HornetsGame implements Game {
     return explosionSpritePool;
   }
 
-  public RobotSpritePool getRobotSpritePool() {
-    return robotSpritePool;
+  public Robot1SpritePool getRobot1SpritePool() {
+    return robot1SpritePool;
+  }
+
+  public Robot2SpritePool getRobot2SpritePool() {
+    return robot2SpritePool;
   }
 
   public SoundController getSoundController() {
@@ -56,7 +63,8 @@ public class HornetsGame implements Game {
     //    //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
     //    Engine.background.add(backgroundImage, 0, 0);
 
-    robotSpritePool = new RobotSpritePool(this);
+    robot1SpritePool = new Robot1SpritePool(this);
+    robot2SpritePool = new Robot2SpritePool(this);
     explosionSpritePool = new ExplosionSpritePool(this);
 
     playerSpritePool = new PlayerSpritePool(this, MAX_PLAYERS);
@@ -66,7 +74,8 @@ public class HornetsGame implements Game {
       int playerNumber = i + 1;
       player[i] = new HornetsPlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
     }
-    playerRobotCollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool, robotSpritePool, explosionSpritePool);
+    playerRobot1CollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool, robot1SpritePool, explosionSpritePool);
+    playerRobot2CollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool, robot2SpritePool, explosionSpritePool);
 
     initPlayerText();
   }

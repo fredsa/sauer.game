@@ -7,12 +7,12 @@ import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.hornets.client.HornetsGame;
 
-public class RobotSpritePool extends SpritePool {
+public class Robot1SpritePool extends SpritePool {
 
-  public RobotSpritePool(final HornetsGame game) {
+  public Robot1SpritePool(final HornetsGame game) {
     SpriteFactory spriteFactory = new SpriteFactory() {
       public Sprite create() {
-        return new RobotSprite(game);
+        return new Robot1Sprite(game);
       }
     };
     init(spriteFactory, HornetsGame.MAX_ROBOTS);
