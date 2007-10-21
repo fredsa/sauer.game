@@ -1,7 +1,9 @@
 package com.allen_sauer.gwt.game.hornets.client;
 
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.Engine;
@@ -58,7 +60,9 @@ public class HornetsGame implements Game {
     soundController = new SoundController();
     soundController.setDefaultVolume(10);
 
-    //    backgroundImage = new Image("images/nebula_13-fudged.jpg");
+    DOM.setInnerHTML(RootPanel.get("game-loading").getElement(), "");
+    
+    //    backgroundImage = new Image("images/hubble-deep-field-northern-detail-rw.jpg");
     //    backgroundImage.addStyleName("backgroundImage");
     //    //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
     //    Engine.background.add(backgroundImage, 0, 0);

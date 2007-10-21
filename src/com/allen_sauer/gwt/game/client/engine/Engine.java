@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public final class Engine {
   public static final GameLayer background = new GameLayer();
-  public static final boolean DEBUG = true;
+  public static final boolean DEBUG = false;
   public static final GameLayer playfield = new GameLayer();
 
   static FrameListenerCollection frameListenerCollection = new FrameListenerCollection();

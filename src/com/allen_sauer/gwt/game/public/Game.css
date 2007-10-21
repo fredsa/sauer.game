@@ -52,8 +52,9 @@ IFRAME { /* TODO remove after GWT issue 1359 is fixed */
   -moz-opacity: 0.5;
 }
 */
+
 .bounding-box {
-  border: 1px solid green;
+  xborder: 1px solid green;
   z-index: 42;
 }
 
