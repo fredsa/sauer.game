@@ -18,9 +18,9 @@ import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot2SpritePool;
 import com.allen_sauer.gwt.voices.client.SoundController;
 
 public class HornetsGame implements Game {
-  public static final int MAX_BULLETS = 3;
-  public static final int MAX_ROBOTS = 3;
-  public static final double ROBOT_APPEARANCE_PROBABILITY = .05;
+  public static final int MAX_BULLETS = 5;
+  public static final int MAX_ROBOTS = 4;
+  public static final double ROBOT_APPEARANCE_PROBABILITY = .03;
 
   private static final int MAX_LIVES = 5;
   private static final int MAX_PLAYERS = 1;
