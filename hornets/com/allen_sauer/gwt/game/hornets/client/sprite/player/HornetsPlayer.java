@@ -17,6 +17,8 @@ public class HornetsPlayer extends Player {
   private final PlayerSprite playerSprite;
   private RobotBulletCollisionDetector robot1CollisionDetector;
   private RobotBulletCollisionDetector robot2CollisionDetector;
+  private RobotBulletCollisionDetector robot3CollisionDetector;
+  private RobotBulletCollisionDetector robot4CollisionDetector;
 
   public HornetsPlayer(HornetsGame game, int playerNumber, PlayerSprite playerSprite, int initialLives) {
     this.game = game;
@@ -36,6 +38,10 @@ public class HornetsPlayer extends Player {
     robot1CollisionDetector = new RobotBulletCollisionDetector(game.getRobot1SpritePool(), bulletSpritePool,
         game.getExplosionSpritePool());
     robot2CollisionDetector = new RobotBulletCollisionDetector(game.getRobot2SpritePool(), bulletSpritePool,
+        game.getExplosionSpritePool());
+    robot3CollisionDetector = new RobotBulletCollisionDetector(game.getRobot3SpritePool(), bulletSpritePool,
+        game.getExplosionSpritePool());
+    robot4CollisionDetector = new RobotBulletCollisionDetector(game.getRobot4SpritePool(), bulletSpritePool,
         game.getExplosionSpritePool());
   }
 

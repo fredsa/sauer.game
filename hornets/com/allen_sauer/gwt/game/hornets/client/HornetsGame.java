@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.hornets.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.hornets.client.sprite.explosion.ExplosionSpritePool;
@@ -15,6 +16,8 @@ import com.allen_sauer.gwt.game.hornets.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.hornets.client.sprite.player.PlayerSpritePool;
 import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot1SpritePool;
 import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot2SpritePool;
+import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot3SpritePool;
+import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot4SpritePool;
 import com.allen_sauer.gwt.voices.client.SoundController;
 
 public class HornetsGame implements Game {
@@ -30,10 +33,14 @@ public class HornetsGame implements Game {
   private HornetsPlayer[] player;
   private PlayerRobotCollisionDetector playerRobot1CollisionDetector;
   private PlayerRobotCollisionDetector playerRobot2CollisionDetector;
-  private PlayerSpritePool playerSpritePool;
+  private PlayerRobotCollisionDetector playerRobot3CollisionDetector;
+  private PlayerRobotCollisionDetector playerRobot4CollisionDetector;
+  private SpritePool playerSpritePool;
   private Label[] playerText;
-  private Robot1SpritePool robot1SpritePool;
-  private Robot2SpritePool robot2SpritePool;
+  private SpritePool robot1SpritePool;
+  private SpritePool robot2SpritePool;
+  private SpritePool robot3SpritePool;
+  private SpritePool robot4SpritePool;
   private SoundController soundController;
 
   public void clientResized(int clientWidth, int clientHeight) {
@@ -44,12 +51,20 @@ public class HornetsGame implements Game {
     return explosionSpritePool;
   }
 
-  public Robot1SpritePool getRobot1SpritePool() {
+  public SpritePool getRobot1SpritePool() {
     return robot1SpritePool;
   }
 
-  public Robot2SpritePool getRobot2SpritePool() {
+  public SpritePool getRobot2SpritePool() {
     return robot2SpritePool;
+  }
+
+  public SpritePool getRobot3SpritePool() {
+    return robot3SpritePool;
+  }
+
+  public SpritePool getRobot4SpritePool() {
+    return robot4SpritePool;
   }
 
   public SoundController getSoundController() {
@@ -58,7 +73,7 @@ public class HornetsGame implements Game {
 
   public void init() {
     soundController = new SoundController();
-    soundController.setDefaultVolume(10);
+    soundController.setDefaultVolume(60);
 
     DOM.setInnerHTML(RootPanel.get("game-loading").getElement(), "");
     
@@ -69,6 +84,8 @@ public class HornetsGame implements Game {
 
     robot1SpritePool = new Robot1SpritePool(this);
     robot2SpritePool = new Robot2SpritePool(this);
+    robot3SpritePool = new Robot3SpritePool(this);
+    robot4SpritePool = new Robot4SpritePool(this);
     explosionSpritePool = new ExplosionSpritePool(this);
 
     playerSpritePool = new PlayerSpritePool(this, MAX_PLAYERS);
@@ -80,6 +97,8 @@ public class HornetsGame implements Game {
     }
     playerRobot1CollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool, robot1SpritePool, explosionSpritePool);
     playerRobot2CollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool, robot2SpritePool, explosionSpritePool);
+    playerRobot3CollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool, robot3SpritePool, explosionSpritePool);
+    playerRobot4CollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool, robot4SpritePool, explosionSpritePool);
 
     initPlayerText();
   }

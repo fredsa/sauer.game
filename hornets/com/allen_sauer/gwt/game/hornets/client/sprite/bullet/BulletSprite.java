@@ -28,6 +28,7 @@ public class BulletSprite extends Sprite {
         FRAME_ANIMATE_INTERVAL));
     setBehavior(new VerticalBulletBehavior(this, playerSprite));
     sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG, "freesoundproject/28917__junggle__btn107.mp3");
+    sound.setVolume((int) (sound.getVolume() * .15));
   }
 
   public void doFirstFrame() {
