@@ -2,11 +2,12 @@ package com.allen_sauer.gwt.game.space.client.sprite.player;
 
 import com.allen_sauer.gwt.game.client.generator.KeyboardBulletGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
+import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.space.client.SpaceGame;
 import com.allen_sauer.gwt.game.space.client.collision.RobotBulletCollisionDetector;
 import com.allen_sauer.gwt.game.space.client.sprite.bullet.BulletSpritePool;
 
-public class Player {
+public class SpacePlayer extends Player {
   private BulletSpritePool bulletSpritePool;
   private final SpaceGame game;
   private final int initialLives;
@@ -16,7 +17,7 @@ public class Player {
   private final PlayerSprite playerSprite;
   private RobotBulletCollisionDetector robotCollisionDetector;
 
-  public Player(SpaceGame game, int playerNumber, PlayerSprite playerSprite, int initialLives) {
+  public SpacePlayer(SpaceGame game, int playerNumber, PlayerSprite playerSprite, int initialLives) {
     this.game = game;
     this.playerNumber = playerNumber;
     this.playerSprite = playerSprite;

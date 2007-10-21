@@ -6,11 +6,12 @@ import com.google.gwt.user.client.ui.Label;
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
-import com.allen_sauer.gwt.game.hornets.client.collision.PlayerRobotCollisionDetector;
-import com.allen_sauer.gwt.game.hornets.client.sprite.explosion.ExplosionSpritePool;
-import com.allen_sauer.gwt.game.hornets.client.sprite.robot.RobotSpritePool;
+import com.allen_sauer.gwt.game.space.client.collision.PlayerRobotCollisionDetector;
+import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSpritePool;
+import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayer;
+import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 import com.allen_sauer.gwt.voices.client.SoundController;
 
 public class SpaceGame implements Game {
@@ -60,10 +61,10 @@ public class SpaceGame implements Game {
 
     playerSpritePool = new PlayerSpritePool(this, MAX_PLAYERS);
 
-    player = new SpritePlayer[MAX_PLAYERS];
+    player = new SpacePlayer[MAX_PLAYERS];
     for (int i = 0; i < MAX_PLAYERS; i++) {
       int playerNumber = i + 1;
-      player[i] = new SpritePlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
+      player[i] = new SpacePlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
     }
     playerRobotCollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool, robotSpritePool, explosionSpritePool);
 

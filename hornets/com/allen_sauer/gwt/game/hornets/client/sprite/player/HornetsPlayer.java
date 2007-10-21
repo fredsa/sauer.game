@@ -2,11 +2,12 @@ package com.allen_sauer.gwt.game.hornets.client.sprite.player;
 
 import com.allen_sauer.gwt.game.client.generator.KeyboardBulletGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
+import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.hornets.client.HornetsGame;
 import com.allen_sauer.gwt.game.hornets.client.collision.RobotBulletCollisionDetector;
 import com.allen_sauer.gwt.game.hornets.client.sprite.bullet.BulletSpritePool;
 
-public class HornetsPlayer {
+public class HornetsPlayer extends Player {
   private BulletSpritePool bulletSpritePool;
   private final HornetsGame game;
   private final int initialLives;

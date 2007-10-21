@@ -2,9 +2,9 @@ package com.allen_sauer.gwt.game.space.client.collision;
 
 import com.allen_sauer.gwt.game.client.collision.CollisionDetector;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
-import com.allen_sauer.gwt.game.hornets.client.sprite.bullet.BulletSpritePool;
-import com.allen_sauer.gwt.game.hornets.client.sprite.explosion.ExplosionSpritePool;
-import com.allen_sauer.gwt.game.hornets.client.sprite.robot.RobotSpritePool;
+import com.allen_sauer.gwt.game.space.client.sprite.bullet.BulletSpritePool;
+import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
+import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 
 public class RobotBulletCollisionDetector extends CollisionDetector {
   private final ExplosionSpritePool explosionSpritePool;

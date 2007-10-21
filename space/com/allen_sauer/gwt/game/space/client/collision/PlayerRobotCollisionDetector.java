@@ -2,11 +2,11 @@ package com.allen_sauer.gwt.game.space.client.collision;
 
 import com.allen_sauer.gwt.game.client.collision.CollisionDetector;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
-import com.allen_sauer.gwt.game.hornets.client.sprite.explosion.ExplosionSpritePool;
-import com.allen_sauer.gwt.game.hornets.client.sprite.robot.RobotSpritePool;
-import com.allen_sauer.gwt.game.space.client.sprite.player.SpritePlayer;
+import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSpritePool;
+import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayer;
+import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 
 public class PlayerRobotCollisionDetector extends CollisionDetector {
   private final ExplosionSpritePool explosionSpritePool;
@@ -24,7 +24,7 @@ public class PlayerRobotCollisionDetector extends CollisionDetector {
       explosionSprite.setPosition(robotSprite.getX(), robotSprite.getY());
     }
 
-    SpritePlayer player = ((PlayerSprite) playerSprite).getPlayer();
+    SpacePlayer player = ((PlayerSprite) playerSprite).getPlayer();
     player.die();
   }
 }

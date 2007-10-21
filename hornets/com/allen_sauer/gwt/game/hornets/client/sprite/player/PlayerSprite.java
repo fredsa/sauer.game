@@ -9,14 +9,14 @@ import com.allen_sauer.gwt.game.client.sprite.frame.LoopFrameInfo;
 public class PlayerSprite extends Sprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL = 1;
-  private static final int FRAME_HEIGHT = 113;
-  private static final int FRAME_WIDTH = 51;
+  private static final int FRAME_HEIGHT = 76;
+  private static final int FRAME_WIDTH = 60;
   private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = "images/archer xbi.png";
+  private static final String SPRITE_URL = "images/archer xbi 60x76.png";
 
   static {
-    BOUNDING_BOX_INFO = new BoundingBoxInfo(5, 15, 41, 97);
+    BOUNDING_BOX_INFO = new BoundingBoxInfo(5, 15, 40, 46);
   }
 
   private HornetsPlayer player;

@@ -5,6 +5,7 @@ import com.google.gwt.user.client.ui.Label;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.hornets.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.hornets.client.sprite.explosion.ExplosionSpritePool;
 import com.allen_sauer.gwt.game.hornets.client.sprite.player.HornetsPlayer;
@@ -50,10 +51,10 @@ public class HornetsGame implements Game {
     soundController = new SoundController();
     soundController.setDefaultVolume(10);
 
-//    backgroundImage = new Image("images/nebula_13-fudged.jpg");
-//    backgroundImage.addStyleName("backgroundImage");
-//    //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
-//    Engine.background.add(backgroundImage, 0, 0);
+    //    backgroundImage = new Image("images/nebula_13-fudged.jpg");
+    //    backgroundImage.addStyleName("backgroundImage");
+    //    //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
+    //    Engine.background.add(backgroundImage, 0, 0);
 
     robotSpritePool = new RobotSpritePool(this);
     explosionSpritePool = new ExplosionSpritePool(this);
@@ -70,7 +71,7 @@ public class HornetsGame implements Game {
     initPlayerText();
   }
 
-  public void playerDied(HornetsPlayer player) {
+  public void playerDied(Player player) {
     updatePlayerText();
   }
 
