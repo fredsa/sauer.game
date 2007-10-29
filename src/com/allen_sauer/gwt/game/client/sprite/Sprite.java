@@ -10,7 +10,7 @@ import com.allen_sauer.gwt.game.client.behavior.Behavior;
 import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.engine.FrameListener;
 import com.allen_sauer.gwt.game.client.sprite.frame.FrameInfo;
-import com.allen_sauer.gwt.game.client.ui.util.FastDOM;
+import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 
 public class Sprite extends Composite implements FrameListener {
   public final BoundingBoxInfo boundingBoxInfo;
@@ -52,14 +52,14 @@ public class Sprite extends Composite implements FrameListener {
       markedForRemoval = false;
       return false;
     }
-    FastDOM.setElementPosition(getElement(), x, y);
+    DOMUtil.setElementPosition(getElement(), x, y);
     boolean again = frameInfo.doFrame();
     again &= behavior.doFrame();
     return again;
   }
 
   public void doLastFrame() {
-    FastDOM.setElementPosition(getElement(), -500, -500);
+    DOMUtil.setElementPosition(getElement(), -500, -500);
     spritePool.destroy(this);
     frameInfo.doLastFrame();
     behavior.doLastFrame();
@@ -111,7 +111,7 @@ public class Sprite extends Composite implements FrameListener {
   }
 
   public void setImagePosition(int x, int y) {
-    FastDOM.setElementPosition(image.getElement(), x, y);
+    DOMUtil.setElementPosition(image.getElement(), x, y);
   }
 
   public void setPoolIndex(int poolIndex) {

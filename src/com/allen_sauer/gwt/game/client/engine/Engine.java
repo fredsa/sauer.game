@@ -1,24 +1,27 @@
 package com.allen_sauer.gwt.game.client.engine;
 
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowResizeListener;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
+import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 import com.allen_sauer.gwt.game.client.ui.util.Page;
 
 import java.util.ArrayList;
 
 public final class Engine {
-  public static final GameLayer background = new GameLayer();
+  public static final AbsolutePanel background = new AbsolutePanel();
   public static final boolean DEBUG = false;
-  public static final GameLayer playfield = new GameLayer();
+  public static final Playfield playfield = new Playfield();
 
   static FrameListenerCollection frameListenerCollection = new FrameListenerCollection();
 
-  private static int clientHeight;
-  private static int clientWidth;
+  private static int rootPanelHeight;
+  private static int rootPanelWidth;
   private static FrameListenerCollection collisionFrameListeners = new FrameListenerCollection();
   private static EngineTimer engineTimer;
   private static Game game;
@@ -27,8 +30,11 @@ public final class Engine {
   private static ArrayList<SpritePool> spritePools = new ArrayList<SpritePool>();
 
   static {
-    playfield.addStyleDependentName("playfield");
-    background.addStyleDependentName("background");
+    background.addStyleName("game-layer game-background");
+    DOM.setElementAttribute(background.getElement(), "id", "BACKGROUND");
+    DOM.setElementAttribute(playfield.getElement(), "id", "PLAYFIELD");
+    DOM.setStyleAttribute(background.getElement(), "border", "10px solid blue");
+    DOM.setStyleAttribute(playfield.getElement(), "border", "5px solid red");
   }
 
   public static void addCollisionFrameListener(FrameListener frameListener) {
@@ -44,26 +50,28 @@ public final class Engine {
   }
 
   public static int getClientHeight() {
-    return clientHeight;
+    return rootPanelHeight;
   }
 
   public static int getClientWidth() {
-    return clientWidth;
+    return rootPanelWidth;
   }
 
   public static String info() {
     return "frameListenerCollections=" + frameListenerCollection.size() + ", spritePools=" + spritePools.size();
   }
 
-  public static void init(Game game) {
+  public static void init(Game game, RootPanel rootPanel) {
     Engine.game = game;
+
+    DOM.setInnerHTML(rootPanel.getElement(), "");
 
     frameListenerCollection.addFrameListener(spriteFrameListeners);
     frameListenerCollection.addFrameListener(collisionFrameListeners);
 
-    setClientSize(Window.getClientWidth(), Window.getClientHeight());
-    RootPanel.get().add(background, 0, 0);
-    RootPanel.get().add(playfield, 0, 0);
+    setRootPanelSize(DOMUtil.getClientWidth(rootPanel.getElement()), DOMUtil.getClientHeight(rootPanel.getElement()));
+    rootPanel.add(background, 0, 0);
+    rootPanel.add(playfield, 0, 0);
     game.init();
 
     Window.addWindowResizeListener(new WindowResizeListener() {
@@ -73,6 +81,8 @@ public final class Engine {
     });
 
     engineTimer = new EngineTimer();
+
+    playfield.setFocus(true);
 
     // add hooks, force page focus and trigger game start
     Page.forceStaticInit();
@@ -90,15 +100,15 @@ public final class Engine {
   }
 
   private static void clientResized(int clientWidth, int clientHeight) {
-    setClientSize(clientWidth, clientHeight);
+    setRootPanelSize(clientWidth, clientHeight);
     game.clientResized(clientWidth, clientHeight);
   }
 
-  private static void setClientSize(int clientWidth, int clientHeight) {
-    Engine.clientWidth = clientWidth;
-    Engine.clientHeight = clientHeight;
-    assert Window.getClientWidth() != 0;
-    assert Window.getClientHeight() != 0;
+  private static void setRootPanelSize(int rootPanelWidth, int rootPanelHeight) {
+    assert rootPanelWidth != 0;
+    assert rootPanelHeight != 0;
+    Engine.rootPanelWidth = rootPanelWidth;
+    Engine.rootPanelHeight = rootPanelHeight;
   }
 
   private Engine() {

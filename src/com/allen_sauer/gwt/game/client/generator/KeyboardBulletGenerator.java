@@ -1,5 +1,6 @@
 package com.allen_sauer.gwt.game.client.generator;
 
+import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.ui.util.Page;
 
@@ -19,7 +20,7 @@ public class KeyboardBulletGenerator implements Generator {
   }
 
   public boolean doFrame() {
-    if (++frameCounter > FRAMES_BETWEEN_BULLETS && !spritePool.exhausted() && Page.isKeyDown(' ')) {
+    if (++frameCounter > FRAMES_BETWEEN_BULLETS && !spritePool.exhausted() && Engine.playfield.isKeyDown(' ')) {
       spritePool.create();
       frameCounter = 0;
     }

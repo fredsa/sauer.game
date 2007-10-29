@@ -23,17 +23,17 @@ public class CursorKeyBehavior extends Behavior {
   }
 
   public boolean doFrame() {
-    if (Page.isKeyDown(Page.CODES.KEY_LEFT)) {
+    if (Engine.playfield.isKeyDown(Page.CODES.KEY_LEFT)) {
       setXSpeed(-xDelta);
-    } else if (Page.isKeyDown(Page.CODES.KEY_RIGHT)) {
+    } else if (Engine.playfield.isKeyDown(Page.CODES.KEY_RIGHT)) {
       setXSpeed(xDelta);
     } else {
       setXSpeed(0);
     }
 
-    if (Page.isKeyDown(Page.CODES.KEY_UP)) {
+    if (Engine.playfield.isKeyDown(Page.CODES.KEY_UP)) {
       setYSpeed(-yDelta);
-    } else if (Page.isKeyDown(Page.CODES.KEY_DOWN)) {
+    } else if (Engine.playfield.isKeyDown(Page.CODES.KEY_DOWN)) {
       setYSpeed(yDelta);
     } else {
       setYSpeed(0);

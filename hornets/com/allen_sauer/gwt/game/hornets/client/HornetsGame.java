@@ -28,7 +28,7 @@ public class HornetsGame implements Game {
   private static final int MAX_LIVES = 5;
   private static final int MAX_PLAYERS = 1;
 
-  private Image backgroundImage;
+//  private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
   private HornetsPlayer[] player;
   private PlayerRobotCollisionDetector playerRobot1CollisionDetector;
@@ -75,10 +75,8 @@ public class HornetsGame implements Game {
     soundController = new SoundController();
     soundController.setDefaultVolume(60);
 
-    DOM.setInnerHTML(RootPanel.get("game-loading").getElement(), "");
-
     //    backgroundImage = new Image("images/hubble-deep-field-northern-detail-rw.jpg");
-    //    backgroundImage.addStyleName("backgroundImage");
+    //    backgroundImage.addStyleName("game-background-image");
     //    //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
     //    Engine.background.add(backgroundImage, 0, 0);
 

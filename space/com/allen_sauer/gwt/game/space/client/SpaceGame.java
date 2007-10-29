@@ -52,7 +52,7 @@ public class SpaceGame implements Game {
     soundController.setDefaultVolume(10);
 
     backgroundImage = new Image("images/nebula_13-fudged.jpg");
-    backgroundImage.addStyleName("backgroundImage");
+    backgroundImage.addStyleName("game-background-image");
     //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
     Engine.background.add(backgroundImage, 0, 0);
 
