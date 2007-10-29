@@ -7,7 +7,6 @@ import com.google.gwt.user.client.ui.SimplePanel;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.Behavior;
-import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.engine.FrameListener;
 import com.allen_sauer.gwt.game.client.sprite.frame.FrameInfo;
 import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
@@ -31,7 +30,7 @@ public class Sprite extends Composite implements FrameListener {
 
     initWidget(panel);
 
-    if (Engine.DEBUG) {
+    if (Game.DEBUG) {
       SimplePanel boundingBoxPanel = new SimplePanel();
       boundingBoxPanel.addStyleName("bounding-box");
       boundingBoxPanel.setPixelSize(boundingBoxInfo.width - 2, boundingBoxInfo.height - 2);
@@ -39,7 +38,7 @@ public class Sprite extends Composite implements FrameListener {
     }
 
     panel.addStyleName("sprite");
-    Engine.playfield.add(this, -500, -500);
+    game.playfield.add(this, -500, -500);
   }
 
   public void doFirstFrame() {

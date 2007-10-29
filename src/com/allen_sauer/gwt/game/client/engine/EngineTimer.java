@@ -2,17 +2,20 @@ package com.allen_sauer.gwt.game.client.engine;
 
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.RootPanel;
 
-final class EngineTimer extends Timer {
+import com.allen_sauer.gwt.game.client.Game;
+
+public final class EngineTimer extends Timer {
   private static final int FRAMES_TO_AVERAGE = 10;
   private static final int TIMER_INTERVAL_MILLIS = 10;
   private int count = 0;
+  private final Game game;
   private long lastTimestamp;
   private boolean paused = true;
   private HTML timerText = new HTML();
 
-  EngineTimer() {
+  public EngineTimer(Game game) {
+    this.game = game;
     timerText.addStyleName("timerText");
   }
 
@@ -27,7 +30,7 @@ final class EngineTimer extends Timer {
       if (lastTimestamp != 0) {
         long frameToFrame = (timestamp - lastTimestamp) / FRAMES_TO_AVERAGE;
         long frameRate = Math.round(1000D / frameToFrame);
-        timerText.setHTML(FRAMES_TO_AVERAGE + " buffer avg = " + frameToFrame + "ms (" + frameRate + "fps), " + Engine.info());
+        timerText.setHTML(FRAMES_TO_AVERAGE + " buffer avg = " + frameToFrame + "ms (" + frameRate + "fps), " + game.info());
       }
       lastTimestamp = timestamp;
     }
@@ -35,7 +38,7 @@ final class EngineTimer extends Timer {
 
   public void run() {
     measure();
-    Engine.frameListenerCollection.doFrame();
+    game.getFrameListenerCollection().doFrame();
   }
 
   public void schedule(int delayMillis) {
@@ -59,7 +62,7 @@ final class EngineTimer extends Timer {
 
   private void initMeasurements() {
     timerText.setHTML("");
-    RootPanel.get().add(timerText);
+    game.playfield.add(timerText);
     lastTimestamp = 0;
   }
 }

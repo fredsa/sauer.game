@@ -18,6 +18,6 @@ XX * { /* DEBUGGING */
 
 .timerText {
   position: absolute;
-  left: 100px;
-  top: 200px;
+  left: 10px;
+  top: 20px;
 }

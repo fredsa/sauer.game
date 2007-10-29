@@ -6,16 +6,15 @@ import com.allen_sauer.gwt.game.client.sprite.BoundingBoxInfo;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.frame.FrameInfo;
 import com.allen_sauer.gwt.game.client.sprite.frame.LoopFrameInfo;
-import com.allen_sauer.gwt.game.client.ui.util.Direction;
 
 public class Robot2Sprite extends Sprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL = 10;
   private static final int FRAME_HEIGHT = 93;
+  private static int[] FRAME_SEQUENCE = {0, 1};
   private static final int FRAME_WIDTH = 30;
   private static final int FRAMES_HORIZONTAL = 2;
   private static final int FRAMES_VERTICAL = 1;
-  private static int[] FRAME_SEQUENCE = {0, 1};
   private static final String SPRITE_URL = "images/archer hornet left-right 30x93 2x1frames.png";
 
   static {

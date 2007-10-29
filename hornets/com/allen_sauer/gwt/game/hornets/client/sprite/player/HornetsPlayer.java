@@ -35,14 +35,14 @@ public class HornetsPlayer extends Player {
     playerSprite.setPlayer(this);
     lives = initialLives;
     bulletSpritePool = new BulletSpritePool(game, playerSprite);
-    keyboardBulletGenerator = new KeyboardBulletGenerator(bulletSpritePool);
-    robot1CollisionDetector = new RobotBulletCollisionDetector(this, game.getRobot1SpritePool(), bulletSpritePool,
+    keyboardBulletGenerator = new KeyboardBulletGenerator(game, bulletSpritePool);
+    robot1CollisionDetector = new RobotBulletCollisionDetector(game, this, game.getRobot1SpritePool(), bulletSpritePool,
         game.getExplosionSpritePool());
-    robot2CollisionDetector = new RobotBulletCollisionDetector(this, game.getRobot2SpritePool(), bulletSpritePool,
+    robot2CollisionDetector = new RobotBulletCollisionDetector(game, this, game.getRobot2SpritePool(), bulletSpritePool,
         game.getExplosionSpritePool());
-    robot3CollisionDetector = new RobotBulletCollisionDetector(this, game.getRobot3SpritePool(), bulletSpritePool,
+    robot3CollisionDetector = new RobotBulletCollisionDetector(game, this, game.getRobot3SpritePool(), bulletSpritePool,
         game.getExplosionSpritePool());
-    robot4CollisionDetector = new RobotBulletCollisionDetector(this, game.getRobot4SpritePool(), bulletSpritePool,
+    robot4CollisionDetector = new RobotBulletCollisionDetector(game, this, game.getRobot4SpritePool(), bulletSpritePool,
         game.getExplosionSpritePool());
   }
 

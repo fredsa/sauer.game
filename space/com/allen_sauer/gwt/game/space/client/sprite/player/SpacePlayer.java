@@ -32,8 +32,8 @@ public class SpacePlayer extends Player {
     playerSprite.setPlayer(this);
     lives = initialLives;
     bulletSpritePool = new BulletSpritePool(game, playerSprite);
-    keyboardBulletGenerator = new KeyboardBulletGenerator(bulletSpritePool);
-    robotCollisionDetector = new RobotBulletCollisionDetector(game.getRobotSpritePool(), bulletSpritePool,
+    keyboardBulletGenerator = new KeyboardBulletGenerator(game, bulletSpritePool);
+    robotCollisionDetector = new RobotBulletCollisionDetector(game, game.getRobotSpritePool(), bulletSpritePool,
         game.getExplosionSpritePool());
   }
 

@@ -1,6 +1,5 @@
 package com.allen_sauer.gwt.game.client.behavior;
 
-import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.engine.FrameListener;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.ui.util.Direction;
@@ -10,16 +9,18 @@ public abstract class Behavior implements FrameListener {
   private int direction;
   private final Sprite sprite;
   private int x;
-  private int xMax = Engine.playfield.getOffsetWidth();
+  private int xMax;
   private int xMin = 0;
   private int xSpeed;
   private int y;
-  private int yMax = Engine.playfield.getOffsetHeight();
+  private int yMax;
   private int yMin = 0;
   private int ySpeed;
 
   public Behavior(Sprite sprite) {
     this.sprite = sprite;
+    xMax = sprite.getGame().playfield.getOffsetWidth();
+    yMax = sprite.getGame().playfield.getOffsetHeight();
   }
 
   public void doFirstFrame() {

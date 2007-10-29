@@ -4,7 +4,6 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 
 import com.allen_sauer.gwt.game.client.Game;
-import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.space.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
@@ -14,7 +13,7 @@ import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayer;
 import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 import com.allen_sauer.gwt.voices.client.SoundController;
 
-public class SpaceGame implements Game {
+public class SpaceGame extends Game {
   public static final int MAX_BULLETS = 3;
   public static final int MAX_ROBOTS = 10;
   public static final double ROBOT_APPEARANCE_PROBABILITY = .05;
@@ -31,10 +30,6 @@ public class SpaceGame implements Game {
   private RobotSpritePool robotSpritePool;
   private SoundController soundController;
 
-  public void clientResized(int clientWidth, int clientHeight) {
-    //    backgroundImage.setPixelSize(clientWidth, clientHeight);
-  }
-
   public ExplosionSpritePool getExplosionSpritePool() {
     return explosionSpritePool;
   }
@@ -47,14 +42,16 @@ public class SpaceGame implements Game {
     return soundController;
   }
 
-  public void init() {
+  @Override
+  protected void onLoad() {
+    super.onLoad();
     soundController = new SoundController();
     soundController.setDefaultVolume(10);
 
     backgroundImage = new Image("images/nebula_13-fudged.jpg");
     backgroundImage.addStyleName("game-background-image");
     //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
-    Engine.background.add(backgroundImage, 0, 0);
+    background.add(backgroundImage, 0, 0);
 
     robotSpritePool = new RobotSpritePool(this);
     explosionSpritePool = new ExplosionSpritePool(this);
@@ -66,7 +63,7 @@ public class SpaceGame implements Game {
       int playerNumber = i + 1;
       player[i] = new SpacePlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
     }
-    playerRobotCollisionDetector = new PlayerRobotCollisionDetector(playerSpritePool, robotSpritePool, explosionSpritePool);
+    playerRobotCollisionDetector = new PlayerRobotCollisionDetector(this, playerSpritePool, robotSpritePool, explosionSpritePool);
 
     initPlayerText();
   }
@@ -75,24 +72,28 @@ public class SpaceGame implements Game {
     updatePlayerText();
   }
 
+  public void start() {
+    playfield.setFocus(true);
+  }
+
+  public void updatePlayerText() {
+    int spacing = MAX_PLAYERS != 1 ? getClientWidth() / (MAX_PLAYERS - 1) : 0;
+    int middle = getClientWidth() / 2;
+    for (int i = 0; i < MAX_PLAYERS; i++) {
+      playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());
+      int targetX = i * spacing;
+      int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
+      playfield.setWidgetPosition(playerText[i], x, 10);
+    }
+  }
+
   private void initPlayerText() {
     playerText = new Label[MAX_LIVES];
     for (int i = 0; i < MAX_PLAYERS; i++) {
       playerText[i] = new Label();
       playerText[i].addStyleName("playerText");
-      Engine.playfield.add(playerText[i], -500, -500);
+      playfield.add(playerText[i], -500, -500);
     }
     updatePlayerText();
-  }
-
-  public void updatePlayerText() {
-    int spacing = MAX_PLAYERS != 1 ? Engine.getClientWidth() / (MAX_PLAYERS - 1) : 0;
-    int middle = Engine.getClientWidth() / 2;
-    for (int i = 0; i < MAX_PLAYERS; i++) {
-      playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());
-      int targetX = i * spacing;
-      int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
-      Engine.playfield.setWidgetPosition(playerText[i], x, 10);
-    }
   }
 }

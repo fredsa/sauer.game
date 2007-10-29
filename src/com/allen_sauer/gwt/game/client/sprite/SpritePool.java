@@ -1,6 +1,6 @@
 package com.allen_sauer.gwt.game.client.sprite;
 
-import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.FrameListenerCollection;
 
 import java.util.ArrayList;
@@ -13,8 +13,8 @@ public class SpritePool {
   private ArrayList<Sprite> sprites;
   private int visibleSprites = 0;
 
-  public SpritePool() {
-    Engine.addSpriteFrameListener(frameListenerCollection);
+  public SpritePool(Game game) {
+    game.addSpriteFrameListener(frameListenerCollection);
   }
 
   public Sprite create() {

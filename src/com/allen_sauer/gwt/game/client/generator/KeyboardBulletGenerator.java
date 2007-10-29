@@ -1,16 +1,17 @@
 package com.allen_sauer.gwt.game.client.generator;
 
-import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
-import com.allen_sauer.gwt.game.client.ui.util.Page;
 
 public class KeyboardBulletGenerator implements Generator {
   private static final int FRAMES_BETWEEN_BULLETS = 7;
   private int frameCounter;
+  private final Game game;
   private boolean markedForRemoval = false;
   private final SpritePool spritePool;
 
-  public KeyboardBulletGenerator(SpritePool spritePool) {
+  public KeyboardBulletGenerator(Game game, SpritePool spritePool) {
+    this.game = game;
     this.spritePool = spritePool;
     spritePool.getFrameListenerCollection().addFrameListener(this);
   }
@@ -20,7 +21,7 @@ public class KeyboardBulletGenerator implements Generator {
   }
 
   public boolean doFrame() {
-    if (++frameCounter > FRAMES_BETWEEN_BULLETS && !spritePool.exhausted() && Engine.playfield.isKeyDown(' ')) {
+    if (++frameCounter > FRAMES_BETWEEN_BULLETS && !spritePool.exhausted() && game.playfield.isKeyDown(' ')) {
       spritePool.create();
       frameCounter = 0;
     }

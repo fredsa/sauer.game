@@ -1,6 +1,5 @@
 package com.allen_sauer.gwt.game.space.client.sprite.robot;
 
-import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.generator.IntervalGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
@@ -11,13 +10,14 @@ import com.allen_sauer.gwt.game.space.client.SpaceGame;
 public class RobotSpritePool extends SpritePool {
 
   public RobotSpritePool(final SpaceGame game) {
+    super(game);
     SpriteFactory spriteFactory = new SpriteFactory() {
       public Sprite create() {
         return new Robot1Sprite(game);
       }
     };
     init(spriteFactory, SpaceGame.MAX_ROBOTS);
-    Engine.addSpritePool(this);
+    game.addSpritePool(this);
     new IntervalGenerator(this, SpaceGame.ROBOT_APPEARANCE_PROBABILITY);
   }
 }

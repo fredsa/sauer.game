@@ -1,5 +1,6 @@
 package com.allen_sauer.gwt.game.hornets.client.collision;
 
+import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.collision.CollisionDetector;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
@@ -9,9 +10,9 @@ public class RobotBulletCollisionDetector extends CollisionDetector {
   private final SpritePool explosionSpritePool;
   private final Player player;
 
-  public RobotBulletCollisionDetector(Player player, SpritePool robotSpritePool,
-      SpritePool bulletSpritePool, SpritePool explosionSpritePool) {
-    super(robotSpritePool, bulletSpritePool);
+  public RobotBulletCollisionDetector(Game game, Player player, SpritePool robotSpritePool, SpritePool bulletSpritePool,
+      SpritePool explosionSpritePool) {
+    super(game, robotSpritePool, bulletSpritePool);
     this.player = player;
     this.explosionSpritePool = explosionSpritePool;
   }

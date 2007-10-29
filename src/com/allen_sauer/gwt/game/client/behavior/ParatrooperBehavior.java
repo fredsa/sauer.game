@@ -2,7 +2,6 @@ package com.allen_sauer.gwt.game.client.behavior;
 
 import com.google.gwt.user.client.Random;
 
-import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
 public class ParatrooperBehavior extends Behavior {
@@ -13,13 +12,9 @@ public class ParatrooperBehavior extends Behavior {
     super(sprite);
   }
 
-  private int randomSign() {
-    return Random.nextInt(1) == 0 ? -1 : 1;
-  }
-
   public void doFirstFrame() {
-    setXMax(Engine.getClientWidth() - getSprite().getFrameInfo().frameWidth);
-    setYMax(Engine.getClientHeight() - getSprite().getFrameInfo().frameHeight);
+    setXMax(getSprite().getGame().getClientWidth() - getSprite().getFrameInfo().frameWidth);
+    setYMax(getSprite().getGame().getClientHeight() - getSprite().getFrameInfo().frameHeight);
     walkFrames = 0;
     setX(Random.nextInt(getXMax()));
     setY(-getSprite().getFrameInfo().frameHeight);
@@ -45,5 +40,9 @@ public class ParatrooperBehavior extends Behavior {
     }
 
     return again && super.doFrame();
+  }
+
+  private int randomSign() {
+    return Random.nextInt(1) == 0 ? -1 : 1;
   }
 }

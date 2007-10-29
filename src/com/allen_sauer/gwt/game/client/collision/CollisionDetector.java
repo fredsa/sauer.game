@@ -2,7 +2,7 @@ package com.allen_sauer.gwt.game.client.collision;
 
 import com.google.gwt.user.client.DOM;
 
-import com.allen_sauer.gwt.game.client.engine.Engine;
+import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.engine.FrameListener;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
@@ -13,10 +13,10 @@ public abstract class CollisionDetector implements FrameListener {
   private final SpritePool poolA;
   private final SpritePool poolB;
 
-  public CollisionDetector(SpritePool poolA, SpritePool poolB) {
+  public CollisionDetector(Game game, SpritePool poolA, SpritePool poolB) {
     this.poolA = poolA;
     this.poolB = poolB;
-    Engine.addCollisionFrameListener(this);
+    game.addCollisionFrameListener(this);
   }
 
   public void doFirstFrame() {
@@ -26,25 +26,25 @@ public abstract class CollisionDetector implements FrameListener {
   public boolean doFrame() {
     for (Iterator<Sprite> iteratorA = poolA.iterator(); iteratorA.hasNext();) {
       Sprite spriteA = iteratorA.next();
-      if (Engine.DEBUG) {
+      if (Game.DEBUG) {
         DOM.setStyleAttribute(spriteA.getElement(), "backgroundColor", "");
       }
     }
     for (Iterator<Sprite> iteratorB = poolB.iterator(); iteratorB.hasNext();) {
-      Sprite spriteB = (Sprite) iteratorB.next();
-      if (Engine.DEBUG) {
+      Sprite spriteB = iteratorB.next();
+      if (Game.DEBUG) {
         DOM.setStyleAttribute(spriteB.getElement(), "backgroundColor", "");
       }
     }
     for (Iterator<Sprite> iteratorA = poolA.iterator(); iteratorA.hasNext();) {
-      Sprite spriteA = (Sprite) iteratorA.next();
+      Sprite spriteA = iteratorA.next();
       for (Iterator<Sprite> iteratorB = poolB.iterator(); iteratorB.hasNext();) {
-        Sprite spriteB = (Sprite) iteratorB.next();
+        Sprite spriteB = iteratorB.next();
         if (intersect(spriteA, spriteB)) {
-          if (Engine.DEBUG) {
+          if (Game.DEBUG) {
             DOM.setStyleAttribute(spriteA.getElement(), "backgroundColor", "green");
           }
-          if (Engine.DEBUG) {
+          if (Game.DEBUG) {
             DOM.setStyleAttribute(spriteB.getElement(), "backgroundColor", "green");
           }
           handleCollision(spriteA, spriteB);

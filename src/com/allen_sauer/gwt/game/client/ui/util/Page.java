@@ -4,8 +4,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowCloseListener;
 import com.google.gwt.user.client.ui.KeyboardListener;
 
-import com.allen_sauer.gwt.game.client.engine.Engine;
-
 public final class Page {
   public static interface CODES extends KeyboardListener {
   }
@@ -42,8 +40,8 @@ public final class Page {
 
   @SuppressWarnings("unused")
   private static void onWindowFocus() {
-    //    Log.debug("onWindowFocus() active = " + FastDOM.getActiveElement());
-    Engine.playfield.setFocus(true);
+    //    Log.debug("onWindowFocus()");
+    //    Game.setFocus(true);
   }
 
   /**

@@ -5,8 +5,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 
-import com.allen_sauer.gwt.game.client.engine.Engine;
-import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 import com.allen_sauer.gwt.log.client.LogUncaughtExceptionHandler;
 
 public class Space implements EntryPoint {
@@ -25,9 +23,10 @@ public class Space implements EntryPoint {
   public void onModuleLoad2() {
     //    Log.moveTo(0, 110);
     //    Log.setPixelSize(800, 300);
-    SpaceGame game1 = new SpaceGame();
-    SpaceGame game2 = new SpaceGame();
-    Engine.init(game1, DOMUtil.getRootPanel("game1"));
-    Engine.init(game2, DOMUtil.getRootPanel("game2"));
+    //    SpaceGame game1 = new SpaceGame();
+    //    RootPanel.get("game1").add(game1);
+    //
+    //    SpaceGame game2 = new SpaceGame();
+    //    RootPanel.get("game2").add(game2);
   }
 }

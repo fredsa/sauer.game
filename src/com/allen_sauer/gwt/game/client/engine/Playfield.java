@@ -7,14 +7,17 @@ import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.KeyboardListener;
 import com.google.gwt.user.client.ui.Widget;
 
+import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
+import com.allen_sauer.gwt.log.client.Log;
 
 public class Playfield extends AbsolutePanel {
   private FocusPanel focusPanel = new FocusPanel();
-
+  private final Game game;
   private boolean[] keyDown = new boolean[0xff];
 
-  public Playfield() {
+  public Playfield(Game game) {
+    this.game = game;
     focusPanel.addStyleName("game-layer focuspanel");
     add(focusPanel, 0, 0);
     addStyleName("game-layer game-playfield");
@@ -24,7 +27,7 @@ public class Playfield extends AbsolutePanel {
         // Log.debug(keyCode + " down");
         keyDown[keyCode & 0xff] = true;
         if (keyCode == 'P') {
-          Engine.setPaused(!Engine.isPaused());
+          Playfield.this.game.setPaused(!Playfield.this.game.isPaused());
         }
       }
 
@@ -39,11 +42,13 @@ public class Playfield extends AbsolutePanel {
 
     focusPanel.addFocusListener(new FocusListener() {
       public void onFocus(Widget sender) {
-        Engine.setPaused(false);
+        Log.debug("playfield.onfocus()");
+        Playfield.this.game.setPaused(false);
       }
 
       public void onLostFocus(Widget sender) {
-        Engine.setPaused(true);
+        Log.debug("playfield.onblur()");
+        Playfield.this.game.setPaused(true);
       }
     });
   }

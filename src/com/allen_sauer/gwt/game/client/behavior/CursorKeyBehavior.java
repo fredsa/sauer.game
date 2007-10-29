@@ -1,20 +1,21 @@
 package com.allen_sauer.gwt.game.client.behavior;
 
-import com.allen_sauer.gwt.game.client.engine.Engine;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.ui.util.Page;
 
 public class CursorKeyBehavior extends Behavior {
+  private final Sprite sprite;
   private int xDelta = 7;
   private int yDelta = 7;
 
   public CursorKeyBehavior(Sprite sprite) {
     super(sprite);
+    this.sprite = sprite;
   }
 
   public void doFirstFrame() {
-    setXMax(Engine.getClientWidth() - getSprite().getFrameInfo().frameWidth);
-    setYMax(Engine.getClientHeight() - getSprite().getFrameInfo().frameHeight);
+    setXMax(sprite.getGame().getClientWidth() - getSprite().getFrameInfo().frameWidth);
+    setYMax(sprite.getGame().getClientHeight() - getSprite().getFrameInfo().frameHeight);
     //  setX(Random.nextInt(getXMax()));
     //  setY(Random.nextInt(getYMax()));
     setX(getXMax() / 2);
@@ -23,17 +24,17 @@ public class CursorKeyBehavior extends Behavior {
   }
 
   public boolean doFrame() {
-    if (Engine.playfield.isKeyDown(Page.CODES.KEY_LEFT)) {
+    if (sprite.getGame().playfield.isKeyDown(Page.CODES.KEY_LEFT)) {
       setXSpeed(-xDelta);
-    } else if (Engine.playfield.isKeyDown(Page.CODES.KEY_RIGHT)) {
+    } else if (sprite.getGame().playfield.isKeyDown(Page.CODES.KEY_RIGHT)) {
       setXSpeed(xDelta);
     } else {
       setXSpeed(0);
     }
 
-    if (Engine.playfield.isKeyDown(Page.CODES.KEY_UP)) {
+    if (sprite.getGame().playfield.isKeyDown(Page.CODES.KEY_UP)) {
       setYSpeed(-yDelta);
-    } else if (Engine.playfield.isKeyDown(Page.CODES.KEY_DOWN)) {
+    } else if (sprite.getGame().playfield.isKeyDown(Page.CODES.KEY_DOWN)) {
       setYSpeed(yDelta);
     } else {
       setYSpeed(0);
