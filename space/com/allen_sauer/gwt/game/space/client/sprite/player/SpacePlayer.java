@@ -10,19 +10,16 @@ import com.allen_sauer.gwt.game.space.client.sprite.bullet.BulletSpritePool;
 public class SpacePlayer extends Player {
   private BulletSpritePool bulletSpritePool;
   private final SpaceGame game;
-  private final int initialLives;
   private KeyboardBulletGenerator keyboardBulletGenerator;
   private int lives;
   private final int playerNumber;
   private final PlayerSprite playerSprite;
-  private RobotBulletCollisionDetector robotCollisionDetector;
 
   public SpacePlayer(SpaceGame game, int playerNumber, PlayerSprite playerSprite, int initialLives) {
     super(game);
     this.game = game;
     this.playerNumber = playerNumber;
     this.playerSprite = playerSprite;
-    this.initialLives = initialLives;
 
     assert game != null;
     assert playerNumber > 0;
@@ -33,8 +30,7 @@ public class SpacePlayer extends Player {
     lives = initialLives;
     bulletSpritePool = new BulletSpritePool(game, playerSprite);
     keyboardBulletGenerator = new KeyboardBulletGenerator(game, bulletSpritePool);
-    robotCollisionDetector = new RobotBulletCollisionDetector(game, game.getRobotSpritePool(), bulletSpritePool,
-        game.getExplosionSpritePool());
+    new RobotBulletCollisionDetector(game, game.getRobotSpritePool(), bulletSpritePool, game.getExplosionSpritePool());
   }
 
   public void die() {

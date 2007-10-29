@@ -24,7 +24,6 @@ public class SpaceGame extends Game {
   private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
   private SpacePlayer[] player;
-  private PlayerRobotCollisionDetector playerRobotCollisionDetector;
   private PlayerSpritePool playerSpritePool;
   private Label[] playerText;
   private RobotSpritePool robotSpritePool;
@@ -40,6 +39,25 @@ public class SpaceGame extends Game {
 
   public SoundController getSoundController() {
     return soundController;
+  }
+
+  public void playerDied(Player player) {
+    updatePlayerText();
+  }
+
+  public void start() {
+    playfield.setFocus(true);
+  }
+
+  public void updatePlayerText() {
+    int spacing = MAX_PLAYERS != 1 ? getClientWidth() / (MAX_PLAYERS - 1) : 0;
+    int middle = getClientWidth() / 2;
+    for (int i = 0; i < MAX_PLAYERS; i++) {
+      playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());
+      int targetX = i * spacing;
+      int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
+      playfield.setWidgetPosition(playerText[i], x, 10);
+    }
   }
 
   @Override
@@ -63,28 +81,9 @@ public class SpaceGame extends Game {
       int playerNumber = i + 1;
       player[i] = new SpacePlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
     }
-    playerRobotCollisionDetector = new PlayerRobotCollisionDetector(this, playerSpritePool, robotSpritePool, explosionSpritePool);
+    new PlayerRobotCollisionDetector(this, playerSpritePool, robotSpritePool, explosionSpritePool);
 
     initPlayerText();
-  }
-
-  public void playerDied(Player player) {
-    updatePlayerText();
-  }
-
-  public void start() {
-    playfield.setFocus(true);
-  }
-
-  public void updatePlayerText() {
-    int spacing = MAX_PLAYERS != 1 ? getClientWidth() / (MAX_PLAYERS - 1) : 0;
-    int middle = getClientWidth() / 2;
-    for (int i = 0; i < MAX_PLAYERS; i++) {
-      playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());
-      int targetX = i * spacing;
-      int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
-      playfield.setWidgetPosition(playerText[i], x, 10);
-    }
   }
 
   private void initPlayerText() {

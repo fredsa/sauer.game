@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.Widget;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
-import com.allen_sauer.gwt.log.client.Log;
 
 public class Playfield extends AbsolutePanel {
   private FocusPanel focusPanel = new FocusPanel();
@@ -42,12 +41,12 @@ public class Playfield extends AbsolutePanel {
 
     focusPanel.addFocusListener(new FocusListener() {
       public void onFocus(Widget sender) {
-        Log.debug("playfield.onfocus()");
+        //        Log.debug("playfield.onfocus()");
         Playfield.this.game.setPaused(false);
       }
 
       public void onLostFocus(Widget sender) {
-        Log.debug("playfield.onblur()");
+        //        Log.debug("playfield.onblur()");
         Playfield.this.game.setPaused(true);
       }
     });

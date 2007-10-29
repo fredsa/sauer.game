@@ -1,7 +1,5 @@
 package com.allen_sauer.gwt.game.client;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowResizeListener;
 import com.google.gwt.user.client.ui.AbsolutePanel;
@@ -13,9 +11,7 @@ import com.allen_sauer.gwt.game.client.engine.FrameListenerCollection;
 import com.allen_sauer.gwt.game.client.engine.Playfield;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
-import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 import com.allen_sauer.gwt.game.client.ui.util.Page;
-import com.allen_sauer.gwt.log.client.Log;
 import com.allen_sauer.gwt.voices.client.SoundController;
 
 import java.util.ArrayList;
@@ -29,10 +25,10 @@ public abstract class Game extends Composite {
   private FrameListenerCollection collisionFrameListeners = new FrameListenerCollection();
   private EngineTimer engineTimer;
   private FrameListenerCollection frameListenerCollection = new FrameListenerCollection();
+  private AbsolutePanel mainPanel = new AbsolutePanel();
   private boolean paused = true;
   private int playfieldHeight;
   private int playfieldWidth;
-  private AbsolutePanel mainPanel = new AbsolutePanel();
   private FrameListenerCollection spriteFrameListeners = new FrameListenerCollection();
 
   private ArrayList<SpritePool> spritePools = new ArrayList<SpritePool>();
@@ -40,19 +36,9 @@ public abstract class Game extends Composite {
   public Game() {
     initWidget(mainPanel);
     mainPanel.setSize("100%", "100%");
-    DOM.setStyleAttribute(getElement(), "border", "10px solid green");
     background.addStyleName("game-layer game-background");
-    DOM.setElementAttribute(background.getElement(), "id", "BACKGROUND");
-    DOM.setElementAttribute(playfield.getElement(), "id", "PLAYFIELD");
-    DOM.setElementAttribute(mainPanel.getElement(), "id", "MAINPANEL");
-    DOM.setStyleAttribute(background.getElement(), "border", "10px solid blue");
-    DOM.setStyleAttribute(playfield.getElement(), "border", "5px solid red");
     mainPanel.add(background, 0, 0);
     mainPanel.add(playfield, 0, 0);
-    Log.debug("Game()" + GWT.getTypeName(this));
-    Log.debug(" offsetWidth=" + getOffsetWidth());
-    Log.debug(" rootPanel.offsetWidth=" + mainPanel.getOffsetWidth());
-    Log.debug(" playfield.offsetWidth=" + playfield.getOffsetWidth());
   }
 
   public void addCollisionFrameListener(FrameListener frameListener) {
@@ -122,15 +108,6 @@ public abstract class Game extends Composite {
 
     // add hooks, force page focus and trigger game start
     Page.forceStaticInit();
-
-    Log.debug("init() " + GWT.getTypeName(this));
-    Log.debug(" offset: rootPanel=" + mainPanel.getOffsetWidth() + " " + mainPanel.getOffsetHeight());
-    Log.debug(" offset: playfield=" + playfield.getOffsetWidth() + " " + playfield.getOffsetHeight());
-    Log.debug(" offset: game=" + getOffsetWidth() + " " + getOffsetHeight());
-
-    Log.debug(" client: rootPanel=" + DOMUtil.getClientWidth(mainPanel.getElement()) + " " + DOMUtil.getClientHeight(mainPanel.getElement()));
-    Log.debug(" client: playfield=" + DOMUtil.getClientWidth(playfield.getElement()) + " " + DOMUtil.getClientHeight(playfield.getElement()));
-    Log.debug(" client: game=" + DOMUtil.getClientWidth(getElement()) + " " + DOMUtil.getClientHeight(getElement()));
   }
 
   protected abstract void playerDied(Player player);

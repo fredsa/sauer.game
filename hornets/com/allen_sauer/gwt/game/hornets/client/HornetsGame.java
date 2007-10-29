@@ -27,10 +27,6 @@ public class HornetsGame extends Game {
   //  private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
   private HornetsPlayer[] player;
-  private PlayerRobotCollisionDetector playerRobot1CollisionDetector;
-  private PlayerRobotCollisionDetector playerRobot2CollisionDetector;
-  private PlayerRobotCollisionDetector playerRobot3CollisionDetector;
-  private PlayerRobotCollisionDetector playerRobot4CollisionDetector;
   private SpritePool playerSpritePool;
   private Label[] playerText;
   private SpritePool robot1SpritePool;
@@ -63,38 +59,6 @@ public class HornetsGame extends Game {
     return soundController;
   }
 
-  @Override
-  protected void onLoad() {
-    super.onLoad();
-    soundController = new SoundController();
-    soundController.setDefaultVolume(60);
-
-    //    backgroundImage = new Image("images/hubble-deep-field-northern-detail-rw.jpg");
-    //    backgroundImage.addStyleName("game-background-image");
-    //    //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
-    //    Engine.background.add(backgroundImage, 0, 0);
-
-    robot1SpritePool = new Robot1SpritePool(this);
-    robot2SpritePool = new Robot2SpritePool(this);
-    robot3SpritePool = new Robot3SpritePool(this);
-    robot4SpritePool = new Robot4SpritePool(this);
-    explosionSpritePool = new ExplosionSpritePool(this);
-
-    playerSpritePool = new PlayerSpritePool(this, MAX_PLAYERS);
-
-    player = new HornetsPlayer[MAX_PLAYERS];
-    for (int i = 0; i < MAX_PLAYERS; i++) {
-      int playerNumber = i + 1;
-      player[i] = new HornetsPlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
-    }
-    playerRobot1CollisionDetector = new PlayerRobotCollisionDetector(this, playerSpritePool, robot1SpritePool, explosionSpritePool);
-    playerRobot2CollisionDetector = new PlayerRobotCollisionDetector(this, playerSpritePool, robot2SpritePool, explosionSpritePool);
-    playerRobot3CollisionDetector = new PlayerRobotCollisionDetector(this, playerSpritePool, robot3SpritePool, explosionSpritePool);
-    playerRobot4CollisionDetector = new PlayerRobotCollisionDetector(this, playerSpritePool, robot4SpritePool, explosionSpritePool);
-
-    initPlayerText();
-  }
-
   public void playerDied(Player player) {
     updatePlayerText();
   }
@@ -110,6 +74,33 @@ public class HornetsGame extends Game {
       int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
       playfield.setWidgetPosition(playerText[i], x, 10);
     }
+  }
+
+  @Override
+  protected void onLoad() {
+    super.onLoad();
+    soundController = new SoundController();
+    soundController.setDefaultVolume(60);
+
+    robot1SpritePool = new Robot1SpritePool(this);
+    robot2SpritePool = new Robot2SpritePool(this);
+    robot3SpritePool = new Robot3SpritePool(this);
+    robot4SpritePool = new Robot4SpritePool(this);
+    explosionSpritePool = new ExplosionSpritePool(this);
+
+    playerSpritePool = new PlayerSpritePool(this, MAX_PLAYERS);
+
+    player = new HornetsPlayer[MAX_PLAYERS];
+    for (int i = 0; i < MAX_PLAYERS; i++) {
+      int playerNumber = i + 1;
+      player[i] = new HornetsPlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
+    }
+    new PlayerRobotCollisionDetector(this, playerSpritePool, robot1SpritePool, explosionSpritePool);
+    new PlayerRobotCollisionDetector(this, playerSpritePool, robot2SpritePool, explosionSpritePool);
+    new PlayerRobotCollisionDetector(this, playerSpritePool, robot3SpritePool, explosionSpritePool);
+    new PlayerRobotCollisionDetector(this, playerSpritePool, robot4SpritePool, explosionSpritePool);
+
+    initPlayerText();
   }
 
   private void initPlayerText() {

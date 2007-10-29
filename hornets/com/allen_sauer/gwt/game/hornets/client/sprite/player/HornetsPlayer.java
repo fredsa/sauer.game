@@ -10,22 +10,16 @@ import com.allen_sauer.gwt.game.hornets.client.sprite.bullet.BulletSpritePool;
 public class HornetsPlayer extends Player {
   private BulletSpritePool bulletSpritePool;
   private final HornetsGame game;
-  private final int initialLives;
   private KeyboardBulletGenerator keyboardBulletGenerator;
   private int lives;
   private final int playerNumber;
   private final PlayerSprite playerSprite;
-  private RobotBulletCollisionDetector robot1CollisionDetector;
-  private RobotBulletCollisionDetector robot2CollisionDetector;
-  private RobotBulletCollisionDetector robot3CollisionDetector;
-  private RobotBulletCollisionDetector robot4CollisionDetector;
 
   public HornetsPlayer(HornetsGame game, int playerNumber, PlayerSprite playerSprite, int initialLives) {
     super(game);
     this.game = game;
     this.playerNumber = playerNumber;
     this.playerSprite = playerSprite;
-    this.initialLives = initialLives;
 
     assert game != null;
     assert playerNumber > 0;
@@ -36,14 +30,10 @@ public class HornetsPlayer extends Player {
     lives = initialLives;
     bulletSpritePool = new BulletSpritePool(game, playerSprite);
     keyboardBulletGenerator = new KeyboardBulletGenerator(game, bulletSpritePool);
-    robot1CollisionDetector = new RobotBulletCollisionDetector(game, this, game.getRobot1SpritePool(), bulletSpritePool,
-        game.getExplosionSpritePool());
-    robot2CollisionDetector = new RobotBulletCollisionDetector(game, this, game.getRobot2SpritePool(), bulletSpritePool,
-        game.getExplosionSpritePool());
-    robot3CollisionDetector = new RobotBulletCollisionDetector(game, this, game.getRobot3SpritePool(), bulletSpritePool,
-        game.getExplosionSpritePool());
-    robot4CollisionDetector = new RobotBulletCollisionDetector(game, this, game.getRobot4SpritePool(), bulletSpritePool,
-        game.getExplosionSpritePool());
+    new RobotBulletCollisionDetector(game, this, game.getRobot1SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
+    new RobotBulletCollisionDetector(game, this, game.getRobot2SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
+    new RobotBulletCollisionDetector(game, this, game.getRobot3SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
+    new RobotBulletCollisionDetector(game, this, game.getRobot4SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
   }
 
   public void die() {
