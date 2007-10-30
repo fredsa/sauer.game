@@ -23,12 +23,22 @@ IFRAME { /* TODO remove after GWT issue 1359 is fixed */
   display: none;
 }
 
+.game-layer-FocusPanel {
+  z-index: 4;
+  /* IE prevent clicks 'through' the FocusPanel, blurring the playfield */
+  filter: alpha(opacity = 0);
+  opacity: 0;
+  -moz-opacity: 0;
+  background-color: white;
+}
+
 .player {
   z-index: 3;
 }
 
-.game-playfield {
+.game-PlayField {
   z-index: 2;
+  cursor: pointer;
 }
 
 .game-background {

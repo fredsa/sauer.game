@@ -30,5 +30,7 @@ public class Hornets implements EntryPoint {
 
     HornetsGame game2 = new HornetsGame();
     DOMUtil.getRootPanel("game2").add(game2);
+    
+    game2.setFocus(true);
   }
 }

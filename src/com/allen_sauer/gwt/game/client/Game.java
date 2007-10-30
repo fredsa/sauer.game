@@ -76,6 +76,10 @@ public abstract class Game extends Composite {
     return paused;
   }
 
+  public void setFocus(boolean focused) {
+    playfield.setFocus(focused);
+  }
+
   public void setFrameListenerCollection(FrameListenerCollection frameListenerCollection) {
     this.frameListenerCollection = frameListenerCollection;
   }
@@ -115,7 +119,7 @@ public abstract class Game extends Composite {
   private void clientResized() {
     playfieldWidth = playfield.getOffsetWidth();
     playfieldHeight = playfield.getOffsetHeight();
-    //    assert playfieldWidth != 0;
-    //    assert playfieldHeight != 0;
+    assert playfieldWidth != 0;
+    assert playfieldHeight != 0;
   }
 }

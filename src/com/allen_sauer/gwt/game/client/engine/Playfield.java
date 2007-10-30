@@ -2,6 +2,7 @@ package com.allen_sauer.gwt.game.client.engine;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.FocusListener;
 import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.KeyboardListener;
@@ -9,6 +10,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
+import com.allen_sauer.gwt.log.client.Log;
 
 public class Playfield extends AbsolutePanel {
   private FocusPanel focusPanel = new FocusPanel();
@@ -17,9 +19,9 @@ public class Playfield extends AbsolutePanel {
 
   public Playfield(Game game) {
     this.game = game;
-    focusPanel.addStyleName("game-layer focuspanel");
+    focusPanel.addStyleName("game-layer game-layer-FocusPanel");
     add(focusPanel, 0, 0);
-    addStyleName("game-layer game-playfield");
+    addStyleName("game-layer game-PlayField");
 
     focusPanel.addKeyboardListener(new KeyboardListener() {
       public void onKeyDown(Widget sender, char keyCode, int modifiers) {
