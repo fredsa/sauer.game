@@ -5,7 +5,7 @@ import com.google.gwt.user.client.WindowResizeListener;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
 
-import com.allen_sauer.gwt.game.client.engine.EngineTimer;
+import com.allen_sauer.gwt.game.client.engine.GameTimer;
 import com.allen_sauer.gwt.game.client.engine.FrameListener;
 import com.allen_sauer.gwt.game.client.engine.FrameListenerCollection;
 import com.allen_sauer.gwt.game.client.engine.Playfield;
@@ -23,7 +23,7 @@ public abstract class Game extends Composite {
   public final Playfield playfield = new Playfield(this);
 
   private FrameListenerCollection collisionFrameListeners = new FrameListenerCollection();
-  private EngineTimer engineTimer;
+  private GameTimer engineTimer;
   private FrameListenerCollection frameListenerCollection = new FrameListenerCollection();
   private AbsolutePanel mainPanel = new AbsolutePanel();
   private boolean paused = true;
@@ -108,7 +108,7 @@ public abstract class Game extends Composite {
     });
     clientResized();
 
-    engineTimer = new EngineTimer(this);
+    engineTimer = new GameTimer(this);
 
     // add hooks, force page focus and trigger game start
     Page.forceStaticInit();

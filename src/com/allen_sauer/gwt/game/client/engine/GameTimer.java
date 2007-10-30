@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.HTML;
 
 import com.allen_sauer.gwt.game.client.Game;
 
-public final class EngineTimer extends Timer {
+public final class GameTimer extends Timer {
   private static final int FRAMES_TO_AVERAGE = 10;
   private static final int TIMER_INTERVAL_MILLIS = 10;
   private int count = 0;
@@ -14,7 +14,7 @@ public final class EngineTimer extends Timer {
   private boolean paused = true;
   private HTML timerText = new HTML();
 
-  public EngineTimer(Game game) {
+  public GameTimer(Game game) {
     this.game = game;
     timerText.addStyleName("timerText");
   }
