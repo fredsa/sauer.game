@@ -1,6 +1,6 @@
 package com.allen_sauer.gwt.game.client.sprite.frame;
 
-import com.allen_sauer.gwt.game.client.engine.FrameListener;
+import com.allen_sauer.gwt.game.client.FrameListener;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
 public class FrameInfo implements FrameListener {

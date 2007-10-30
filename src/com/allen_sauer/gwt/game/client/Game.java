@@ -5,12 +5,9 @@ import com.google.gwt.user.client.WindowResizeListener;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
 
-import com.allen_sauer.gwt.game.client.engine.GameTimer;
-import com.allen_sauer.gwt.game.client.engine.FrameListener;
-import com.allen_sauer.gwt.game.client.engine.FrameListenerCollection;
-import com.allen_sauer.gwt.game.client.engine.Playfield;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
+import com.allen_sauer.gwt.game.client.ui.Playfield;
 import com.allen_sauer.gwt.game.client.ui.util.Page;
 import com.allen_sauer.gwt.voices.client.SoundController;
 

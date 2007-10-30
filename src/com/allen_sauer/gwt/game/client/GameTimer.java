@@ -1,9 +1,8 @@
-package com.allen_sauer.gwt.game.client.engine;
+package com.allen_sauer.gwt.game.client;
 
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTML;
 
-import com.allen_sauer.gwt.game.client.Game;
 
 public final class GameTimer extends Timer {
   private static final int FRAMES_TO_AVERAGE = 10;

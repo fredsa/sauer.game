@@ -1,6 +1,6 @@
 package com.allen_sauer.gwt.game.client.behavior;
 
-import com.allen_sauer.gwt.game.client.engine.FrameListener;
+import com.allen_sauer.gwt.game.client.FrameListener;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.ui.util.Direction;
 import com.allen_sauer.gwt.game.client.ui.util.MathUtil;

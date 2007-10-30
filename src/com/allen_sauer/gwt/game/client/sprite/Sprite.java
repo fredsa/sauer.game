@@ -5,9 +5,9 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.SimplePanel;
 
+import com.allen_sauer.gwt.game.client.FrameListener;
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.Behavior;
-import com.allen_sauer.gwt.game.client.engine.FrameListener;
 import com.allen_sauer.gwt.game.client.sprite.frame.FrameInfo;
 import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 

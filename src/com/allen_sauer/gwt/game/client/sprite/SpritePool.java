@@ -1,7 +1,7 @@
 package com.allen_sauer.gwt.game.client.sprite;
 
+import com.allen_sauer.gwt.game.client.FrameListenerCollection;
 import com.allen_sauer.gwt.game.client.Game;
-import com.allen_sauer.gwt.game.client.engine.FrameListenerCollection;
 
 import java.util.ArrayList;
 import java.util.Iterator;
