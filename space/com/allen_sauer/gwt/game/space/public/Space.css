@@ -1,22 +1,20 @@
 @CHARSET "UTF-8";
 
-XX * { /* DEBUGGING */
+XX .space * { /* DEBUGGING */
   border: 1px solid green;
   background-color: #ABCDEF;
 }
 
-* {
-  border: none;
-  margin: 0px;
-  padding: 0px;
+.space {
   font-size: bold;
 }
 
-.gwt-Label,.gwt-HTML {
+.space .gwt-Label ,
+.space .gwt-HTML {
   background-color: #ABCDEF;
 }
 
-.timerText {
+.space .timerText {
   position: absolute;
   left: 10px;
   top: 20px;

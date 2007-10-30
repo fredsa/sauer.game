@@ -1,0 +1,8 @@
+<module>
+
+  <inherits name='com.allen_sauer.gwt.game.space.Space'/>
+
+	<!-- Specify the app entry point class.                   -->
+	<entry-point class='com.allen_sauer.gwt.game.space.client.Space'/>
+
+</module>

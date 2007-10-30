@@ -51,14 +51,14 @@ public class Sprite extends Composite implements FrameListener {
       markedForRemoval = false;
       return false;
     }
-    DOMUtil.setElementPosition(getElement(), x, y);
+    DOMUtil.fastSetElementPosition(getElement(), x, y);
     boolean again = frameInfo.doFrame();
     again &= behavior.doFrame();
     return again;
   }
 
   public void doLastFrame() {
-    DOMUtil.setElementPosition(getElement(), -500, -500);
+    DOMUtil.fastSetElementPosition(getElement(), -500, -500);
     spritePool.destroy(this);
     frameInfo.doLastFrame();
     behavior.doLastFrame();
@@ -110,7 +110,7 @@ public class Sprite extends Composite implements FrameListener {
   }
 
   public void setImagePosition(int x, int y) {
-    DOMUtil.setElementPosition(image.getElement(), x, y);
+    DOMUtil.fastSetElementPosition(image.getElement(), x, y);
   }
 
   public void setPoolIndex(int poolIndex) {

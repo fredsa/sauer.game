@@ -25,12 +25,9 @@ public class Hornets implements EntryPoint {
     //    Log.moveTo(0, 110);
     //    Log.setPixelSize(800, 300);
 
-    HornetsGame game1 = new HornetsGame();
-    DOMUtil.getRootPanel("game1").add(game1);
+    HornetsGame game = new HornetsGame();
+    DOMUtil.getRootPanel("game").add(game);
 
-    HornetsGame game2 = new HornetsGame();
-    DOMUtil.getRootPanel("game2").add(game2);
-    
-    game2.setFocus(true);
+    game.setFocus(true);
   }
 }

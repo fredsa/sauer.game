@@ -1,4 +1,4 @@
-package com.allen_sauer.gwt.game.space.client;
+package com.allen_sauer.gwt.game.games.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -6,9 +6,11 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 
 import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
+import com.allen_sauer.gwt.game.hornets.client.HornetsGame;
+import com.allen_sauer.gwt.game.space.client.SpaceGame;
 import com.allen_sauer.gwt.log.client.LogUncaughtExceptionHandler;
 
-public class Space implements EntryPoint {
+public class Games implements EntryPoint {
   public void onModuleLoad() {
     // set uncaught exception handler
     GWT.setUncaughtExceptionHandler(new LogUncaughtExceptionHandler());
@@ -25,9 +27,12 @@ public class Space implements EntryPoint {
     //    Log.moveTo(0, 110);
     //    Log.setPixelSize(800, 300);
 
-    SpaceGame game = new SpaceGame();
-    DOMUtil.getRootPanel("game").add(game);
+    HornetsGame hornetsGames = new HornetsGame();
+    DOMUtil.getRootPanel("hornets").add(hornetsGames);
 
-    game.setFocus(true);
+    SpaceGame spaceGame = new SpaceGame();
+    DOMUtil.getRootPanel("space").add(spaceGame);
+
+    hornetsGames.setFocus(true);
   }
 }

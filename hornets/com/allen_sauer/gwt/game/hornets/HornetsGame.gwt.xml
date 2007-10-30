@@ -1,0 +1,7 @@
+<module>
+
+  <inherits name='com.allen_sauer.gwt.game.hornets.Hornets'/>
+
+	<entry-point class='com.allen_sauer.gwt.game.hornets.client.Hornets'/>
+
+</module>

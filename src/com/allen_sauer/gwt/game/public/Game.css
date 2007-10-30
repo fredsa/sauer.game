@@ -23,36 +23,29 @@ IFRAME { /* TODO remove after GWT issue 1359 is fixed */
   display: none;
 }
 
-.game-layer-FocusPanel {
-  z-index: 4;
-  /* IE prevent clicks 'through' the FocusPanel, blurring the playfield */
+/* IE prevent clicks from going right 'through' the inputPanel */
+.game .game-layer-inputPanel {
   filter: alpha(opacity = 0);
   opacity: 0;
   -moz-opacity: 0;
   background-color: white;
 }
 
-.player {
-  z-index: 3;
-}
-
-.game-PlayField {
-  z-index: 2;
+.game .game-layer-inputPanel {
+  z-index: 20;
   cursor: pointer;
 }
 
-.game-background {
+.game .game-layer-overlay {
+  z-index: 3;
+}
+
+.game .game-layer-playfield {
+  z-index: 2;
+}
+
+.game .game-layer-background {
   z-index: 1;
-}
-
-.game-layer {
-  width: 100%;
-  height: 100%;
-}
-
-.game-background-image {
-  width: 100%;
-  height: 100%;
 }
 
 /*
@@ -63,11 +56,11 @@ IFRAME { /* TODO remove after GWT issue 1359 is fixed */
 }
 */
 
-.bounding-box {
+.game .bounding-box {
   xborder: 1px solid green;
   z-index: 42;
 }
 
-.playerText {
+.game .playerText {
   color: red;
 }

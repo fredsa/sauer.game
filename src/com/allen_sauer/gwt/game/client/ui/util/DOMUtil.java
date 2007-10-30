@@ -55,6 +55,11 @@ public class DOMUtil {
     elem.style.top = top + "px";
   }-*/;
 
+  public static final native void fastSetElementX(Element elem, int x)
+  /*-{
+    elem.style.left = x + "px";
+  }-*/;
+
   /**
    * Gets an element's CSS based 'border-left-width' in pixels or <code>0</code>
    * (zero) when the element is hidden.
@@ -155,17 +160,6 @@ public class DOMUtil {
   public static boolean isOrContains(Element parent, Element child) {
     return impl.isOrContains(parent, child);
   }
-
-  public static final native void setElementPosition(Element elem, int x, int y)
-  /*-{
-    elem.style.left = x + "px";
-    elem.style.top = y + "px";
-  }-*/;
-
-  public static final native void setElementX(Element elem, int x)
-  /*-{
-    elem.style.left = x + "px";
-  }-*/;
 
   /**
    * Set the browser's status bar text, if supported and enabled in the client browser.

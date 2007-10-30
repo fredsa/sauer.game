@@ -3,7 +3,6 @@ package com.allen_sauer.gwt.game.space.client.sprite.explosion;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
-import com.allen_sauer.gwt.game.hornets.client.sprite.explosion.ExplosionSprite;
 import com.allen_sauer.gwt.game.space.client.SpaceGame;
 
 public class ExplosionSpritePool extends SpritePool {

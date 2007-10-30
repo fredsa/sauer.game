@@ -4,7 +4,6 @@ import com.allen_sauer.gwt.game.client.generator.IntervalGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
-import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot1Sprite;
 import com.allen_sauer.gwt.game.space.client.SpaceGame;
 
 public class RobotSpritePool extends SpritePool {
@@ -13,7 +12,7 @@ public class RobotSpritePool extends SpritePool {
     super(game);
     SpriteFactory spriteFactory = new SpriteFactory() {
       public Sprite create() {
-        return new Robot1Sprite(game);
+        return new RobotSprite(game);
       }
     };
     init(spriteFactory, SpaceGame.MAX_ROBOTS);

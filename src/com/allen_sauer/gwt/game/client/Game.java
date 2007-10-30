@@ -1,5 +1,6 @@
 package com.allen_sauer.gwt.game.client;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowResizeListener;
 import com.google.gwt.user.client.ui.AbsolutePanel;
@@ -7,6 +8,7 @@ import com.google.gwt.user.client.ui.Composite;
 
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
+import com.allen_sauer.gwt.game.client.ui.InputPanel;
 import com.allen_sauer.gwt.game.client.ui.Playfield;
 import com.allen_sauer.gwt.game.client.ui.util.Page;
 import com.allen_sauer.gwt.voices.client.SoundController;
@@ -17,6 +19,8 @@ public abstract class Game extends Composite {
   public static final boolean DEBUG = false;
 
   public final AbsolutePanel background = new AbsolutePanel();
+  public final InputPanel input = new InputPanel(this);
+  public final AbsolutePanel overlay = new AbsolutePanel();
   public final Playfield playfield = new Playfield(this);
 
   private FrameListenerCollection collisionFrameListeners = new FrameListenerCollection();
@@ -27,15 +31,12 @@ public abstract class Game extends Composite {
   private int playfieldHeight;
   private int playfieldWidth;
   private FrameListenerCollection spriteFrameListeners = new FrameListenerCollection();
-
   private ArrayList<SpritePool> spritePools = new ArrayList<SpritePool>();
 
   public Game() {
     initWidget(mainPanel);
-    mainPanel.setSize("100%", "100%");
-    background.addStyleName("game-layer game-background");
-    mainPanel.add(background, 0, 0);
-    mainPanel.add(playfield, 0, 0);
+    addStyleName("game");
+    addGameLayers();
   }
 
   public void addCollisionFrameListener(FrameListener frameListener) {
@@ -74,7 +75,7 @@ public abstract class Game extends Composite {
   }
 
   public void setFocus(boolean focused) {
-    playfield.setFocus(focused);
+    input.setFocus(focused);
   }
 
   public void setFrameListenerCollection(FrameListenerCollection frameListenerCollection) {
@@ -87,6 +88,11 @@ public abstract class Game extends Composite {
       this.paused = paused;
       engineTimer.setPaused(paused);
     }
+  }
+
+  @Override
+  public String toString() {
+    return GWT.getTypeName(this);
   }
 
   public abstract void updatePlayerText();
@@ -112,6 +118,29 @@ public abstract class Game extends Composite {
   }
 
   protected abstract void playerDied(Player player);
+
+  /**
+   * Add layers from the bottom up.
+   */
+  private void addGameLayers() {
+    mainPanel.setSize("100%", "100%");
+    
+    background.setSize("100%", "100%");
+    background.addStyleName("game-layer-background");
+    mainPanel.add(background, 0, 0);
+
+    playfield.setSize("100%", "100%");
+    playfield.addStyleName("game-layer-playfield");
+    mainPanel.add(playfield, 0, 0);
+
+    overlay.setSize("100%", "100%");
+    overlay.addStyleName("game-layer-overlay");
+    mainPanel.add(overlay, 0, 0);
+
+    input.setSize("100%", "100%");
+    input.addStyleName("game-layer-inputPanel");
+    mainPanel.add(input, 0, 0);
+  }
 
   private void clientResized() {
     playfieldWidth = playfield.getOffsetWidth();

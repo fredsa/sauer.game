@@ -1,23 +1,20 @@
 @CHARSET "UTF-8";
 
-XX * { /* DEBUGGING */
+XX .hornets * { /* DEBUGGING */
   border: 1px solid green;
   background-color: #ABCDEF;
 }
 
-* {
-  border: none;
-  margin: 0px;
-  padding: 0px;
-  font-size: bold;
+.hornets * {
+  text-decoration:underline;
 }
 
 .gwt-Label,.gwt-HTML {
   background-color: #ABCDEF;
 }
 
-.timerText {
+.hornets .timerText {
   position: absolute;
-  left: 10px;
-  top: 20px;
+  left: 0px;
+  top: 40px;
 }

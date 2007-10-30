@@ -17,17 +17,21 @@ public class SpaceGame extends Game {
   public static final int MAX_BULLETS = 3;
   public static final int MAX_ROBOTS = 10;
   public static final double ROBOT_APPEARANCE_PROBABILITY = .05;
-
   private static final int MAX_LIVES = 5;
-  private static final int MAX_PLAYERS = 1;
 
+  private static final int MAX_PLAYERS = 1;
   private Image backgroundImage;
+
   private ExplosionSpritePool explosionSpritePool;
   private SpacePlayer[] player;
   private PlayerSpritePool playerSpritePool;
   private Label[] playerText;
   private RobotSpritePool robotSpritePool;
   private SoundController soundController;
+
+  public SpaceGame() {
+    addStyleName("space");
+  }
 
   public ExplosionSpritePool getExplosionSpritePool() {
     return explosionSpritePool;
@@ -43,10 +47,6 @@ public class SpaceGame extends Game {
 
   public void playerDied(Player player) {
     updatePlayerText();
-  }
-
-  public void start() {
-    playfield.setFocus(true);
   }
 
   public void updatePlayerText() {
@@ -68,7 +68,7 @@ public class SpaceGame extends Game {
 
     backgroundImage = new Image("images/nebula_13-fudged.jpg");
     backgroundImage.addStyleName("game-background-image");
-    //    backgroundImage.setPixelSize(Engine.getClientWidth(), Engine.getClientHeight());
+    backgroundImage.setSize("100%", "100%");
     background.add(backgroundImage, 0, 0);
 
     robotSpritePool = new RobotSpritePool(this);

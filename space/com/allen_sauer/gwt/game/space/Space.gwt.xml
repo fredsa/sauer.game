@@ -3,14 +3,8 @@
 	<!-- Inherit the core Web Toolkit stuff.                  -->
 	<inherits name='com.google.gwt.user.User'/>
 
-  <!-- Inherit logging stuff.                               -->
-  <inherits name='com.allen_sauer.gwt.log.Log'/>
-
   <!-- Inherit game stuff.                                  -->
   <inherits name='com.allen_sauer.gwt.game.Game'/>
-
-	<!-- Specify the app entry point class.                   -->
-	<entry-point class='com.allen_sauer.gwt.game.space.client.Space'/>
 
   <!-- Include style sheet                                  -->
   <stylesheet src='Space.css'/>
