@@ -124,7 +124,7 @@ public abstract class Game extends Composite {
    */
   private void addGameLayers() {
     mainPanel.setSize("100%", "100%");
-    
+
     background.setSize("100%", "100%");
     background.addStyleName("game-layer-background");
     mainPanel.add(background, 0, 0);
