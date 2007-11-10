@@ -65,11 +65,6 @@ public abstract class Game extends Composite {
 
   public abstract SoundController getSoundController();
 
-  public String info() {
-    return "paused=" + isPaused() + ", frameListenerCollections=" + getFrameListenerCollection().size() + ", spritePools="
-        + spritePools.size();
-  }
-
   public boolean isPaused() {
     return paused;
   }

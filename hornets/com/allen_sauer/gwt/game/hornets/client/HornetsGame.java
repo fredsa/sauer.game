@@ -1,7 +1,5 @@
 package com.allen_sauer.gwt.game.hornets.client;
 
-import com.google.gwt.user.client.ui.Label;
-
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
@@ -14,6 +12,7 @@ import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot1SpritePool;
 import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot2SpritePool;
 import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot3SpritePool;
 import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot4SpritePool;
+import com.allen_sauer.gwt.game.hornets.client.ui.HornetLabel;
 import com.allen_sauer.gwt.voices.client.SoundController;
 
 public class HornetsGame extends Game {
@@ -29,7 +28,7 @@ public class HornetsGame extends Game {
 
   private HornetsPlayer[] player;
   private SpritePool playerSpritePool;
-  private Label[] playerText;
+  private HornetLabel[] playerText;
   private SpritePool robot1SpritePool;
   private SpritePool robot2SpritePool;
   private SpritePool robot3SpritePool;
@@ -109,9 +108,9 @@ public class HornetsGame extends Game {
   }
 
   private void initPlayerText() {
-    playerText = new Label[MAX_LIVES];
+    playerText = new HornetLabel[MAX_LIVES];
     for (int i = 0; i < MAX_PLAYERS; i++) {
-      playerText[i] = new Label();
+      playerText[i] = new HornetLabel();
       playerText[i].addStyleName("playerText");
       playfield.add(playerText[i], -500, -500);
     }

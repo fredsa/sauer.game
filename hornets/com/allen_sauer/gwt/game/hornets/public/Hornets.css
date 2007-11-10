@@ -5,16 +5,25 @@ XX .hornets * { /* DEBUGGING */
   background-color: #ABCDEF;
 }
 
-.hornets * {
-  text-decoration:underline;
+.hornets .hornet-label {
+  font-family: monospace;
+  font-weight: bold;
 }
 
-.gwt-Label,.gwt-HTML {
-  background-color: #ABCDEF;
+.hornets .hornet-label .hornet-label1 {
+  color: #0000AA;
+  font-size: 1.05em;
+}
+
+.hornets .hornet-label .hornet-label2 {
+  color: #8888DD;
+  margin: 1px;
+  font-size: 1em;
 }
 
 .hornets .timerText {
   position: absolute;
   left: 0px;
   top: 40px;
+  color: #CCCCCC;
 }
