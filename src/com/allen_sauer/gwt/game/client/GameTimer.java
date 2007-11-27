@@ -34,16 +34,19 @@ public final class GameTimer extends Timer {
     }
   }
 
+  @Override
   public void run() {
     measure();
     game.getFrameListenerCollection().doFrame();
   }
 
+  @Override
   public void schedule(int delayMillis) {
     initMeasurements();
     super.schedule(delayMillis);
   }
 
+  @Override
   public void scheduleRepeating(int periodMillis) {
     initMeasurements();
     super.scheduleRepeating(periodMillis);

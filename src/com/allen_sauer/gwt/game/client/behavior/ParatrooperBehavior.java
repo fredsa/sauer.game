@@ -12,9 +12,9 @@ public class ParatrooperBehavior extends Behavior {
     super(sprite);
   }
 
+  @Override
   public void doFirstFrame() {
-    setXMax(getSprite().getGame().getClientWidth() - getSprite().getFrameInfo().frameWidth);
-    setYMax(getSprite().getGame().getClientHeight() - getSprite().getFrameInfo().frameHeight);
+    clientResized();
     walkFrames = 0;
     setX(Random.nextInt(getXMax()));
     setY(-getSprite().getFrameInfo().frameHeight);
@@ -23,6 +23,7 @@ public class ParatrooperBehavior extends Behavior {
     super.doFirstFrame();
   }
 
+  @Override
   public boolean doFrame() {
     boolean again = true;
 

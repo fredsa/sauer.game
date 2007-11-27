@@ -17,15 +17,13 @@ import com.allen_sauer.gwt.voices.client.SoundController;
 
 public class HornetsGame extends Game {
   public static final int MAX_BULLETS = 5;
-
   public static final int MAX_ROBOTS = 2;
   public static final double ROBOT_APPEARANCE_PROBABILITY = .03;
-  private static final int MAX_LIVES = 5;
 
+  private static final int MAX_LIVES = 5;
   private static final int MAX_PLAYERS = 1;
   //  private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
-
   private HornetsPlayer[] player;
   private SpritePool playerSpritePool;
   private HornetLabel[] playerText;
@@ -59,14 +57,17 @@ public class HornetsGame extends Game {
     return robot4SpritePool;
   }
 
+  @Override
   public SoundController getSoundController() {
     return soundController;
   }
 
+  @Override
   public void playerDied(Player player) {
     updatePlayerText();
   }
 
+  @Override
   public void updatePlayerText() {
     int spacing = MAX_PLAYERS != 1 ? getClientWidth() / (MAX_PLAYERS - 1) : 0;
     int middle = getClientWidth() / 2;

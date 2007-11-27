@@ -30,6 +30,7 @@ public class ExplosionSprite extends Sprite {
     sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG, "sounds/misc186-cannonshot.mp3");
   }
 
+  @Override
   public void doFirstFrame() {
     super.doFirstFrame();
     sound.play();

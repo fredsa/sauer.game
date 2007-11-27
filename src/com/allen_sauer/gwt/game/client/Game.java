@@ -1,6 +1,5 @@
 package com.allen_sauer.gwt.game.client;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowResizeListener;
 import com.google.gwt.user.client.ui.AbsolutePanel;
@@ -83,11 +82,6 @@ public abstract class Game extends Composite {
       this.paused = paused;
       engineTimer.setPaused(paused);
     }
-  }
-
-  @Override
-  public String toString() {
-    return GWT.getTypeName(this);
   }
 
   public abstract void updatePlayerText();

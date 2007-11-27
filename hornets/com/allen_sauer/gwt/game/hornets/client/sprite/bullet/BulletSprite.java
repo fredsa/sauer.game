@@ -31,6 +31,7 @@ public class BulletSprite extends Sprite {
     sound.setVolume((int) (sound.getVolume() * .15));
   }
 
+  @Override
   public void doFirstFrame() {
     sound.play();
     super.doFirstFrame();

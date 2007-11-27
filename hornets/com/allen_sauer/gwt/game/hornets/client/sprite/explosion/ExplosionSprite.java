@@ -30,6 +30,7 @@ public class ExplosionSprite extends Sprite {
     sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG, "freesoundproject/34200_themfish_bamf.mp3");
   }
 
+  @Override
   public void doFirstFrame() {
     super.doFirstFrame();
     sound.play();

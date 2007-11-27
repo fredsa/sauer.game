@@ -16,6 +16,7 @@ public class RobotBulletCollisionDetector extends CollisionDetector {
     this.explosionSpritePool = explosionSpritePool;
   }
 
+  @Override
   protected void handleCollision(Sprite robotSprite, Sprite bulletSprite) {
     if (!explosionSpritePool.exhausted()) {
       Sprite explosionSprite = explosionSpritePool.create();

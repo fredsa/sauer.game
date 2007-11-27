@@ -23,6 +23,7 @@ import com.google.gwt.user.client.Element;
  * Webkit/Safari.
  */
 public class DOMUtilImplSafari extends DOMUtilImplStandard {
+  @Override
   public native void cancelAllDocumentSelections()
   /*-{
     try {
@@ -30,6 +31,7 @@ public class DOMUtilImplSafari extends DOMUtilImplStandard {
     } catch(e) { throw new Error("unselect exception:\n" + e); }
   }-*/;
 
+  @Override
   public native int getBorderLeft(Element elem)
   /*-{
     var computedStyle = $doc.defaultView.getComputedStyle(elem, null);
@@ -42,6 +44,7 @@ public class DOMUtilImplSafari extends DOMUtilImplStandard {
     }
   }-*/;
 
+  @Override
   public native int getBorderTop(Element elem)
   /*-{
     var computedStyle = $doc.defaultView.getComputedStyle(elem, null);
@@ -54,16 +57,19 @@ public class DOMUtilImplSafari extends DOMUtilImplStandard {
     }
   }-*/;
 
+  @Override
   public native int getClientHeight(Element elem)
   /*-{
     return elem.clientHeight || 0;
   }-*/;
 
+  @Override
   public native int getClientWidth(Element elem)
   /*-{
     return elem.clientWidth || 0;
   }-*/;
 
+  @Override
   public boolean isOrContains(Element parent, Element child) {
     // While Safari 1.3.2 / Safari 2.0.4 support the 'contains' method on DOM
     // elements, the method does not appear to return valid results in all cases.

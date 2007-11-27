@@ -11,6 +11,7 @@ public class Playfield extends AbsolutePanel {
   public Playfield(final Game game) {
   }
 
+  @Override
   public void add(Widget widget, int x, int y) {
     widget.removeFromParent();
     DOM.setStyleAttribute(widget.getElement(), "position", "absolute");
@@ -18,6 +19,7 @@ public class Playfield extends AbsolutePanel {
     super.add(widget);
   }
 
+  @Override
   public void setWidgetPosition(Widget widget, int x, int y) {
     DOMUtil.fastSetElementPosition(widget.getElement(), x, y);
   }

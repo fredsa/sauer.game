@@ -33,6 +33,7 @@ public class SpacePlayer extends Player {
     new RobotBulletCollisionDetector(game, game.getRobotSpritePool(), bulletSpritePool, game.getExplosionSpritePool());
   }
 
+  @Override
   public void die() {
     if (!game.getExplosionSpritePool().exhausted()) {
       Sprite explosionSprite = game.getExplosionSpritePool().create();

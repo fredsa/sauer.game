@@ -31,6 +31,7 @@ public class Robot1Sprite extends Sprite {
     setBehavior(new ParatrooperBehavior(this));
   }
 
+  @Override
   public void setDirection(int direction) {
     if (Direction.isEast(direction)) {
       getFrameInfo().setFrameSequence(RIGHT_FRAME_SEQUENCE);

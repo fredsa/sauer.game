@@ -8,6 +8,7 @@ public class OneTimeFrameInfo extends LoopFrameInfo {
     super(sprite, spriteUrl, horizontalFrames, verticalFrames, frameWidth, frameHeight, animationInterval);
   }
 
+  @Override
   public boolean doFrame() {
     boolean again = super.doFrame();
     again &= getCurrentFrame() < getFrameSequence().length - 1;

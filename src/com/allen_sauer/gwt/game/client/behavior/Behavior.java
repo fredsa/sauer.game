@@ -1,5 +1,8 @@
 package com.allen_sauer.gwt.game.client.behavior;
 
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.WindowResizeListener;
+
 import com.allen_sauer.gwt.game.client.FrameListener;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.ui.util.Direction;
@@ -19,8 +22,12 @@ public abstract class Behavior implements FrameListener {
 
   public Behavior(Sprite sprite) {
     this.sprite = sprite;
-    xMax = sprite.getGame().playfield.getOffsetWidth();
-    yMax = sprite.getGame().playfield.getOffsetHeight();
+    clientResized();
+    Window.addWindowResizeListener(new WindowResizeListener() {
+      public void onWindowResized(int width, int height) {
+        clientResized();
+      }
+    });
   }
 
   public void doFirstFrame() {
@@ -114,6 +121,11 @@ public abstract class Behavior implements FrameListener {
   public void setYSpeed(int ySpeed) {
     this.ySpeed = ySpeed;
     updateDirection();
+  }
+
+  protected void clientResized() {
+    setXMax(getSprite().getGame().getClientWidth() - getSprite().getFrameInfo().frameWidth);
+    setYMax(getSprite().getGame().getClientHeight() - getSprite().getFrameInfo().frameHeight);
   }
 
   private void updateDirection() {

@@ -22,26 +22,31 @@ import com.google.gwt.user.client.Element;
  * IE.
  */
 public class DOMUtilImplIE6 extends DOMUtilImpl {
+  @Override
   public native void cancelAllDocumentSelections()
   /*-{
     $doc.selection.empty();
   }-*/;
 
+  @Override
   public native int getBorderLeft(Element elem)
   /*-{
     return elem.clientLeft;
   }-*/;
 
+  @Override
   public native int getBorderTop(Element elem)
   /*-{
     return elem.clientTop;
   }-*/;
 
+  @Override
   public native int getClientHeight(Element elem)
   /*-{
     return elem.clientHeight;
   }-*/;
 
+  @Override
   public native int getClientWidth(Element elem)
   /*-{
     return elem.clientWidth;

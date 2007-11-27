@@ -66,6 +66,7 @@ public class SpritePool {
     };
   }
 
+  @Override
   public String toString() {
     assert initialized;
     return "SpritePool(" + visibleSprites + " of " + maxSprites + ")";

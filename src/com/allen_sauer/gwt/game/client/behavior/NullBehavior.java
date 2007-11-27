@@ -7,15 +7,18 @@ public class NullBehavior extends Behavior {
     super(sprite);
   }
 
+  @Override
   public void doFirstFrame() {
     // Purposely do not call super.doFirstFrame();
   }
 
+  @Override
   public boolean doFrame() {
     // Purposely do not call super.doFrame();
     return true;
   }
 
+  @Override
   public void doLastFrame() {
     // Purposely do not call super.doLastFrame();
   }

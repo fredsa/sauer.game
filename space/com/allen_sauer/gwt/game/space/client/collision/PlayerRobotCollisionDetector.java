@@ -18,6 +18,7 @@ public class PlayerRobotCollisionDetector extends CollisionDetector {
     this.explosionSpritePool = explosionSpritePool;
   }
 
+  @Override
   protected void handleCollision(Sprite playerSprite, Sprite robotSprite) {
     robotSprite.markForRemoval();
     if (!explosionSpritePool.exhausted()) {

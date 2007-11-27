@@ -30,6 +30,7 @@ public class BulletSprite extends Sprite {
     sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG, "sounds/misc322-photonshot.mp3");
   }
 
+  @Override
   public void doFirstFrame() {
     sound.play();
     super.doFirstFrame();

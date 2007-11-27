@@ -41,14 +41,17 @@ public class SpaceGame extends Game {
     return robotSpritePool;
   }
 
+  @Override
   public SoundController getSoundController() {
     return soundController;
   }
 
+  @Override
   public void playerDied(Player player) {
     updatePlayerText();
   }
 
+  @Override
   public void updatePlayerText() {
     int spacing = MAX_PLAYERS != 1 ? getClientWidth() / (MAX_PLAYERS - 1) : 0;
     int middle = getClientWidth() / 2;

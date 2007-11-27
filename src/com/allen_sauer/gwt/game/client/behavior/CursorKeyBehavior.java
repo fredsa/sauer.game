@@ -13,9 +13,9 @@ public class CursorKeyBehavior extends Behavior {
     this.sprite = sprite;
   }
 
+  @Override
   public void doFirstFrame() {
-    setXMax(sprite.getGame().getClientWidth() - getSprite().getFrameInfo().frameWidth);
-    setYMax(sprite.getGame().getClientHeight() - getSprite().getFrameInfo().frameHeight);
+    clientResized();
     //  setX(Random.nextInt(getXMax()));
     //  setY(Random.nextInt(getYMax()));
     setX(getXMax() / 2);
@@ -23,6 +23,7 @@ public class CursorKeyBehavior extends Behavior {
     super.doFirstFrame();
   }
 
+  @Override
   public boolean doFrame() {
     if (sprite.getGame().input.isKeyDown(Page.CODES.KEY_LEFT)) {
       setXSpeed(-xDelta);

@@ -36,6 +36,7 @@ public class HornetsPlayer extends Player {
     new RobotBulletCollisionDetector(game, this, game.getRobot4SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
   }
 
+  @Override
   public void die() {
     if (!game.getExplosionSpritePool().exhausted()) {
       Sprite explosionSprite = game.getExplosionSpritePool().create();
