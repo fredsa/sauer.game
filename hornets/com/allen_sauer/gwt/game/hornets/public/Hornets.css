@@ -1,29 +1,67 @@
 @CHARSET "UTF-8";
 
+/* ------------ General CSS ------------ */
 XX .hornets * { /* DEBUGGING */
   border: 1px solid green;
   background-color: #ABCDEF;
 }
 
+/* ------------ HornetLabel ------------ */
 .hornets .hornet-label {
   font-family: monospace;
   font-weight: bold;
 }
 
 .hornets .hornet-label .hornet-label1 {
-  color: #0000AA;
-  font-size: 1.05em;
+  color: #0000AA; /* blue */
 }
 
 .hornets .hornet-label .hornet-label2 {
-  color: #8888DD;
-  margin: 1px;
-  font-size: 1em;
+  color: #8888DD; /* light blue */
 }
 
+/* ------------ GameTimer ------------ */
 .hornets .timerText {
   position: absolute;
   left: 0px;
   top: 40px;
   color: #CCCCCC;
 }
+
+/* ------------ HornetKeyboardKey ------------ */
+.hornets TABLE.hornet-keyboard-key {
+  border: 1px solid black;
+  padding: 3px 5px 5px 5px;
+  margin: auto;
+}
+
+.hornets TABLE.hornet-keyboard-key TD.hornet-keyboard-key-cell {
+  padding: 0.4em 0.5em;
+  border: 1px solid #550000;
+  font-size: 12pt;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+/* ------------ HornetGameOverPanel ------------ */
+.hornets TABLE.hornet-key-layout .hornet-label1 {
+  color: #AA0000; /* red */
+}
+
+.hornets TABLE.hornet-key-layout .hornet-label2 {
+  color: #DD8888; /* light red */
+}
+
+.hornets .hornet-game-over {
+  font-size: 2em;
+  border: 1px dashed green;
+}
+
+.hornets .hornet-game-over .hornet-label1 {
+  color: #00AA00; /* green */
+}
+
+.hornets .hornet-game-over .hornet-label2 {
+  color: #88DD88; /* light green */
+}
+/* ------------  ------------ */

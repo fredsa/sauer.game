@@ -3,26 +3,35 @@ package com.allen_sauer.gwt.game.hornets.client.ui;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HTML;
 
 public class HornetLabel extends Composite {
-  private Label label1 = new Label("", false);
-  private Label label2 = new Label("", false);
+  private HTML label1 = new HTML("", false);
+  private HTML label2 = new HTML("", false);
 
   public HornetLabel() {
-    AbsolutePanel container = new AbsolutePanel();
-    initWidget(container);
-    DOM.setStyleAttribute(container.getElement(), "overflow", "");
+    FlexTable flexTable = new FlexTable();
+    initWidget(flexTable);
     addStyleName("hornet-label");
+
+    AbsolutePanel absolutePanel = new AbsolutePanel();
+    flexTable.setWidget(0, 0, absolutePanel);
+    DOM.setStyleAttribute(getElement(), "margin", "auto");
 
     label1.addStyleName("hornet-label1");
     label2.addStyleName("hornet-label2");
-    container.add(label1, 0, 0);
-    container.add(label2, 0, 0);
+    absolutePanel.add(label1, 1, 1);
+    absolutePanel.add(label2);
   }
 
-  public void setText(String text) {
-    label1.setText(text);
-    label2.setText(text);
+  public HornetLabel(String text) {
+    this();
+    setHTML(text);
+  }
+
+  public void setHTML(String text) {
+    label1.setHTML(text);
+    label2.setHTML(text);
   }
 }
