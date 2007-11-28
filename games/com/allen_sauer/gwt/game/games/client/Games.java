@@ -6,7 +6,7 @@ import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 
 import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
-import com.allen_sauer.gwt.game.hornets.client.HornetsGame;
+import com.allen_sauer.gwt.game.hornets.client.HornetGame;
 import com.allen_sauer.gwt.game.space.client.SpaceGame;
 import com.allen_sauer.gwt.log.client.LogUncaughtExceptionHandler;
 
@@ -27,7 +27,7 @@ public class Games implements EntryPoint {
     //    Log.moveTo(0, 110);
     //    Log.setPixelSize(800, 300);
 
-    HornetsGame hornetsGames = new HornetsGame();
+    HornetGame hornetsGames = new HornetGame();
     DOMUtil.getRootPanel("hornets").add(hornetsGames);
 
     SpaceGame spaceGame = new SpaceGame();

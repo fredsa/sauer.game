@@ -27,7 +27,6 @@ IFRAME { /* TODO remove after GWT issue 1359 is fixed */
 .game .game-layer-inputPanel {
   filter: alpha(opacity = 0);
   opacity: 0;
-  -moz-opacity: 0;
   background-color: white;
 }
 
@@ -48,16 +47,7 @@ IFRAME { /* TODO remove after GWT issue 1359 is fixed */
   z-index: 1;
 }
 
-/*
-.transparent50 {
-  filter: alpha(opacity = 50);
-  opacity: 0.5;
-  -moz-opacity: 0.5;
-}
-*/
-
 .game .bounding-box {
-  xborder: 1px solid green;
   z-index: 42;
 }
 

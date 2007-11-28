@@ -5,7 +5,7 @@ import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.hornets.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.hornets.client.sprite.explosion.ExplosionSpritePool;
-import com.allen_sauer.gwt.game.hornets.client.sprite.player.HornetsPlayer;
+import com.allen_sauer.gwt.game.hornets.client.sprite.player.HornetPlayer;
 import com.allen_sauer.gwt.game.hornets.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.hornets.client.sprite.player.PlayerSpritePool;
 import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot1SpritePool;
@@ -15,7 +15,7 @@ import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot4SpritePool;
 import com.allen_sauer.gwt.game.hornets.client.ui.HornetLabel;
 import com.allen_sauer.gwt.voices.client.SoundController;
 
-public class HornetsGame extends Game {
+public class HornetGame extends Game {
   public static final int MAX_BULLETS = 5;
   public static final int MAX_ROBOTS = 2;
   public static final double ROBOT_APPEARANCE_PROBABILITY = .03;
@@ -24,7 +24,8 @@ public class HornetsGame extends Game {
   private static final int MAX_PLAYERS = 1;
   //  private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
-  private HornetsPlayer[] player;
+  private HornetGameOverPanel gameOverPanel = new HornetGameOverPanel(this);
+  private HornetPlayer[] player;
   private SpritePool playerSpritePool;
   private HornetLabel[] playerText;
   private SpritePool robot1SpritePool;
@@ -33,7 +34,7 @@ public class HornetsGame extends Game {
   private SpritePool robot4SpritePool;
   private SoundController soundController;
 
-  public HornetsGame() {
+  public HornetGame() {
     addStyleName("hornets");
   }
 
@@ -68,6 +69,23 @@ public class HornetsGame extends Game {
   }
 
   @Override
+  public State setState(State state) {
+    State oldState = super.setState(state);
+    if (oldState == State.STATE_GAME_OVER) {
+      gameOverPanel.removeFromParent();
+    }
+    if (state == State.STATE_GAME_OVER) {
+      playfield.add(gameOverPanel);
+    } else if (state == State.STATE_PLAYING) {
+      for (int i = 0; i < MAX_PLAYERS; i++) {
+        player[i].reset();
+      }
+      updatePlayerText();
+    }
+    return oldState;
+  }
+
+  @Override
   public void updatePlayerText() {
     int spacing = MAX_PLAYERS != 1 ? getClientWidth() / (MAX_PLAYERS - 1) : 0;
     int middle = getClientWidth() / 2;
@@ -95,23 +113,22 @@ public class HornetsGame extends Game {
 
     playerSpritePool = new PlayerSpritePool(this, MAX_PLAYERS);
 
-    player = new HornetsPlayer[MAX_PLAYERS];
+    player = new HornetPlayer[MAX_PLAYERS];
     for (int i = 0; i < MAX_PLAYERS; i++) {
       int playerNumber = i + 1;
-      player[i] = new HornetsPlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
+      player[i] = new HornetPlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
     }
+
     new PlayerRobotCollisionDetector(this, playerSpritePool, robot1SpritePool, explosionSpritePool);
     new PlayerRobotCollisionDetector(this, playerSpritePool, robot2SpritePool, explosionSpritePool);
     new PlayerRobotCollisionDetector(this, playerSpritePool, robot3SpritePool, explosionSpritePool);
     new PlayerRobotCollisionDetector(this, playerSpritePool, robot4SpritePool, explosionSpritePool);
 
     initPlayerText();
-
-    playfield.add(new HornetGameOverPanel());
   }
 
   private void initPlayerText() {
-    playerText = new HornetLabel[MAX_LIVES];
+    playerText = new HornetLabel[MAX_PLAYERS];
     for (int i = 0; i < MAX_PLAYERS; i++) {
       playerText[i] = new HornetLabel();
       playerText[i].addStyleName("playerText");

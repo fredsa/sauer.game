@@ -6,6 +6,7 @@ import com.google.gwt.user.client.ui.KeyboardListener;
 import com.google.gwt.user.client.ui.Widget;
 
 import com.allen_sauer.gwt.game.client.Game;
+import com.allen_sauer.gwt.game.client.Game.State;
 
 public class InputPanel extends FocusPanel {
   private boolean[] keyDown = new boolean[0xff];
@@ -13,13 +14,17 @@ public class InputPanel extends FocusPanel {
   public InputPanel(final Game game) {
     addFocusListener(new FocusListener() {
       public void onFocus(Widget sender) {
-        //        Log.debug(game + ": onfocus()");
-        game.setPaused(false);
+        //        Log.debug(game + ": onFocus()");
+        if (game.getState() == State.STATE_PAUSED) {
+          game.setState(State.STATE_PLAYING);
+        }
       }
 
       public void onLostFocus(Widget sender) {
-        //        Log.debug(game + ": onblur()");
-        game.setPaused(true);
+        //        Log.debug(game + ": onblur() ");
+        if (game.getState() == State.STATE_PLAYING) {
+          game.setState(State.STATE_PAUSED);
+        }
       }
     });
 
@@ -28,7 +33,11 @@ public class InputPanel extends FocusPanel {
         // Log.debug(keyCode + " down");
         keyDown[keyCode & 0xff] = true;
         if (keyCode == 'P') {
-          game.setPaused(!game.isPaused());
+          if (game.getState() == State.STATE_PAUSED) {
+            game.setState(State.STATE_PLAYING);
+          } else if (game.getState() == State.STATE_PLAYING) {
+            game.setState(State.STATE_PAUSED);
+          }
         }
       }
 

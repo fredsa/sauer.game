@@ -19,7 +19,7 @@ public class PlayerSprite extends Sprite {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(5, 15, 40, 46);
   }
 
-  private HornetsPlayer player;
+  private HornetPlayer player;
 
   public PlayerSprite(Game game) {
     super(game, BOUNDING_BOX_INFO);
@@ -30,11 +30,11 @@ public class PlayerSprite extends Sprite {
     addStyleName("player");
   }
 
-  public HornetsPlayer getPlayer() {
+  public HornetPlayer getPlayer() {
     return player;
   }
 
-  public void setPlayer(HornetsPlayer player) {
+  public void setPlayer(HornetPlayer player) {
     this.player = player;
   }
 }

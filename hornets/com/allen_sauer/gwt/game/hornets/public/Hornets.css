@@ -44,6 +44,11 @@ XX .hornets * { /* DEBUGGING */
 }
 
 /* ------------ HornetGameOverPanel ------------ */
+.hornets .HornetGameOverPanel {
+  text-align: center;
+  margin: 3em;
+}
+
 .hornets TABLE.hornet-key-layout .hornet-label1 {
   color: #AA0000; /* red */
 }

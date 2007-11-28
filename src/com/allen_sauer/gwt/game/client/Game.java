@@ -15,6 +15,10 @@ import com.allen_sauer.gwt.voices.client.SoundController;
 import java.util.ArrayList;
 
 public abstract class Game extends Composite {
+  public enum State {
+    STATE_GAME_OVER, STATE_PAUSED, STATE_PLAYING, STATE_UNKNOW,
+  }
+
   public static final boolean DEBUG = false;
 
   public final AbsolutePanel background = new AbsolutePanel();
@@ -24,13 +28,14 @@ public abstract class Game extends Composite {
 
   private FrameListenerCollection collisionFrameListeners = new FrameListenerCollection();
   private GameTimer engineTimer;
-  private FrameListenerCollection frameListenerCollection = new FrameListenerCollection();
+  private FrameListenerCollection gameOverFrameListenerCollection = new FrameListenerCollection();
   private AbsolutePanel mainPanel = new AbsolutePanel();
-  private boolean paused = true;
   private int playfieldHeight;
   private int playfieldWidth;
+  private FrameListenerCollection playingFrameListenerCollection = new FrameListenerCollection();
   private FrameListenerCollection spriteFrameListeners = new FrameListenerCollection();
   private ArrayList<SpritePool> spritePools = new ArrayList<SpritePool>();
+  private State state = State.STATE_UNKNOW;
 
   public Game() {
     initWidget(mainPanel);
@@ -59,13 +64,17 @@ public abstract class Game extends Composite {
   }
 
   public FrameListenerCollection getFrameListenerCollection() {
-    return frameListenerCollection;
+    return state == State.STATE_GAME_OVER ? gameOverFrameListenerCollection : playingFrameListenerCollection;
+  }
+
+  public FrameListenerCollection getGameOverFrameListenerCollection() {
+    return gameOverFrameListenerCollection;
   }
 
   public abstract SoundController getSoundController();
 
-  public boolean isPaused() {
-    return paused;
+  public State getState() {
+    return state;
   }
 
   public void setFocus(boolean focused) {
@@ -73,15 +82,22 @@ public abstract class Game extends Composite {
   }
 
   public void setFrameListenerCollection(FrameListenerCollection frameListenerCollection) {
-    this.frameListenerCollection = frameListenerCollection;
+    playingFrameListenerCollection = frameListenerCollection;
   }
 
-  public void setPaused(boolean paused) {
+  public State setState(State state) {
+    State oldState = this.state;
     //    Log.debug("setPaused(" + paused + ")");
-    if (this.paused != paused) {
-      this.paused = paused;
-      engineTimer.setPaused(paused);
+    if (this.state != state) {
+      this.state = state;
+      engineTimer.setPaused(state == State.STATE_PAUSED);
     }
+    return oldState;
+  }
+
+  @Override
+  public String toString() {
+    return getClass().getName();
   }
 
   public abstract void updatePlayerText();
@@ -104,6 +120,8 @@ public abstract class Game extends Composite {
 
     // add hooks, force page focus and trigger game start
     Page.forceStaticInit();
+
+    setState(State.STATE_GAME_OVER);
   }
 
   protected abstract void playerDied(Player player);

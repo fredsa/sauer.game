@@ -15,6 +15,7 @@ public final class GameTimer extends Timer {
   public GameTimer(Game game) {
     this.game = game;
     timerText.addStyleName("timerText");
+    scheduleRepeating(TIMER_INTERVAL_MILLIS);
   }
 
   public boolean isPaused() {

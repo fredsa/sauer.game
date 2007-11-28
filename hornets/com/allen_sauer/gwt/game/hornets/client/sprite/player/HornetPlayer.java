@@ -1,25 +1,28 @@
 package com.allen_sauer.gwt.game.hornets.client.sprite.player;
 
+import com.allen_sauer.gwt.game.client.Game.State;
 import com.allen_sauer.gwt.game.client.generator.KeyboardBulletGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
-import com.allen_sauer.gwt.game.hornets.client.HornetsGame;
+import com.allen_sauer.gwt.game.hornets.client.HornetGame;
 import com.allen_sauer.gwt.game.hornets.client.collision.RobotBulletCollisionDetector;
 import com.allen_sauer.gwt.game.hornets.client.sprite.bullet.BulletSpritePool;
 
-public class HornetsPlayer extends Player {
+public class HornetPlayer extends Player {
   private BulletSpritePool bulletSpritePool;
-  private final HornetsGame game;
+  private final HornetGame game;
+  private final int initialLives;
   private KeyboardBulletGenerator keyboardBulletGenerator;
   private int lives;
   private final int playerNumber;
   private final PlayerSprite playerSprite;
 
-  public HornetsPlayer(HornetsGame game, int playerNumber, PlayerSprite playerSprite, int initialLives) {
+  public HornetPlayer(HornetGame game, int playerNumber, PlayerSprite playerSprite, int initialLives) {
     super(game);
     this.game = game;
     this.playerNumber = playerNumber;
     this.playerSprite = playerSprite;
+    this.initialLives = initialLives;
 
     assert game != null;
     assert playerNumber > 0;
@@ -27,7 +30,6 @@ public class HornetsPlayer extends Player {
     assert initialLives > 0;
 
     playerSprite.setPlayer(this);
-    lives = initialLives;
     bulletSpritePool = new BulletSpritePool(game, playerSprite);
     keyboardBulletGenerator = new KeyboardBulletGenerator(game, bulletSpritePool);
     new RobotBulletCollisionDetector(game, this, game.getRobot1SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
@@ -45,10 +47,10 @@ public class HornetsPlayer extends Player {
     if (--lives == 0) {
       playerSprite.markForRemoval();
       keyboardBulletGenerator.markForRemoval();
+      game.setState(State.STATE_GAME_OVER);
     } else {
       playerSprite.doFirstFrame();
     }
-
     game.playerDied(this);
   }
 
@@ -58,5 +60,9 @@ public class HornetsPlayer extends Player {
 
   public int getPlayerNumber() {
     return playerNumber;
+  }
+
+  public void reset() {
+    lives = initialLives;
   }
 }
