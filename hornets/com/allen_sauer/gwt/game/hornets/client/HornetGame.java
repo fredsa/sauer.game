@@ -6,7 +6,6 @@ import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.hornets.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.hornets.client.sprite.explosion.ExplosionSpritePool;
 import com.allen_sauer.gwt.game.hornets.client.sprite.player.HornetPlayer;
-import com.allen_sauer.gwt.game.hornets.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.hornets.client.sprite.player.PlayerSpritePool;
 import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot1SpritePool;
 import com.allen_sauer.gwt.game.hornets.client.sprite.robot.Robot2SpritePool;
@@ -20,13 +19,13 @@ public class HornetGame extends Game {
   public static final int MAX_ROBOTS = 2;
   public static final double ROBOT_APPEARANCE_PROBABILITY = .03;
 
-  private static final int MAX_LIVES = 5;
+  private static final int MAX_LIVES = 3;
   private static final int MAX_PLAYERS = 1;
   //  private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
   private HornetGameOverPanel gameOverPanel = new HornetGameOverPanel(this);
   private HornetPlayer[] player;
-  private SpritePool playerSpritePool;
+  private PlayerSpritePool playerSpritePool;
   private HornetLabel[] playerText;
   private SpritePool robot1SpritePool;
   private SpritePool robot2SpritePool;
@@ -76,7 +75,7 @@ public class HornetGame extends Game {
     }
     if (state == State.STATE_GAME_OVER) {
       playfield.add(gameOverPanel);
-    } else if (state == State.STATE_PLAYING) {
+    } else if (oldState == State.STATE_GAME_OVER && state == State.STATE_PLAYING) {
       for (int i = 0; i < MAX_PLAYERS; i++) {
         player[i].reset();
       }
@@ -116,7 +115,7 @@ public class HornetGame extends Game {
     player = new HornetPlayer[MAX_PLAYERS];
     for (int i = 0; i < MAX_PLAYERS; i++) {
       int playerNumber = i + 1;
-      player[i] = new HornetPlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
+      player[i] = new HornetPlayer(this, playerNumber, playerSpritePool, MAX_LIVES);
     }
 
     new PlayerRobotCollisionDetector(this, playerSpritePool, robot1SpritePool, explosionSpritePool);

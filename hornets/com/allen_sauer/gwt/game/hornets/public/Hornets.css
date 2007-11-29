@@ -49,6 +49,10 @@ XX .hornets * { /* DEBUGGING */
   margin: 3em;
 }
 
+.hornets .hornet-key-layout {
+  margin: auto;
+}
+
 .hornets TABLE.hornet-key-layout .hornet-label1 {
   color: #AA0000; /* red */
 }

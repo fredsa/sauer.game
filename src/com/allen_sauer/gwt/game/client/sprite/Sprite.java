@@ -1,5 +1,6 @@
 package com.allen_sauer.gwt.game.client.sprite;
 
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
@@ -107,6 +108,10 @@ public class Sprite extends Composite implements FrameListener {
     image.setPixelSize(frameInfo.frameWidth * frameInfo.horizontalFrames, frameInfo.frameHeight * frameInfo.verticalFrames);
     setPixelSize(frameInfo.frameWidth, frameInfo.frameHeight);
     setPixelSize(frameInfo.frameWidth, frameInfo.frameHeight);
+  }
+
+  public void setHidden(boolean hidden) {
+    DOM.setStyleAttribute(getElement(), "visibility", hidden ? "hidden" : "");
   }
 
   public void setImagePosition(int x, int y) {

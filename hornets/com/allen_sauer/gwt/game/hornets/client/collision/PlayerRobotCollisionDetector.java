@@ -19,13 +19,13 @@ public class PlayerRobotCollisionDetector extends CollisionDetector {
 
   @Override
   protected void handleCollision(Sprite playerSprite, Sprite robotSprite) {
-    robotSprite.markForRemoval();
-    if (!explosionSpritePool.exhausted()) {
-      Sprite explosionSprite = explosionSpritePool.create();
-      explosionSprite.setPosition(robotSprite.getX(), robotSprite.getY());
-    }
-
     Player player = ((PlayerSprite) playerSprite).getPlayer();
-    player.die();
+    if (player.hit()) {
+      robotSprite.markForRemoval();
+      if (!explosionSpritePool.exhausted()) {
+        Sprite explosionSprite = explosionSpritePool.create();
+        explosionSprite.setPosition(robotSprite.getX(), robotSprite.getY());
+      }
+    }
   }
 }

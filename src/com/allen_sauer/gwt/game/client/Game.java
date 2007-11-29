@@ -63,12 +63,12 @@ public abstract class Game extends Composite {
     return playfieldWidth;
   }
 
-  public FrameListenerCollection getFrameListenerCollection() {
-    return state == State.STATE_GAME_OVER ? gameOverFrameListenerCollection : playingFrameListenerCollection;
-  }
-
   public FrameListenerCollection getGameOverFrameListenerCollection() {
     return gameOverFrameListenerCollection;
+  }
+
+  public FrameListenerCollection getPlayingFrameListenerCollection() {
+    return playingFrameListenerCollection;
   }
 
   public abstract SoundController getSoundController();
@@ -106,8 +106,8 @@ public abstract class Game extends Composite {
   protected void onLoad() {
     super.onLoad();
 
-    getFrameListenerCollection().addFrameListener(spriteFrameListeners);
-    getFrameListenerCollection().addFrameListener(collisionFrameListeners);
+    getPlayingFrameListenerCollection().addFrameListener(spriteFrameListeners);
+    getPlayingFrameListenerCollection().addFrameListener(collisionFrameListeners);
 
     Window.addWindowResizeListener(new WindowResizeListener() {
       public void onWindowResized(int width, int height) {
@@ -125,6 +125,10 @@ public abstract class Game extends Composite {
   }
 
   protected abstract void playerDied(Player player);
+
+  FrameListenerCollection getCurrentStateFrameListenerCollection() {
+    return state == State.STATE_GAME_OVER ? gameOverFrameListenerCollection : playingFrameListenerCollection;
+  }
 
   /**
    * Add layers from the bottom up.

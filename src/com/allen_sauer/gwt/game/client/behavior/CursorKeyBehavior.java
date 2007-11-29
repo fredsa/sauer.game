@@ -5,8 +5,8 @@ import com.allen_sauer.gwt.game.client.ui.util.Page;
 
 public class CursorKeyBehavior extends Behavior {
   private final Sprite sprite;
-  private int xDelta = 7;
-  private int yDelta = 7;
+  private int xDelta = 4;
+  private int yDelta = 4;
 
   public CursorKeyBehavior(Sprite sprite) {
     super(sprite);

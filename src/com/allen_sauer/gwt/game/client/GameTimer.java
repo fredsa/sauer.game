@@ -38,7 +38,7 @@ public final class GameTimer extends Timer {
   @Override
   public void run() {
     measure();
-    game.getFrameListenerCollection().doFrame();
+    game.getCurrentStateFrameListenerCollection().doFrame();
   }
 
   @Override

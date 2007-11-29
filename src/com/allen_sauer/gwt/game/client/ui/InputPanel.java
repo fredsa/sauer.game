@@ -8,6 +8,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.Game.State;
 
+import java.util.Arrays;
+
 public class InputPanel extends FocusPanel {
   private boolean[] keyDown = new boolean[0xff];
 
@@ -25,6 +27,7 @@ public class InputPanel extends FocusPanel {
         if (game.getState() == State.STATE_PLAYING) {
           game.setState(State.STATE_PAUSED);
         }
+        Arrays.fill(keyDown, false);
       }
     });
 
