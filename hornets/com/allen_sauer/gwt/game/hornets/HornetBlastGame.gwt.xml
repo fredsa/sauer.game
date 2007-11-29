@@ -7,6 +7,6 @@
   <inherits name='com.allen_sauer.gwt.game.Game'/>
 
   <!-- Include style sheet                                  -->
-  <stylesheet src='Hornets.css'/>
+  <stylesheet src='HornetBlast.css'/>
 
 </module>

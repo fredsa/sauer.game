@@ -8,7 +8,7 @@ import com.google.gwt.user.client.DeferredCommand;
 import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 import com.allen_sauer.gwt.log.client.LogUncaughtExceptionHandler;
 
-public class Hornets implements EntryPoint {
+public class HornetBlast implements EntryPoint {
   public void onModuleLoad() {
     // set uncaught exception handler
     GWT.setUncaughtExceptionHandler(new LogUncaughtExceptionHandler());
