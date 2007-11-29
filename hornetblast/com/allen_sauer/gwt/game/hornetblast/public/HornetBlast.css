@@ -46,7 +46,7 @@ XX .hornetblast * { /* DEBUGGING */
 /* ------------ HornetGameOverPanel ------------ */
 .hornetblast .HornetGameOverPanel {
   text-align: center;
-  margin: 3em;
+  margin: 5em;
 }
 
 .hornetblast .hornet-key-layout {

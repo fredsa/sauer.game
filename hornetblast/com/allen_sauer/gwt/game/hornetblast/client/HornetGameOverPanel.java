@@ -23,7 +23,12 @@ public class HornetGameOverPanel extends Composite implements FrameListener {
     HornetLabel gameOver = new HornetLabel("GAME OVER");
     gameOver.addStyleName("hornet-game-over");
     flowPanel.add(gameOver);
+
     flowPanel.add(new HTML("&nbsp;"));
+
+    flowPanel.add(new HornetLabel("Pencil Artwork by Archer Sauer (age 5)"));
+    flowPanel.add(new HornetLabel("Explosion Annimation by Boris, author of JGame"));
+    flowPanel.add(new HornetLabel("Sound effects from The Freesound Project"));
 
     FlexTable flexTable = new FlexTable();
     flexTable.addStyleName("hornet-key-layout");
