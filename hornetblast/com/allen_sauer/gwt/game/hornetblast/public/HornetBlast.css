@@ -1,27 +1,27 @@
 @CHARSET "UTF-8";
 
 /* ------------ General CSS ------------ */
-XX .hornets * { /* DEBUGGING */
+XX .hornetblast * { /* DEBUGGING */
   border: 1px solid green;
   background-color: #ABCDEF;
 }
 
 /* ------------ HornetLabel ------------ */
-.hornets .hornet-label {
+.hornetblast .hornet-label {
   font-family: monospace;
   font-weight: bold;
 }
 
-.hornets .hornet-label .hornet-label1 {
+.hornetblast .hornet-label .hornet-label1 {
   color: #0000AA; /* blue */
 }
 
-.hornets .hornet-label .hornet-label2 {
+.hornetblast .hornet-label .hornet-label2 {
   color: #8888DD; /* light blue */
 }
 
 /* ------------ GameTimer ------------ */
-.hornets .timerText {
+.hornetblast .timerText {
   position: absolute;
   left: 0px;
   top: 40px;
@@ -29,13 +29,13 @@ XX .hornets * { /* DEBUGGING */
 }
 
 /* ------------ HornetKeyboardKey ------------ */
-.hornets TABLE.hornet-keyboard-key {
+.hornetblast TABLE.hornet-keyboard-key {
   border: 1px solid black;
   padding: 3px 5px 5px 5px;
   margin: auto;
 }
 
-.hornets TABLE.hornet-keyboard-key TD.hornet-keyboard-key-cell {
+.hornetblast TABLE.hornet-keyboard-key TD.hornet-keyboard-key-cell {
   padding: 0.4em 0.5em;
   border: 1px solid #550000;
   font-size: 12pt;
@@ -44,33 +44,33 @@ XX .hornets * { /* DEBUGGING */
 }
 
 /* ------------ HornetGameOverPanel ------------ */
-.hornets .HornetGameOverPanel {
+.hornetblast .HornetGameOverPanel {
   text-align: center;
   margin: 3em;
 }
 
-.hornets .hornet-key-layout {
+.hornetblast .hornet-key-layout {
   margin: auto;
 }
 
-.hornets TABLE.hornet-key-layout .hornet-label1 {
+.hornetblast TABLE.hornet-key-layout .hornet-label1 {
   color: #AA0000; /* red */
 }
 
-.hornets TABLE.hornet-key-layout .hornet-label2 {
+.hornetblast TABLE.hornet-key-layout .hornet-label2 {
   color: #DD8888; /* light red */
 }
 
-.hornets .hornet-game-over {
+.hornetblast .hornet-game-over {
   font-size: 2em;
   border: 1px dashed green;
 }
 
-.hornets .hornet-game-over .hornet-label1 {
+.hornetblast .hornet-game-over .hornet-label1 {
   color: #00AA00; /* green */
 }
 
-.hornets .hornet-game-over .hornet-label2 {
+.hornetblast .hornet-game-over .hornet-label2 {
   color: #88DD88; /* light green */
 }
 /* ------------  ------------ */

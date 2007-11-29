@@ -34,7 +34,7 @@ public class HornetGame extends Game {
   private SoundController soundController;
 
   public HornetGame() {
-    addStyleName("hornets");
+    addStyleName("hornetblast");
   }
 
   public ExplosionSpritePool getExplosionSpritePool() {
