@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.HTML;
 
 public final class GameTimer extends Timer {
   private static final int FRAMES_TO_AVERAGE = 10;
-  private static final int TIMER_INTERVAL_MILLIS = 100;
+  private static final int TIMER_INTERVAL_MILLIS = 1;
   private int count = 0;
   private final Game game;
   private long lastTimestamp;
