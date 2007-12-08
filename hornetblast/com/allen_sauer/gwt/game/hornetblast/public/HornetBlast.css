@@ -12,11 +12,13 @@ XX BODY { /* DEBUGGING */
   font-weight: bold;
 }
 
-.hornetblast .hornet-label .hornet-label1 {
+.hornetblast .hornet-label .hornet-label1 ,
+.hornetblast .hornet-label .hornet-label1 A {
   color: #0000AA; /* blue */
 }
 
-.hornetblast .hornet-label .hornet-label2 {
+.hornetblast .hornet-label .hornet-label2 ,
+.hornetblast .hornet-label .hornet-label2 A {
   color: #8888DD; /* light blue */
 }
 
