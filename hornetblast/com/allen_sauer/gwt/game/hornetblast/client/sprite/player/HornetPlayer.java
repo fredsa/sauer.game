@@ -60,12 +60,6 @@ public class HornetPlayer extends Player {
     return true;
   }
 
-  @Override
-  public void doLastFrame() {
-    // TODO Auto-generated method stub
-    super.doLastFrame();
-  }
-
   public int getLives() {
     return lives;
   }

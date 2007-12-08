@@ -43,14 +43,22 @@ XX .hornetblast * { /* DEBUGGING */
   font-family: monospace;
 }
 
-/* ------------ HornetGameOverPanel ------------ */
-.hornetblast .HornetGameOverPanel {
-  text-align: center;
-  margin: 5em;
+/* ------------ HornetOverlayPanel ------------ */
+.hornetblast .HornetOverlayPanel {
+  margin: 3em;
 }
 
 .hornetblast .hornet-key-layout {
+  text-align: center;
   margin: auto;
+}
+
+.hornetblast .hornet-label {
+  text-align: left !important;
+}
+
+.hornetblast TABLE.hornet-key-layout .hornet-keyboard-key {
+  background-color: #DDDDDD; /* light gray */
 }
 
 .hornetblast TABLE.hornet-key-layout .hornet-label1 {
@@ -61,16 +69,29 @@ XX .hornetblast * { /* DEBUGGING */
   color: #DD8888; /* light red */
 }
 
-.hornetblast .hornet-game-over {
+.hornetblast .hornet-game-state-label {
   font-size: 2em;
-  border: 1px dashed green;
+  border: 2px dashed green;
 }
 
-.hornetblast .hornet-game-over .hornet-label1 {
+.hornetblast .hornet-game-state-label .hornet-label1 {
   color: #00AA00; /* green */
 }
 
-.hornetblast .hornet-game-over .hornet-label2 {
+.hornetblast .hornet-game-state-label .hornet-label2 {
   color: #88DD88; /* light green */
 }
+
+.hornetblast .game-title {
+  font-size: 4em;
+}
+
+.hornetblast .game-title .hornet-label1 {
+  color: #FFCC00; /* gold */
+}
+
+.hornetblast .game-title .hornet-label2 {
+  color: #C9960C; /* gold */
+}
+
 /* ------------  ------------ */

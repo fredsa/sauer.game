@@ -23,6 +23,7 @@ public class PlayerSprite extends Sprite {
 
   public PlayerSprite(Game game) {
     super(game, BOUNDING_BOX_INFO);
+    addStyleName("player-sprite");
     setFrameInfo(new LoopFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT,
         FRAME_ANIMATE_INTERVAL));
 

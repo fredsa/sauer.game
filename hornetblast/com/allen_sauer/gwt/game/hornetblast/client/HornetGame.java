@@ -23,7 +23,9 @@ public class HornetGame extends Game {
   private static final int MAX_PLAYERS = 1;
   //  private Image backgroundImage;
   private ExplosionSpritePool explosionSpritePool;
+  private boolean gameInProgress = false;
   private HornetGameOverPanel gameOverPanel = new HornetGameOverPanel(this);
+  private HornetPausedPanel pausedPanel = new HornetPausedPanel(this);
   private HornetPlayer[] player;
   private PlayerSpritePool playerSpritePool;
   private HornetLabel[] playerText;
@@ -32,6 +34,8 @@ public class HornetGame extends Game {
   private SpritePool robot3SpritePool;
   private SpritePool robot4SpritePool;
   private SoundController soundController;
+
+  private HornetSuspendedPanel suspendedPanel = new HornetSuspendedPanel(this);
 
   public HornetGame() {
     addStyleName("hornetblast");
@@ -69,17 +73,32 @@ public class HornetGame extends Game {
 
   @Override
   public State setState(State state) {
+    // TODO panels should listen for state changes instead of this mess 
+
+    // cleanup old state
     State oldState = super.setState(state);
     if (oldState == State.STATE_GAME_OVER) {
       gameOverPanel.removeFromParent();
+    } else if (oldState == State.STATE_PAUSED_BY_USER) {
+      pausedPanel.removeFromParent();
+    } else if (oldState == State.STATE_SUSPENDED) {
+      suspendedPanel.removeFromParent();
     }
+
+    // setup new state
     if (state == State.STATE_GAME_OVER) {
       playfield.add(gameOverPanel);
-    } else if (oldState == State.STATE_GAME_OVER && state == State.STATE_PLAYING) {
+      gameInProgress = false;
+    } else if (state == State.STATE_PAUSED_BY_USER) {
+      playfield.add(pausedPanel);
+    } else if (state == State.STATE_SUSPENDED) {
+      playfield.add(suspendedPanel);
+    } else if (state == State.STATE_PLAYING && !gameInProgress) {
       for (int i = 0; i < MAX_PLAYERS; i++) {
         player[i].reset();
       }
       updatePlayerText();
+      gameInProgress = true;
     }
     return oldState;
   }
@@ -124,6 +143,8 @@ public class HornetGame extends Game {
     new PlayerRobotCollisionDetector(this, playerSpritePool, robot4SpritePool, explosionSpritePool);
 
     initPlayerText();
+
+    setState(State.STATE_PAUSED_BY_USER);
   }
 
   private void initPlayerText() {

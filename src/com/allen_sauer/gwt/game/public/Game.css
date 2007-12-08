@@ -19,32 +19,35 @@ HTML,BODY {
   padding: 0px;
 }
 
-IFRAME { /* TODO remove after GWT issue 1359 is fixed */
-  display: none;
-}
-
-/* IE prevent clicks from going right 'through' the inputPanel */
 .game .game-layer-inputPanel {
-  filter: alpha(opacity = 0);
   opacity: 0;
+  filter: alpha(opacity = 0);
   background-color: white;
-}
-
-.game .game-layer-inputPanel {
-  z-index: 20;
   cursor: pointer;
 }
 
-.game .game-layer-overlay {
+.game .explosion-sprite {
   z-index: 3;
 }
 
-.game .game-layer-playfield {
+.game .player-sprite {
   z-index: 2;
 }
 
-.game .game-layer-background {
+.game .bullet-sprite {
   z-index: 1;
+}
+
+.game .game-layer-overlay {
+  
+}
+
+.game .game-layer-playfield {
+  
+}
+
+.game .game-layer-background {
+  
 }
 
 .game .bounding-box {
@@ -53,4 +56,8 @@ IFRAME { /* TODO remove after GWT issue 1359 is fixed */
 
 .game .playerText {
   color: red;
+}
+
+.game .hornet-label {
+  position: inherit;
 }

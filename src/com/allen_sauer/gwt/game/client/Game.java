@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public abstract class Game extends Composite {
   public enum State {
-    STATE_GAME_OVER, STATE_PAUSED, STATE_PLAYING, STATE_UNKNOW,
+    STATE_GAME_OVER, STATE_PAUSED_BY_USER, STATE_PLAYING, STATE_SUSPENDED, STATE_UNKNOW,
   }
 
   public static final boolean DEBUG = false;
@@ -90,7 +90,7 @@ public abstract class Game extends Composite {
     //    Log.debug("setPaused(" + paused + ")");
     if (this.state != state) {
       this.state = state;
-      engineTimer.setPaused(state == State.STATE_PAUSED);
+      engineTimer.setPaused(state == State.STATE_PAUSED_BY_USER || state == State.STATE_SUSPENDED);
     }
     return oldState;
   }

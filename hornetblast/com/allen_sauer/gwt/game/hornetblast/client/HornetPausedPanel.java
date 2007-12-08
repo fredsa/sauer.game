@@ -6,22 +6,22 @@ import com.allen_sauer.gwt.game.client.FrameListener;
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.hornetblast.client.ui.HornetLabel;
 
-public class HornetGameOverPanel extends HornetOverlayPanel implements FrameListener {
+public class HornetPausedPanel extends HornetOverlayPanel implements FrameListener {
   private final Game game;
 
-  public HornetGameOverPanel(Game game) {
+  public HornetPausedPanel(Game game) {
     this.game = game;
 
-    HornetLabel gameOver = new HornetLabel("GAME OVER");
-    gameOver.addStyleName("hornet-game-state-label");
-    add(gameOver);
+    HornetLabel pausedLabel = new HornetLabel("GAME PAUSED");
+    pausedLabel.addStyleName("hornet-game-state-label");
+    add(pausedLabel);
 
     add(new HTML("&nbsp;"));
 
-    add(new HornetLabel("Hornet Blast by Fred Sauer"));
-    add(new HornetLabel("Pencil Artwork by Archer Sauer (age 5)"));
-    add(new HornetLabel("Explosion Annimation by Boris, author of JGame"));
-    add(new HornetLabel("Sound effects from The Freesound Project"));
+    add(new HornetLabel("Press the [SPACE BAR] to start"));
+
+    add(new HTML("&nbsp;"));
+    add(new HTML("&nbsp;"));
 
     add(newKeyLayout());
 

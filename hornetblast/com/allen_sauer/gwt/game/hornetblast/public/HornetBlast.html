@@ -8,12 +8,21 @@
 	<body>
     <iframe src="javascript:''" id="__gwt_historyFrame" style="position:absolute;width:0;height:0;border:none"></iframe>
 
+    <!-- Workaround missing transparency in earlier IE, e.g. IE 6.00.2800.1106 on WinME -->
+    <!--[if IE 6]>
+    <style>
+      .game .game-layer-inputPanel {
+        background-color: transparent !important;
+      }
+    </style>
+    <![endif]-->
+
     <div id="game" style="width: 100%; height: 100%;">
       <table style="width: 100%; height: 100%;">
         <tr>
           <td style="text-align: center;">
             <img src='images/preview61_cycle_eight_16-black-on-white.gif' class='demo-loading'>
-            Loading game...
+            Loading Hornet Blast...
           </td>
         </tr>
       </table>

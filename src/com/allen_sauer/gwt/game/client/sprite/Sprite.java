@@ -36,6 +36,7 @@ public class Sprite extends Composite implements FrameListener {
       boundingBoxPanel.addStyleName("bounding-box");
       boundingBoxPanel.setPixelSize(boundingBoxInfo.width - 2, boundingBoxInfo.height - 2);
       panel.add(boundingBoxPanel, boundingBoxInfo.offsetLeft, boundingBoxInfo.offsetTop);
+      DOM.setStyleAttribute(boundingBoxPanel.getElement(), "border", "1px solid green");
     }
 
     panel.addStyleName("sprite");

@@ -24,6 +24,7 @@ public class BulletSprite extends Sprite {
 
   public BulletSprite(Game game, Sprite playerSprite) {
     super(game, BOUNDING_BOX_INFO);
+    addStyleName("bullet-sprite");
     setFrameInfo(new BounceFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT,
         FRAME_ANIMATE_INTERVAL));
     setBehavior(new VerticalBulletBehavior(this, playerSprite));
