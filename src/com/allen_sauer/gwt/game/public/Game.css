@@ -21,8 +21,12 @@ HTML,BODY {
 
 .game .game-layer-inputPanel {
   opacity: 0;
-  filter: alpha(opacity = 0);
+  filter: alpha(opacity =   0);
   background-color: white;
+}
+
+.game .game-layer-overlay {
+  z-index: 4;
 }
 
 .game .explosion-sprite {
@@ -35,10 +39,6 @@ HTML,BODY {
 
 .game .bullet-sprite {
   z-index: 1;
-}
-
-.game .game-layer-overlay {
-  
 }
 
 .game .game-layer-playfield {
