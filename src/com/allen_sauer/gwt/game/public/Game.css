@@ -23,7 +23,6 @@ HTML,BODY {
   opacity: 0;
   filter: alpha(opacity = 0);
   background-color: white;
-  cursor: pointer;
 }
 
 .game .explosion-sprite {
