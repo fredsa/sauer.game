@@ -14,7 +14,7 @@ public class BulletSprite extends Sprite {
   private static final int FRAME_WIDTH = 25;
   private static final int FRAMES_HORIZONTAL = 4;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = "images/archer bullet 25x25 4x1frames.png";
+  private static final String SPRITE_URL = "images/archer bullet 25x25 4x1frames.gif";
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);

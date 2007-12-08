@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Widget;
 public class HornetKeyboardKey extends Composite {
   public static Widget newArrowKeys() {
     VerticalPanel verticalPanel = new VerticalPanel();
+    verticalPanel.addStyleName("hornet-key-layout");
     verticalPanel.add(newUp());
     HorizontalPanel horizontalPanel = new HorizontalPanel();
     horizontalPanel.setSpacing(3);

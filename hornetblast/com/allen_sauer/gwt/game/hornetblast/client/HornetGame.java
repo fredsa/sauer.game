@@ -1,5 +1,7 @@
 package com.allen_sauer.gwt.game.hornetblast.client;
 
+import com.google.gwt.user.client.ui.KeyboardListener;
+
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
@@ -144,6 +146,13 @@ public class HornetGame extends Game {
 
     initPlayerText();
 
+    input.registerKey(' ');
+    input.registerKey('P');
+    input.registerKey(KeyboardListener.KEY_UP);
+    input.registerKey(KeyboardListener.KEY_LEFT);
+    input.registerKey(KeyboardListener.KEY_RIGHT);
+    input.registerKey(KeyboardListener.KEY_DOWN);
+    
     setState(State.STATE_PAUSED_BY_USER);
   }
 

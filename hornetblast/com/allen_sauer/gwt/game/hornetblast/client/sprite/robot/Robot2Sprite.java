@@ -15,7 +15,7 @@ public class Robot2Sprite extends Sprite {
   private static final int FRAME_WIDTH = 30;
   private static final int FRAMES_HORIZONTAL = 2;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = "images/archer hornet left-right 30x93 2x1frames.png";
+  private static final String SPRITE_URL = "images/archer hornet left-right 30x93 2x1frames.gif";
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);

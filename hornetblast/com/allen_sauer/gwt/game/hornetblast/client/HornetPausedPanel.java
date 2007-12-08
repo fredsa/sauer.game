@@ -21,10 +21,13 @@ public class HornetPausedPanel extends HornetOverlayPanel implements FrameListen
     add(new HornetLabel("Press the [SPACE BAR] to start"));
 
     add(new HTML("&nbsp;"));
-    add(new HTML("&nbsp;"));
 
     add(newKeyLayout());
 
+    add(new HTML("&nbsp;"));
+
+    add(newCreditPanel());
+    
     game.getGameOverFrameListenerCollection().addFrameListener(this);
   }
 

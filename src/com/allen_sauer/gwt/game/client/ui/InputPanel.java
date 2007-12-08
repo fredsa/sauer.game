@@ -14,6 +14,7 @@ import java.util.Arrays;
 
 public class InputPanel extends FocusPanel {
   private boolean[] keyDown = new boolean[0xff];
+  private boolean[] registeredKeys = new boolean[0xff];
 
   public InputPanel(final Game game) {
     addFocusListener(new FocusListener() {
@@ -35,20 +36,28 @@ public class InputPanel extends FocusPanel {
 
     DOM.addEventPreview(new EventPreview() {
       public boolean onEventPreview(Event event) {
+        int keyCode;
         switch (DOM.eventGetType(event)) {
           case Event.ONKEYDOWN:
-            int keyCode = DOM.eventGetKeyCode(event);
-            if (keyCode == ' ' && game.getState() == State.STATE_PAUSED_BY_USER) {
-              game.setState(State.STATE_PLAYING);
+            keyCode = DOM.eventGetKeyCode(event);
+            if (registeredKeys[keyCode]) {
+              if (keyCode == ' ' && game.getState() == State.STATE_PAUSED_BY_USER) {
+                game.setState(State.STATE_PLAYING);
+              }
+              if (keyCode == 'P' && game.getState() == State.STATE_PLAYING) {
+                game.setState(State.STATE_PAUSED_BY_USER);
+              }
+              keyDown[keyCode & 0xff] = true;
+              return false;
             }
-            if (keyCode == 'P' && game.getState() == State.STATE_PLAYING) {
-              game.setState(State.STATE_PAUSED_BY_USER);
-            }
-            keyDown[keyCode & 0xff] = true;
-            return false;
+            break;
           case Event.ONKEYUP:
-            keyDown[DOM.eventGetKeyCode(event) & 0xff] = false;
-            return false;
+            keyCode = DOM.eventGetKeyCode(event);
+            if (registeredKeys[keyCode]) {
+              keyDown[keyCode & 0xff] = false;
+              return false;
+            }
+            break;
         }
         return true;
       }
@@ -57,5 +66,9 @@ public class InputPanel extends FocusPanel {
 
   public boolean isKeyDown(int keyCode) {
     return keyDown[keyCode & 0xff];
+  }
+
+  public void registerKey(int keyCode) {
+    registeredKeys[keyCode & 0xff] = true;
   }
 }

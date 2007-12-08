@@ -13,7 +13,7 @@ public class PlayerSprite extends Sprite {
   private static final int FRAME_WIDTH = 60;
   private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = "images/archer xbi 60x76.png";
+  private static final String SPRITE_URL = "images/archer xbi 60x76.gif";
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(5, 15, 40, 46);

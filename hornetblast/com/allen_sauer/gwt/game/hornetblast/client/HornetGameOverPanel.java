@@ -18,10 +18,7 @@ public class HornetGameOverPanel extends HornetOverlayPanel implements FrameList
 
     add(new HTML("&nbsp;"));
 
-    add(new HornetLabel("Hornet Blast by Fred Sauer"));
-    add(new HornetLabel("Pencil Artwork by Archer Sauer (age 5)"));
-    add(new HornetLabel("Explosion Annimation by Boris, author of JGame"));
-    add(new HornetLabel("Sound effects from The Freesound Project"));
+    add(newCreditPanel());
 
     add(newKeyLayout());
 

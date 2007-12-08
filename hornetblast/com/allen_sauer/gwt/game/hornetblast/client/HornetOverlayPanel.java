@@ -25,6 +25,16 @@ public abstract class HornetOverlayPanel extends Composite {
     flowPanel.add(widget);
   }
 
+  protected Widget newCreditPanel() {
+    FlowPanel panel = new FlowPanel();
+    panel.add(new HornetLabel("Game by Fred Sauer"));
+    panel.add(new HornetLabel("Pencil Artwork by Archer Sauer (age 5)"));
+    panel.add(new HornetLabel("Explosion Annimation by Boris, author of JGame"));
+    panel.add(new HornetLabel("Sound effects courtesy The Freesound Project"));
+    panel.add(new HornetLabel("Developed with gwt-voices and Google Web Toolkit (GWT)"));
+    return panel;
+  }
+
   protected Widget newKeyLayout() {
     FlexTable flexTable = new FlexTable();
     flexTable.addStyleName("hornet-key-layout");
