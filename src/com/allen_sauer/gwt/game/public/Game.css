@@ -21,7 +21,7 @@ HTML,BODY {
 
 .game .game-layer-inputPanel {
   opacity: 0;
-  filter: alpha(opacity =   0);
+  filter: alpha(opacity = 0);
   background-color: white;
 }
 
@@ -42,7 +42,7 @@ HTML,BODY {
 }
 
 .game .game-layer-playfield {
-  
+  z-index: 1;
 }
 
 .game .game-layer-background {

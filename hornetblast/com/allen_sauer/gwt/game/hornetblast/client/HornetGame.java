@@ -89,12 +89,12 @@ public class HornetGame extends Game {
 
     // setup new state
     if (state == State.STATE_GAME_OVER) {
-      playfield.add(gameOverPanel);
+      overlay.add(gameOverPanel);
       gameInProgress = false;
     } else if (state == State.STATE_PAUSED_BY_USER) {
-      playfield.add(pausedPanel);
+      overlay.add(pausedPanel);
     } else if (state == State.STATE_SUSPENDED) {
-      playfield.add(suspendedPanel);
+      overlay.add(suspendedPanel);
     } else if (state == State.STATE_PLAYING && !gameInProgress) {
       for (int i = 0; i < MAX_PLAYERS; i++) {
         player[i].reset();
