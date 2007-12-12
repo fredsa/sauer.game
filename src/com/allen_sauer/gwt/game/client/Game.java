@@ -4,6 +4,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.WindowResizeListener;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FocusPanel;
 
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
@@ -23,7 +24,11 @@ public abstract class Game extends Composite {
 
   public final AbsolutePanel background = new AbsolutePanel();
   public final InputPanel input = new InputPanel(this);
-  public final AbsolutePanel overlay = new AbsolutePanel();
+
+  /**
+   * Must be a FocusPanel for proper event capture in IE.
+   */
+  public final FocusPanel overlay = new FocusPanel();
   public final Playfield playfield = new Playfield(this);
 
   private FrameListenerCollection collisionFrameListeners = new FrameListenerCollection();

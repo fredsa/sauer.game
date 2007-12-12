@@ -15,13 +15,22 @@
  */
 package com.allen_sauer.gwt.game.client.util.impl;
 
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Event;
+
+import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 
 /**
  * {@link com.allen_sauer.gwt.dragdrop.client.util.DOMUtil} implementation for
  * IE.
  */
 public class DOMUtilImplIE6 extends DOMUtilImpl {
+  @Override
+  public boolean allowFocusChangeCurrentTarget(Event event) {
+    return !DOM.compare(DOMUtil.getWnd(), DOM.eventGetCurrentTarget(event));
+  }
+
   @Override
   public native void cancelAllDocumentSelections()
   /*-{

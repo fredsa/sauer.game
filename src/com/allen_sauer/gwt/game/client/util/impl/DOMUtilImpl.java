@@ -16,6 +16,7 @@
 package com.allen_sauer.gwt.game.client.util.impl;
 
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
@@ -23,6 +24,10 @@ import com.google.gwt.user.client.ui.Widget;
  * cross-browser implementation.
  */
 public abstract class DOMUtilImpl {
+  public boolean allowFocusChangeCurrentTarget(Event event) {
+    return true;
+  }
+
   /**
    * @see com.allen_sauer.gwt.dragdrop.client.util.DOMUtil#cancelAllDocumentSelections()
    */

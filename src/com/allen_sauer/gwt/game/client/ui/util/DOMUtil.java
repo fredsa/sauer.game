@@ -18,6 +18,7 @@ package com.allen_sauer.gwt.game.client.ui.util;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -32,6 +33,10 @@ public class DOMUtil {
 
   static {
     impl = (DOMUtilImpl) GWT.create(DOMUtilImpl.class);
+  }
+
+  public static boolean allowFocusChangeCurrentTarget(Event event) {
+    return impl.allowFocusChangeCurrentTarget(event);
   }
 
   /**
@@ -123,7 +128,11 @@ public class DOMUtil {
    * @return the element's node name
    */
   public static String getNodeName(Element elem) {
-    return impl.getNodeName(elem);
+    try {
+      return DOM.compare(getWnd(), elem) ? "$wnd" : impl.getNodeName(elem);
+    } catch (Exception ex) {
+      return "?";
+    }
   }
 
   /**
@@ -147,6 +156,11 @@ public class DOMUtil {
   public static int getVerticalBorders(Widget widget) {
     return impl.getVerticalBorders(widget);
   }
+
+  public static native Element getWnd()
+  /*-{
+    return $wnd;
+  }-*/;
 
   /**
    * Determine if <code>parent</code> is an ancestor of <code>child</code>.
