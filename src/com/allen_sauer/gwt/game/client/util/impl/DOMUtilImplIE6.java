@@ -19,8 +19,6 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.Event;
 
-import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
-
 /**
  * {@link com.allen_sauer.gwt.dragdrop.client.util.DOMUtil} implementation for
  * IE.
@@ -28,7 +26,7 @@ import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 public class DOMUtilImplIE6 extends DOMUtilImpl {
   @Override
   public boolean allowFocusChangeCurrentTarget(Event event) {
-    return !DOM.compare(DOMUtil.getWnd(), DOM.eventGetCurrentTarget(event));
+    return !isWnd(DOM.eventGetCurrentTarget(event));
   }
 
   @Override
@@ -59,5 +57,11 @@ public class DOMUtilImplIE6 extends DOMUtilImpl {
   public native int getClientWidth(Element elem)
   /*-{
     return elem.clientWidth;
+  }-*/;
+
+  @Override
+  public native boolean isWnd(Element elem)
+  /*-{
+    return elem == $wnd;
   }-*/;
 }

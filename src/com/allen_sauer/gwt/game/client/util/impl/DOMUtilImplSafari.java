@@ -76,4 +76,10 @@ public class DOMUtilImplSafari extends DOMUtilImplStandard {
     // Revert to a DOM walk from DOM.isOrHasChild instead.
     return DOM.isOrHasChild(parent, child);
   }
+
+  @Override
+  public native boolean isWnd(Element elem)
+  /*-{
+    return elem == $wnd;
+  }-*/;
 }

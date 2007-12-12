@@ -128,10 +128,13 @@ public class DOMUtil {
    * @return the element's node name
    */
   public static String getNodeName(Element elem) {
+    if (elem == null) {
+      return "[elem==NULL]";
+    }
     try {
-      return DOM.compare(getWnd(), elem) ? "$wnd" : impl.getNodeName(elem);
+      return isWnd(elem) ? "$wnd" : impl.getNodeName(elem);
     } catch (Exception ex) {
-      return "?";
+      return ex.toString();
     }
   }
 
@@ -157,11 +160,6 @@ public class DOMUtil {
     return impl.getVerticalBorders(widget);
   }
 
-  public static native Element getWnd()
-  /*-{
-    return $wnd;
-  }-*/;
-
   /**
    * Determine if <code>parent</code> is an ancestor of <code>child</code>.
    * 
@@ -173,6 +171,10 @@ public class DOMUtil {
    */
   public static boolean isOrContains(Element parent, Element child) {
     return impl.isOrContains(parent, child);
+  }
+
+  public static boolean isWnd(Element elem) {
+    return impl.isWnd(elem);
   }
 
   /**

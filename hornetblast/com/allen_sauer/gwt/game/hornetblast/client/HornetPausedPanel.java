@@ -27,7 +27,7 @@ public class HornetPausedPanel extends HornetOverlayPanel implements FrameListen
     add(new HTML("&nbsp;"));
 
     add(newCreditPanel());
-    
+
     game.getGameOverFrameListenerCollection().addFrameListener(this);
   }
 

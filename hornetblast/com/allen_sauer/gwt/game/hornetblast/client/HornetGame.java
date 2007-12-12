@@ -152,7 +152,7 @@ public class HornetGame extends Game {
     input.registerKey(KeyboardListener.KEY_LEFT);
     input.registerKey(KeyboardListener.KEY_RIGHT);
     input.registerKey(KeyboardListener.KEY_DOWN);
-    
+
     setState(State.STATE_PAUSED_BY_USER);
   }
 

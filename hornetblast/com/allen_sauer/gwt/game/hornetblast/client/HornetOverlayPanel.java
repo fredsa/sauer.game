@@ -29,9 +29,11 @@ public abstract class HornetOverlayPanel extends Composite {
     FlowPanel panel = new FlowPanel();
     panel.add(new HornetLabel("Game by Fred Sauer"));
     panel.add(new HornetLabel("Pencil Artwork by Archer Sauer (age 5)"));
-    panel.add(new HornetLabel("Explosion Annimation by Boris, author of <a href='http://www.13thmonkey.org/~boris/jgame/'>JGame</a>"));
+    panel.add(new HornetLabel(
+        "Explosion Annimation by Boris, author of <a href='http://www.13thmonkey.org/~boris/jgame/'>JGame</a>"));
     panel.add(new HornetLabel("Sound effects courtesy <a href='http://freesound.iua.upf.edu/'>The Freesound Project</a>"));
-    panel.add(new HornetLabel("Developed with <a href='http://code.google.com/p/gwt-voices/'>gwt-voices</a> and <a href='http://code.google.com/webtoolkit/'>Google Web Toolkit</a> (GWT)"));
+    panel.add(new HornetLabel(
+        "Developed with <a href='http://code.google.com/p/gwt-voices/'>gwt-voices</a> and <a href='http://code.google.com/webtoolkit/'>Google Web Toolkit</a> (GWT)"));
     return panel;
   }
 

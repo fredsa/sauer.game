@@ -86,6 +86,11 @@ public abstract class DOMUtilImpl {
     return parent.contains(child);
   }-*/;
 
+  public native boolean isWnd(Element elem)
+  /*-{
+    return elem === $wnd;
+  }-*/;
+
   /**
    * @see com.allen_sauer.gwt.dragdrop.client.util.DOMUtil#setStatus(String)
    */
