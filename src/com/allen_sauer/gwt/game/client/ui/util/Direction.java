@@ -1,3 +1,6 @@
+/**
+ * Copyright 2007 Fred Sauer
+ */
 package com.allen_sauer.gwt.game.client.ui.util;
 
 public final class Direction {

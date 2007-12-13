@@ -3,12 +3,13 @@
     <fileset name="GWT" enabled="true" check-config-name="GWT Checks" local="false">
         <file-match-pattern match-pattern="^user-src\\.*java$" include-pattern="true"/>
     </fileset>
-    <fileset name="project src, demo" enabled="true" check-config-name="Game Checks" local="false">
-        <file-match-pattern match-pattern="^src\\.*java$" include-pattern="true"/>
-        <file-match-pattern match-pattern="^demo\\.*java$" include-pattern="true"/>
+    <fileset name="com.allen_sauer.gwt.game" enabled="true" check-config-name="Game Checks" local="false">
+        <file-match-pattern match-pattern="src\\com.allen_sauer.gwt.game" include-pattern="true"/>
+        <file-match-pattern match-pattern="hornetblast\\com.allen_sauer.gwt.game" include-pattern="true"/>
+        <file-match-pattern match-pattern="space\\com.allen_sauer.gwt.game" include-pattern="true"/>
+        <file-match-pattern match-pattern="games\\com.allen_sauer.gwt.game" include-pattern="true"/>
     </fileset>
-    <filter name="FilesFromPackage" enabled="true">
+    <filter name="FilesFromPackage" enabled="false">
         <filter-data value="src/examples"/>
     </filter>
-    <filter name="FilesInSync2" enabled="true"/>
 </fileset-config>
