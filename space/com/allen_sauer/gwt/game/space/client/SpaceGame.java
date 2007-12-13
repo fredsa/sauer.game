@@ -85,7 +85,8 @@ public class SpaceGame extends Game {
     player = new SpacePlayer[MAX_PLAYERS];
     for (int i = 0; i < MAX_PLAYERS; i++) {
       int playerNumber = i + 1;
-      player[i] = new SpacePlayer(this, playerNumber, (SpacePlayerSprite) playerSpritePool.create(), MAX_LIVES);
+      player[i] = new SpacePlayer(this, playerNumber,
+          (SpacePlayerSprite) playerSpritePool.create(), MAX_LIVES);
     }
     new PlayerRobotCollisionDetector(this, playerSpritePool, robotSpritePool, explosionSpritePool);
 

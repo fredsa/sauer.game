@@ -18,7 +18,8 @@ public class SpacePlayer extends Player {
   private final int playerNumber;
   private final SpacePlayerSprite playerSprite;
 
-  public SpacePlayer(SpaceGame game, int playerNumber, SpacePlayerSprite playerSprite, int initialLives) {
+  public SpacePlayer(SpaceGame game, int playerNumber, SpacePlayerSprite playerSprite,
+      int initialLives) {
     super(game);
     this.game = game;
     this.playerNumber = playerNumber;
@@ -33,7 +34,8 @@ public class SpacePlayer extends Player {
     lives = initialLives;
     bulletSpritePool = new BulletSpritePool(game, playerSprite);
     keyboardBulletGenerator = new PlayerBulletGenerator(game, bulletSpritePool);
-    new RobotBulletCollisionDetector(game, game.getRobotSpritePool(), bulletSpritePool, game.getExplosionSpritePool());
+    new RobotBulletCollisionDetector(game, game.getRobotSpritePool(), bulletSpritePool,
+        game.getExplosionSpritePool());
   }
 
   @Override

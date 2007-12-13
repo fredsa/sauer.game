@@ -135,7 +135,8 @@ public abstract class Game extends Composite {
   protected abstract void playerDied(Player player);
 
   FrameListenerCollection getCurrentStateFrameListenerCollection() {
-    return state == State.STATE_GAME_OVER ? gameOverFrameListenerCollection : playingFrameListenerCollection;
+    return state == State.STATE_GAME_OVER ? gameOverFrameListenerCollection
+        : playingFrameListenerCollection;
   }
 
   /**

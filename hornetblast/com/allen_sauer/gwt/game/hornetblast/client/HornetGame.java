@@ -114,8 +114,8 @@ public class HornetGame extends Game {
     int middle = getClientWidth() / 2;
     for (int i = 0; i < MAX_PLAYERS; i++) {
       int lives = player[i].getLives();
-      playerText[i].setHTML(player[i].getPlayerNumber() + "UP: " + lives + " " + (lives == 1 ? "Life" : "Lives") + " / "
-          + player[i].getScore() + " points");
+      playerText[i].setHTML(player[i].getPlayerNumber() + "UP: " + lives + " "
+          + (lives == 1 ? "Life" : "Lives") + " / " + player[i].getScore() + " points");
       int targetX = i * spacing;
       int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
       playfield.setWidgetPosition(playerText[i], x, 10);

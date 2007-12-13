@@ -109,7 +109,8 @@ public class Sprite extends Composite implements FrameListener {
     image = new Image(frameInfo.spriteUrl);
     panel.add(image, -500, -500);
 
-    image.setPixelSize(frameInfo.frameWidth * frameInfo.horizontalFrames, frameInfo.frameHeight * frameInfo.verticalFrames);
+    image.setPixelSize(frameInfo.frameWidth * frameInfo.horizontalFrames, frameInfo.frameHeight
+        * frameInfo.verticalFrames);
     setPixelSize(frameInfo.frameWidth, frameInfo.frameHeight);
     setPixelSize(frameInfo.frameWidth, frameInfo.frameHeight);
   }

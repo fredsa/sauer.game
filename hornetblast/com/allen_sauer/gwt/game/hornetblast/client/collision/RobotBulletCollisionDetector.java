@@ -13,8 +13,8 @@ public class RobotBulletCollisionDetector extends CollisionDetector {
   private final SpritePool explosionSpritePool;
   private final Player player;
 
-  public RobotBulletCollisionDetector(Game game, Player player, SpritePool robotSpritePool, SpritePool bulletSpritePool,
-      SpritePool explosionSpritePool) {
+  public RobotBulletCollisionDetector(Game game, Player player, SpritePool robotSpritePool,
+      SpritePool bulletSpritePool, SpritePool explosionSpritePool) {
     super(game, robotSpritePool, bulletSpritePool);
     this.player = player;
     this.explosionSpritePool = explosionSpritePool;

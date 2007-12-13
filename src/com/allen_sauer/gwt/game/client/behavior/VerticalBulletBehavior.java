@@ -7,8 +7,8 @@ import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.player.PlayerSprite;
 
 public class VerticalBulletBehavior extends Behavior {
-  private final PlayerSprite playerSprite;
   private final Sprite bulletSprite;
+  private final PlayerSprite playerSprite;
 
   public VerticalBulletBehavior(Sprite bulletSprite, PlayerSprite playerSprite) {
     super(bulletSprite);

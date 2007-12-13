@@ -20,8 +20,8 @@ public class FrameInfo implements FrameListener {
   private int[] frameSequence;
   private final Sprite sprite;
 
-  public FrameInfo(Sprite sprite, String spriteUrl, int horizontalFrames, int verticalFrames, int frameWidth, int frameHeight,
-      int animationInterval) {
+  public FrameInfo(Sprite sprite, String spriteUrl, int horizontalFrames, int verticalFrames,
+      int frameWidth, int frameHeight, int animationInterval) {
     this.sprite = sprite;
     this.spriteUrl = spriteUrl;
     this.horizontalFrames = horizontalFrames;
@@ -73,7 +73,8 @@ public class FrameInfo implements FrameListener {
 
   public void setCurrentFrame(int currentFrame) {
     this.currentFrame = currentFrame;
-    sprite.setImagePosition(frameXOffset[frameSequence[currentFrame]], frameYOffset[frameSequence[currentFrame]]);
+    sprite.setImagePosition(frameXOffset[frameSequence[currentFrame]],
+        frameYOffset[frameSequence[currentFrame]]);
   }
 
   public void setFrameSequence(int[] frameSequence) {

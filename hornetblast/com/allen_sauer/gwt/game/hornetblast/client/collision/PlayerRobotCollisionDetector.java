@@ -14,8 +14,8 @@ import com.allen_sauer.gwt.game.hornetblast.client.sprite.player.HornetPlayerSpr
 public class PlayerRobotCollisionDetector extends CollisionDetector {
   private final ExplosionSpritePool explosionSpritePool;
 
-  public PlayerRobotCollisionDetector(Game game, SpritePool playerSpritePool, SpritePool robotSpritePool,
-      ExplosionSpritePool explosionSpritePool) {
+  public PlayerRobotCollisionDetector(Game game, SpritePool playerSpritePool,
+      SpritePool robotSpritePool, ExplosionSpritePool explosionSpritePool) {
     super(game, playerSpritePool, robotSpritePool);
     this.explosionSpritePool = explosionSpritePool;
   }

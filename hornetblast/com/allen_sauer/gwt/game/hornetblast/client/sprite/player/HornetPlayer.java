@@ -24,7 +24,8 @@ public class HornetPlayer extends Player {
   private HornetPlayerSprite playerSprite;
   private final PlayerSpritePool playerSpritePool;
 
-  public HornetPlayer(HornetGame game, int playerNumber, PlayerSpritePool playerSpritePool, int initialLives) {
+  public HornetPlayer(HornetGame game, int playerNumber, PlayerSpritePool playerSpritePool,
+      int initialLives) {
     super(game);
     this.game = game;
     this.playerNumber = playerNumber;
@@ -91,10 +92,14 @@ public class HornetPlayer extends Player {
       playerSprite.setPlayer(this);
       bulletSpritePool = new BulletSpritePool(game, playerSprite);
       keyboardBulletGenerator = new PlayerBulletGenerator(game, bulletSpritePool);
-      new RobotBulletCollisionDetector(game, this, game.getRobot1SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
-      new RobotBulletCollisionDetector(game, this, game.getRobot2SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
-      new RobotBulletCollisionDetector(game, this, game.getRobot3SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
-      new RobotBulletCollisionDetector(game, this, game.getRobot4SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
+      new RobotBulletCollisionDetector(game, this, game.getRobot1SpritePool(), bulletSpritePool,
+          game.getExplosionSpritePool());
+      new RobotBulletCollisionDetector(game, this, game.getRobot2SpritePool(), bulletSpritePool,
+          game.getExplosionSpritePool());
+      new RobotBulletCollisionDetector(game, this, game.getRobot3SpritePool(), bulletSpritePool,
+          game.getExplosionSpritePool());
+      new RobotBulletCollisionDetector(game, this, game.getRobot4SpritePool(), bulletSpritePool,
+          game.getExplosionSpritePool());
     } else {
       frameCount = INVINSIBLE_FRAME_COUNT;
       assert playerSprite == (HornetPlayerSprite) playerSpritePool.create();

@@ -28,10 +28,11 @@ public class ExplosionSprite extends Sprite {
   public ExplosionSprite(Game game) {
     super(game, BOUNDING_BOX_INFO);
     addStyleName("explosion-sprite");
-    setFrameInfo(new OneTimeFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT,
-        FRAME_ANIMATE_INTERVAL));
+    setFrameInfo(new OneTimeFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL,
+        FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL));
     setBehavior(new NullBehavior(this));
-    sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG, "sounds/misc186-cannonshot.mp3");
+    sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG,
+        "sounds/misc186-cannonshot.mp3");
   }
 
   @Override

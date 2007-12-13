@@ -26,8 +26,8 @@ public class Robot3Sprite extends Sprite {
 
   public Robot3Sprite(Game game) {
     super(game, BOUNDING_BOX_INFO);
-    FrameInfo frameInfo = new LoopFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT,
-        FRAME_ANIMATE_INTERVAL);
+    FrameInfo frameInfo = new LoopFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL,
+        FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL);
     frameInfo.setFrameSequence(FRAME_SEQUENCE);
     setFrameInfo(frameInfo);
     setBehavior(new ParatrooperBehavior(this));

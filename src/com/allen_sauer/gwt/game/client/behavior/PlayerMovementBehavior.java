@@ -9,13 +9,13 @@ import com.allen_sauer.gwt.game.client.ui.util.Page;
 
 public class PlayerMovementBehavior extends Behavior {
   private Game game;
+  private final PlayerSprite playerSprite;
   private int xDelta = 4;
   private int yDelta = 4;
-  private final PlayerSprite playerSprite;
 
   public PlayerMovementBehavior(PlayerSprite sprite) {
     super(sprite);
-    this.playerSprite = sprite;
+    playerSprite = sprite;
     game = sprite.getGame();
   }
 

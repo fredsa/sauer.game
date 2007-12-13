@@ -29,10 +29,11 @@ public class SpaceBulletSprite extends Sprite {
   public SpaceBulletSprite(Game game, PlayerSprite playerSprite) {
     super(game, BOUNDING_BOX_INFO);
     addStyleName("bullet-sprite");
-    setFrameInfo(new PalindromeFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT,
-        FRAME_ANIMATE_INTERVAL));
+    setFrameInfo(new PalindromeFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL,
+        FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL));
     setBehavior(new VerticalBulletBehavior(this, playerSprite));
-    sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG, "sounds/misc322-photonshot.mp3");
+    sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG,
+        "sounds/misc322-photonshot.mp3");
   }
 
   @Override

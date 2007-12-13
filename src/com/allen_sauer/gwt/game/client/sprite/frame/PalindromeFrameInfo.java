@@ -8,9 +8,10 @@ import com.allen_sauer.gwt.game.client.sprite.Sprite;
 public class PalindromeFrameInfo extends FrameInfo {
   private int[] frameSequence;
 
-  public PalindromeFrameInfo(Sprite sprite, String spriteUrl, int horizontalFrames, int verticalFrames, int frameWidth,
-      int frameHeight, int animationInterval) {
-    super(sprite, spriteUrl, horizontalFrames, verticalFrames, frameWidth, frameHeight, animationInterval);
+  public PalindromeFrameInfo(Sprite sprite, String spriteUrl, int horizontalFrames,
+      int verticalFrames, int frameWidth, int frameHeight, int animationInterval) {
+    super(sprite, spriteUrl, horizontalFrames, verticalFrames, frameWidth, frameHeight,
+        animationInterval);
 
     int baseCount = horizontalFrames * verticalFrames;
     frameSequence = new int[baseCount * 2 - 2];
