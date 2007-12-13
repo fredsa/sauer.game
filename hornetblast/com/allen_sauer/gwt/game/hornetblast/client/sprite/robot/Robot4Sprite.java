@@ -7,7 +7,7 @@ import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.ParatrooperBehavior;
 import com.allen_sauer.gwt.game.client.sprite.BoundingBoxInfo;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
-import com.allen_sauer.gwt.game.client.sprite.frame.BounceFrameInfo;
+import com.allen_sauer.gwt.game.client.sprite.frame.PalindromeFrameInfo;
 import com.allen_sauer.gwt.game.client.sprite.frame.FrameInfo;
 
 public class Robot4Sprite extends Sprite {
@@ -26,7 +26,7 @@ public class Robot4Sprite extends Sprite {
 
   public Robot4Sprite(Game game) {
     super(game, BOUNDING_BOX_INFO);
-    FrameInfo frameInfo = new BounceFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT,
+    FrameInfo frameInfo = new PalindromeFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT,
         FRAME_ANIMATE_INTERVAL);
     frameInfo.setFrameSequence(FRAME_SEQUENCE);
     setFrameInfo(frameInfo);
