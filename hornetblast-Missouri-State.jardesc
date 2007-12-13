@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="c:/Users/fsauer/Desktop/hornetblast.zip"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/Game/hornetblast.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="true" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <folder path="/Game/eclipse"/>
+        <file path="/Game/.project"/>
+        <file path="/Game/.classpath"/>
+        <file path="/Game/.checkstyle"/>
+        <file path="/Game/HornetBlast.launch"/>
+        <file path="/Game/HornetBlast-shell.cmd"/>
+        <file path="/Game/HornetBlast-compile.cmd"/>
+        <javaElement handleIdentifier="=Game/hornetblast"/>
+        <javaElement handleIdentifier="=Game/src"/>
+        <folder path="/Game/www"/>
+    </selectedElements>
+</jardesc>
