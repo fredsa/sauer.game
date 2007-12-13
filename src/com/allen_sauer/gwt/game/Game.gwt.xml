@@ -37,4 +37,20 @@
     <when-property-is name="user.agent" value="gecko"/>
   </replace-with>
 
+  <define-property name="mobile.agent" values="true,false"/>
+
+  <property-provider name="mobile.agent"><![CDATA[
+      var ua = navigator.userAgent.toLowerCase();
+      return ua.indexOf("mobile") != -1 ? "true" : "false";
+  ]]></property-provider>
+  
+  <!-- No hidden input on Mobile Safari --> 
+  <replace-with class="com.google.gwt.user.client.ui.impl.FocusImpl">
+    <when-type-is class="com.google.gwt.user.client.ui.impl.FocusImpl"/>
+    <all>
+      <when-property-is name="user.agent" value="safari"/>
+      <when-property-is name="mobile.agent" value="true"/>
+    </all>
+  </replace-with>
+  
 </module>

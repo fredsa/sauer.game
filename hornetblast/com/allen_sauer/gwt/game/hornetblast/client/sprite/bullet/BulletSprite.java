@@ -8,6 +8,7 @@ import com.allen_sauer.gwt.game.client.behavior.VerticalBulletBehavior;
 import com.allen_sauer.gwt.game.client.sprite.BoundingBoxInfo;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.frame.LoopFrameInfo;
+import com.allen_sauer.gwt.game.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.voices.client.Sound;
 
 public class BulletSprite extends Sprite {
@@ -25,7 +26,7 @@ public class BulletSprite extends Sprite {
 
   private Sound sound;
 
-  public BulletSprite(Game game, Sprite playerSprite) {
+  public BulletSprite(Game game, PlayerSprite playerSprite) {
     super(game, BOUNDING_BOX_INFO);
     addStyleName("bullet-sprite");
     setFrameInfo(new LoopFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT,

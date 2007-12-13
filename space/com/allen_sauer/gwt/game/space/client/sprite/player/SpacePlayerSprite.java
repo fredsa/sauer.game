@@ -4,12 +4,12 @@
 package com.allen_sauer.gwt.game.space.client.sprite.player;
 
 import com.allen_sauer.gwt.game.client.Game;
-import com.allen_sauer.gwt.game.client.behavior.CursorKeyBehavior;
+import com.allen_sauer.gwt.game.client.behavior.PlayerMovementBehavior;
 import com.allen_sauer.gwt.game.client.sprite.BoundingBoxInfo;
-import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.frame.LoopFrameInfo;
+import com.allen_sauer.gwt.game.client.sprite.player.PlayerSprite;
 
-public class PlayerSprite extends Sprite {
+public class SpacePlayerSprite extends PlayerSprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL = 1;
   private static final int FRAME_HEIGHT = 113;
@@ -24,13 +24,13 @@ public class PlayerSprite extends Sprite {
 
   private SpacePlayer player;
 
-  public PlayerSprite(Game game) {
-    super(game, BOUNDING_BOX_INFO);
+  public SpacePlayerSprite(Game game) {
+    super(game, BOUNDING_BOX_INFO, 17, -5);
     addStyleName("player-sprite");
-    setFrameInfo(new LoopFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT,
-        FRAME_ANIMATE_INTERVAL));
+    setFrameInfo(new LoopFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL,
+        FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL));
 
-    setBehavior(new CursorKeyBehavior(this));
+    setBehavior(new PlayerMovementBehavior(this));
     addStyleName("player");
   }
 

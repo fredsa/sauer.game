@@ -3,7 +3,7 @@
  */
 package com.allen_sauer.gwt.game.space.client.sprite.player;
 
-import com.allen_sauer.gwt.game.client.generator.KeyboardBulletGenerator;
+import com.allen_sauer.gwt.game.client.generator.PlayerBulletGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.space.client.SpaceGame;
@@ -13,12 +13,12 @@ import com.allen_sauer.gwt.game.space.client.sprite.bullet.BulletSpritePool;
 public class SpacePlayer extends Player {
   private BulletSpritePool bulletSpritePool;
   private final SpaceGame game;
-  private KeyboardBulletGenerator keyboardBulletGenerator;
+  private PlayerBulletGenerator keyboardBulletGenerator;
   private int lives;
   private final int playerNumber;
-  private final PlayerSprite playerSprite;
+  private final SpacePlayerSprite playerSprite;
 
-  public SpacePlayer(SpaceGame game, int playerNumber, PlayerSprite playerSprite, int initialLives) {
+  public SpacePlayer(SpaceGame game, int playerNumber, SpacePlayerSprite playerSprite, int initialLives) {
     super(game);
     this.game = game;
     this.playerNumber = playerNumber;
@@ -32,7 +32,7 @@ public class SpacePlayer extends Player {
     playerSprite.setPlayer(this);
     lives = initialLives;
     bulletSpritePool = new BulletSpritePool(game, playerSprite);
-    keyboardBulletGenerator = new KeyboardBulletGenerator(game, bulletSpritePool);
+    keyboardBulletGenerator = new PlayerBulletGenerator(game, bulletSpritePool);
     new RobotBulletCollisionDetector(game, game.getRobotSpritePool(), bulletSpritePool, game.getExplosionSpritePool());
   }
 

@@ -15,7 +15,11 @@ import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 import java.util.Arrays;
 
 public class InputPanel extends FocusPanel {
+  private int clickX;
+  private int clickY;
+  private boolean keyboardMode;
   private boolean[] keyDown = new boolean[0xff];
+  private int pendingClicks;
   private boolean[] registeredKeys = new boolean[0xff];
 
   public InputPanel(final Game game) {
@@ -26,13 +30,15 @@ public class InputPanel extends FocusPanel {
           case Event.ONKEYDOWN:
             keyCode = DOM.eventGetKeyCode(event);
             if (registeredKeys[keyCode]) {
-              if (keyCode == ' ' && game.getState() == State.STATE_PAUSED_BY_USER) {
+              if (keyCode == ' '
+                  && (game.getState() == State.STATE_PAUSED_BY_USER || game.getState() == State.STATE_GAME_OVER)) {
                 game.setState(State.STATE_PLAYING);
               }
               if (keyCode == 'P' && game.getState() == State.STATE_PLAYING) {
                 game.setState(State.STATE_PAUSED_BY_USER);
               }
               keyDown[keyCode & 0xff] = true;
+              keyboardMode = true;
               return false;
             }
             break;
@@ -44,6 +50,8 @@ public class InputPanel extends FocusPanel {
             }
             break;
           case Event.ONBLUR:
+            //            Log.debug("BLUR...: " + DOMUtil.getNodeName(DOM.eventGetTarget(event)) + "/"
+            //                + DOMUtil.getNodeName(DOM.eventGetCurrentTarget(event)));
             if (DOMUtil.allowFocusChangeCurrentTarget(event)) {
               if (game.getState() == State.STATE_PLAYING) {
                 game.setState(State.STATE_SUSPENDED);
@@ -52,16 +60,49 @@ public class InputPanel extends FocusPanel {
             }
             break;
           case Event.ONFOCUS:
+            //            Log.debug("focus: " + DOMUtil.getNodeName(DOM.eventGetTarget(event)) + "/"
+            //                + DOMUtil.getNodeName(DOM.eventGetCurrentTarget(event)));
             if (DOMUtil.allowFocusChangeCurrentTarget(event)) {
               if (game.getState() == State.STATE_SUSPENDED) {
                 game.setState(State.STATE_PLAYING);
               }
             }
             break;
+          case Event.ONMOUSEDOWN:
+            keyboardMode = false;
+            if (game.getState() == State.STATE_PAUSED_BY_USER
+                || game.getState() == State.STATE_GAME_OVER) {
+              game.setState(State.STATE_PLAYING);
+            } else {
+              clickX = DOM.eventGetClientX(event);
+              clickY = DOM.eventGetClientY(event);
+              pendingClicks++;
+            }
+            break;
         }
         return true;
       }
     });
+  }
+
+  public boolean getClick() {
+    if (pendingClicks > 0) {
+      pendingClicks--;
+      return true;
+    }
+    return false;
+  }
+
+  public int getClickX() {
+    return clickX;
+  }
+
+  public int getClickY() {
+    return clickY;
+  }
+
+  public boolean isKeyboardMode() {
+    return keyboardMode;
   }
 
   public boolean isKeyDown(int keyCode) {

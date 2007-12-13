@@ -9,7 +9,7 @@ import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.hornetblast.client.sprite.explosion.ExplosionSpritePool;
-import com.allen_sauer.gwt.game.hornetblast.client.sprite.player.PlayerSprite;
+import com.allen_sauer.gwt.game.hornetblast.client.sprite.player.HornetPlayerSprite;
 
 public class PlayerRobotCollisionDetector extends CollisionDetector {
   private final ExplosionSpritePool explosionSpritePool;
@@ -22,7 +22,7 @@ public class PlayerRobotCollisionDetector extends CollisionDetector {
 
   @Override
   protected void handleCollision(Sprite playerSprite, Sprite robotSprite) {
-    Player player = ((PlayerSprite) playerSprite).getPlayer();
+    Player player = ((HornetPlayerSprite) playerSprite).getPlayer();
     if (player.hit()) {
       robotSprite.markForRemoval();
       if (!explosionSpritePool.exhausted()) {

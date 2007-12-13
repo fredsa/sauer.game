@@ -4,7 +4,7 @@
 package com.allen_sauer.gwt.game.hornetblast.client.sprite.player;
 
 import com.allen_sauer.gwt.game.client.Game.State;
-import com.allen_sauer.gwt.game.client.generator.KeyboardBulletGenerator;
+import com.allen_sauer.gwt.game.client.generator.PlayerBulletGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.hornetblast.client.HornetGame;
@@ -18,10 +18,10 @@ public class HornetPlayer extends Player {
   private BulletSpritePool bulletSpritePool;
   private final HornetGame game;
   private final int initialLives;
-  private KeyboardBulletGenerator keyboardBulletGenerator;
+  private PlayerBulletGenerator keyboardBulletGenerator;
   private int lives;
   private final int playerNumber;
-  private PlayerSprite playerSprite;
+  private HornetPlayerSprite playerSprite;
   private final PlayerSpritePool playerSpritePool;
 
   public HornetPlayer(HornetGame game, int playerNumber, PlayerSpritePool playerSpritePool, int initialLives) {
@@ -87,17 +87,17 @@ public class HornetPlayer extends Player {
     super.reset();
     lives = initialLives;
     if (playerSprite == null) {
-      playerSprite = (PlayerSprite) playerSpritePool.create();
+      playerSprite = (HornetPlayerSprite) playerSpritePool.create();
       playerSprite.setPlayer(this);
       bulletSpritePool = new BulletSpritePool(game, playerSprite);
-      keyboardBulletGenerator = new KeyboardBulletGenerator(game, bulletSpritePool);
+      keyboardBulletGenerator = new PlayerBulletGenerator(game, bulletSpritePool);
       new RobotBulletCollisionDetector(game, this, game.getRobot1SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
       new RobotBulletCollisionDetector(game, this, game.getRobot2SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
       new RobotBulletCollisionDetector(game, this, game.getRobot3SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
       new RobotBulletCollisionDetector(game, this, game.getRobot4SpritePool(), bulletSpritePool, game.getExplosionSpritePool());
     } else {
       frameCount = INVINSIBLE_FRAME_COUNT;
-      assert playerSprite == (PlayerSprite) playerSpritePool.create();
+      assert playerSprite == (HornetPlayerSprite) playerSpritePool.create();
     }
     game.getPlayingFrameListenerCollection().addFrameListener(playerSprite);
     game.getPlayingFrameListenerCollection().addFrameListener(keyboardBulletGenerator);

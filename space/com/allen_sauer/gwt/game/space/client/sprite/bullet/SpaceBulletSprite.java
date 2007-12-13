@@ -8,9 +8,10 @@ import com.allen_sauer.gwt.game.client.behavior.VerticalBulletBehavior;
 import com.allen_sauer.gwt.game.client.sprite.BoundingBoxInfo;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.frame.PalindromeFrameInfo;
+import com.allen_sauer.gwt.game.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.voices.client.Sound;
 
-public class BulletSprite extends Sprite {
+public class SpaceBulletSprite extends Sprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL = 5;
   private static final int FRAME_HEIGHT = 85;
@@ -25,7 +26,7 @@ public class BulletSprite extends Sprite {
 
   private Sound sound;
 
-  public BulletSprite(Game game, Sprite playerSprite) {
+  public SpaceBulletSprite(Game game, PlayerSprite playerSprite) {
     super(game, BOUNDING_BOX_INFO);
     addStyleName("bullet-sprite");
     setFrameInfo(new PalindromeFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL, FRAME_WIDTH, FRAME_HEIGHT,

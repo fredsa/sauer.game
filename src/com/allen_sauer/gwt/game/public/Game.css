@@ -19,13 +19,14 @@ HTML,BODY {
   padding: 0px;
 }
 
+.game .game-layer-overlay {
+  z-index: 5;
+}
+
 .game .game-layer-inputPanel {
   opacity: 0;
   filter: alpha(opacity = 0);
   background-color: white;
-}
-
-.game .game-layer-overlay {
   z-index: 4;
 }
 
@@ -55,8 +56,4 @@ HTML,BODY {
 
 .game .playerText {
   color: red;
-}
-
-.game .hornet-label {
-  position: inherit;
 }

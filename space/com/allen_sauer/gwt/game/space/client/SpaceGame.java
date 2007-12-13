@@ -10,9 +10,9 @@ import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.space.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
-import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayer;
+import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayerSprite;
 import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 import com.allen_sauer.gwt.voices.client.SoundController;
 
@@ -85,7 +85,7 @@ public class SpaceGame extends Game {
     player = new SpacePlayer[MAX_PLAYERS];
     for (int i = 0; i < MAX_PLAYERS; i++) {
       int playerNumber = i + 1;
-      player[i] = new SpacePlayer(this, playerNumber, (PlayerSprite) playerSpritePool.create(), MAX_LIVES);
+      player[i] = new SpacePlayer(this, playerNumber, (SpacePlayerSprite) playerSpritePool.create(), MAX_LIVES);
     }
     new PlayerRobotCollisionDetector(this, playerSpritePool, robotSpritePool, explosionSpritePool);
 

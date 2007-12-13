@@ -7,9 +7,9 @@ import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.collision.CollisionDetector;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.space.client.sprite.explosion.ExplosionSpritePool;
-import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.space.client.sprite.player.PlayerSpritePool;
 import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayer;
+import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayerSprite;
 import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 
 public class PlayerRobotCollisionDetector extends CollisionDetector {
@@ -29,7 +29,7 @@ public class PlayerRobotCollisionDetector extends CollisionDetector {
       explosionSprite.setPosition(robotSprite.getX(), robotSprite.getY());
     }
 
-    SpacePlayer player = ((PlayerSprite) playerSprite).getPlayer();
+    SpacePlayer player = ((SpacePlayerSprite) playerSprite).getPlayer();
     player.die();
   }
 }
