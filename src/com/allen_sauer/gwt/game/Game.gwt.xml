@@ -1,56 +1,59 @@
+<!-- 
+  Copyright 2007 Fred Sauer
+-->
 <module>
 
-	<!-- Inherit the core Web Toolkit stuff.                  -->
-	<inherits name='com.google.gwt.user.User'/>
+  <!-- Inherit the core Web Toolkit stuff. -->
+  <inherits name='com.google.gwt.user.User' />
 
-  <!-- Inherit logging stuff.                -->
-  <inherits name='com.allen_sauer.gwt.log.Log'/>
+  <!-- Inherit logging stuff.                 -->
+  <inherits name='com.allen_sauer.gwt.log.Log' />
 
   <!-- Inherit sound stuff.                            -->
-  <inherits name='com.allen_sauer.gwt.voices.gwt-voices'/>
+  <inherits name='com.allen_sauer.gwt.voices.gwt-voices' />
 
-  <!-- Include style sheet                                  -->
-  <stylesheet src='Game.css'/>
-  
+  <!-- Include style sheet  -->
+  <stylesheet src='Game.css' />
+
   <replace-with class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImplOpera">
-    <when-type-is class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl"/>
-    <when-property-is name="user.agent" value="opera"/>
+    <when-type-is class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl" />
+    <when-property-is name="user.agent" value="opera" />
   </replace-with>
 
   <replace-with class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImplSafari">
-    <when-type-is class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl"/>
-    <when-property-is name="user.agent" value="safari"/>
+    <when-type-is class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl" />
+    <when-property-is name="user.agent" value="safari" />
   </replace-with>
 
   <replace-with class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImplIE6">
-    <when-type-is class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl"/>
-    <when-property-is name="user.agent" value="ie6"/>
+    <when-type-is class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl" />
+    <when-property-is name="user.agent" value="ie6" />
   </replace-with>
 
   <replace-with class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImplMozilla">
-    <when-type-is class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl"/>
-    <when-property-is name="user.agent" value="gecko1_8"/>
+    <when-type-is class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl" />
+    <when-property-is name="user.agent" value="gecko1_8" />
   </replace-with>
 
   <replace-with class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImplMozillaOld">
-    <when-type-is class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl"/>
-    <when-property-is name="user.agent" value="gecko"/>
+    <when-type-is class="com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl" />
+    <when-property-is name="user.agent" value="gecko" />
   </replace-with>
 
-  <define-property name="mobile.agent" values="true,false"/>
+  <define-property name="mobile.agent" values="true,false" />
 
   <property-provider name="mobile.agent"><![CDATA[
       var ua = navigator.userAgent.toLowerCase();
       return ua.indexOf("mobile") != -1 ? "true" : "false";
   ]]></property-provider>
-  
-  <!-- No hidden input on Mobile Safari --> 
+
+  <!-- No hidden input on Mobile Safari -->
   <replace-with class="com.google.gwt.user.client.ui.impl.FocusImpl">
-    <when-type-is class="com.google.gwt.user.client.ui.impl.FocusImpl"/>
+    <when-type-is class="com.google.gwt.user.client.ui.impl.FocusImpl" />
     <all>
-      <when-property-is name="user.agent" value="safari"/>
-      <when-property-is name="mobile.agent" value="true"/>
+      <when-property-is name="user.agent" value="safari" />
+      <when-property-is name="mobile.agent" value="true" />
     </all>
   </replace-with>
-  
+
 </module>

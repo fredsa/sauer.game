@@ -1,7 +1,10 @@
+<!-- 
+  Copyright 2007 Fred Sauer
+-->
 <module>
 
-  <inherits name='com.allen_sauer.gwt.game.hornetblast.HornetBlastGame'/>
+  <inherits name='com.allen_sauer.gwt.game.hornetblast.HornetBlastGame' />
 
-	<entry-point class='com.allen_sauer.gwt.game.hornetblast.client.HornetBlast'/>
+  <entry-point class='com.allen_sauer.gwt.game.hornetblast.client.HornetBlast' />
 
 </module>

@@ -1,8 +1,11 @@
+<!-- 
+  Copyright 2007 Fred Sauer
+-->
 <module>
 
-  <inherits name='com.allen_sauer.gwt.game.space.SpaceGame'/>
+  <inherits name='com.allen_sauer.gwt.game.space.SpaceGame' />
 
-  <!-- Specify the app entry point class.                   -->
-  <entry-point class='com.allen_sauer.gwt.game.space.client.Space'/>
+  <!-- Specify the app entry point class.                         -->
+  <entry-point class='com.allen_sauer.gwt.game.space.client.Space' />
 
 </module>

@@ -1,12 +1,15 @@
+<!-- 
+  Copyright 2007 Fred Sauer
+-->
 <module>
 
-	<!-- Inherit the core Web Toolkit stuff.                  -->
-	<inherits name='com.google.gwt.user.User'/>
+  <!-- Inherit the core Web Toolkit stuff. -->
+  <inherits name='com.google.gwt.user.User' />
 
-  <!-- Inherit game stuff.                                  -->
-  <inherits name='com.allen_sauer.gwt.game.Game'/>
+  <!-- Inherit game stuff.                      -->
+  <inherits name='com.allen_sauer.gwt.game.Game' />
 
-  <!-- Include style sheet                                  -->
-  <stylesheet src='HornetBlast.css'/>
+  <!-- Include style sheet         -->
+  <stylesheet src='HornetBlast.css' />
 
 </module>
