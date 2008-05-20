@@ -6,7 +6,7 @@
 	<classpathentry kind="src" path="games"/>
 	<classpathentry kind="src" path="user-src15"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/_Log"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/_gwt-log-0.0.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/_Google Web Toolkit 1.5"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/_gwt-voices-0.0.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>

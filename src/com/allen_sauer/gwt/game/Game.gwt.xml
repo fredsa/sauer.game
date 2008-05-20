@@ -7,7 +7,7 @@
   <inherits name='com.google.gwt.user.User' />
 
   <!-- Inherit logging stuff.                 -->
-  <inherits name='com.allen_sauer.gwt.log.Log' />
+  <inherits name='com.allen_sauer.gwt.log.gwt-log' />
 
   <!-- Inherit sound stuff.                            -->
   <inherits name='com.allen_sauer.gwt.voices.gwt-voices' />
