@@ -11,7 +11,6 @@ import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 import com.allen_sauer.gwt.game.hornetblast.client.HornetGame;
 import com.allen_sauer.gwt.game.space.client.SpaceGame;
 import com.allen_sauer.gwt.log.client.Log;
-import com.allen_sauer.gwt.log.client.LogUncaughtExceptionHandler;
 
 public class Games implements EntryPoint {
   public void onModuleLoad() {
