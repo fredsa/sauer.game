@@ -8,7 +8,7 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTML;
 
 public final class GameTimer extends Timer {
-  private static final int FRAMES_TO_AVERAGE = 10;
+  private static int framesToAverage = 2;
   private static final int TIMER_INTERVAL_MILLIS = 1;
   private int count = 0;
   private final Game game;
@@ -28,16 +28,21 @@ public final class GameTimer extends Timer {
   }
 
   public void measure() {
-    if (++count == FRAMES_TO_AVERAGE) {
+    if (++count == framesToAverage) {
       double timestamp = Duration.currentTimeMillis();
-      count = 0;
-      if (lastTimestamp != 0) {
-        frameToFrame = (timestamp - lastTimestamp) / FRAMES_TO_AVERAGE;
-        int frameRate = Math.round(1000F / (float) frameToFrame);
-        timerText.setHTML(FRAMES_TO_AVERAGE + " frame avg = " + frameToFrame + "ms (" + frameRate
-            + "fps)");
+      double elapsed = timestamp - lastTimestamp;
+      if (elapsed < 5) {
+        framesToAverage++;
+      } else {
+        count = 0;
+        if (lastTimestamp != 0) {
+          frameToFrame = elapsed / framesToAverage;
+          int frameRate = Math.round(1000F / (float) frameToFrame);
+          timerText.setHTML(framesToAverage + " frames in " + elapsed + " millis; frame avg = "
+              + frameToFrame + "ms (" + frameRate + "fps)");
+        }
+        lastTimestamp = timestamp;
       }
-      lastTimestamp = timestamp;
     }
   }
 

@@ -11,7 +11,7 @@ import com.allen_sauer.gwt.game.client.sprite.player.PlayerSprite;
 
 public class HornetPlayerSprite extends PlayerSprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
-  private static final int FRAME_ANIMATE_INTERVAL = 1;
+  private static final int FRAME_ANIMATE_INTERVAL_MILLIS = 1;
   private static final int FRAME_HEIGHT = 76;
   private static final int FRAME_WIDTH = 60;
   private static final int FRAMES_HORIZONTAL = 1;
@@ -27,7 +27,7 @@ public class HornetPlayerSprite extends PlayerSprite {
     super(game, BOUNDING_BOX_INFO, 29, 7);
     addStyleName("player-sprite");
     setFrameInfo(new LoopFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL,
-        FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL));
+        FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL_MILLIS));
 
     setBehavior(new PlayerMovementBehavior(this));
     addStyleName("player");

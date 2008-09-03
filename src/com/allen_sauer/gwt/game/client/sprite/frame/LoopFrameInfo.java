@@ -9,9 +9,9 @@ public class LoopFrameInfo extends FrameInfo {
   private int[] frameSequence;
 
   public LoopFrameInfo(Sprite sprite, String spriteUrl, int horizontalFrames, int verticalFrames,
-      int frameWidth, int frameHeight, int animationInterval) {
+      int frameWidth, int frameHeight, double animationIntervalMillis) {
     super(sprite, spriteUrl, horizontalFrames, verticalFrames, frameWidth, frameHeight,
-        animationInterval);
+        animationIntervalMillis);
 
     frameSequence = new int[horizontalFrames * verticalFrames];
     for (int i = 0; i < frameSequence.length; i++) {

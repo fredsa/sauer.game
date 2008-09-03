@@ -9,9 +9,9 @@ public class PalindromeFrameInfo extends FrameInfo {
   private int[] frameSequence;
 
   public PalindromeFrameInfo(Sprite sprite, String spriteUrl, int horizontalFrames,
-      int verticalFrames, int frameWidth, int frameHeight, int animationInterval) {
+      int verticalFrames, int frameWidth, int frameHeight, double animationIntervalMillis) {
     super(sprite, spriteUrl, horizontalFrames, verticalFrames, frameWidth, frameHeight,
-        animationInterval);
+        animationIntervalMillis);
 
     int baseCount = horizontalFrames * verticalFrames;
     frameSequence = new int[baseCount * 2 - 2];

@@ -12,7 +12,7 @@ import com.allen_sauer.gwt.voices.client.Sound;
 
 public class ExplosionSprite extends Sprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
-  private static final int FRAME_ANIMATE_INTERVAL = 2;
+  private static final int FRAME_ANIMATE_INTERVAL_MILLIS = 20;
   private static final int FRAME_HEIGHT = 96;
   private static final int FRAME_WIDTH = 96;
   private static final int FRAMES_HORIZONTAL = 5;
@@ -23,13 +23,13 @@ public class ExplosionSprite extends Sprite {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
   }
 
-  private Sound sound;
+  private final Sound sound;
 
   public ExplosionSprite(Game game) {
     super(game, BOUNDING_BOX_INFO);
     addStyleName("explosion-sprite");
     setFrameInfo(new OneTimeFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL,
-        FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL));
+        FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL_MILLIS));
     setBehavior(new NullBehavior(this));
     sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG,
         "freesoundproject/34200_themfish_bamf.mp3");

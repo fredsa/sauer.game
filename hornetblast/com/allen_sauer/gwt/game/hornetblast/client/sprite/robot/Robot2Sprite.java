@@ -12,7 +12,7 @@ import com.allen_sauer.gwt.game.client.sprite.frame.LoopFrameInfo;
 
 public class Robot2Sprite extends Sprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
-  private static final int FRAME_ANIMATE_INTERVAL = 10;
+  private static final int FRAME_ANIMATE_INTERVAL_MILLIS = 250;
   private static final int FRAME_HEIGHT = 93;
   private static int[] FRAME_SEQUENCE = {0, 1};
   private static final int FRAME_WIDTH = 30;
@@ -27,7 +27,7 @@ public class Robot2Sprite extends Sprite {
   public Robot2Sprite(Game game) {
     super(game, BOUNDING_BOX_INFO);
     FrameInfo frameInfo = new LoopFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL,
-        FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL);
+        FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL_MILLIS);
     frameInfo.setFrameSequence(FRAME_SEQUENCE);
     setFrameInfo(frameInfo);
     setBehavior(new ParatrooperBehavior(this));

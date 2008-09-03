@@ -24,7 +24,9 @@ public class PlayerBulletGenerator implements Generator {
   }
 
   public boolean doFrame(double millis) {
-    if (++frameCounter > FRAMES_BETWEEN_BULLETS && !spritePool.exhausted()
+    double factor = millis / 20;
+
+    if (++frameCounter > factor * FRAMES_BETWEEN_BULLETS && !spritePool.exhausted()
         && (game.input.isKeyDown(' ') || game.input.getClick())) {
       spritePool.create();
       frameCounter = 0;

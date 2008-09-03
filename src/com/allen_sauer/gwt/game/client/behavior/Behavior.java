@@ -39,8 +39,10 @@ public abstract class Behavior implements FrameListener {
   }
 
   public boolean doFrame(double millis) {
-    x = Math.max(Math.min(x + xSpeed, xMax), xMin);
-    y = Math.max(Math.min(y + ySpeed, yMax), yMin);
+    double factor = millis / 20;
+
+    x = Math.max(Math.min(x + factor * xSpeed, xMax), xMin);
+    y = Math.max(Math.min(y + factor * ySpeed, yMax), yMin);
 
     sprite.setPosition(x, y);
     updateDirection();
