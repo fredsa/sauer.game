@@ -52,7 +52,7 @@ public class FrameInfo implements FrameListener {
     setCurrentFrame(0);
   }
 
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     if (animationInterval > 0 && ++frameCounter == animationInterval) {
       frameCounter = 0;
       setCurrentFrame((getCurrentFrame() + 1) % frameSequence.length);

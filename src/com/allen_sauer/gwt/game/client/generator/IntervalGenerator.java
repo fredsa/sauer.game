@@ -20,7 +20,7 @@ public class IntervalGenerator implements Generator {
   public void doFirstFrame() {
   }
 
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     if (!spritePool.exhausted() && Random.nextDouble() < probability) {
       spritePool.create();
     }

@@ -24,9 +24,9 @@ public class FrameListenerCollection implements FrameListener {
     }
   }
 
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     updateFrameListenerCollections();
-    doFrameListenerFrames();
+    doFrameListenerFrames(millis);
     return true;
   }
 
@@ -41,10 +41,10 @@ public class FrameListenerCollection implements FrameListener {
     return frameListeners.size();
   }
 
-  private void doFrameListenerFrames() {
+  private void doFrameListenerFrames(double millis) {
     for (Iterator<FrameListener> iterator = frameListeners.iterator(); iterator.hasNext();) {
       FrameListener listener = iterator.next();
-      boolean again = listener.doFrame();
+      boolean again = listener.doFrame(millis);
       if (!again) {
         listener.doLastFrame();
         iterator.remove();

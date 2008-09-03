@@ -38,7 +38,7 @@ public abstract class Behavior implements FrameListener {
     updateDirection();
   }
 
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     x = Math.max(Math.min(x + xSpeed, xMax), xMin);
     y = Math.max(Math.min(y + ySpeed, yMax), yMin);
 

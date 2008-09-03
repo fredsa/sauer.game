@@ -51,14 +51,14 @@ public class Sprite extends Composite implements FrameListener {
     behavior.doFirstFrame();
   }
 
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     if (markedForRemoval) {
       markedForRemoval = false;
       return false;
     }
     DOMUtil.fastSetElementPosition(getElement(), x, y);
-    boolean again = frameInfo.doFrame();
-    again &= behavior.doFrame();
+    boolean again = frameInfo.doFrame(millis);
+    again &= behavior.doFrame(millis);
     return again;
   }
 

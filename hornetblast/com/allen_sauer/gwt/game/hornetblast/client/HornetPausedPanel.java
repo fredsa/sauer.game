@@ -37,7 +37,7 @@ public class HornetPausedPanel extends HornetOverlayPanel implements FrameListen
   public void doFirstFrame() {
   }
 
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     if (game.input.isKeyDown(' ')) {
       game.setState(Game.State.STATE_PLAYING);
     }

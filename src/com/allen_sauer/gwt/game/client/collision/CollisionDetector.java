@@ -26,7 +26,7 @@ public abstract class CollisionDetector implements FrameListener {
     // TODO Replace auto-generated method stub
   }
 
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     for (Iterator<Sprite> iteratorA = poolA.iterator(); iteratorA.hasNext();) {
       Sprite spriteA = iteratorA.next();
       if (Game.DEBUG) {

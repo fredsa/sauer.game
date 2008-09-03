@@ -16,7 +16,7 @@ public class NullBehavior extends Behavior {
   }
 
   @Override
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     // Purposely do not call super.doFrame();
     return true;
   }

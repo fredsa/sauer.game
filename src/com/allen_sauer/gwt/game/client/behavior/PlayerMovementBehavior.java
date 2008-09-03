@@ -30,7 +30,7 @@ public class PlayerMovementBehavior extends Behavior {
   }
 
   @Override
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     if (game.input.isKeyboardMode()) {
       if (game.input.isKeyDown(Page.CODES.KEY_LEFT)) {
         setXSpeed(-xDelta);
@@ -67,6 +67,6 @@ public class PlayerMovementBehavior extends Behavior {
         setXSpeed(0);
       }
     }
-    return super.doFrame();
+    return super.doFrame(millis);
   }
 }

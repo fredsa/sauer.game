@@ -27,7 +27,7 @@ public class ParatrooperBehavior extends Behavior {
   }
 
   @Override
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     boolean again = true;
 
     if (getX() == getXMin()) {
@@ -43,7 +43,7 @@ public class ParatrooperBehavior extends Behavior {
       }
     }
 
-    return again && super.doFrame();
+    return again && super.doFrame(millis);
   }
 
   private int randomSign() {

@@ -20,7 +20,7 @@ public abstract class Player implements FrameListener {
   public void doFirstFrame() {
   }
 
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     return true;
   }
 

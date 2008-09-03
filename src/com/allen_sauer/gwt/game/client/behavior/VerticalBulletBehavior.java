@@ -30,11 +30,11 @@ public class VerticalBulletBehavior extends Behavior {
   }
 
   @Override
-  public boolean doFrame() {
+  public boolean doFrame(double millis) {
     boolean again = true;
     if (getY() == getYMin()) {
       again = false;
     }
-    return again && super.doFrame();
+    return again && super.doFrame(millis);
   }
 }

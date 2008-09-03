@@ -55,8 +55,8 @@ public class HornetPlayer extends Player {
   }
 
   @Override
-  public boolean doFrame() {
-    super.doFrame();
+  public boolean doFrame(double millis) {
+    super.doFrame(millis);
     if (frameCount > 0) {
       frameCount--;
       playerSprite.setHidden(frameCount != 0 && frameCount / 4 % 2 == 0);

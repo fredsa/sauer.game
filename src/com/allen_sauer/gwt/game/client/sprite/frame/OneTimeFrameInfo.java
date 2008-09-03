@@ -13,8 +13,8 @@ public class OneTimeFrameInfo extends LoopFrameInfo {
   }
 
   @Override
-  public boolean doFrame() {
-    boolean again = super.doFrame();
+  public boolean doFrame(double millis) {
+    boolean again = super.doFrame(millis);
     again &= getCurrentFrame() < getFrameSequence().length - 1;
     return again;
   }
