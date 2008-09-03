@@ -19,14 +19,14 @@ public class Sprite extends Composite implements FrameListener {
   public final BoundingBoxInfo boundingBoxInfo;
   private Behavior behavior;
   private FrameInfo frameInfo;
-  private Game game;
+  private final Game game;
   private Image image;
   private boolean markedForRemoval = false;
-  private AbsolutePanel panel = new AbsolutePanel();
+  private final AbsolutePanel panel = new AbsolutePanel();
   private int poolIndex;
   private SpritePool spritePool;
-  private int x;
-  private int y;
+  private double x;
+  private double y;
 
   public Sprite(Game game, BoundingBoxInfo boundingBoxInfo) {
     this.game = game;
@@ -85,11 +85,11 @@ public class Sprite extends Composite implements FrameListener {
     return spritePool;
   }
 
-  public int getX() {
+  public double getX() {
     return x;
   }
 
-  public int getY() {
+  public double getY() {
     return y;
   }
 
@@ -127,7 +127,7 @@ public class Sprite extends Composite implements FrameListener {
     this.poolIndex = poolIndex;
   }
 
-  public final void setPosition(int x, int y) {
+  public final void setPosition(double x, double y) {
     this.x = x;
     this.y = y;
   }

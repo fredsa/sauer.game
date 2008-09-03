@@ -12,16 +12,16 @@ import com.allen_sauer.gwt.game.client.ui.util.Direction;
 import com.allen_sauer.gwt.game.client.ui.util.MathUtil;
 
 public abstract class Behavior implements FrameListener {
-  private int direction;
+  private double direction;
   private final Sprite sprite;
-  private int x;
-  private int xMax;
-  private int xMin = 0;
-  private int xSpeed;
-  private int y;
-  private int yMax;
-  private int yMin = 0;
-  private int ySpeed;
+  private double x;
+  private double xMax;
+  private double xMin = 0;
+  private double xSpeed;
+  private double y;
+  private double yMax;
+  private double yMin = 0;
+  private double ySpeed;
 
   public Behavior(Sprite sprite) {
     this.sprite = sprite;
@@ -54,74 +54,74 @@ public abstract class Behavior implements FrameListener {
     return sprite;
   }
 
-  public int getX() {
+  public  double  getX() {
     return x;
   }
 
-  public int getXMax() {
+  public  double  getXMax() {
     return xMax;
   }
 
-  public int getXMin() {
+  public  double  getXMin() {
     return xMin;
   }
 
-  public int getXSpeed() {
+  public  double  getXSpeed() {
     return xSpeed;
   }
 
-  public int getY() {
+  public  double  getY() {
     return y;
   }
 
-  public int getYMax() {
+  public  double  getYMax() {
     return yMax;
   }
 
-  public int getYMin() {
+  public  double  getYMin() {
     return yMin;
   }
 
-  public int getYSpeed() {
+  public  double  getYSpeed() {
     return ySpeed;
   }
 
-  public void setSpeed(int xSpeed, int ySpeed) {
+  public void setSpeed( double  xSpeed,  double  ySpeed) {
     this.xSpeed = xSpeed;
     this.ySpeed = ySpeed;
     updateDirection();
   }
 
-  public void setX(int x) {
+  public void setX(double x) {
     this.x = x;
   }
 
-  public void setXMax(int max) {
+  public void setXMax(double max) {
     xMax = max;
   }
 
-  public void setXMin(int min) {
+  public void setXMin(double min) {
     xMin = min;
   }
 
-  public void setXSpeed(int xSpeed) {
+  public void setXSpeed(double xSpeed) {
     this.xSpeed = xSpeed;
     updateDirection();
   }
 
-  public void setY(int y) {
+  public void setY( double  y) {
     this.y = y;
   }
 
-  public void setYMax(int max) {
+  public void setYMax( double  max) {
     yMax = max;
   }
 
-  public void setYMin(int min) {
+  public void setYMin( double  min) {
     yMin = min;
   }
 
-  public void setYSpeed(int ySpeed) {
+  public void setYSpeed(double ySpeed) {
     this.ySpeed = ySpeed;
     updateDirection();
   }

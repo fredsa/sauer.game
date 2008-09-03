@@ -42,7 +42,7 @@ public class DOMUtil {
    * @param left the left pixel offset
    * @param top the top pixel offset
    */
-  public static native void fastSetElementPosition(Element elem, int left, int top)
+  public static native void fastSetElementPosition(Element elem, double left, double top)
   /*-{
     elem.style.left = left + "px";
     elem.style.top = top + "px";

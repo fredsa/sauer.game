@@ -8,10 +8,10 @@ import com.allen_sauer.gwt.game.client.sprite.player.PlayerSprite;
 import com.allen_sauer.gwt.game.client.ui.util.Page;
 
 public class PlayerMovementBehavior extends Behavior {
-  private Game game;
+  private final Game game;
   private final PlayerSprite playerSprite;
-  private int xDelta = 4;
-  private int yDelta = 4;
+  private final double xDelta = 4;
+  private final double yDelta = 4;
 
   public PlayerMovementBehavior(PlayerSprite sprite) {
     super(sprite);
@@ -48,8 +48,8 @@ public class PlayerMovementBehavior extends Behavior {
         setYSpeed(0);
       }
     } else {
-      int x = game.input.getClickX() - playerSprite.getBulletStartOffsetX();
-      int y = game.input.getClickY() - playerSprite.getBulletStartOffsetY();
+      double  x = game.input.getClickX() - playerSprite.getBulletStartOffsetX();
+      double  y = game.input.getClickY() - playerSprite.getBulletStartOffsetY();
 
       if (x < getX()) {
         setXSpeed(-xDelta);

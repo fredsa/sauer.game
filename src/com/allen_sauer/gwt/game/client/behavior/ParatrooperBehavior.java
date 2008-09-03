@@ -19,7 +19,7 @@ public class ParatrooperBehavior extends Behavior {
   public void doFirstFrame() {
     clientResized();
     walkFrames = 0;
-    setX(Random.nextInt(getXMax()));
+    setX(Random.nextDouble() * getXMax());
     setY(-getSprite().getFrameInfo().frameHeight);
 
     setSpeed((Random.nextInt(2) + 1) * randomSign(), Random.nextInt(2) + 1);
