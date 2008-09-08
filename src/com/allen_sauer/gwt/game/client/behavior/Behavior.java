@@ -39,10 +39,8 @@ public abstract class Behavior implements FrameListener {
   }
 
   public boolean doFrame(double millis) {
-    double factor = millis / 20;
-
-    x = Math.max(Math.min(x + factor * xSpeed, xMax), xMin);
-    y = Math.max(Math.min(y + factor * ySpeed, yMax), yMin);
+    x = Math.max(Math.min(x + millis * xSpeed, xMax), xMin);
+    y = Math.max(Math.min(y + millis * ySpeed, yMax), yMin);
 
     sprite.setPosition(x, y);
     updateDirection();
@@ -56,39 +54,39 @@ public abstract class Behavior implements FrameListener {
     return sprite;
   }
 
-  public  double  getX() {
+  public double getX() {
     return x;
   }
 
-  public  double  getXMax() {
+  public double getXMax() {
     return xMax;
   }
 
-  public  double  getXMin() {
+  public double getXMin() {
     return xMin;
   }
 
-  public  double  getXSpeed() {
+  public double getXSpeed() {
     return xSpeed;
   }
 
-  public  double  getY() {
+  public double getY() {
     return y;
   }
 
-  public  double  getYMax() {
+  public double getYMax() {
     return yMax;
   }
 
-  public  double  getYMin() {
+  public double getYMin() {
     return yMin;
   }
 
-  public  double  getYSpeed() {
+  public double getYSpeed() {
     return ySpeed;
   }
 
-  public void setSpeed( double  xSpeed,  double  ySpeed) {
+  public void setSpeed(double xSpeed, double ySpeed) {
     this.xSpeed = xSpeed;
     this.ySpeed = ySpeed;
     updateDirection();
@@ -111,15 +109,15 @@ public abstract class Behavior implements FrameListener {
     updateDirection();
   }
 
-  public void setY( double  y) {
+  public void setY(double y) {
     this.y = y;
   }
 
-  public void setYMax( double  max) {
+  public void setYMax(double max) {
     yMax = max;
   }
 
-  public void setYMin( double  min) {
+  public void setYMin(double min) {
     yMin = min;
   }
 

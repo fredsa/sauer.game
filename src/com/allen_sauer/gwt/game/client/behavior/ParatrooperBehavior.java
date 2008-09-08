@@ -22,7 +22,7 @@ public class ParatrooperBehavior extends Behavior {
     setX(Random.nextDouble() * getXMax());
     setY(-getSprite().getFrameInfo().frameHeight);
 
-    setSpeed((Random.nextInt(2) + 1) * randomSign(), Random.nextInt(2) + 1);
+    setSpeed((Random.nextDouble() / 10 + 0.05) * randomSign(), Random.nextDouble() / 10 + 0.025);
     super.doFirstFrame();
   }
 
@@ -31,9 +31,9 @@ public class ParatrooperBehavior extends Behavior {
     boolean again = true;
 
     if (getX() == getXMin()) {
-      setXSpeed(Random.nextInt(5) + 4);
+      setXSpeed(Random.nextDouble() / 4 + 0.2);
     } else if (getX() == getXMax()) {
-      setXSpeed(-Random.nextInt(5) - 4);
+      setXSpeed(-Random.nextDouble() / 4 - 0.2);
     }
 
     if (getY() == getYMax()) {

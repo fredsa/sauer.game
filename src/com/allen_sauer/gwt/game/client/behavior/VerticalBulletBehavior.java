@@ -25,7 +25,7 @@ public class VerticalBulletBehavior extends Behavior {
     setY(playerSprite.getY() + playerSprite.getBulletStartOffsetY()
         - bulletSprite.boundingBoxInfo.height / 2);
 
-    setYSpeed(-10);
+    setYSpeed(-0.5);
     super.doFirstFrame();
   }
 
