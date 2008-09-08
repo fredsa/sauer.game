@@ -8,8 +8,8 @@ import com.google.gwt.user.client.Random;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
 public class ParatrooperBehavior extends Behavior {
-  private static final int MAX_WALK_FRAMES = 50;
-  private int walkFrames;
+  private static final int MAX_WALK_MILLIS = 1000;
+  private int walkMillis;
 
   public ParatrooperBehavior(Sprite sprite) {
     super(sprite);
@@ -18,7 +18,7 @@ public class ParatrooperBehavior extends Behavior {
   @Override
   public void doFirstFrame() {
     clientResized();
-    walkFrames = 0;
+    walkMillis = 0;
     setX(Random.nextDouble() * getXMax());
     setY(-getSprite().getFrameInfo().frameHeight);
 
@@ -38,7 +38,8 @@ public class ParatrooperBehavior extends Behavior {
 
     if (getY() == getYMax()) {
       // setYSpeed(0);
-      if (++walkFrames == MAX_WALK_FRAMES) {
+      walkMillis += millis;
+      if (walkMillis >= MAX_WALK_MILLIS) {
         again = false;
       }
     }
