@@ -56,13 +56,13 @@ public class SpaceGame extends Game {
 
   @Override
   public void updatePlayerText() {
-    int spacing = MAX_PLAYERS != 1 ? getClientWidth() / (MAX_PLAYERS - 1) : 0;
-    int middle = getClientWidth() / 2;
+    int spacing = MAX_PLAYERS != 1 ? getPlayfieldWidth() / (MAX_PLAYERS - 1) : 0;
+    int middle = getPlayfieldWidth() / 2;
     for (int i = 0; i < MAX_PLAYERS; i++) {
       playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());
       int targetX = i * spacing;
       int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
-      playfield.setWidgetPosition(playerText[i], x, 10);
+      getPlayfield().setWidgetPosition(playerText[i], x, 10);
     }
   }
 
@@ -98,7 +98,7 @@ public class SpaceGame extends Game {
     for (int i = 0; i < MAX_PLAYERS; i++) {
       playerText[i] = new Label();
       playerText[i].addStyleName("playerText");
-      playfield.add(playerText[i], -500, -500);
+      getPlayfield().add(playerText[i], -500, -500);
     }
     updatePlayerText();
   }

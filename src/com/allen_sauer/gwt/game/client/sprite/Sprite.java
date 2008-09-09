@@ -43,7 +43,7 @@ public class Sprite extends Composite implements FrameListener {
     }
 
     panel.addStyleName("sprite");
-    game.playfield.add(this, -500, -500);
+    game.getPlayfield().add(this, -500, -500);
   }
 
   public void doFirstFrame() {

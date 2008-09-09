@@ -127,8 +127,9 @@ public abstract class Behavior implements FrameListener {
   }
 
   protected void clientResized() {
-    setXMax(getSprite().getGame().getClientWidth() - getSprite().getFrameInfo().frameWidth);
-    setYMax(getSprite().getGame().getClientHeight() - getSprite().getFrameInfo().frameHeight);
+    setXMax(getSprite().getGame().getPlayfieldWidth() - getSprite().getFrameInfo().frameWidth);
+    setYMax(getSprite().getGame().getPlayfield().getOffsetHeight()
+        - getSprite().getFrameInfo().frameHeight);
   }
 
   private void updateDirection() {

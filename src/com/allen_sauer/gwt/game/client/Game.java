@@ -32,17 +32,20 @@ public abstract class Game extends Composite {
    * Must be a FocusPanel for proper event capture in IE.
    */
   public final FocusPanel overlay = new FocusPanel();
-  public final Playfield playfield = new Playfield(this);
-
   private FrameListenerCollection collisionFrameListeners = new FrameListenerCollection();
+
   private GameTimer engineTimer;
   private FrameListenerCollection gameOverFrameListenerCollection = new FrameListenerCollection();
   private AbsolutePanel mainPanel = new AbsolutePanel();
+  private final Playfield playfield = new Playfield(this);
   private int playfieldHeight;
   private int playfieldWidth;
+
   private FrameListenerCollection playingFrameListenerCollection = new FrameListenerCollection();
+
   private FrameListenerCollection spriteFrameListeners = new FrameListenerCollection();
   private ArrayList<SpritePool> spritePools = new ArrayList<SpritePool>();
+
   private State state = State.STATE_UNKNOW;
 
   public Game() {
@@ -63,16 +66,20 @@ public abstract class Game extends Composite {
     spritePools.add(pool);
   }
 
-  public int getClientHeight() {
+  public FrameListenerCollection getGameOverFrameListenerCollection() {
+    return gameOverFrameListenerCollection;
+  }
+
+  public Playfield getPlayfield() {
+    return playfield;
+  }
+
+  public int getPlayfieldHeight() {
     return playfieldHeight;
   }
 
-  public int getClientWidth() {
+  public int getPlayfieldWidth() {
     return playfieldWidth;
-  }
-
-  public FrameListenerCollection getGameOverFrameListenerCollection() {
-    return gameOverFrameListenerCollection;
   }
 
   public FrameListenerCollection getPlayingFrameListenerCollection() {
@@ -91,6 +98,14 @@ public abstract class Game extends Composite {
 
   public void setFrameListenerCollection(FrameListenerCollection frameListenerCollection) {
     playingFrameListenerCollection = frameListenerCollection;
+  }
+
+  public void setPlayfieldHeight(int playfieldHeight) {
+    this.playfieldHeight = playfieldHeight;
+  }
+
+  public void setPlayfieldWidth(int playfieldWidth) {
+    this.playfieldWidth = playfieldWidth;
   }
 
   public State setState(State state) {
@@ -149,9 +164,9 @@ public abstract class Game extends Composite {
     background.addStyleName("game-layer-background");
     mainPanel.add(background, 0, 0);
 
-    playfield.setSize("100%", "100%");
-    playfield.addStyleName("game-layer-playfield");
-    mainPanel.add(playfield, 0, 0);
+    getPlayfield().setSize("100%", "100%");
+    getPlayfield().addStyleName("game-layer-playfield");
+    mainPanel.add(getPlayfield(), 0, 0);
 
     overlay.setSize("100%", "100%");
     overlay.addStyleName("game-layer-overlay");
@@ -163,9 +178,9 @@ public abstract class Game extends Composite {
   }
 
   private void clientResized() {
-    playfieldWidth = playfield.getOffsetWidth();
-    playfieldHeight = playfield.getOffsetHeight();
-    assert playfieldWidth != 0;
-    assert playfieldHeight != 0;
+    setPlayfieldWidth(getPlayfield().getOffsetWidth());
+    setPlayfieldHeight(getPlayfield().getOffsetHeight());
+    assert getPlayfieldWidth() > 0;
+    assert getPlayfieldHeight() > 0;
   }
 }

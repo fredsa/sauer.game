@@ -87,7 +87,7 @@ public final class GameTimer extends Timer {
 
   private void initMeasurements() {
     timerText.setHTML("");
-    game.playfield.add(timerText);
+    game.getPlayfield().add(timerText);
     lastTimestamp = 0;
   }
 }
