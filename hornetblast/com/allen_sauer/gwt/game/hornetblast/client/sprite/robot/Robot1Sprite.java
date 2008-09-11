@@ -4,7 +4,7 @@
 package com.allen_sauer.gwt.game.hornetblast.client.sprite.robot;
 
 import com.allen_sauer.gwt.game.client.Game;
-import com.allen_sauer.gwt.game.client.behavior.ParatrooperBehavior;
+import com.allen_sauer.gwt.game.client.behavior.SpiralBehavior;
 import com.allen_sauer.gwt.game.client.sprite.BoundingBoxInfo;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.frame.FrameInfo;
@@ -31,7 +31,7 @@ public class Robot1Sprite extends Sprite {
         FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL_MILLIS);
     frameInfo.setFrameSequence(LEFT_FRAME_SEQUENCE);
     setFrameInfo(frameInfo);
-    setBehavior(new ParatrooperBehavior(this));
+    setBehavior(new SpiralBehavior(this));
   }
 
   @Override
