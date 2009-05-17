@@ -89,8 +89,8 @@ public abstract class Game extends Composite {
   }
 
   private void clientResized() {
-    setPlayfieldWidth(getPlayfield().getOffsetWidth() + 100);
-    setPlayfieldHeight(getPlayfield().getParent().getParent().getOffsetHeight() + 100);
+    setPlayfieldWidth(getPlayfield().getOffsetWidth());
+    setPlayfieldHeight(getPlayfield().getParent().getParent().getOffsetHeight());
     assert getPlayfieldWidth() > 0;
     assert getPlayfieldHeight() > 0;
   }
