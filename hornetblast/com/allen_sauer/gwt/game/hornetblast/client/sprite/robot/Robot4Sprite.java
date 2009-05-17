@@ -18,7 +18,7 @@ public class Robot4Sprite extends Sprite {
   private static final int FRAME_WIDTH = 80;
   private static final int FRAMES_HORIZONTAL = 4;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = "images/archer-zurg-attacker-80x80-4x1frames.gif";
+  private static final String SPRITE_URL = "hornetblast-images/archer-zurg-attacker-80x80-4x1frames.gif";
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);

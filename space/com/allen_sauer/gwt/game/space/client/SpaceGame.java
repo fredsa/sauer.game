@@ -3,9 +3,6 @@
  */
 package com.allen_sauer.gwt.game.space.client;
 
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Label;
-
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.space.client.collision.PlayerRobotCollisionDetector;
@@ -15,14 +12,16 @@ import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayer;
 import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayerSprite;
 import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 import com.allen_sauer.gwt.voices.client.SoundController;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
 
 public class SpaceGame extends Game {
   public static final int MAX_BULLETS = 3;
-  public static final int MAX_ROBOTS = 10;
-  public static final double ROBOT_APPEARANCE_PROBABILITY = .05;
   private static final int MAX_LIVES = 5;
-
   private static final int MAX_PLAYERS = 1;
+  public static final int MAX_ROBOTS = 10;
+
+  public static final double ROBOT_APPEARANCE_PROBABILITY = .05;
   private Image backgroundImage;
 
   private ExplosionSpritePool explosionSpritePool;
@@ -49,21 +48,14 @@ public class SpaceGame extends Game {
     return soundController;
   }
 
-  @Override
-  public void playerDied(Player player) {
-    updatePlayerText();
-  }
-
-  @Override
-  public void updatePlayerText() {
-    int spacing = MAX_PLAYERS != 1 ? getPlayfieldWidth() / (MAX_PLAYERS - 1) : 0;
-    int middle = getPlayfieldWidth() / 2;
+  private void initPlayerText() {
+    playerText = new Label[MAX_LIVES];
     for (int i = 0; i < MAX_PLAYERS; i++) {
-      playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());
-      int targetX = i * spacing;
-      int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
-      getPlayfield().setWidgetPosition(playerText[i], x, 10);
+      playerText[i] = new Label();
+      playerText[i].addStyleName("playerText");
+      getPlayfield().add(playerText[i], -500, -500);
     }
+    updatePlayerText();
   }
 
   @Override
@@ -72,7 +64,7 @@ public class SpaceGame extends Game {
     soundController = new SoundController();
     soundController.setDefaultVolume(10);
 
-    backgroundImage = new Image("images/nebula_13-fudged.jpg");
+    backgroundImage = new Image("space-images/nebula_13-fudged.jpg");
     backgroundImage.addStyleName("game-background-image");
     backgroundImage.setSize("100%", "100%");
     background.add(backgroundImage, 0, 0);
@@ -93,13 +85,20 @@ public class SpaceGame extends Game {
     initPlayerText();
   }
 
-  private void initPlayerText() {
-    playerText = new Label[MAX_LIVES];
-    for (int i = 0; i < MAX_PLAYERS; i++) {
-      playerText[i] = new Label();
-      playerText[i].addStyleName("playerText");
-      getPlayfield().add(playerText[i], -500, -500);
-    }
+  @Override
+  public void playerDied(Player player) {
     updatePlayerText();
+  }
+
+  @Override
+  public void updatePlayerText() {
+    int spacing = MAX_PLAYERS != 1 ? getPlayfieldWidth() / (MAX_PLAYERS - 1) : 0;
+    int middle = getPlayfieldWidth() / 2;
+    for (int i = 0; i < MAX_PLAYERS; i++) {
+      playerText[i].setText(player[i].getPlayerNumber() + "UP: " + player[i].getLives());
+      int targetX = i * spacing;
+      int x = targetX < middle ? targetX : targetX - playerText[i].getOffsetWidth();
+      getPlayfield().setWidgetPosition(playerText[i], x, 10);
+    }
   }
 }

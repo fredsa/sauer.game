@@ -20,7 +20,7 @@ public class Robot1Sprite extends Sprite {
   private static final int FRAMES_VERTICAL = 1;
   private static int[] LEFT_FRAME_SEQUENCE = {0};
   private static int[] RIGHT_FRAME_SEQUENCE = {0};
-  private static final String SPRITE_URL = "images/archer-alien1-60x63.gif";
+  private static final String SPRITE_URL = "hornetblast-images/archer-alien1-60x63.gif";
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
   }

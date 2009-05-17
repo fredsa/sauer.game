@@ -19,7 +19,7 @@ public class RobotSprite extends Sprite {
   private static final int FRAMES_VERTICAL = 2;
   private static int[] LEFT_FRAME_SEQUENCE = {11, 10, 9, 8, 7, 6};
   private static int[] RIGHT_FRAME_SEQUENCE = {0, 1, 2, 3, 4, 5};
-  private static final String SPRITE_URL = "images/robots-03-map-tr.gif";
+  private static final String SPRITE_URL = "space-images/robots-03-map-tr.gif";
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(8, 6, 46, 75);

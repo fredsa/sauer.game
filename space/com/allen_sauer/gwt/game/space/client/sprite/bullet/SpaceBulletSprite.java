@@ -18,7 +18,7 @@ public class SpaceBulletSprite extends Sprite {
   private static final int FRAME_WIDTH = 60;
   private static final int FRAMES_HORIZONTAL = 3;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = "images/burstbullet-tr.gif";
+  private static final String SPRITE_URL = "space-images/burstbullet-tr.gif";
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(8, 32, 48, 48);

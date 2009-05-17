@@ -17,7 +17,7 @@ public class ExplosionSprite extends Sprite {
   private static final int FRAME_WIDTH = 96;
   private static final int FRAMES_HORIZONTAL = 5;
   private static final int FRAMES_VERTICAL = 4;
-  private static final String SPRITE_URL = "images/GasExplosion-bb-tr.gif";
+  private static final String SPRITE_URL = "hornetblast-images/GasExplosion-bb-tr.gif";
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
@@ -32,7 +32,7 @@ public class ExplosionSprite extends Sprite {
         FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL_MILLIS));
     setBehavior(new NullBehavior(this));
     sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG,
-        "freesoundproject/34200_themfish_bamf.mp3");
+        "hornetblast-freesoundproject/34200_themfish_bamf.mp3");
   }
 
   @Override

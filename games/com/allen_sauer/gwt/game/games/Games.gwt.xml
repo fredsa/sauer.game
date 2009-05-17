@@ -1,7 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.6.4//EN" "http://google-web-toolkit.googlecode.com/svn/tags/1.6.4/distro-source/core/src/gwt-module.dtd">
 <!-- 
-  Copyright 2007 Fred Sauer
+  Copyright 2009 Fred Sauer
 -->
-<module>
+<module rename-to="games">
 
   <!-- Inherit the core Web Toolkit stuff. -->
   <inherits name='com.google.gwt.user.User' />
@@ -15,8 +17,5 @@
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='com.allen_sauer.gwt.game.games.client.Games' />
-
-  <!-- Include style sheet   -->
-  <stylesheet src='Games.css' />
 
 </module>

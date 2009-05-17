@@ -16,7 +16,7 @@ public class SpacePlayerSprite extends PlayerSprite {
   private static final int FRAME_WIDTH = 51;
   private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = "images/SpaceShuttle-sm-tr.gif";
+  private static final String SPRITE_URL = "space-images/SpaceShuttle-sm-tr.gif";
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(5, 15, 41, 97);

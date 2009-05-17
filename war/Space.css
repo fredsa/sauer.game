@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
 
+@import "Game.css"
+
 XX .space * { /* DEBUGGING */
   border: 1px solid green;
   background-color: #ABCDEF;
