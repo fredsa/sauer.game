@@ -1,5 +1,5 @@
-#Sun May 17 13:11:46 PDT 2009
+#Sun Aug 02 23:26:50 PDT 2009
 eclipse.preferences.version=1
-entryPointModules=com.allen_sauer.gwt.game.hornetblast.HornetBlast|com.allen_sauer.gwt.game.space.Space|com.allen_sauer.gwt.game.games.Games
+entryPointModules=com.allen_sauer.gwt.game.hornetblast.HornetBlast
 filesCopiedToWebInfLib=gwt-servlet.jar
-gwtCompileSettings=PGd3dC1jb21waWxlLXNldHRpbmdzPjxsb2ctbGV2ZWw+SU5GTzwvbG9nLWxldmVsPjxvdXRwdXQtc3R5bGU+UFJFVFRZPC9vdXRwdXQtc3R5bGU+PGV4dHJhLWFyZ3M+PC9leHRyYS1hcmdzPjwvZ3d0LWNvbXBpbGUtc2V0dGluZ3M+
+gwtCompileSettings=PGd3dC1jb21waWxlLXNldHRpbmdzPjxsb2ctbGV2ZWw+SU5GTzwvbG9nLWxldmVsPjxvdXRwdXQtc3R5bGU+UFJFVFRZPC9vdXRwdXQtc3R5bGU+PGV4dHJhLWFyZ3M+PCFbQ0RBVEFbXV0+PC9leHRyYS1hcmdzPjx2bS1hcmdzPjwhW0NEQVRBWy1YbXg1MTJtXV0+PC92bS1hcmdzPjwvZ3d0LWNvbXBpbGUtc2V0dGluZ3M+
