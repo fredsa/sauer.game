@@ -3,9 +3,10 @@
  */
 package com.allen_sauer.gwt.game.client.behavior;
 
+import com.google.gwt.event.dom.client.KeyCodes;
+
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.player.PlayerSprite;
-import com.allen_sauer.gwt.game.client.ui.util.Page;
 
 public class PlayerMovementBehavior extends Behavior {
   private final Game game;
@@ -32,17 +33,17 @@ public class PlayerMovementBehavior extends Behavior {
   @Override
   public boolean doFrame(double millis) {
     if (game.input.isKeyboardMode()) {
-      if (game.input.isKeyDown(Page.CODES.KEY_LEFT)) {
+      if (game.input.isKeyDown(KeyCodes.KEY_LEFT)) {
         setXSpeed(-xDelta);
-      } else if (game.input.isKeyDown(Page.CODES.KEY_RIGHT)) {
+      } else if (game.input.isKeyDown(KeyCodes.KEY_RIGHT)) {
         setXSpeed(xDelta);
       } else {
         setXSpeed(0);
       }
 
-      if (game.input.isKeyDown(Page.CODES.KEY_UP)) {
+      if (game.input.isKeyDown(KeyCodes.KEY_UP)) {
         setYSpeed(-yDelta);
-      } else if (game.input.isKeyDown(Page.CODES.KEY_DOWN)) {
+      } else if (game.input.isKeyDown(KeyCodes.KEY_DOWN)) {
         setYSpeed(yDelta);
       } else {
         setYSpeed(0);
