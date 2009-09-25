@@ -3,7 +3,7 @@
  */
 package com.allen_sauer.gwt.game.hornetblast.client;
 
-import com.google.gwt.user.client.ui.KeyboardListener;
+import com.google.gwt.event.dom.client.KeyCodes;
 
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
@@ -151,10 +151,10 @@ public class HornetGame extends Game {
 
     input.registerKey(' ');
     input.registerKey('P');
-    input.registerKey(KeyboardListener.KEY_UP);
-    input.registerKey(KeyboardListener.KEY_LEFT);
-    input.registerKey(KeyboardListener.KEY_RIGHT);
-    input.registerKey(KeyboardListener.KEY_DOWN);
+    input.registerKey(KeyCodes.KEY_UP);
+    input.registerKey(KeyCodes.KEY_LEFT);
+    input.registerKey(KeyCodes.KEY_RIGHT);
+    input.registerKey(KeyCodes.KEY_DOWN);
 
     setState(State.STATE_PAUSED_BY_USER);
   }
