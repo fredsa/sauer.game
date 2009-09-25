@@ -1,0 +1,99 @@
+@CHARSET "UTF-8";
+
+/* ------------ General CSS ------------ */
+XX BODY { /* DEBUGGING */
+  border: 1px solid green;
+  background-color: #ABCDEF;
+}
+
+/* ------------ HornetLabel ------------ */
+.batblast .bat-label {
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.batblast .bat-label .bat-label1 ,
+.batblast .bat-label .bat-label1 A {
+  color: #0000AA; /* blue */
+}
+
+.batblast .bat-label .bat-label2 ,
+.batblast .bat-label .bat-label2 A {
+  color: #8888DD; /* light blue */
+}
+
+/* ------------ GameTimer ------------ */
+.batblast .timerText {
+  position: absolute;
+  left: 0px;
+  top: 40px;
+  color: #CCCCCC;
+}
+
+/* ------------ HornetKeyboardKey ------------ */
+.batblast TABLE.bat-keyboard-key {
+  border: 1px solid black;
+  padding: 3px 5px 5px 5px;
+  margin: auto;
+}
+
+.batblast TABLE.bat-keyboard-key TD.bat-keyboard-key-cell {
+  padding: 0.4em 0.5em;
+  border: 1px solid #550000;
+  font-size: 12pt;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+/* ------------ HornetOverlayPanel ------------ */
+.batblast .HornetOverlayPanel {
+  margin: 3em;
+}
+
+.batblast .bat-key-layout {
+  margin: auto;
+}
+
+.batblast .bat-label {
+  text-align: left !important;
+  -webkit-text-size-adjust: none;  
+}
+
+.batblast TABLE.bat-key-layout .bat-keyboard-key {
+  background-color: #DDDDDD; /* light gray */
+}
+
+.batblast TABLE.bat-key-layout .bat-label1 {
+  color: #AA0000; /* red */
+}
+
+.batblast TABLE.bat-key-layout .bat-label2 {
+  color: #DD8888; /* light red */
+}
+
+.batblast .bat-game-state-label {
+  font-size: 2em;
+  border: 2px dashed green;
+}
+
+.batblast .bat-game-state-label .bat-label1 {
+  color: #00AA00; /* green */
+}
+
+.batblast .bat-game-state-label .bat-label2 {
+  color: #88DD88; /* light green */
+}
+
+.batblast .game-title {
+  font-size: 4em;
+}
+
+.batblast .game-title .bat-label1 {
+  color: #FFCC00; /* gold */
+}
+
+.batblast .game-title .bat-label2 {
+  color: #C9960C; /* gold */
+}
+
+/* ------------  ------------ */
