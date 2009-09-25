@@ -4,25 +4,32 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+  
+  <welcome-file-list>BatBlast.html</welcome-file-list>
+  
+  <servlet>
+    <servlet-name>remoteLoggerServiceImpl</servlet-name>
+    <servlet-class>com.allen_sauer.gwt.log.server.RemoteLoggerServiceImpl</servlet-class>
+  </servlet>
 
-	<servlet>
-		<servlet-name>remoteLoggerServiceImpl</servlet-name>
-		<servlet-class>com.allen_sauer.gwt.log.server.RemoteLoggerServiceImpl</servlet-class>
-	</servlet>
+  <servlet-mapping>
+    <servlet-name>remoteLoggerServiceImpl</servlet-name>
+    <url-pattern>/hornetblast/gwt-log</url-pattern>
+  </servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>remoteLoggerServiceImpl</servlet-name>
-		<url-pattern>/hornetblast/gwt-log</url-pattern>
-	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>remoteLoggerServiceImpl</servlet-name>
+    <url-pattern>/space/gwt-log</url-pattern>
+  </servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>remoteLoggerServiceImpl</servlet-name>
-		<url-pattern>/space/gwt-log</url-pattern>
-	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>remoteLoggerServiceImpl</servlet-name>
+    <url-pattern>/games/gwt-log</url-pattern>
+  </servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>remoteLoggerServiceImpl</servlet-name>
-		<url-pattern>/games/gwt-log</url-pattern>
-	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>remoteLoggerServiceImpl</servlet-name>
+    <url-pattern>/batblast/gwt-log</url-pattern>
+  </servlet-mapping>
 
 </web-app>
