@@ -13,11 +13,11 @@ import com.allen_sauer.gwt.game.client.sprite.player.PlayerSprite;
 public class BatmanPlayerSprite extends PlayerSprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL_MILLIS = 1;
-  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.skylerBatman().getHeight() * 0 + 64;
-  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.skylerBatman().getWidth() * 0 + 64;
+  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.batman().getHeight() * 0 + 64;
+  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.batman().getWidth() * 0 + 64;
   private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
-  private static String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.skylerBatman().getURL();
+  private static String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.batman().getURL();
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(5, 15, 40, 46);

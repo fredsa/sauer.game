@@ -16,12 +16,12 @@ public class BulletSprite extends Sprite {
   static int delay;
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL = 500;
-  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.skylerPoisinIvy().getHeight() * 0 + 32;
-  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.skylerPoisinIvy().getWidth() * 0 + 32;
+  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.iceCube().getHeight() * 0 + 32;
+  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.iceCube().getWidth() * 0 + 32;
   private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
 
-  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.skylerPoisinIvy().getURL();
+  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.iceCube().getURL();
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);

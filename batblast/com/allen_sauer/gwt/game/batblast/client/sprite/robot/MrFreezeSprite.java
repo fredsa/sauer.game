@@ -14,11 +14,11 @@ import com.allen_sauer.gwt.game.client.sprite.frame.LoopFrameInfo;
 public class MrFreezeSprite extends Sprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL_MILLIS = 1;
-  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.skylerMrFreeze().getHeight() * 0 + 64;
-  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.skylerMrFreeze().getWidth() * 0 + 64;
+  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.freeze2().getHeight() * 0 + 64;
+  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.freeze2().getWidth() * 0 + 64;
   private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.skylerMrFreeze().getURL();
+  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.freeze2().getURL();
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
   }

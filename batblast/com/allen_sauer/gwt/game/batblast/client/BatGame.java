@@ -10,8 +10,8 @@ import com.allen_sauer.gwt.game.batblast.client.sprite.explosion.ExplosionSprite
 import com.allen_sauer.gwt.game.batblast.client.sprite.player.BatmanPlayer;
 import com.allen_sauer.gwt.game.batblast.client.sprite.player.PlayerSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.MrFreezeSpritePool;
-import com.allen_sauer.gwt.game.batblast.client.sprite.robot.BaineSpritePool;
-import com.allen_sauer.gwt.game.batblast.client.sprite.robot.KillerCrocSpritePool;
+import com.allen_sauer.gwt.game.batblast.client.sprite.robot.MrFreezeTallSpritePool;
+import com.allen_sauer.gwt.game.batblast.client.sprite.robot.JokerSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.PenguinSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.ui.BatLabel;
 import com.allen_sauer.gwt.game.client.Game;
@@ -129,8 +129,8 @@ public class BatGame extends Game {
     soundController.setDefaultVolume(60);
 
     robot1SpritePool = new MrFreezeSpritePool(this);
-    robot2SpritePool = new BaineSpritePool(this);
-    robot3SpritePool = new KillerCrocSpritePool(this);
+    robot2SpritePool = new MrFreezeTallSpritePool(this);
+    robot3SpritePool = new JokerSpritePool(this);
     robot4SpritePool = new PenguinSpritePool(this);
     explosionSpritePool = new ExplosionSpritePool(this);
 

@@ -11,19 +11,19 @@ import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.frame.FrameInfo;
 import com.allen_sauer.gwt.game.client.sprite.frame.LoopFrameInfo;
 
-public class KillerCrocSprite extends Sprite {
+public class JokerSprite extends Sprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL_MILLIS = 250;
-  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.skylerKillerCroc().getHeight() * 0 + 64;
-  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.skylerKillerCroc().getWidth() * 0 + 64;
+  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.joker().getHeight() * 0 + 64;
+  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.joker().getWidth() * 0 + 64;
   private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.skylerKillerCroc().getURL();
+  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.joker().getURL();
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
   }
 
-  public KillerCrocSprite(Game game) {
+  public JokerSprite(Game game) {
     super(game, BOUNDING_BOX_INFO);
     FrameInfo frameInfo = new LoopFrameInfo(this, SPRITE_URL, FRAMES_HORIZONTAL, FRAMES_VERTICAL,
         FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL_MILLIS);

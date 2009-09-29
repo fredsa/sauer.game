@@ -11,20 +11,36 @@ public interface BatBlastRobotClientBundle extends ClientBundle {
 
   public static final BatBlastRobotClientBundle INSTANCE = GWT.create(BatBlastRobotClientBundle.class);
 
+  ImageResource batman();
+
+  ImageResource freeze2();
+
+  ImageResource iceCube();
+
+  ImageResource ivy();
+
+  ImageResource joker();
+
+  ImageResource mrFreezeTall();
+
+  ImageResource robin();
+
   ImageResource skylerBaine();
 
-  ImageResource skylerBatman();
-
-  ImageResource skylerKillerCroc();
-
-  ImageResource skylerMrFreeze();
-
-  ImageResource skylerPenguin();
-
-  ImageResource skylerPoisinIvy();
-
-  ImageResource skylerTwoFace();
-
-  ImageResource skylerWorserMrFreeze();
+  //  ImageResource skylerBaine();
+  //
+  //  ImageResource skylerBatman();
+  //
+  //  ImageResource skylerKillerCroc();
+  //
+  //  ImageResource skylerMrFreeze();
+  //
+  //  ImageResource skylerPenguin();
+  //
+  //  ImageResource skylerPoisinIvy();
+  //
+  //  ImageResource skylerTwoFace();
+  //
+  //  ImageResource skylerWorserMrFreeze();
 
 }

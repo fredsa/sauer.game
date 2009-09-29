@@ -4,8 +4,10 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
-  
-  <welcome-file-list>BatBlast.html</welcome-file-list>
+
+  <welcome-file-list>
+    <welcome-file>BatBlast.html</welcome-file>
+  </welcome-file-list>
   
   <servlet>
     <servlet-name>remoteLoggerServiceImpl</servlet-name>

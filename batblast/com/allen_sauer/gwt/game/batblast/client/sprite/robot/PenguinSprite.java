@@ -14,11 +14,11 @@ import com.allen_sauer.gwt.game.client.sprite.frame.LoopFrameInfo;
 public class PenguinSprite extends Sprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL_MILLIS = 250;
-  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.skylerPenguin().getHeight() * 0 + 64;
-  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.skylerPenguin().getWidth() * 0 + 64;
-  private static final int FRAMES_HORIZONTAL = 4;
+  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.joker().getHeight() * 0 + 64;
+  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.joker().getWidth() * 0 + 64;
+  private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.skylerPenguin().getURL();
+  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.joker().getURL();
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
