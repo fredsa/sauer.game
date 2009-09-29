@@ -79,7 +79,7 @@
         </module>
         <module name="Header">
             <property name="severity" value="ignore"/>
-            <property name="header" value="/**\n * Copyright 2007 Fred Sauer\n */"/>
+            <property name="header" value="/**\n * Copyright 2009 Fred Sauer\n */"/>
         </module>
         <module name="ImportOrder">
             <property name="groups" value="com.google, com,  junit, net,org, java,javax"/>
@@ -214,6 +214,6 @@
         <property name="messageFormat" value=".*name.*"/>
     </module>
     <module name="CrossLanguageRegexpHeader">
-        <property name="header" value=".*\n.*Copyright 2007 Fred Sauer.*\n"/>
+        <property name="header" value=".*\n.*Copyright 2009 Fred Sauer.*\n"/>
     </module>
 </module>

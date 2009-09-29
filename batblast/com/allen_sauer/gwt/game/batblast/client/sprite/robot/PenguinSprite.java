@@ -1,5 +1,5 @@
 /**
- * Copyright 2007 Fred Sauer
+ * Copyright 2009 Fred Sauer
  */
 package com.allen_sauer.gwt.game.batblast.client.sprite.robot;
 
@@ -14,11 +14,11 @@ import com.allen_sauer.gwt.game.client.sprite.frame.LoopFrameInfo;
 public class PenguinSprite extends Sprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL_MILLIS = 250;
-  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.joker().getHeight() * 0 + 64;
-  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.joker().getWidth() * 0 + 64;
+  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.ivy().getHeight() / 10;
+  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.ivy().getWidth() / 10;
   private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
-  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.joker().getURL();
+  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.ivy().getURL();
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);

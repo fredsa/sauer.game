@@ -1,5 +1,5 @@
 /**
- * Copyright 2007 Fred Sauer
+ * Copyright 2009 Fred Sauer
  */
 package com.allen_sauer.gwt.game.client.generator;
 

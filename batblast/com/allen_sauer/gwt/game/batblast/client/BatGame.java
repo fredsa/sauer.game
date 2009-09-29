@@ -1,5 +1,5 @@
 /**
- * Copyright 2007 Fred Sauer
+ * Copyright 2009 Fred Sauer
  */
 package com.allen_sauer.gwt.game.batblast.client;
 
@@ -9,9 +9,9 @@ import com.allen_sauer.gwt.game.batblast.client.collision.PlayerRobotCollisionDe
 import com.allen_sauer.gwt.game.batblast.client.sprite.explosion.ExplosionSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.player.BatmanPlayer;
 import com.allen_sauer.gwt.game.batblast.client.sprite.player.PlayerSpritePool;
+import com.allen_sauer.gwt.game.batblast.client.sprite.robot.JokerSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.MrFreezeSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.MrFreezeTallSpritePool;
-import com.allen_sauer.gwt.game.batblast.client.sprite.robot.JokerSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.PenguinSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.ui.BatLabel;
 import com.allen_sauer.gwt.game.client.Game;
