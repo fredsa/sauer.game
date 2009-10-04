@@ -4,7 +4,7 @@
 package com.allen_sauer.gwt.game.batblast.client.collision;
 
 import com.allen_sauer.gwt.game.batblast.client.sprite.explosion.ExplosionSpritePool;
-import com.allen_sauer.gwt.game.batblast.client.sprite.player.BatmanPlayerSprite;
+import com.allen_sauer.gwt.game.batblast.client.sprite.player.MrFreezeTallPlayerSprite;
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.collision.CollisionDetector;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
@@ -22,7 +22,7 @@ public class PlayerRobotCollisionDetector extends CollisionDetector {
 
   @Override
   protected void handleCollision(Sprite playerSprite, Sprite robotSprite) {
-    Player player = ((BatmanPlayerSprite) playerSprite).getPlayer();
+    Player player = ((MrFreezeTallPlayerSprite) playerSprite).getPlayer();
     if (player.hit()) {
       robotSprite.markForRemoval();
       if (!explosionSpritePool.exhausted()) {

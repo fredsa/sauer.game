@@ -3,7 +3,7 @@
  */
 package com.allen_sauer.gwt.game.batblast.client.sprite.bullet;
 
-import com.allen_sauer.gwt.game.batblast.client.sprite.resources.BatBlastRobotClientBundle;
+import com.allen_sauer.gwt.game.batblast.client.sprite.resources.BatBlastClientBundle;
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.VerticalBulletBehavior;
 import com.allen_sauer.gwt.game.client.sprite.BoundingBoxInfo;
@@ -16,12 +16,12 @@ public class BulletSprite extends Sprite {
   static int delay;
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL = 500;
-  private static final int FRAME_HEIGHT = BatBlastRobotClientBundle.INSTANCE.iceCube().getHeight() * 0 + 32;
-  private static final int FRAME_WIDTH = BatBlastRobotClientBundle.INSTANCE.iceCube().getWidth() * 0 + 32;
+  private static final int FRAME_HEIGHT = BatBlastClientBundle.INSTANCE.iceCube().getHeight() * 0 + 32;
+  private static final int FRAME_WIDTH = BatBlastClientBundle.INSTANCE.iceCube().getWidth() * 0 + 32;
   private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
 
-  private static final String SPRITE_URL = BatBlastRobotClientBundle.INSTANCE.iceCube().getURL();
+  private static final String SPRITE_URL = BatBlastClientBundle.INSTANCE.iceCube().getURL();
 
   static {
     BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
@@ -35,8 +35,11 @@ public class BulletSprite extends Sprite {
         FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL));
     setBehavior(new VerticalBulletBehavior(this, playerSprite));
     sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG,
-        "hornetblast-freesoundproject/28917__junggle__btn107.mp3");
-    sound.setVolume((int) (sound.getVolume() * .15));
+        "hornetblast-freesoundproject/16064__Traveler__Cork3.mp3"
+          //        BatBlastClientBundle.INSTANCE.travelerCork3().getUrl()
+    );
+    System.out.println(BatBlastClientBundle.INSTANCE.travelerCork3().getUrl());
+    sound.setVolume((int) (sound.getVolume() * 0.2));
   }
 
   @Override

@@ -32,7 +32,9 @@ public class ExplosionSprite extends Sprite {
         FRAME_WIDTH, FRAME_HEIGHT, FRAME_ANIMATE_INTERVAL_MILLIS));
     setBehavior(new NullBehavior(this));
     sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG,
-        "hornetblast-freesoundproject/34200_themfish_bamf.mp3");
+        "hornetblast-freesoundproject/21915__Halleck__neck_crack_pure.mp3"
+          //BatBlastClientBundle.INSTANCE.halleckNeckCrackPure().getUrl()
+    );
   }
 
   @Override

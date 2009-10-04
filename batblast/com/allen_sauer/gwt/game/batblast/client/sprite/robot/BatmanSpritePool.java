@@ -9,13 +9,13 @@ import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 
-public class MrFreezeTallSpritePool extends SpritePool {
+public class BatmanSpritePool extends SpritePool {
 
-  public MrFreezeTallSpritePool(final BatGame game) {
+  public BatmanSpritePool(final BatGame game) {
     super(game);
     SpriteFactory spriteFactory = new SpriteFactory() {
       public Sprite create() {
-        return new MrFreezeTallSprite(game);
+        return new BatmanSprite(game);
       }
     };
     init(spriteFactory, BatGame.MAX_ROBOTS);

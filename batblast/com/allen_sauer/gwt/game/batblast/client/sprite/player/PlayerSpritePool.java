@@ -13,7 +13,7 @@ public class PlayerSpritePool extends SpritePool {
     super(game);
     SpriteFactory spriteFactory = new SpriteFactory() {
       public Sprite create() {
-        return new BatmanPlayerSprite(game);
+        return new MrFreezeTallPlayerSprite(game);
       }
     };
     init(spriteFactory, maxPlayers);

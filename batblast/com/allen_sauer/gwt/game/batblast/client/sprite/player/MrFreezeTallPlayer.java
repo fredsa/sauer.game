@@ -11,7 +11,7 @@ import com.allen_sauer.gwt.game.client.generator.PlayerBulletGenerator;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 
-public class BatmanPlayer extends Player {
+public class MrFreezeTallPlayer extends Player {
   private static int frameCount;
 
   private static final int INVINSIBLE_FRAME_COUNT = 200;
@@ -21,10 +21,10 @@ public class BatmanPlayer extends Player {
   private PlayerBulletGenerator keyboardBulletGenerator;
   private int lives;
   private final int playerNumber;
-  private BatmanPlayerSprite playerSprite;
+  private MrFreezeTallPlayerSprite playerSprite;
   private final PlayerSpritePool playerSpritePool;
 
-  public BatmanPlayer(BatGame game, int playerNumber, PlayerSpritePool playerSpritePool,
+  public MrFreezeTallPlayer(BatGame game, int playerNumber, PlayerSpritePool playerSpritePool,
       int initialLives) {
     super(game);
     this.game = game;
@@ -88,7 +88,7 @@ public class BatmanPlayer extends Player {
     super.reset();
     lives = initialLives;
     if (playerSprite == null) {
-      playerSprite = (BatmanPlayerSprite) playerSpritePool.create();
+      playerSprite = (MrFreezeTallPlayerSprite) playerSpritePool.create();
       playerSprite.setPlayer(this);
       bulletSpritePool = new BulletSpritePool(game, playerSprite);
       keyboardBulletGenerator = new PlayerBulletGenerator(game, bulletSpritePool);
@@ -102,7 +102,7 @@ public class BatmanPlayer extends Player {
           game.getExplosionSpritePool());
     } else {
       frameCount = INVINSIBLE_FRAME_COUNT;
-      assert playerSprite == (BatmanPlayerSprite) playerSpritePool.create();
+      assert playerSprite == (MrFreezeTallPlayerSprite) playerSpritePool.create();
     }
     game.getPlayingFrameListenerCollection().addFrameListener(playerSprite);
     game.getPlayingFrameListenerCollection().addFrameListener(keyboardBulletGenerator);

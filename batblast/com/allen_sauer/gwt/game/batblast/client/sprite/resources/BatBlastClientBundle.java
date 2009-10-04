@@ -5,15 +5,22 @@ package com.allen_sauer.gwt.game.batblast.client.sprite.resources;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
+import com.google.gwt.resources.client.DataResource;
 import com.google.gwt.resources.client.ImageResource;
 
-public interface BatBlastRobotClientBundle extends ClientBundle {
+public interface BatBlastClientBundle extends ClientBundle {
 
-  public static final BatBlastRobotClientBundle INSTANCE = GWT.create(BatBlastRobotClientBundle.class);
+  public static final BatBlastClientBundle INSTANCE = GWT.create(BatBlastClientBundle.class);
 
   ImageResource batman();
 
+  @Source("62363__fons__zap_2.mp3")
+  DataResource fonsZap2();
+
   ImageResource freeze2();
+
+  @Source("21915__Halleck__neck_crack_pure.mp3")
+  DataResource halleckNeckCrackPure();
 
   ImageResource iceCube();
 
@@ -22,10 +29,6 @@ public interface BatBlastRobotClientBundle extends ClientBundle {
   ImageResource joker();
 
   ImageResource mrFreezeTall();
-
-  ImageResource robin();
-
-  ImageResource skylerBaine();
 
   //  ImageResource skylerBaine();
   //
@@ -43,4 +46,10 @@ public interface BatBlastRobotClientBundle extends ClientBundle {
   //
   //  ImageResource skylerWorserMrFreeze();
 
+  ImageResource robin();
+
+  ImageResource skylerBaine();
+
+  @Source("16064__Traveler__Cork3.mp3")
+  DataResource travelerCork3();
 }

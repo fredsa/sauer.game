@@ -31,7 +31,7 @@ public abstract class BatOverlayPanel extends Composite {
   protected Widget newCreditPanel() {
     FlowPanel panel = new FlowPanel();
     panel.add(new BatLabel("Game by Fred Sauer"));
-    panel.add(new BatLabel("Pencil Artwork by Skyler Sauer (age 5)"));
+    panel.add(new BatLabel("Artwork by Skyler Sauer (age 5)"));
     //    panel.add(new BatLabel(
     //        "Explosion Annimation by Boris, author of <a href='http://www.13thmonkey.org/~boris/jgame/'>JGame</a>"));
     panel.add(new BatLabel(

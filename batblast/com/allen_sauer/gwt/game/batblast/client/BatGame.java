@@ -7,11 +7,11 @@ import com.google.gwt.event.dom.client.KeyCodes;
 
 import com.allen_sauer.gwt.game.batblast.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.batblast.client.sprite.explosion.ExplosionSpritePool;
-import com.allen_sauer.gwt.game.batblast.client.sprite.player.BatmanPlayer;
+import com.allen_sauer.gwt.game.batblast.client.sprite.player.MrFreezeTallPlayer;
 import com.allen_sauer.gwt.game.batblast.client.sprite.player.PlayerSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.JokerSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.MrFreezeSpritePool;
-import com.allen_sauer.gwt.game.batblast.client.sprite.robot.MrFreezeTallSpritePool;
+import com.allen_sauer.gwt.game.batblast.client.sprite.robot.BatmanSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.PenguinSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.ui.BatLabel;
 import com.allen_sauer.gwt.game.client.Game;
@@ -31,7 +31,7 @@ public class BatGame extends Game {
   private boolean gameInProgress = false;
   private BatGameOverPanel gameOverPanel = new BatGameOverPanel(this);
   private BatPausedPanel pausedPanel = new BatPausedPanel(this);
-  private BatmanPlayer[] player;
+  private MrFreezeTallPlayer[] player;
   private PlayerSpritePool playerSpritePool;
   private BatLabel[] playerText;
   private SpritePool robot1SpritePool;
@@ -129,17 +129,17 @@ public class BatGame extends Game {
     soundController.setDefaultVolume(60);
 
     robot1SpritePool = new MrFreezeSpritePool(this);
-    robot2SpritePool = new MrFreezeTallSpritePool(this);
+    robot2SpritePool = new BatmanSpritePool(this);
     robot3SpritePool = new JokerSpritePool(this);
     robot4SpritePool = new PenguinSpritePool(this);
     explosionSpritePool = new ExplosionSpritePool(this);
 
     playerSpritePool = new PlayerSpritePool(this, MAX_PLAYERS);
 
-    player = new BatmanPlayer[MAX_PLAYERS];
+    player = new MrFreezeTallPlayer[MAX_PLAYERS];
     for (int i = 0; i < MAX_PLAYERS; i++) {
       int playerNumber = i + 1;
-      player[i] = new BatmanPlayer(this, playerNumber, playerSpritePool, MAX_LIVES);
+      player[i] = new MrFreezeTallPlayer(this, playerNumber, playerSpritePool, MAX_LIVES);
     }
 
     new PlayerRobotCollisionDetector(this, playerSpritePool, robot1SpritePool, explosionSpritePool);
