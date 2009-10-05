@@ -16,8 +16,8 @@ public class FrameInfo implements FrameListener {
   public final String spriteUrl;
   public final int verticalFrames;
   private int currentFrame;
-  private double millisCounter;
   private int[] frameSequence;
+  private double millisCounter;
   private final Sprite sprite;
 
   public FrameInfo(Sprite sprite, String spriteUrl, int horizontalFrames, int verticalFrames,
@@ -57,7 +57,7 @@ public class FrameInfo implements FrameListener {
       millisCounter += millis;
       if (millisCounter >= animationIntervalMillis) {
         millisCounter = 0;
-        setCurrentFrame((getCurrentFrame() + 1) % frameSequence.length);
+        incrementFrame();
       }
     }
     return true;
@@ -82,5 +82,9 @@ public class FrameInfo implements FrameListener {
 
   public void setFrameSequence(int[] frameSequence) {
     this.frameSequence = frameSequence;
+  }
+
+  protected void incrementFrame() {
+    setCurrentFrame((getCurrentFrame() + 1) % frameSequence.length);
   }
 }
