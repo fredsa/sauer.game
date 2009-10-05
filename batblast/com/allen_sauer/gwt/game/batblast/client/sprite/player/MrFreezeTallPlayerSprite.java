@@ -20,7 +20,7 @@ public class MrFreezeTallPlayerSprite extends PlayerSprite {
   private static String SPRITE_URL = BatBlastClientBundle.INSTANCE.mrFreezeTall().getURL();
 
   static {
-    BOUNDING_BOX_INFO = new BoundingBoxInfo(5, 15, 40, 46);
+    BOUNDING_BOX_INFO = new BoundingBoxInfo(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
   }
   private MrFreezeTallPlayer player;
 
