@@ -3,7 +3,11 @@
  */
 package com.allen_sauer.gwt.game.client;
 
-import java.util.ArrayList;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.WindowResizeListener;
+import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FocusPanel;
 
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
@@ -11,11 +15,8 @@ import com.allen_sauer.gwt.game.client.ui.InputPanel;
 import com.allen_sauer.gwt.game.client.ui.Playfield;
 import com.allen_sauer.gwt.game.client.ui.util.Page;
 import com.allen_sauer.gwt.voices.client.SoundController;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.WindowResizeListener;
-import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FocusPanel;
+
+import java.util.ArrayList;
 
 public abstract class Game extends Composite {
   public enum State {
@@ -25,17 +26,17 @@ public abstract class Game extends Composite {
   public static final boolean DEBUG = false;
 
   public final AbsolutePanel background = new AbsolutePanel();
-  private FrameListenerCollection collisionFrameListeners = new FrameListenerCollection();
-
-  private GameTimer engineTimer;
-  private FrameListenerCollection gameOverFrameListenerCollection = new FrameListenerCollection();
-
   public final InputPanel input = new InputPanel(this);
-  private AbsolutePanel mainPanel = new AbsolutePanel();
+
   /**
    * Must be a FocusPanel for proper event capture in IE.
    */
   public final FocusPanel overlay = new FocusPanel();
+  private FrameListenerCollection collisionFrameListeners = new FrameListenerCollection();
+
+  private GameTimer engineTimer;
+  private FrameListenerCollection gameOverFrameListenerCollection = new FrameListenerCollection();
+  private AbsolutePanel mainPanel = new AbsolutePanel();
   private final Playfield playfield = new Playfield(this);
   private int playfieldHeight;
   private int playfieldWidth;
@@ -57,47 +58,12 @@ public abstract class Game extends Composite {
     collisionFrameListeners.addFrameListener(frameListener);
   }
 
-  /**
-   * Add layers from the bottom up.
-   */
-  private void addGameLayers() {
-    mainPanel.setSize("100%", "100%");
-
-    background.setSize("100%", "100%");
-    background.addStyleName("game-layer-background");
-    mainPanel.add(background, 0, 0);
-
-    getPlayfield().setSize("100%", "100%");
-    getPlayfield().addStyleName("game-layer-playfield");
-    mainPanel.add(getPlayfield(), 0, 0);
-
-    overlay.setSize("100%", "100%");
-    overlay.addStyleName("game-layer-overlay");
-    mainPanel.add(overlay, 0, 0);
-
-    input.setSize("100%", "100%");
-    input.addStyleName("game-layer-inputPanel");
-    mainPanel.add(input, 0, 0);
-  }
-
   public void addSpriteFrameListener(FrameListenerCollection frameListener) {
     spriteFrameListeners.addFrameListener(frameListener);
   }
 
   public void addSpritePool(SpritePool pool) {
     spritePools.add(pool);
-  }
-
-  private void clientResized() {
-    setPlayfieldWidth(getPlayfield().getOffsetWidth());
-    setPlayfieldHeight(getPlayfield().getParent().getParent().getOffsetHeight());
-    assert getPlayfieldWidth() > 0;
-    assert getPlayfieldHeight() > 0;
-  }
-
-  FrameListenerCollection getCurrentStateFrameListenerCollection() {
-    return state == State.STATE_GAME_OVER ? gameOverFrameListenerCollection
-        : playingFrameListenerCollection;
   }
 
   public FrameListenerCollection getGameOverFrameListenerCollection() {
@@ -125,30 +91,6 @@ public abstract class Game extends Composite {
   public State getState() {
     return state;
   }
-
-  @Override
-  protected void onLoad() {
-    super.onLoad();
-
-    getPlayingFrameListenerCollection().addFrameListener(spriteFrameListeners);
-    getPlayingFrameListenerCollection().addFrameListener(collisionFrameListeners);
-
-    Window.addWindowResizeListener(new WindowResizeListener() {
-      public void onWindowResized(int width, int height) {
-        clientResized();
-      }
-    });
-    clientResized();
-
-    engineTimer = new GameTimer(this);
-
-    // add hooks, force page focus and trigger game start
-    Page.forceStaticInit();
-
-    setState(State.STATE_GAME_OVER);
-  }
-
-  protected abstract void playerDied(Player player);
 
   public void setFocus(boolean focused) {
     input.setFocus(focused);
@@ -182,4 +124,63 @@ public abstract class Game extends Composite {
   }
 
   public abstract void updatePlayerText();
+
+  @Override
+  protected void onLoad() {
+    super.onLoad();
+
+    getPlayingFrameListenerCollection().addFrameListener(spriteFrameListeners);
+    getPlayingFrameListenerCollection().addFrameListener(collisionFrameListeners);
+
+    Window.addWindowResizeListener(new WindowResizeListener() {
+      public void onWindowResized(int width, int height) {
+        clientResized();
+      }
+    });
+    clientResized();
+
+    engineTimer = new GameTimer(this);
+
+    // add hooks, force page focus and trigger game start
+    Page.forceStaticInit();
+
+    setState(State.STATE_GAME_OVER);
+  }
+
+  protected abstract void playerDied(Player player);
+
+  FrameListenerCollection getCurrentStateFrameListenerCollection() {
+    return state == State.STATE_GAME_OVER ? gameOverFrameListenerCollection
+        : playingFrameListenerCollection;
+  }
+
+  /**
+   * Add layers from the bottom up.
+   */
+  private void addGameLayers() {
+    mainPanel.setSize("100%", "100%");
+
+    background.setSize("100%", "100%");
+    background.addStyleName("game-layer-background");
+    mainPanel.add(background, 0, 0);
+
+    getPlayfield().setSize("100%", "100%");
+    getPlayfield().addStyleName("game-layer-playfield");
+    mainPanel.add(getPlayfield(), 0, 0);
+
+    overlay.setSize("100%", "100%");
+    overlay.addStyleName("game-layer-overlay");
+    mainPanel.add(overlay, 0, 0);
+
+    input.setSize("100%", "100%");
+    input.addStyleName("game-layer-inputPanel");
+    mainPanel.add(input, 0, 0);
+  }
+
+  private void clientResized() {
+    setPlayfieldWidth(getPlayfield().getOffsetWidth());
+    setPlayfieldHeight(getPlayfield().getParent().getParent().getOffsetHeight());
+    assert getPlayfieldWidth() > 0;
+    assert getPlayfieldHeight() > 0;
+  }
 }

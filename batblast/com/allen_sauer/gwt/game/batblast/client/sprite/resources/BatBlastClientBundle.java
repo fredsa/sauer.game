@@ -23,7 +23,15 @@ public interface BatBlastClientBundle extends ClientBundle {
 
   ImageResource iceCube();
 
+  ImageResource iceCube2();
+
+  ImageResource iceCube3();
+
   ImageResource iced();
+
+  ImageResource icedPlayer1();
+
+  ImageResource icedPlayer2();
 
   ImageResource ivy();
 

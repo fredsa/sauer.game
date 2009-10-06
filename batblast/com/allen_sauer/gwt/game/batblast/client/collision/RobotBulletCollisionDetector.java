@@ -4,6 +4,7 @@
 package com.allen_sauer.gwt.game.batblast.client.collision;
 
 import com.allen_sauer.gwt.game.client.Game;
+import com.allen_sauer.gwt.game.client.behavior.FallBehavior;
 import com.allen_sauer.gwt.game.client.collision.CollisionDetector;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
@@ -33,7 +34,7 @@ public class RobotBulletCollisionDetector extends CollisionDetector {
               - (explosionSprite.getFrameInfo().frameHeight - robotSprite.getFrameInfo().frameHeight)
               / 2);
     }
-    robotSprite.markForRemoval();
+    robotSprite.setBehavior(new FallBehavior(robotSprite));
     bulletSprite.markForRemoval();
   }
 }

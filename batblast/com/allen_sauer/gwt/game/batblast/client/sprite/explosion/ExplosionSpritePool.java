@@ -9,13 +9,23 @@ import com.allen_sauer.gwt.game.client.sprite.SpriteFactory;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 
 public class ExplosionSpritePool extends SpritePool {
+  private static int count;
+
   private static final int MAX_EXPLOSIONS = 10;
 
   public ExplosionSpritePool(final BatGame game) {
     super(game);
     SpriteFactory spriteFactory = new SpriteFactory() {
+
       public Sprite create() {
-        return new ExplosionSprite(game);
+        switch (++count % 2) {
+          case 0:
+            return new IcedPlayer1Sprite(game);
+          case 1:
+            return new IcedPlayer2Sprite(game);
+          default:
+            throw new UnsupportedOperationException();
+        }
       }
     };
     init(spriteFactory, MAX_EXPLOSIONS);
