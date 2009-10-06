@@ -14,8 +14,8 @@ import com.allen_sauer.gwt.voices.client.Sound;
 public class ExplosionSprite extends Sprite {
   private static final BoundingBoxInfo BOUNDING_BOX_INFO;
   private static final int FRAME_ANIMATE_INTERVAL_MILLIS = 500;
-  private static final int FRAME_HEIGHT = BatBlastClientBundle.INSTANCE.iced().getHeight() / 10;
-  private static final int FRAME_WIDTH = BatBlastClientBundle.INSTANCE.iced().getWidth() / 10;
+  private static final int FRAME_HEIGHT = BatBlastClientBundle.INSTANCE.iced().getHeight() / 12;
+  private static final int FRAME_WIDTH = BatBlastClientBundle.INSTANCE.iced().getWidth() / 12;
   private static final int FRAMES_HORIZONTAL = 1;
   private static final int FRAMES_VERTICAL = 1;
   private static final String SPRITE_URL = BatBlastClientBundle.INSTANCE.iced().getURL();
@@ -34,7 +34,7 @@ public class ExplosionSprite extends Sprite {
     setBehavior(new NullBehavior(this));
     sound = game.getSoundController().createSound(Sound.MIME_TYPE_AUDIO_MPEG,
         "hornetblast-freesoundproject/21915__Halleck__neck_crack_pure.mp3"
-    //BatBlastClientBundle.INSTANCE.halleckNeckCrackPure().getUrl()
+          //BatBlastClientBundle.INSTANCE.halleckNeckCrackPure().getUrl()
     );
   }
 

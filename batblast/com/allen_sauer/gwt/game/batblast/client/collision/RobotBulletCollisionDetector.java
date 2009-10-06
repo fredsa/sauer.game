@@ -25,7 +25,13 @@ public class RobotBulletCollisionDetector extends CollisionDetector {
     player.incrementScore(10);
     if (!explosionSpritePool.exhausted()) {
       Sprite explosionSprite = explosionSpritePool.create();
-      explosionSprite.setPosition(robotSprite.getX(), robotSprite.getY());
+      explosionSprite.setPosition(
+          robotSprite.getX()
+              - (explosionSprite.getFrameInfo().frameWidth - robotSprite.getFrameInfo().frameWidth)
+              / 2,
+          robotSprite.getY()
+              - (explosionSprite.getFrameInfo().frameHeight - robotSprite.getFrameInfo().frameHeight)
+              / 2);
     }
     robotSprite.markForRemoval();
     bulletSprite.markForRemoval();
