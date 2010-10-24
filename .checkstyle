@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fileset-config file-format-version="1.2.0" simple-config="false">
-    <fileset name="GWT" enabled="true" check-config-name="GWT Checks" local="false">
-        <file-match-pattern match-pattern="^user-src\\.*java$" include-pattern="true"/>
-    </fileset>
-    <fileset name="com.allen_sauer.gwt.game" enabled="true" check-config-name="Game Checks" local="false">
-        <file-match-pattern match-pattern="src\\com.allen_sauer.gwt.game" include-pattern="true"/>
-        <file-match-pattern match-pattern="hornetblast\\com.allen_sauer.gwt.game" include-pattern="true"/>
-        <file-match-pattern match-pattern="space\\com.allen_sauer.gwt.game" include-pattern="true"/>
-        <file-match-pattern match-pattern="games\\com.allen_sauer.gwt.game" include-pattern="true"/>
-    </fileset>
-    <filter name="FileTypesFilter" enabled="true">
-        <filter-data value="java"/>
-        <filter-data value="properties"/>
-        <filter-data value="xml"/>
-    </filter>
-    <filter name="FilesFromPackage" enabled="false">
-        <filter-data value="src/examples"/>
-    </filter>
+
+<fileset-config file-format-version="1.2.0" simple-config="false" sync-formatter="false">
+  <fileset name="GWT" enabled="true" check-config-name="GWT Checks" local="false">
+    <file-match-pattern match-pattern="^user-src\\.*java$" include-pattern="true"/>
+  </fileset>
+  <fileset name="com.allen_sauer.gwt.game" enabled="true" check-config-name="gwt-dnd" local="false">
+    <file-match-pattern match-pattern="src\\com.allen_sauer.gwt.game" include-pattern="true"/>
+    <file-match-pattern match-pattern="hornetblast\\com.allen_sauer.gwt.game" include-pattern="true"/>
+    <file-match-pattern match-pattern="space\\com.allen_sauer.gwt.game" include-pattern="true"/>
+    <file-match-pattern match-pattern="games\\com.allen_sauer.gwt.game" include-pattern="true"/>
+  </fileset>
+  <filter name="FileTypesFilter" enabled="true">
+    <filter-data value="java"/>
+    <filter-data value="properties"/>
+    <filter-data value="xml"/>
+  </filter>
+  <filter name="FilesFromPackage" enabled="false">
+    <filter-data value="src/examples"/>
+  </filter>
 </fileset-config>

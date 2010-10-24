@@ -3,13 +3,11 @@
  */
 package com.allen_sauer.gwt.game.client.behavior;
 
-import com.google.gwt.user.client.Random;
-
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 
+import com.google.gwt.user.client.Random;
+
 public class FallBehavior extends Behavior {
-  private static final int MAX_WALK_MILLIS = 1000;
-  private int walkMillis;
 
   public FallBehavior(Sprite sprite) {
     super(sprite);

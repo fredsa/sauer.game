@@ -3,23 +3,20 @@
  */
 package com.allen_sauer.gwt.game.client.ui.util;
 
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.WindowCloseListener;
-import com.google.gwt.user.client.ui.KeyboardListener;
 
 public final class Page {
-  public static interface CODES extends KeyboardListener {
+  public static interface CODES {
   }
 
-  private static final class PageHooks implements WindowCloseListener {
-    public native void onWindowClosed()
+  private static final class PageHooks implements CloseHandler<Window> {
+    public native void onClose(CloseEvent<Window> event)
     /*-{
+      // clean up function reference
       $wnd.onfocus = null;
     }-*/;
-
-    public String onWindowClosing() {
-      return null;
-    }
 
     private native void init()
     /*-{
@@ -27,11 +24,12 @@ public final class Page {
         @com.allen_sauer.gwt.game.client.ui.util.Page::onWindowFocus()();
       }
     }-*/;
+
   }
 
   static {
     PageHooks pageHooks = new PageHooks();
-    Window.addWindowCloseListener(pageHooks);
+    Window.addCloseHandler(pageHooks);
     pageHooks.init();
   }
 
