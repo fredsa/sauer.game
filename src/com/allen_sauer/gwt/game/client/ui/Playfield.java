@@ -3,12 +3,12 @@
  */
 package com.allen_sauer.gwt.game.client.ui;
 
+import com.allen_sauer.gwt.game.client.Game;
+import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
+
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Widget;
-
-import com.allen_sauer.gwt.game.client.Game;
-import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
 
 public class Playfield extends AbsolutePanel {
   public Playfield(final Game game) {

@@ -3,9 +3,8 @@
  */
 package com.allen_sauer.gwt.game.client.util.impl;
 
-import com.google.gwt.user.client.DOM;
+import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.Event;
 
 /**
  * {@link com.allen_sauer.gwt.dragdrop.client.util.DOMUtil} implementation for
@@ -13,8 +12,8 @@ import com.google.gwt.user.client.Event;
  */
 public class DOMUtilImplIE6 extends DOMUtilImpl {
   @Override
-  public boolean allowFocusChangeCurrentTarget(Event event) {
-    return !isWnd(DOM.eventGetCurrentTarget(event));
+  public boolean allowFocusChangeCurrentTarget(NativeEvent nativeEvent) {
+    return !isWnd((Element) nativeEvent.getCurrentEventTarget().cast());
   }
 
   @Override

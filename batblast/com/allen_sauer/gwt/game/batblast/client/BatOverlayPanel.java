@@ -3,13 +3,13 @@
  */
 package com.allen_sauer.gwt.game.batblast.client;
 
+import com.allen_sauer.gwt.game.batblast.client.ui.BatKeyboardKey;
+import com.allen_sauer.gwt.game.batblast.client.ui.BatLabel;
+
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
-
-import com.allen_sauer.gwt.game.batblast.client.ui.BatKeyboardKey;
-import com.allen_sauer.gwt.game.batblast.client.ui.BatLabel;
 
 public abstract class BatOverlayPanel extends Composite {
   private FlowPanel flowPanel;

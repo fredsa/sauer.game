@@ -3,10 +3,10 @@
  */
 package com.allen_sauer.gwt.game.hornetblast.client;
 
-import com.google.gwt.user.client.ui.HTML;
-
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.hornetblast.client.ui.HornetLabel;
+
+import com.google.gwt.user.client.ui.HTML;
 
 public class HornetSuspendedPanel extends HornetOverlayPanel {
   public HornetSuspendedPanel(Game game) {

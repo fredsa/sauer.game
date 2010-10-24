@@ -3,9 +3,9 @@
  */
 package com.allen_sauer.gwt.game.client.generator;
 
-import com.google.gwt.user.client.Random;
-
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
+
+import com.google.gwt.user.client.Random;
 
 public class IntervalGenerator implements Generator {
   private double probability;

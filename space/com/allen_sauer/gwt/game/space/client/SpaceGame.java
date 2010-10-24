@@ -12,6 +12,7 @@ import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayer;
 import com.allen_sauer.gwt.game.space.client.sprite.player.SpacePlayerSprite;
 import com.allen_sauer.gwt.game.space.client.sprite.robot.RobotSpritePool;
 import com.allen_sauer.gwt.voices.client.SoundController;
+
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 

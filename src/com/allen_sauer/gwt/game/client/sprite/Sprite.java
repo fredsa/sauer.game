@@ -3,17 +3,17 @@
  */
 package com.allen_sauer.gwt.game.client.sprite;
 
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.SimplePanel;
-
 import com.allen_sauer.gwt.game.client.FrameListener;
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.behavior.Behavior;
 import com.allen_sauer.gwt.game.client.sprite.frame.FrameInfo;
 import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
+
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.SimplePanel;
 
 public class Sprite extends Composite implements FrameListener {
   public final BoundingBoxInfo boundingBoxInfo;

@@ -3,13 +3,13 @@
  */
 package com.allen_sauer.gwt.game.hornetblast.client;
 
+import com.allen_sauer.gwt.game.hornetblast.client.ui.HornetKeyboardKey;
+import com.allen_sauer.gwt.game.hornetblast.client.ui.HornetLabel;
+
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Widget;
-
-import com.allen_sauer.gwt.game.hornetblast.client.ui.HornetKeyboardKey;
-import com.allen_sauer.gwt.game.hornetblast.client.ui.HornetLabel;
 
 public abstract class HornetOverlayPanel extends Composite {
   private FlowPanel flowPanel;

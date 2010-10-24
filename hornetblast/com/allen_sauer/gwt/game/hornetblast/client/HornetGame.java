@@ -3,8 +3,6 @@
  */
 package com.allen_sauer.gwt.game.hornetblast.client;
 
-import com.google.gwt.event.dom.client.KeyCodes;
-
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
@@ -18,6 +16,8 @@ import com.allen_sauer.gwt.game.hornetblast.client.sprite.robot.Robot3SpritePool
 import com.allen_sauer.gwt.game.hornetblast.client.sprite.robot.Robot4SpritePool;
 import com.allen_sauer.gwt.game.hornetblast.client.ui.HornetLabel;
 import com.allen_sauer.gwt.voices.client.SoundController;
+
+import com.google.gwt.event.dom.client.KeyCodes;
 
 public class HornetGame extends Game {
   public static final int MAX_BULLETS = 5;

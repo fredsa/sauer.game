@@ -3,10 +3,10 @@
  */
 package com.allen_sauer.gwt.game.client.behavior;
 
-import com.google.gwt.event.dom.client.KeyCodes;
-
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.player.PlayerSprite;
+
+import com.google.gwt.event.dom.client.KeyCodes;
 
 public class PlayerMovementBehavior extends Behavior {
   private final Game game;

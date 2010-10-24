@@ -3,15 +3,15 @@
  */
 package com.allen_sauer.gwt.game.client.ui.util;
 
+import com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl;
+
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
-
-import com.allen_sauer.gwt.game.client.util.impl.DOMUtilImpl;
 
 /**
  * Provides DOM utility methods.
@@ -23,8 +23,8 @@ public class DOMUtil {
     impl = (DOMUtilImpl) GWT.create(DOMUtilImpl.class);
   }
 
-  public static boolean allowFocusChangeCurrentTarget(Event event) {
-    return impl.allowFocusChangeCurrentTarget(event);
+  public static boolean allowFocusChangeCurrentTarget(NativeEvent nativeEvent) {
+    return impl.allowFocusChangeCurrentTarget(nativeEvent);
   }
 
   /**

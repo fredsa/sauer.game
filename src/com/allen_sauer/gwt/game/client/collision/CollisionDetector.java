@@ -3,12 +3,12 @@
  */
 package com.allen_sauer.gwt.game.client.collision;
 
-import com.google.gwt.user.client.DOM;
-
 import com.allen_sauer.gwt.game.client.FrameListener;
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
+
+import com.google.gwt.user.client.DOM;
 
 import java.util.Iterator;
 

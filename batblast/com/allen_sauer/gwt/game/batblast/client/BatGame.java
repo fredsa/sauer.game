@@ -3,21 +3,21 @@
  */
 package com.allen_sauer.gwt.game.batblast.client;
 
-import com.google.gwt.event.dom.client.KeyCodes;
-
 import com.allen_sauer.gwt.game.batblast.client.collision.PlayerRobotCollisionDetector;
 import com.allen_sauer.gwt.game.batblast.client.sprite.explosion.ExplosionSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.player.MrFreezeTallPlayer;
 import com.allen_sauer.gwt.game.batblast.client.sprite.player.PlayerSpritePool;
+import com.allen_sauer.gwt.game.batblast.client.sprite.robot.BatmanSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.JokerSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.MrFreezeSpritePool;
-import com.allen_sauer.gwt.game.batblast.client.sprite.robot.BatmanSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.sprite.robot.PenguinSpritePool;
 import com.allen_sauer.gwt.game.batblast.client.ui.BatLabel;
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.voices.client.SoundController;
+
+import com.google.gwt.event.dom.client.KeyCodes;
 
 public class BatGame extends Game {
   public static final int MAX_BULLETS = 5;

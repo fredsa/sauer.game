@@ -3,14 +3,13 @@
  */
 package com.allen_sauer.gwt.game.client.ui;
 
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.EventPreview;
-import com.google.gwt.user.client.ui.FocusPanel;
-
 import com.allen_sauer.gwt.game.client.Game;
 import com.allen_sauer.gwt.game.client.Game.State;
 import com.allen_sauer.gwt.game.client.ui.util.DOMUtil;
+
+import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.Event.NativePreviewEvent;
+import com.google.gwt.user.client.ui.FocusPanel;
 
 import java.util.Arrays;
 
@@ -23,12 +22,13 @@ public class InputPanel extends FocusPanel {
   private boolean[] registeredKeys = new boolean[0xff];
 
   public InputPanel(final Game game) {
-    DOM.addEventPreview(new EventPreview() {
-      public boolean onEventPreview(Event event) {
+    Event.addNativePreviewHandler(new Event.NativePreviewHandler() {
+
+      public void onPreviewNativeEvent(NativePreviewEvent event) {
         int keyCode;
-        switch (DOM.eventGetType(event)) {
+        switch (event.getTypeInt()) {
           case Event.ONKEYDOWN:
-            keyCode = DOM.eventGetKeyCode(event);
+            keyCode = event.getNativeEvent().getKeyCode();
             if (registeredKeys[keyCode]) {
               if (keyCode == ' '
                   && (game.getState() == State.STATE_PAUSED_BY_USER || game.getState() == State.STATE_GAME_OVER)) {
@@ -39,20 +39,22 @@ public class InputPanel extends FocusPanel {
               }
               keyDown[keyCode & 0xff] = true;
               keyboardMode = true;
-              return false;
+              //              return false;
             }
             break;
           case Event.ONKEYUP:
-            keyCode = DOM.eventGetKeyCode(event);
+            keyCode = event.getNativeEvent().getKeyCode();
             if (registeredKeys[keyCode]) {
               keyDown[keyCode & 0xff] = false;
-              return false;
+              //              return false;
             }
             break;
           case Event.ONBLUR:
-            //            Log.debug("BLUR...: " + DOMUtil.getNodeName(DOM.eventGetTarget(event)) + "/"
-            //                + DOMUtil.getNodeName(DOM.eventGetCurrentTarget(event)));
-            if (DOMUtil.allowFocusChangeCurrentTarget(event)) {
+            //            Log.debug("BLUR...: "
+            //                + DOMUtil.getNodeName((Element) event.getNativeEvent().getCurrentEventTarget().cast())
+            //                + "/"
+            //                + DOMUtil.getNodeName((Element) event.getNativeEvent().getCurrentEventTarget().cast()));
+            if (DOMUtil.allowFocusChangeCurrentTarget(event.getNativeEvent())) {
               if (game.getState() == State.STATE_PLAYING) {
                 game.setState(State.STATE_SUSPENDED);
               }
@@ -60,9 +62,11 @@ public class InputPanel extends FocusPanel {
             }
             break;
           case Event.ONFOCUS:
-            //            Log.debug("focus: " + DOMUtil.getNodeName(DOM.eventGetTarget(event)) + "/"
-            //                + DOMUtil.getNodeName(DOM.eventGetCurrentTarget(event)));
-            if (DOMUtil.allowFocusChangeCurrentTarget(event)) {
+            //            Log.debug("focus: "
+            //                + DOMUtil.getNodeName((Element) event.getNativeEvent().getCurrentEventTarget().cast())
+            //                + "/"
+            //                + DOMUtil.getNodeName((Element) event.getNativeEvent().getCurrentEventTarget().cast()));
+            if (DOMUtil.allowFocusChangeCurrentTarget(event.getNativeEvent())) {
               if (game.getState() == State.STATE_SUSPENDED) {
                 game.setState(State.STATE_PLAYING);
               }
@@ -74,13 +78,13 @@ public class InputPanel extends FocusPanel {
                 || game.getState() == State.STATE_GAME_OVER) {
               game.setState(State.STATE_PLAYING);
             } else {
-              clickX = DOM.eventGetClientX(event);
-              clickY = DOM.eventGetClientY(event);
+              clickX = event.getNativeEvent().getClientX();
+              clickY = event.getNativeEvent().getClientY();
               pendingClicks++;
             }
             break;
         }
-        return true;
+        //        return true;
       }
     });
   }

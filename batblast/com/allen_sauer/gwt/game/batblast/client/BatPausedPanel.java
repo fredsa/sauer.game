@@ -3,11 +3,11 @@
  */
 package com.allen_sauer.gwt.game.batblast.client;
 
-import com.google.gwt.user.client.ui.HTML;
-
 import com.allen_sauer.gwt.game.batblast.client.ui.BatLabel;
 import com.allen_sauer.gwt.game.client.FrameListener;
 import com.allen_sauer.gwt.game.client.Game;
+
+import com.google.gwt.user.client.ui.HTML;
 
 public class BatPausedPanel extends BatOverlayPanel implements FrameListener {
   private final Game game;
