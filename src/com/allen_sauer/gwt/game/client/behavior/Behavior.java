@@ -3,13 +3,14 @@
  */
 package com.allen_sauer.gwt.game.client.behavior;
 
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.WindowResizeListener;
-
 import com.allen_sauer.gwt.game.client.FrameListener;
 import com.allen_sauer.gwt.game.client.sprite.Sprite;
 import com.allen_sauer.gwt.game.client.ui.util.Direction;
 import com.allen_sauer.gwt.game.client.ui.util.MathUtil;
+
+import com.google.gwt.event.logical.shared.ResizeEvent;
+import com.google.gwt.event.logical.shared.ResizeHandler;
+import com.google.gwt.user.client.Window;
 
 public abstract class Behavior implements FrameListener {
   private double direction;
@@ -26,8 +27,8 @@ public abstract class Behavior implements FrameListener {
   public Behavior(Sprite sprite) {
     this.sprite = sprite;
     clientResized();
-    Window.addWindowResizeListener(new WindowResizeListener() {
-      public void onWindowResized(int width, int height) {
+    Window.addResizeHandler(new ResizeHandler() {
+      public void onResize(ResizeEvent event) {
         clientResized();
       }
     });

@@ -3,18 +3,19 @@
  */
 package com.allen_sauer.gwt.game.client;
 
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.WindowResizeListener;
-import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FocusPanel;
-
 import com.allen_sauer.gwt.game.client.sprite.SpritePool;
 import com.allen_sauer.gwt.game.client.sprite.player.Player;
 import com.allen_sauer.gwt.game.client.ui.InputPanel;
 import com.allen_sauer.gwt.game.client.ui.Playfield;
 import com.allen_sauer.gwt.game.client.ui.util.Page;
 import com.allen_sauer.gwt.voices.client.SoundController;
+
+import com.google.gwt.event.logical.shared.ResizeEvent;
+import com.google.gwt.event.logical.shared.ResizeHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FocusPanel;
 
 import java.util.ArrayList;
 
@@ -132,8 +133,8 @@ public abstract class Game extends Composite {
     getPlayingFrameListenerCollection().addFrameListener(spriteFrameListeners);
     getPlayingFrameListenerCollection().addFrameListener(collisionFrameListeners);
 
-    Window.addWindowResizeListener(new WindowResizeListener() {
-      public void onWindowResized(int width, int height) {
+    Window.addResizeHandler(new ResizeHandler() {
+      public void onResize(ResizeEvent event) {
         clientResized();
       }
     });
